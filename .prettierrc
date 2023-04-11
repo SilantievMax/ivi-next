@@ -1,0 +1,12 @@
+{
+  "trailingComma": "none",
+  "tabWidth": 2,
+  "semi": false,
+  "singleQuote": true,
+  "jsxSingleQuote": true,
+  "arrowParens": "avoid",
+  "printWidth": 180,
+  "importOrder": ["<THIRD_PARTY_MODULES>", "^pages/(.*)$", "^components/(.*)$", "^public/(.*)$", "^styles/(.*)$", "^assets/(.*)$", "^../(.*)", "^./(.*)"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
+}
