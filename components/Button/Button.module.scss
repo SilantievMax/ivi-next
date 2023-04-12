@@ -7,7 +7,7 @@
   height: 32px;
   border-width: 1px;
   border-radius: 8px;
-  padding: 7px 11px;
+  // padding: 7px 11px;
   cursor: pointer;
 }
 .button:active {
@@ -59,11 +59,39 @@
   background-color: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.08);
 }
-.included {
-  // background: #ffc85e;
+.circle {
+  border-radius: 100px;
 }
-.disabled {
-  // background: #aaaaaa;
+.smart {
+  gap: 5px;
+  padding: 18px 10px;
+  color: white;
+  p {
+    font-size: 10px;
+    // line-height: 12px;
+    font-weight: 500;
+    font-style: normal;
+    // height: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  h3 {
+    white-space: nowrap;
+    font-size: 15px;
+    line-height: 20px;
+    height: 20px;
+  }
+}
+
+.img {
+  background-color: rgba(255,255,255,.16);
+  width: 56px;
+  height: 56px;
+  img {
+    width: 44px;
+    height: 44px;
+  }
 }
 
 .button__text {

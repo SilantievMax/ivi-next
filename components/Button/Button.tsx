@@ -1,8 +1,8 @@
-/* eslint-disable jsx-a11y/alt-text */
-import React from "react";
-import { ButtonProps } from "./Button.props";
-import styles from "./Button.module.scss";
-import cn from "classnames";
+import cn from 'classnames'
+import React from 'react'
+
+import styles from './Button.module.scss'
+import { ButtonProps } from './Button.props'
 
 export const Button = ({
   children,
@@ -10,23 +10,26 @@ export const Button = ({
   img,
   className,
   color,
+  icon,
   ...props
 }: ButtonProps): JSX.Element => {
-
   return (
     <button
       className={cn(styles.button, className, {
-        // [styles.img]: size === "img",
-        [styles.gradient]: color === "gradient",
-        [styles.red]: color === "red",
-        [styles.redOpacity]: color === "redOpacity",
-        [styles.gray]: color === "gray",
-        [styles.icon]: color === "icon",
+        [styles.img]: size === "img",
+        [styles.gradient]: color === 'gradient',
+        [styles.red]: color === 'red',
+        [styles.redOpacity]: color === 'redOpacity',
+        [styles.gray]: color === 'gray',
+        [styles.icon]: color === 'icon',
+        [styles.circle]: size === 'circle',
+        [styles.smart]: size === 'smart'
       })}
       {...props}
     >
-      {children && <p className={styles.button__text}>{children}</p>}
-      {img && <img src={img} className={styles.button__img}></img>}
+      {icon}
+      <div>{children}</div>
+      {img && <img src={img}></img>}
     </button>
-  );
-};
+  )
+}

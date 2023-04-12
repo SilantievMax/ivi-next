@@ -1,10 +1,11 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode } from "react";
+import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode } from 'react';
 
 
 export interface ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   children?: ReactNode
-  img?: string
-  size?: 'sm' | 'b' | 'img'
-
+  img?: any
+  size?: 'circle' | 'smart' | "img"
+  icon?: JSX.Element
   color?: 'red' | 'gradient' | 'gray' | 'redOpacity' | 'icon'
+
 }
