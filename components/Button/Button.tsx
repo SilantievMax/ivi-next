@@ -16,11 +16,12 @@ export const Button = ({
   return (
     <button
       className={cn(styles.button, className, {
-        [styles.sm]: size === "sm",
-        [styles.b]: size === "b",
-        [styles.img]: size === "img",
-        [styles.disabled]: color === "disabled",
-        [styles.included]: color === "included",
+        // [styles.img]: size === "img",
+        [styles.gradient]: color === "gradient",
+        [styles.red]: color === "red",
+        [styles.redOpacity]: color === "redOpacity",
+        [styles.gray]: color === "gray",
+        [styles.icon]: color === "icon",
       })}
       {...props}
     >
