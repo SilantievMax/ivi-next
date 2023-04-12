@@ -1,0 +1,53 @@
+.button {
+  display: flex;
+  box-sizing: border-box;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+  border-radius: 50px;
+  background: #ffc85e;
+  align-items:center;
+}
+.button:hover{
+  opacity: 0.9;
+}
+.button__img {
+  margin-left: 10px;
+  align-self: center;
+}
+.sm {
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.15em;
+  color: var(--white);
+  padding: 10px 25px;
+  margin-right: 12px;
+}
+.b {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--white);
+  padding: 20px 50px;
+  @media (max-width: 1440px){
+    padding: 20px 30px;
+  }
+  @media (max-width: 1024px){
+    padding: 20px 50px;
+  }
+}
+.img{
+  padding: 19px 15px 19px 10px;
+}
+.included{
+background: #ffc85e;
+}
+.disabled{
+background: #aaaaaa;
+}
+
+.button__text{
+  white-space: nowrap;
+}
