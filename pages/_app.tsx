@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app'
 import { FC } from 'react'
+import '../i18next/18n'
 
 import Layout from '@/components/Layout/Layout'
 import '@/styles/globals.scss'

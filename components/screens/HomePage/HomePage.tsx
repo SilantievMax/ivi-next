@@ -7,7 +7,7 @@ const HomePage: FC = () => {
   const { t,i18n } = useTranslation()
 
   const changeLanguage = (language: string) => {
-    i18n.changeLanguage(language)
+    i18n.changeLanguage(language);
   }
 
   return (
