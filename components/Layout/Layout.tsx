@@ -2,6 +2,7 @@ import React, { FC, ReactNode } from 'react'
 
 import Footer from '../Footer/Footer'
 import Header from '../Header/Header'
+import Wrapper from '../Wrapper/Wrapper'
 
 interface LayoutProps {
   children: ReactNode
@@ -10,9 +11,13 @@ interface LayoutProps {
 const Layout: FC<LayoutProps> = ({ children }) => {
   return (
     <>
-      <Header />
+      <Wrapper>
+        <Header />
+      </Wrapper>
       {children}
-      <Footer />
+      <Wrapper>
+        <Footer />
+      </Wrapper>
     </>
   )
 }

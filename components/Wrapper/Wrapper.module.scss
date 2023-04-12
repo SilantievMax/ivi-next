@@ -1,0 +1,11 @@
+$padding: 20px;
+$widtg-site: 1240px;
+
+.wrapper {
+  width: 100%;
+  padding-left: $padding;
+  padding-right: $padding;
+  max-width: calc($widtg-site + $padding * 2);
+  margin-left: auto;
+  margin-right: auto;
+}
