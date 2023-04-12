@@ -1,9 +1,30 @@
-// @font-face {
-//   font-family: 'Inter-Black';
-//   font-style: normal;
-//   font-weight: 900;
-//   src: local('Bebas Neue Cyrillic'), url('./assets/fonts/Inter-Black.woff2') format('woff2'), url('./assets/fonts/Inter-Black.woff') format('woff');
-// }
+@font-face {
+  font-family: 'Finlandica-Bold';
+  font-style: normal;
+  font-weight: 800;
+  src: local('Finlandica-Bold'), url('../public/fonts/Finlandica-Bold.woff2') format('woff2'), url('../public/fonts/Finlandica-Bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Finlandica-Medium';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Finlandica-Medium'), url('../public/fonts/Finlandica-Medium.woff2') format('woff2'), url('../public/fonts/Finlandica-Medium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Finlandica-Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Finlandica-Regular'), url('../public/fonts/Finlandica-Regular.woff2') format('woff2'), url('../public/fonts/Finlandica-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Finlandica-SemiBold';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Finlandica-SemiBold'), url('../public/fonts/Finlandica-SemiBold.woff2') format('woff2'), url('../public/fonts/Finlandica-SemiBold.woff') format('woff');
+}
 
 html {
   box-sizing: border-box;
@@ -16,8 +37,10 @@ html {
 }
 
 body {
-  //   font-family: 'Inter-Regular', sans-serif;
+  font-family: 'Finlandica-Regular', sans-serif;
   margin: 0;
+  background: #100e19;
+  color: #fff;
 }
 
 a {
