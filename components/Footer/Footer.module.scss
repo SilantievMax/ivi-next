@@ -1,0 +1,39 @@
+@import '../../styles/vars';
+
+.list {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 48px;
+  padding-bottom: 48px;
+  border-top: 1px solid #cccccc50;
+}
+
+.text {
+  font-weight: $font600;
+  font-size: 15px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  span {
+    margin-top: 8px;
+    display: inline-block;
+    color: #ffffff7a;
+  }
+}
+
+.btn {
+  border-radius: 8px;
+  background-color: #1f1b2e;
+  border: none;
+  font-weight: $font600;
+  color: #ffffff;
+  padding: 9px 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  transition: background-color .3s;
+  &:hover {
+    background-color: #3a3354;
+  }
+}

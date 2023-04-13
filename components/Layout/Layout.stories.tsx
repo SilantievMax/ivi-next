@@ -1,5 +1,6 @@
-import Layout from './Layout'
 import '../../styles/globals.scss'
+
+import Layout from './Layout'
 
 export default {
   title: 'Layout',

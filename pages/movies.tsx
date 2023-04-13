@@ -4,7 +4,7 @@ import Carousel from '@/components/Carousel/Carousel'
 
 
 const Movies = () => {
-  const headersArray = ['2022 год', '2021 год', '2020 год', '2019 год', '2018 год', 'Бесплатные', 'Русские фильмы', 'Советские фильмы', 'Американские фильмы', 'Индийские фильмы', 'Комедии', 'Ужасы', 'Фантастическик', 'Мелодрамы', 'Триллеры', 'Драмы']
+  const headersArray = ['2022 год', '2021 год', '2020 год', '2019 год', '2018 год', 'Бесплатные', 'Русские фильмы', 'Советские фильмы', 'Американские фильмы', 'Индийские фильмы', 'Комедии', 'Ужасы', 'Фантастические', 'Мелодрамы', 'Триллеры', 'Драмы']
   const [data, setData] = useState<any[]>([])
   const [genres, setGenres] = useState<any[]>([])
   const [showDescription, setShowDescription] = useState<boolean>(false)
