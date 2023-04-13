@@ -24,16 +24,6 @@
 }
 
 .btn {
-  border-radius: 8px;
-  background-color: #1f1b2e;
-  border: none;
-  font-weight: $font600;
-  color: #ffffff;
-  padding: 9px 15px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  transition: background-color .3s;
-  &:hover {
-    background-color: #3a3354;
-  }
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
