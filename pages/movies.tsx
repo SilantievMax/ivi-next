@@ -1,43 +1,68 @@
-import React, { useEffect, useRef, useState } from 'react'
-import Carousel from 'better-react-carousel'
-import { set } from 'immutable'
-import {
-  AiOutlineDown,
-  AiOutlineLeft,
-  AiOutlineMenu,
-  AiOutlineRight,
-  AiOutlineUp
-} from 'react-icons/ai'
-
+import React, { useState } from 'react'
+import Filter from '@/components/Filter/Filter'
+import Carousel from '@/components/Carousel/Carousel'
 
 
 const Movies = () => {
-
+  const headersArray = ['2022 год', '2021 год', '2020 год', '2019 год', '2018 год', 'Бесплатные', 'Русские фильмы', 'Советские фильмы', 'Американские фильмы', 'Индийские фильмы', 'Комедии', 'Ужасы', 'Фантастическик', 'Мелодрамы', 'Триллеры', 'Драмы']
   const [data, setData] = useState<any[]>([])
   const [genres, setGenres] = useState<any[]>([])
   const [showDescription, setShowDescription] = useState<boolean>(false)
-  const [carouselTranslate, setCarouselTranslate] = useState<number>(0)
-  const [currentWidth, setCurrentWidth] = useState<number>(1211)
-  const [active, setActive] = useState<boolean>(false)
-  const [currentSort, setCurrentSort] = useState<string>('По количеству оценок на Кинопоиске')
-  const headersArray = ['2022 год', '2021 год', '2020 год', '2019 год', '2018 год', 'Бесплатные', 'Русские фильмы', 'Советские фильмы', 'Американские фильмы', 'Индийские фильмы', 'Бесплатные', 'Русские фильмы', 'Советские фильмы', 'Американские фильмы', 'Биб']
-  const sortArray = ['По количеству оценок на Кинопоиске', 'По рейтингу', 'По дате выхода(сначала свежие)', 'По алфавиту']
 
-  useEffect(() => {
-    // fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films/301', {
-    //   method: 'GET',
-    //   headers: {
-    //     'X-API-KEY': '9867f920-35d0-4b28-b36a-2f5e7d5100f1',
-    //     'Content-Type': 'application/json',
-    //   },
-    // })
-    //   .then(res => res.json())
-    //   .then(json => console.log(json))
-    //   .catch(err => console.log(err))
-  }, [])
+  const genreList = [
+    {
+      name: 'Премьеры на Иви',
+      src: 'https://thumbs.dfs.ivi.ru/storage5/contents/e/5/a46c24c02991bffcc15cff72344ea0.png/604x406/?q=85',
+      url: 'https://www.ivi.ru/collections/new-movies'
+    },
+    {
+      name: 'Новинки Подписки',
+      src: 'https://thumbs.dfs.ivi.ru/storage23/contents/2/3/00363ced3df51be0453d43318a5056.png/604x406/?q=85',
+      url: 'https://www.ivi.ru/collections/new-in-svod'
+    },
+    {
+      name: 'Лучшее в подписке',
+      src: 'https://thumbs.dfs.ivi.ru/storage23/contents/0/4/76774ca880a36b4765473131b03ad0.png/604x406/?q=85',
+      url: 'https://www.ivi.ru/collections/luchshee-v-podpiske'
+    },
+    {
+      name: 'Российские новинки',
+      src: 'https://thumbs.dfs.ivi.ru/storage9/contents/c/f/e524a887c11e5dc54344b4963ecf70.png/604x406/?q=85',
+      url: 'https://www.ivi.ru/collections/russian-new-movies'
+    },
+    {
+      name: 'Зарубежные новинки',
+      src: 'https://thumbs.dfs.ivi.ru/storage4/contents/4/d/27a90983974634bf22d3c7f84e27ce.png/604x406/?q=85',
+      url: 'https://www.ivi.ru/collections/new-foreign-movies'
+    },
+    {
+      name: 'Лучшие новинки',
+      src: 'https://thumbs.dfs.ivi.ru/storage5/contents/5/3/f24fdc6a202c6b7fd8b733d1dedda1.png/604x406/?q=85',
+      url: 'https://www.ivi.ru/collections/best-new-movies-on-ivi'
+    },
+    {
+      name: 'Бесплатные новинки',
+      src: 'https://thumbs.dfs.ivi.ru/storage28/contents/6/6/0180fbc123574c6f079d2fb9a800fb.png/604x406/?q=85',
+      url: 'https://www.ivi.ru/collections/avod-movies'
+    },
+  ]
+
+  // useEffect(() => {
+  //   fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films/301', {
+  //     method: 'GET',
+  //     headers: {
+  //       'X-API-KEY': '9867f920-35d0-4b28-b36a-2f5e7d5100f1',
+  //       'Content-Type': 'application/json',
+  //     },
+  //   })
+  //     .then(res => res.json())
+  //     .then(json => console.log(json))
+  //     .catch(err => console.log(err))
+  // }, [])
+
 
   return (
-    <div  className='films-section'>
+    <div className='films-section'>
       <div className='heading-container'>
         <span className='films-section__heading white-text heading-font'>Мой Иви</span>
         <span className='grey-text heading-font'>/</span>
@@ -92,42 +117,31 @@ const Movies = () => {
         <span className='clause-toggle'
               onClick={() => setShowDescription(!showDescription)}>{showDescription ? 'Свернуть' : 'Развернуть'}</span>
       </div>
-
-      <div className='carousel'>
-        <AiOutlineLeft
-          className={carouselTranslate === 0 ? 'grey-text arrow hidden' : 'grey-text arrow'}
-          onClick={() => setCarouselTranslate(carouselTranslate + 200)}/>
-        <div style={{ width: `${currentWidth}px` }} className='carousel-wrapper'>
-          <div className='carousel-items'
-               style={{ transform: `translateX(${carouselTranslate}px)` }}>
-            {headersArray.map((el, idx) =>
-              <button key={idx} className='filter-btn'>
-                <span className='filter-btn__font grey-text'>
-                  {el}
-                </span>
-              </button>
-
-            )}
+      <Carousel
+        items={headersArray.map((el, idx) =>
+          <button key={idx} className='filter-btn'>
+            <span className='filter-btn__font grey-text'>{el}</span>
+          </button>)}
+        size='small'
+        transition={200}
+        className='carousel-items'
+      />
+      <Filter />
+      <h2 className='section-header white-text'>Фильмы-новинки</h2>
+      <Carousel
+        items={genreList.map((el, idx) =>
+          <div className='posters-container'>
+            <a key={idx} href={el.url} className='carousel-item'>
+              <img className='border' src={el.src} width={252} height={173} alt='poster'/>
+            </a>
+            <span className='white-text'>{el.name}</span>
           </div>
-        </div>
-        <AiOutlineRight
-          onClick={() => {setCarouselTranslate(carouselTranslate - 200 < -currentWidth ? -carouselTranslate - currentWidth + 200 : carouselTranslate - 200)}}
-          className={carouselTranslate - 300 < -currentWidth ? 'grey-text arrow hidden ' : 'grey-text arrow'}
-        />
-      </div>
-      <div>
-        <div onClick={() => setActive(true)} className='genre-sorting white-text'>
-          <AiOutlineMenu/>
-          <div>{currentSort}</div>
-          {active ? <AiOutlineUp/> : <AiOutlineDown/>}
-        </div>
-        <div className='dropdown-menu'>
-          <span className='grey-text'>Сортировать</span>
-          {sortArray.map((el, idx) =>
-            <div onClick={() => setCurrentSort(`${el}`)} className={currentSort === el ? 'grey-text active' : 'grey-text'} key={idx}>{el}</div>
-          )}
-        </div>
-      </div>
+
+        )}
+        size='standard'
+        transition={500}
+        className='standard-carousel-items'
+      />
     </div>
   )
 }

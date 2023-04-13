@@ -18,6 +18,7 @@ html {
 body {
   //   font-family: 'Inter-Regular', sans-serif;
   margin: 0;
+  background-color: #100e19;
 }
 
 a {
@@ -57,10 +58,21 @@ ul {
 
 .carousel-items {
   column-gap: 5px;
-  transition: transform .2s,-webkit-transform .2s,-o-transform .2s;
+  transition: transform .2s, -webkit-transform .2s, -o-transform .2s;
   display: flex;
   flex-direction: row;
+}
 
+.border {
+  border-radius: 3px;
+}
+
+.standard-carousel-items {
+  column-gap: 25px;
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;
+  transition: transform .2s, -webkit-transform .2s, -o-transform .2s;
 }
 
 .films-section {
@@ -125,8 +137,69 @@ ul {
   column-gap: 8px;
   align-items: center;
   padding: 20px 0 0 12px;
+  cursor: pointer;
+  max-width: 270px;
+  width: 100%;
 }
 
+.remove-filter-box {
+  cursor: pointer;
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+  color: #7e798f;
+
+  &__btn {
+    height: 25px;
+    width: 25px;
+  }
+}
+
+.filters-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #1f1b2e;
+  padding: 12px;
+  border-radius: 6px;
+  margin: 25px 12px 0 12px;
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__filter {
+    cursor: pointer;
+    max-width: 216px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    justify-content: space-between;
+    background-color: #312b45;
+    border-radius: 5px;
+  }
+}
+
+.section-header {
+  font-size: 24px;
+  padding: 20px 0 20px 12px;
+}
+
+.carousel-item {
+  border-radius: 10px;
+  background-color: #312b45;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.posters-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
 
 .filter-btn {
   width: 100%;
@@ -165,13 +238,30 @@ ul {
   text-overflow: ellipsis;
 }
 
+.dropdown-menu {
+  background-color: #1f1b2e;
+  max-width: 250px;
+  width: 100%;
+  margin-left: 12px;
+  margin-top: 12px;
+  position: absolute;
+  z-index: 1;
+
+
+  &__item {
+    padding: 12px 16px 12px 20px;
+    font-size: 15px;
+    cursor: pointer;
+  }
+}
+
 .clause-toggle {
   display: inline-block;
   margin-top: 8px;
   cursor: pointer;
   font-weight: 500;
-  color: rgba(255,255,255,.88);
-  transition: transform 400ms,color 400ms,-webkit-transform 400ms,-o-transform 400ms;
+  color: rgba(255, 255, 255, .88);
+  transition: transform 400ms, color 400ms, -webkit-transform 400ms, -o-transform 400ms;
 
   &:hover {
     color: #fff;
@@ -197,6 +287,16 @@ ul {
 
 .hidden {
   visibility: hidden;
+}
+
+.small-arrow {
+  height: 32px;
+  width: 20px;
+}
+
+.standard-arrow {
+  height: 38px;
+  width: 25px;
 }
 
 .arrow {
