@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
+
 // import { Button } from '@/components/Button/Button';
 import { useTranslation } from 'react-i18next';
 
-
 const HomePage: FC = () => {
   const { t,i18n } = useTranslation()
+
 
   const changeLanguage = (language: string) => {
     i18n.changeLanguage(language)
