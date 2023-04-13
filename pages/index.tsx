@@ -1,8 +1,8 @@
-import HomePage from '@/components/screens/HomePage/HomePage'
 import React, { FC } from 'react'
+import Movies from '@/pages/movies'
 
 const Home: FC = () => {
-  return <HomePage/ >
+  return <Movies/>
 }
 
 export default Home
