@@ -1,13 +1,7 @@
-<<<<<<< HEAD
 import React, { FC } from 'react';
 
 // import { Button } from '@/components/Button/Button';
 import { useTranslation } from 'react-i18next';
-=======
-import React, { FC } from 'react'
-// import { Button } from '@/components/Button/Button';
-import { useTranslation } from 'react-i18next'
->>>>>>> silantievmax
 
 const HomePage: FC = () => {
   const { t, i18n } = useTranslation()
