@@ -1,7 +1,7 @@
 import { title } from 'process'
 import React, { FC } from 'react'
 
-import { Button } from '../Button/Button'
+import { Button } from 'components/Button/Button'
 
 import styles from './Footer.module.scss'
 import LinkItem from './LinkItem/LinkItem'
