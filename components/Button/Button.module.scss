@@ -8,6 +8,7 @@
   border-width: 1px;
   border-radius: 8px;
   color: white;
+  background-color: transparent;
   cursor: pointer;
 }
 .button:active {
@@ -15,11 +16,13 @@
   background-color: #00000070;
 }
 .gradient {
+  padding: 9px 15px;
   background-image: linear-gradient(270deg, #ea003d 0, #c447ff 100%);
 }
 .red {
   background-color: #ea006d;
   border-color: #ea003d;
+  padding: 9px 15px;
 }
 .red:hover {
   background-color: #f3285e;
@@ -56,22 +59,25 @@
   border-color: #1f1b2e;
 }
 .icon {
-  background-color: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.08);
+  padding: 0px 10px;
+  background-color: rgb(63, 62, 62);
+  border-color: rgb(51, 50, 50);
 }
 .circle {
   border-radius: 100px;
+  padding: 0px 10px;
+  background-color: rgb(63, 62, 62);
+  border-color: rgb(51, 50, 50);
 }
 .smart {
+   background-color: rgb(63, 62, 62);
+  border-color: rgb(51, 50, 50);
   gap: 5px;
   padding: 18px 10px;
-  
   p {
     font-size: 10px;
-    // line-height: 12px;
     font-weight: 500;
     font-style: normal;
-    // height: 12px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -83,9 +89,8 @@
     height: 20px;
   }
 }
-
 .img {
-  background-color: rgba(255,255,255,.16);
+  background-color: rgb(173, 169, 169);
   width: 56px;
   height: 56px;
   img {
@@ -93,7 +98,6 @@
     height: 44px;
   }
 }
-
 .button__text {
   white-space: nowrap;
   color: white;

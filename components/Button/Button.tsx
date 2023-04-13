@@ -20,7 +20,7 @@ export const Button = ({
         [styles.red]: color === 'red',
         [styles.redOpacity]: color === 'redOpacity',
         [styles.gray]: color === 'gray',
-        [styles.icon]: color === 'icon',
+        [styles.icon]: size === 'icon',
         [styles.circle]: size === 'circle',
         [styles.smart]: size === 'smart'
       })}
