@@ -1,0 +1,39 @@
+.filtersContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: #1f1b2e;
+  padding: 12px;
+  border-radius: 6px;
+  margin: 25px 12px 0 12px;
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__filter {
+    cursor: pointer;
+    max-width: 216px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    justify-content: space-between;
+    background-color: #312b45;
+    border-radius: 5px;
+  }
+}
+
+.removeFilterBox {
+  cursor: pointer;
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+  color: #7e798f;
+
+  &__btn {
+    height: 25px;
+    width: 25px;
+  }
+}
