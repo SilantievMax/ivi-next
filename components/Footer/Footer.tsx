@@ -1,6 +1,8 @@
 import { title } from 'process'
 import React, { FC } from 'react'
 
+import { Button } from 'components/Button/Button'
+
 import styles from './Footer.module.scss'
 import LinkItem from './LinkItem/LinkItem'
 import { ILinks } from '@/types/types'
@@ -41,14 +43,21 @@ const Footer: FC = () => {
   return (
     <footer>
       <ul className={styles.list}>
-        <LinkItem heading='О нас' data={aboutLinks} />
-        <LinkItem heading='Разделы' data={sectionsLinks} />
+        <li>
+          <LinkItem heading='О нас' data={aboutLinks} />
+        </li>
+        <li>
+          <LinkItem heading='Разделы' data={sectionsLinks} />
+        </li>
         <li className={styles.item}>
           <h6 className={styles.text}>Служба поддержки</h6>
           <span>
             Мы всегда готовы вам помочь. <br /> Наши операторы онлайн 24/7
           </span>
-          <button className={styles.btn}>Написать в чате</button>
+          <div className={styles.btn}>
+            <Button children='Написать в чате' color='gray' />
+          </div>
+          <LinkItem data={ascLinks} />
           <span>Ответы на вопросы</span>
         </li>
         <li>

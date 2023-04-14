@@ -23,7 +23,8 @@ export const Button = ({
         [styles.lightGray]: color === 'lightGray',
         [styles.icon]: size === 'icon',
         [styles.circle]: size === 'circle',
-        [styles.smart]: size === 'smart'
+        [styles.smart]: size === 'smart',
+        [styles.border]: size === 'border'
       })}
       {...props}
     >
