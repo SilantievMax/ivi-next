@@ -118,7 +118,7 @@
   font-style: normal;
 }
 .border {
-      height: 32px;
+  height: 32px;
   white-space: nowrap;
   text-align: center;
   border-radius: 8px;
@@ -128,6 +128,7 @@
   cursor: pointer;
   background-color: transparent;
   transition-duration: 0.4s;
+  width: 100%;
 }
 .border:hover {
   transition-duration: 0.4s;

@@ -1,9 +1,10 @@
 import React, { FC } from 'react'
-import Movies from '@/pages/movies'
+// import Movies from '@/pages/movies'
 import Reviews from '@/components/Reviews/Reviews'
+import HomePage from '@/components/screens/HomePage/HomePage'
 
 const Home: FC = () => {
-  return <Movies/>
+  return <HomePage/>
 }
 
 export default Home
