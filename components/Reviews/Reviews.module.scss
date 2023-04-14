@@ -1,6 +1,12 @@
-.reviews{
+.header{
     display: flex;
     justify-content: space-between;
+    margin-bottom: 10px;
+    &_item{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
 }
 .comments_btn{
     @media (max-width: 599px) {
