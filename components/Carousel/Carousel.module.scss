@@ -1,0 +1,29 @@
+.carousel {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  column-gap: 5px;
+  padding-top: 15px;
+}
+
+.carouselWrapper {
+  overflow: hidden;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.arrow {
+  cursor: pointer;
+  height: 32px;
+  width: 20px;
+
+  &:hover {
+    color: #FFFFFF;
+  }
+}
+
+
+
+

@@ -50,6 +50,18 @@
   border-color: #1f1b2e;
   padding: 0 30px;
 }
+
+.lightGray {
+  background-color: #312b45;
+  border-color: #312b45;
+  padding: 0 30px;
+  &:hover {
+    background-color: #352f4b;
+  }
+  &:active {
+    background-color: #352f4b;
+  }
+}
 .gray:hover {
   background-color: #352e4e;
   border-color: #1f1b2e;
@@ -59,18 +71,16 @@
   border-color: #1f1b2e;
 }
 .icon {
-  padding: 0px 10px;
+  padding: 0 10px;
   background-color: rgb(63, 62, 62);
   border-color: rgb(51, 50, 50);
 }
 .circle {
   border-radius: 100px;
-  padding: 0px 10px;
-  background-color: rgb(63, 62, 62);
-  border-color: rgb(51, 50, 50);
+  padding: 0 10px;
 }
 .smart {
-   background-color: rgb(63, 62, 62);
+  background-color: rgb(63, 62, 62);
   border-color: rgb(51, 50, 50);
   gap: 5px;
   padding: 18px 10px;

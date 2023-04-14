@@ -49,7 +49,6 @@ const Footer: FC = () => {
             Мы всегда готовы вам помочь. <br /> Наши операторы онлайн 24/7
           </span>
           <button className={styles.btn}>Написать в чате</button>
-          <LinkItem data={ascLinks} />
           <span>Ответы на вопросы</span>
         </li>
         <li>
