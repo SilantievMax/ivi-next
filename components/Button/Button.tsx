@@ -22,7 +22,8 @@ export const Button = ({
         [styles.gray]: color === 'gray',
         [styles.icon]: size === 'icon',
         [styles.circle]: size === 'circle',
-        [styles.smart]: size === 'smart'
+        [styles.smart]: size === 'smart',
+        [styles.border]: size === 'border'
       })}
       {...props}
     >
