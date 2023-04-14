@@ -1,13 +1,14 @@
 import Link from 'next/link';
 import React, { FC } from 'react';
 import style from './Person.module.scss';
-import { Button } from '@/components/Button/Button';
 import { IFilms } from './PersonInterfase';
+import { Button } from '@/components/Button/Button';
+import { useTranslation } from 'react-i18next';
 
 
 const PersonMovies: FC<{movie: IFilms}> = ({movie}) => {
-  const {rating,nameRu } = movie
-
+  const { rating, nameRu } = movie
+  const { t } = useTranslation()
   return (
     <div className={style.movie}>
       
@@ -19,10 +20,10 @@ const PersonMovies: FC<{movie: IFilms}> = ({movie}) => {
           <div className={style.movie__header}>
             <span>2018</span>
             <h3>{nameRu}</h3>
-            <p>Рейтинг: {rating}</p>
+            <p>{t('Rating:')} {rating}</p>
           </div>
           <Button className={style.movie__btn} color='gray'>
-            Подробнее
+           {t('More detailed')} 
           </Button>
         </div>
       </Link>

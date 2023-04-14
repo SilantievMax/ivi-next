@@ -19,7 +19,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
       {children}
       </Wrapper>
       <Wrapper>
-        <Footer />
+        {/* <Footer /> */}
       </Wrapper>
     </>
   )

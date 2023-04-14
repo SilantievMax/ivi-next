@@ -70,7 +70,7 @@
   border-color: rgb(51, 50, 50);
 }
 .smart {
-   background-color: rgb(63, 62, 62);
+  background-color: rgb(63, 62, 62);
   border-color: rgb(51, 50, 50);
   gap: 5px;
   padding: 18px 10px;
@@ -106,4 +106,21 @@
   line-height: 20px;
   font-weight: 500;
   font-style: normal;
+}
+.border {
+      height: 32px;
+  white-space: nowrap;
+  text-align: center;
+  border-radius: 8px;
+  padding: 7px 11px;
+  text-decoration: none;
+  border: solid 1px rgba(255, 255, 255, 0.32);
+  cursor: pointer;
+  background-color: transparent;
+  transition-duration: 0.4s;
+}
+.border:hover {
+  transition-duration: 0.4s;
+  background-color: transparent;
+  border-color: rgba(255, 255, 255, 0.952);
 }
