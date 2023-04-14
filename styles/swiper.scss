@@ -1,0 +1,20 @@
+.swiper-button-next {
+  height: 100% !important;
+  color: white !important;
+  top: 20px !important;
+  right: -5px !important;
+}
+.swiper-button-prev {
+  color: white !important;
+   height: 100% !important;
+  color: white !important;
+  top: 20px !important;
+  left: -5px !important;
+}
+.swiper-button-next:after {
+  font-size: 20px !important;
+}
+.swiper-button-prev:after {
+  font-size: 20px !important;
+}
+.swiper {padding: 0 17px !important;}

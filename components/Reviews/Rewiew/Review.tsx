@@ -9,7 +9,7 @@ const Review = (props: any) => {
     <div className={style.review}>
       <Link href={''}>
         <div className={style.name}>{props.rewiew.name}</div>
-        {props.rewiew.title ? <h3 className={style.title}>{props.rewiew.title.length >= 70 ? props.rewiew.title.slice(0, 70) + ' ...' : props.rewiew.title}</h3> : ''}
+        {props.rewiew.title ? <h3 className={style.title}>{props.rewiew.title.length >= 57 ? props.rewiew.title.slice(0, 57) + ' ...' : props.rewiew.title}</h3> : ''}
         <p className={style.description}>{props.rewiew.description.length >= 100 ? props.rewiew.description.slice(0, 100) + ' ...' : props.rewiew.description}</p>
         <div className={style.footer}>
           <div className={style.date}>
