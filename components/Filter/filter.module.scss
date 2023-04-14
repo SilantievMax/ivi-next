@@ -14,8 +14,6 @@
 
   &__filter {
     cursor: pointer;
-    max-width: 216px;
-    width: 100%;
     display: flex;
     align-items: center;
     padding: 10px;
@@ -23,6 +21,17 @@
     background-color: #312b45;
     border-radius: 5px;
   }
+}
+
+.filterDropdown__column {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.filtersWrapper {
+  max-width: 216px;
+  width: 100%;
 }
 
 .removeFilterBox {
@@ -36,4 +45,61 @@
     height: 25px;
     width: 25px;
   }
+}
+
+.filterDropdown__content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  background-color: #312b45;
+  border-radius: 5px;
+  margin-top: 3px;
+  position: absolute;
+  z-index: 1;
+}
+
+.filterDropdown__slider {
+  border-radius: 5px;
+  margin-top: 3px;
+  padding: 20px;
+  position: absolute;
+  z-index: 1;
+  height: auto;
+  width: 300px;
+  background-color: #312b45;
+}
+
+
+.filterDropdown__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 40px;
+  row-gap: 10px;
+
+}
+
+.filterDropdown__itemContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  column-gap: 20px;
+
+}
+
+
+.filterDropdown__itemContainer:hover .filterDropdown__check {
+  color: #a5a1b2;
+  visibility: visible;
+}
+
+.filterDropdown__check {
+  visibility: hidden;
+}
+
+.filterDropdown__active {
+  color: #FFFFFF;
+}
+
+.white {
+  color: white;
 }

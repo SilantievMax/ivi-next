@@ -1,0 +1,84 @@
+.filmCard {
+  height: 235px;
+  width: 153px;
+  transition-duration: .4s;
+  border-radius: 8px;
+  background-size: contain;
+
+
+  &__text {
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 400;
+    font-style: normal;
+    color: #d9d7e0;
+  }
+
+  &__inside {
+    display: flex;
+    background-color: rgba(7,5,14,.8);
+    opacity: 50%;
+    height: inherit;
+    width: inherit;
+    align-items: flex-end;
+
+    &__content {
+      row-gap: 3px;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0 15px 15px 15px;
+      max-width: 133px;
+      width: 100%;
+      display: none;
+      transition: 0.4s;
+    }
+  }
+
+  &__container {
+    cursor: pointer;
+  }
+
+  &__description {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &:hover {
+  transform: scale(1.04) translateY(-2%);
+  }
+
+  &:hover .filmCard__inside__content {
+    transition: 0.4s;
+    display: flex;
+  }
+}
+
+.subscribeText {
+  color: #ea003d;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 400;
+}
+
+.progress {
+  border-radius: 5px;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, #ff0000 60%, grey 40%);
+}
+
+.gray {
+  color: #a5a1b2;;
+}
+
+.rateFont {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+
+
+
+
+

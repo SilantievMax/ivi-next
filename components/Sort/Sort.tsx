@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { AiOutlineDown, AiOutlineMenu, AiOutlineUp } from 'react-icons/ai'
-import { FiAlignRight } from 'react-icons/all'
+import { FiAlignRight } from 'react-icons/fi'
 import styles from './sort.module.scss'
 
 
 const Sort = () => {
 
-  const sortArray = ['По рейтингу на Кинопоиске', 'По рейтингу', 'По дате выхода', 'По алфавиту']
+  const sortArray = ['По количеству оценок', 'По рейтингу', 'По дате выхода', 'По алфавиту']
   const [active, setActive] = useState<boolean>(false)
-  const [currentSort, setCurrentSort] = useState<string>('По рейтингу на Кинопоиске')
+  const [currentSort, setCurrentSort] = useState<string>('По количеству оценок')
 
   function useOutsideAlerter(ref: any) {
     useEffect(() => {

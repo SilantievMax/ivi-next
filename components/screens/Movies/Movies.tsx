@@ -3,6 +3,8 @@ import Filter from '@/components/Filter/Filter'
 import Carousel from '@/components/Carousel/Carousel'
 import { Button } from '@/components/Button/Button'
 import styles from './movies.module.scss'
+import Sort from '@/components/Sort/Sort'
+import Film from '@/components/Film/Film'
 
 const Movies = () => {
   const headersArray = ['2022 год', '2021 год', '2020 год', '2019 год', '2018 год', 'Бесплатные', 'Русские фильмы', 'Советские фильмы', 'Американские фильмы', 'Индийские фильмы', 'Комедии', 'Ужасы', 'Фантастические', 'Мелодрамы', 'Триллеры', 'Драмы']
@@ -128,12 +130,13 @@ const Movies = () => {
         transition={200}
         className={styles.carouselItems}
       />
+      <Sort />
       <Filter />
       <h2 className={styles.sectionHeader}>Фильмы-новинки</h2>
       <Carousel
         items={genreList.map((el, idx) =>
-          <div title={el.name} className={styles.postersContainer}>
-            <a key={idx} href={el.url} className={styles.carouselItem}>
+          <div key={idx} title={el.name} className={styles.postersContainer}>
+            <a href={el.url} className={styles.carouselItem}>
               <img className={styles.border} src={el.src} width={252} height={173} alt='poster'/>
             </a>
             <span>{el.name}</span>
@@ -144,6 +147,11 @@ const Movies = () => {
         transition={500}
         className={styles.standardCarouselItems}
       />
+      <Carousel items={[<Film key={1} src='https://b1.filmpro.ru/c/549479.jpg'/>]} size='standard' transition={300} className={styles.moviesContainer}/>
+
+      <div>
+    </div>
+
     </div>
   )
 }
