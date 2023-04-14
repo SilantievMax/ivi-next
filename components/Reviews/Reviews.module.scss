@@ -1,3 +1,6 @@
+.reviews{
+    margin: 20px 0;
+}
 .header{
     display: flex;
     justify-content: space-between;
@@ -14,8 +17,11 @@
     }
 }
 .comments_btn_mobile{
+
+    margin-top: 10px;
     display: none;
     @media (max-width: 599px) {
-      display: block;
+        width: 100%;
+      display: flex;
     }
 }
