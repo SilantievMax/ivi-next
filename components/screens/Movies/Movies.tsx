@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import Filter from '@/components/Filter/Filter'
 import Carousel from '@/components/Carousel/Carousel'
-
+import { Button } from '@/components/Button/Button'
+import styles from './movies.module.scss'
 
 const Movies = () => {
   const headersArray = ['2022 год', '2021 год', '2020 год', '2019 год', '2018 год', 'Бесплатные', 'Русские фильмы', 'Советские фильмы', 'Американские фильмы', 'Индийские фильмы', 'Комедии', 'Ужасы', 'Фантастические', 'Мелодрамы', 'Триллеры', 'Драмы']
@@ -62,17 +63,18 @@ const Movies = () => {
 
 
   return (
-    <div className='films-section'>
-      <div className='heading-container'>
-        <span className='films-section__heading white-text heading-font'>Мой Иви</span>
-        <span className='grey-text heading-font'>/</span>
-        <span className='grey-text heading-font'>Фильмы</span>
+    <div className={styles.filmsSection}>
+      <div className={styles.headingContainer}>
+        {/*<span className='films-section__heading white-text heading-font'>Мой Иви</span>*/}
+        <span className={`${styles.filmsSection__heading} ${styles.headingFont}`}>Мой Иви</span>
+        <span className={`${styles.greyText} ${styles.headingFont}`}>/</span>
+        <span className={`${styles.greyText} ${styles.headingFont}`}>Фильмы</span>
       </div>
-      <div className='films-section__description'>
-        <h1 className='films-section__title white-text'>Фильмы смотреть онлайн</h1>
-        <div className='description-wrapper'>
+      <div className={styles.filmsSection__description}>
+        <h1 className={styles.filmsSection__title}>Фильмы смотреть онлайн</h1>
+        <div className={styles.descriptionWrapper}>
           <div
-            className={showDescription ? 'description-font grey-text' : 'description-font hidden-text grey-text'}>Вы
+            className={showDescription ? `${styles.descriptionFont} ${styles.greyText}` : `${styles.descriptionFont} ${styles.greyText} ${styles.hiddenText}`}>Вы
             любите смотреть фильмы онлайн и проводите много времени,
             прочесывая сайты в поисках чего-нибудь интересного?
             Стоит задержаться на ivi.ru – фильмов, которые собраны у нас, вам хватит надолго.
@@ -84,7 +86,7 @@ const Movies = () => {
             и вы будете пересматривать любимые фильмы онлайн снова и снова!
           </div>
           <p
-            className={showDescription ? 'description-font grey-text' : 'description-font grey-text none'}>Выбор
+            className={showDescription ? `${styles.descriptionFont} ${styles.greyText}` : `${styles.descriptionFont} ${styles.greyText} ${styles.none}`}>Выбор
             фильмов очень широк и многообразен, так что каждый найдет для себя что-то интересное,
             каким бы ни были его вкусы.
             Предпочитаете картины исключительно зарубежного производства? У нас их предостаточно:
@@ -96,7 +98,7 @@ const Movies = () => {
             Неважно, каким будет ваш ответ – у нас есть все, как картины эпохи зарождения
             кинематографа, так 2018 года и фильмы 2017.</p>
           <p
-            className={showDescription ? 'description-font grey-text' : 'description-font grey-text none'}>В
+            className={showDescription ? `${styles.descriptionFont} ${styles.greyText}` : `${styles.descriptionFont} ${styles.greyText} ${styles.none}`}>В
             нашем каталоге вы найдете любые жанры. Это и фильмы про любовь, и детективы, и боевики,
             и вестерны, и фантастика, и арт-хаус,
             и уморительные комедии, и фильмы про войну, и ужасы, и триллеры, и документалистика...
@@ -104,43 +106,43 @@ const Movies = () => {
             на сайте представлены также короткометражные фильмы, а также иностранные и русские
             сериалы.</p>
           <p
-            className={showDescription ? 'description-font grey-text' : 'description-font grey-text none'}>Если
+            className={showDescription ? `${styles.descriptionFont} ${styles.greyText}` : `${styles.descriptionFont} ${styles.greyText} ${styles.none}`}>Если
             вас интересуют самые знаковые фильмы онлайн в том или ином жанре, система рубрикации
             поможет вам без труда сориентироваться и найти,
             например, лучшие драмы или лучший анимационный фильм онлайн.</p>
           <p
-            className={showDescription ? 'description-font grey-text' : 'description-font grey-text none'}>Не
+            className={showDescription ? `${styles.descriptionFont} ${styles.greyText}` : `${styles.descriptionFont} ${styles.greyText} ${styles.none}`}>Не
             упустите замечательную возможность смотреть фильмы онлайн без регистрации, выбирая
             только то, что вам действительно интересно,
             и тогда, когда вам это удобно. Ведь это так просто и приятно!</p>
         </div>
-        <span className='clause-toggle'
+        <span className={styles.clauseToggle}
               onClick={() => setShowDescription(!showDescription)}>{showDescription ? 'Свернуть' : 'Развернуть'}</span>
       </div>
       <Carousel
         items={headersArray.map((el, idx) =>
-          <button key={idx} className='filter-btn'>
-            <span className='filter-btn__font grey-text'>{el}</span>
-          </button>)}
+          <Button color="lightGray" size='circle'  key={idx} className={styles.filterBtn}>
+            <span className={`${styles.filterBtn__font} ${styles.greyText}`}>{el}</span>
+          </Button>)}
         size='small'
         transition={200}
-        className='carousel-items'
+        className={styles.carouselItems}
       />
       <Filter />
-      <h2 className='section-header white-text'>Фильмы-новинки</h2>
+      <h2 className={styles.sectionHeader}>Фильмы-новинки</h2>
       <Carousel
         items={genreList.map((el, idx) =>
-          <div className='posters-container'>
-            <a key={idx} href={el.url} className='carousel-item'>
-              <img className='border' src={el.src} width={252} height={173} alt='poster'/>
+          <div title={el.name} className={styles.postersContainer}>
+            <a key={idx} href={el.url} className={styles.carouselItem}>
+              <img className={styles.border} src={el.src} width={252} height={173} alt='poster'/>
             </a>
-            <span className='white-text'>{el.name}</span>
+            <span>{el.name}</span>
           </div>
 
         )}
         size='standard'
         transition={500}
-        className='standard-carousel-items'
+        className={styles.standardCarouselItems}
       />
     </div>
   )

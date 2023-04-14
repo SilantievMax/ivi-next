@@ -6,5 +6,5 @@ export interface ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTML
   img?: any
   size?: 'circle' | 'smart' | "img" | 'icon' | 'border'
   icon?: JSX.Element
-  color?: 'red' | 'gradient' | 'gray' | 'redOpacity' | 'icon'
+  color?: 'red' | 'gradient' | 'gray' | 'lightGray' | 'redOpacity' | 'icon'
 }
