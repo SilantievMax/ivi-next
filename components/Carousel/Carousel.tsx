@@ -11,6 +11,7 @@ interface Icarousel {
 }
 
 
+
 const Carousel = (props: Icarousel): JSX.Element => {
   const {items, size, className, transition} = props
   const [carouselTranslate, setCarouselTranslate] = useState<number>(0)

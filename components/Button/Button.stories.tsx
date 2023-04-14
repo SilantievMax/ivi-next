@@ -8,17 +8,12 @@ import { Button } from './Button';
 
 const meta: Meta<typeof Button> = {
   title: 'Button',
-  component: Button,
-  //👇 Enables auto-generated documentation for the component story
-//   tags: ['autodocs'],
-//   argTypes: {
-//     backgroundColor: { control: 'color' },
-//   },
-};
+  component: Button
+}
 
-export default meta;
+export default meta
 
-type Story = StoryObj<typeof Button>;
+type Story = StoryObj<typeof Button>
 
 export const Red: Story = {
   args: {
@@ -44,16 +39,22 @@ export const Gradient: Story = {
     color: 'gradient'
   }
 }
+export const Border: Story = {
+  args: {
+    children: 'Leave feedback',
+    size: 'border'
+  }
+}
 export const Image: Story = {
   args: {
     size: 'img',
-    img: 'https://thumbs.dfs.ivi.ru/storage30/contents/3/7/4f749f1a9a540258a921cb75c1e92f.jpg/44x44/?q=85',
+    img: 'https://thumbs.dfs.ivi.ru/storage30/contents/3/7/4f749f1a9a540258a921cb75c1e92f.jpg/44x44/?q=85'
   }
 }
 export const Icon: Story = {
   args: {
-    icon:  <BsTelephone/> ,
-    size: 'icon',
+    icon: <BsTelephone />,
+    size: 'icon'
   }
 }
 export const IconMessenger: Story = {

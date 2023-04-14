@@ -1,0 +1,84 @@
+.review {
+  background-color: #1a1627;
+  overflow: hidden;
+  transition: background-color 400ms;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 411px;
+  cursor: pointer;
+}
+.review:hover {
+  background-color: #1f1b2e;
+  transition: background-color 400ms;
+}
+.voteBtns {
+  display: flex;
+  gap: 10px;
+}
+.name {
+  color: #a5a1b2;
+  margin-bottom: 8px;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 700;
+  font-style: normal;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  min-height: 16px;
+}
+.title {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+  margin-top: 12px;
+  margin-bottom: 8px;
+  -webkit-line-clamp: 2;
+}
+.description {
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 400;
+  height: 66px;
+  -webkit-line-clamp: 3;
+  white-space: normal;
+}
+.date {
+  left: 20px;
+  bottom: 20px;
+  color: #a5a1b2;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 400;
+  font-style: normal;
+}
+.vote {
+  color: #73a32f;
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 700;
+  font-style: normal;
+
+  box-sizing: border-box;
+  padding-left: 8px;
+  padding-right: 8px;
+  min-width: 42px;
+  text-align: center;
+}
+.footer {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.like {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  line-height: 16px;
+}
+.likei {
+  fill: rgba(255, 255, 255, 0.486);
+}
+.likei:hover {
+  fill: rgba(255, 255, 255, 0.726);
+}
