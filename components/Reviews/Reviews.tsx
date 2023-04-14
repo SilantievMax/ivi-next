@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import 'swiper/css';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 
 
@@ -10,6 +12,8 @@ import ReviewBtn from '../ReviewBtn/ReviewBtn';
 
 import style from './Reviews.module.scss';
 import Review from './Rewiew/Review';
+import useWindowDimensions from './widthWindow';
+import useWindowSize from './widthWindow';
 
 
 interface IReviews {
@@ -21,6 +25,13 @@ interface IReviews {
 }
 
 const Reviews = ({ size, items, transition, btn, aboutTheFilm }: IReviews) => {
+
+  // const [ wind, setWind] = useState(1)
+// if (useWindowDimensions() > 500){
+
+// } useWindowDimensions()
+console.log(useWindowSize())
+
   return (
     <>
       <section className={style.reviews}>
@@ -34,14 +45,23 @@ const Reviews = ({ size, items, transition, btn, aboutTheFilm }: IReviews) => {
           </a>
         </header>
         <div className={style.gallery}>
-          <Carousel
+          <Swiper freeMode={true} spaceBetween={10} slidesPerView={useWindowSize() < 600 ? 1 : 2} onSlideChange={() => console.log('slide change')} onSwiper={swiper => console.log(swiper)}>
+            {items.map((feedback: any, i: number) => (
+              <>
+                <SwiperSlide key={i}>
+                  <Review rewiew={feedback} />
+                </SwiperSlide>
+              </>
+            ))}
+          </Swiper>
+          {/* <Carousel
             items={items.map((feedback: any, i: number) => (
               <Review key={i} rewiew={feedback} />
             ))}
             size={size}
             transition={transition}
-            className='standard-carousel-items'
-          ></Carousel>
+            className={style.standardCarouselItems}
+          ></Carousel> */}
         </div>
         <a href='#*' className={style.comments_btn_mobile}>
           <Button size='border' children='Оставить отзывы' />
