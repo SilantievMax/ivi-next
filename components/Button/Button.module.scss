@@ -118,7 +118,7 @@
   font-style: normal;
 }
 .border {
-      height: 32px;
+  height: 32px;
   white-space: nowrap;
   text-align: center;
   border-radius: 8px;
@@ -128,9 +128,43 @@
   cursor: pointer;
   background-color: transparent;
   transition-duration: 0.4s;
+  width: 100%;
 }
 .border:hover {
   transition-duration: 0.4s;
   background-color: transparent;
   border-color: rgba(255, 255, 255, 0.952);
+}
+.reviews {
+  display: flex;
+  .children {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 900;
+    font-style: normal;
+    color: #fff;
+    position: relative;
+    opacity: 1;
+    cursor: pointer;
+    transition-property: color, box-shadow, opacity;
+    text-decoration: none;
+  }
+  .children:hover {
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.356), inset 0 0 0 rgb(255 255 255 / 16%);
+    color: #fff;
+    transition-duration: 0.4s;
+  }
+}
+.quantity {
+  margin-left: 4px;
+  list-style: none;
+  color: #a5a1b2;
+  font-size: 13px;
+  line-height: 16px;
+  font-style: normal;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  height: 16px;
+  font-weight: 400;
 }

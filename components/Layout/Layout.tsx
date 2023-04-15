@@ -3,6 +3,7 @@ import React, { FC, ReactNode } from 'react'
 import Footer from '../Footer/Footer'
 import Header from '../Header/Header'
 import Wrapper from '../Wrapper/Wrapper'
+
 import HomePage from '@/components/screens/HomePage/HomePage'
 
 interface LayoutProps {
@@ -15,11 +16,9 @@ const Layout: FC<LayoutProps> = ({ children }) => {
       <Wrapper>
         <Header />
       </Wrapper>
+      <Wrapper>{children}</Wrapper>
       <Wrapper>
-      {children}
-      </Wrapper>
-      <Wrapper>
-        {/* <Footer /> */}
+        <Footer />
       </Wrapper>
     </>
   )

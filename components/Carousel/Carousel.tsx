@@ -2,15 +2,12 @@ import React, { ReactNode, useState } from 'react'
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
 import styles from './Carousel.module.scss'
 
-
 interface Icarousel {
   items: ReactNode[]
   size: 'small' | 'standard'
   transition: number
   className: string
 }
-
-
 
 const Carousel = (props: Icarousel): JSX.Element => {
   const {items, size, className, transition} = props
