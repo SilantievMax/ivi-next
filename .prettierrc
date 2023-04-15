@@ -6,7 +6,7 @@
   "jsxSingleQuote": true,
   "arrowParens": "avoid",
   "printWidth": 180,
-  "importOrder": ["<THIRD_PARTY_MODULES>", "^pages/(.*)$", "^components/(.*)$", "^store/(.*)$", "^public/(.*)$", "^styles/(.*)$", "^assets/(.*)$", "^../(.*)", "^./(.*)"],
+  "importOrder": ["<THIRD_PARTY_MODULES>", "^pages/(.*)$", "^components/(.*)$", "^store/(.*)$", "^public/(.*)$", "^styles/(.*)$", "^img/(.*)$", "^assets/(.*)$", "^../(.*)", "^./(.*)"],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true
 }

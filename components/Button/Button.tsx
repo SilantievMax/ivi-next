@@ -27,8 +27,8 @@ export const Button = ({
       {...props}
     >
       {icon}
-      <div>{children}</div>
       {img && <img src={img}></img>}
+      <div>{children}</div>
     </button>
   )
 }

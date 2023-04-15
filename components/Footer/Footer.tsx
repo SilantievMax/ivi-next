@@ -3,6 +3,8 @@ import React, { FC } from 'react'
 
 import { Button } from 'components/Button/Button'
 
+import { appleLogo, envelope, googlePlayLogo, linkedin, megaphone, odnoklassniki, phone, telegram, twitter, viber, vk } from 'img/imges'
+
 import styles from './Footer.module.scss'
 import LinkItem from './LinkItem/LinkItem'
 import { ILinks } from '@/types/types'
@@ -56,17 +58,103 @@ const Footer: FC = () => {
           </span>
           <div className={styles.btn}>
             <Button children='Написать в чате' color='gray' />
+            <div className={styles.pos_btn}>
+              <Button img={envelope.src} size='icon' color='gray' />
+              <Button img={phone.src} size='icon' color='gray' />
+            </div>
           </div>
           <LinkItem data={ascLinks} />
           <span>Ответы на вопросы</span>
         </li>
-        <li>
+        <li className={styles.megaphone_wrapper}>
+          <div className={styles.megaphone}>
+            <img src={megaphone.src} alt='' />
+          </div>
           <small>
             Смотрите фильмы, сериалы и <br /> мультфильмы без рекламы
           </small>
         </li>
       </ul>
-      <ul className={styles.list}></ul>
+      <ul className={styles.list}>
+        <div className={styles.t_wrapper}>
+          <div className={styles.btn_wrapper}>
+            <div className={styles.btn_wrapper__item}>
+              <Button
+                size='smart'
+                img={appleLogo.src}
+                color='gray'
+                children={
+                  <>
+                    <p>Загрузить в</p>
+                    <h3>App Store</h3>
+                  </>
+                }
+              />
+            </div>
+            <div className={styles.btn_wrapper__item}>
+              <Button
+                size='smart'
+                img={googlePlayLogo.src}
+                color='gray'
+                children={
+                  <>
+                    <p>Доступно в</p>
+                    <h3>Google Play</h3>
+                  </>
+                }
+              />
+            </div>
+            <div className={styles.btn_wrapper__item}>
+              <Button
+                size='smart'
+                img={googlePlayLogo.src}
+                color='gray'
+                children={
+                  <>
+                    <p>Смотрите на</p>
+                    <h3>Smart TV</h3>
+                  </>
+                }
+              />
+            </div>
+            <div className={styles.btn_wrapper__item}>
+              <Button
+                size='smart'
+                img={googlePlayLogo.src}
+                color='gray'
+                children={
+                  <>
+                    <h3>Все устройства</h3>
+                  </>
+                }
+              />
+            </div>
+          </div>
+          <div className={styles.btn_wrapper}>
+            <div className={styles.btn_wrapper__item}>
+              <Button size='circle' img={vk.src} color='gray' />
+            </div>
+            <div className={styles.btn_wrapper__item}>
+              <Button size='circle' img={odnoklassniki.src} color='gray' />
+            </div>
+            <div className={styles.btn_wrapper__item}>
+              <Button size='circle' img={twitter.src} color='gray' />
+            </div>
+            <div className={styles.btn_wrapper__item}>
+              <Button size='circle' img={viber.src} color='gray' />
+            </div>
+            <div className={styles.btn_wrapper__item}>
+              <Button size='circle' img={linkedin.src} color='gray' />
+            </div>
+            <div className={styles.btn_wrapper__item}>
+              <Button size='circle' img={telegram.src} color='gray' />
+            </div>
+          </div>
+        </div>
+        <div className={styles.b_wrapper}>
+          <span> &copy; 2023 ООО «Иви.ру» </span> HBO ® and related service marks are the property of Home Box Office, Inc
+        </div>
+      </ul>
     </footer>
   )
 }
