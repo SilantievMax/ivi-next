@@ -11,6 +11,24 @@
   background-color: #1f1b2e;
   transition: background-color 400ms;
 }
+
+.notReview{
+  background-color: #1a1627;
+  overflow: hidden;
+  transition: background-color 400ms;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 252px;
+  cursor: pointer;
+}
+.notReview:hover {
+  background-color: #1f1b2e;
+  transition: background-color 400ms;
+}
+.notText{
+  text-align: center;
+  padding: 50px 0;
+}
 .voteBtns {
   display: flex;
   gap: 10px;

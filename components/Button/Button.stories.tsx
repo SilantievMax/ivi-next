@@ -75,3 +75,10 @@ export const IconSmart: Story = {
     )
   }
 }
+export const ReviewBtn: Story = {
+  args: {
+    children: 'Отзывы',
+    quantity: 17,
+    size: 'reviews'
+  }
+}

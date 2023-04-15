@@ -5,7 +5,6 @@ import 'swiper/css/navigation'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { Button } from '../Button/Button'
-import ReviewBtn from '../ReviewBtn/ReviewBtn'
 
 import style from './Reviews.module.scss'
 import Review from './Rewiew/Review'
@@ -24,7 +23,7 @@ const Reviews: FC<IReviews> = ({ titleBtn, items, btn, aboutTheFilm }) => {
       <section className={style.reviews}>
         <header className={style.header}>
           <div className={style.header_item}>
-            <ReviewBtn quantity={12} children={titleBtn} />
+            <Button size='reviews' children={titleBtn} quantity={12}/>
             {aboutTheFilm && <p>{aboutTheFilm}</p>}
           </div>
           <a href='#*' className={style.comments_btn}>
@@ -32,14 +31,14 @@ const Reviews: FC<IReviews> = ({ titleBtn, items, btn, aboutTheFilm }) => {
           </a>
         </header>
         <div className={style.gallery}>
-          <Swiper navigation modules={[Navigation]} freeMode={true} spaceBetween={20} slidesPerView={useWindowSize() < 600 ? 1 : 2}>
-            {items.map((feedback: any, i: number) => (
+          <Swiper navigation modules={[Navigation]} freeMode={true} spaceBetween={20} slidesPerView={useWindowSize()}>
+            {items ? items.map((feedback: any, i: number) => (
               <>
                 <SwiperSlide key={i}>
                   <Review rewiew={feedback} />
                 </SwiperSlide>
               </>
-            ))}
+            )) : <Review  />}
           </Swiper>
         </div>
         <a href='#*' className={style.comments_btn_mobile}>

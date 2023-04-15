@@ -9,7 +9,7 @@ export const Button = ({
   img,
   className,
   color,
-  icon,
+  icon,quantity,
   ...props
 }: ButtonProps): JSX.Element => {
   return (
@@ -24,13 +24,15 @@ export const Button = ({
         [styles.icon]: size === 'icon',
         [styles.circle]: size === 'circle',
         [styles.smart]: size === 'smart',
-        [styles.border]: size === 'border'
+        [styles.border]: size === 'border',
+        [styles.reviews]: size === 'reviews'
       })}
       {...props}
     >
       {icon}
       {img && <img src={img}></img>}
-      <div>{children}</div>
+      <div  className={styles.children}>{children}</div>
+     {quantity && <div className={styles.quantity}>{quantity}</div>}
     </button>
   )
 }
