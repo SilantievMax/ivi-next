@@ -5,6 +5,10 @@ import { Button } from '@/components/Button/Button'
 import styles from './movies.module.scss'
 import Sort from '@/components/Sort/Sort'
 import Film from '@/components/Film/Film'
+import { Navigation } from 'swiper'
+import useWindowSize from '@/components/Reviews/widthWindow'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import Review from '@/components/Reviews/Rewiew/Review'
 
 const Movies = () => {
   const headersArray = ['2022 год', '2021 год', '2020 год', '2019 год', '2018 год', 'Бесплатные', 'Русские фильмы', 'Советские фильмы', 'Американские фильмы', 'Индийские фильмы', 'Комедии', 'Ужасы', 'Фантастические', 'Мелодрамы', 'Триллеры', 'Драмы']

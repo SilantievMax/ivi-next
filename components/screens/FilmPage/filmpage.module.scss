@@ -1,0 +1,51 @@
+.filmPageWrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+.breadCrumbs {
+  display: flex;
+  column-gap: 5px;
+
+  &__font {
+    color: rgba(255,255,255,.72);
+    transition: 0.4s;
+    cursor: pointer;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 500;
+    font-style: normal;
+    &:hover {
+      color: white;
+    }
+  }
+
+}
+
+.dot {
+  color: rgba(255,255,255,.72);
+  margin-top: -3px;
+}
+
+.filmTitle {
+  padding: 0 35px;
+  &__content {
+    font-size: 36px;
+    line-height: 40px;
+    text-align: center;
+  }
+}
+
+.filmSectionContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.filmSection__content {
+  max-width: 465px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+}
