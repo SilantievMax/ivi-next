@@ -1,13 +1,16 @@
 import appleLogo from './icons/appleLogo.svg'
+import device from './icons/device.svg'
 import envelope from './icons/envelope.svg'
 import googlePlayLogo from './icons/googlePlayLogo.svg'
 import linkedin from './icons/linkedin.svg'
+import logo from './icons/logo.svg'
 import megaphone from './icons/megaphone.svg'
 import odnoklassniki from './icons/odnoklassniki.svg'
 import phone from './icons/phone.svg'
 import telegram from './icons/telegram-app.svg'
+import tv from './icons/tv.svg'
 import twitter from './icons/twitter.svg'
 import viber from './icons/viber.svg'
 import vk from './icons/vk.svg'
 
-export { envelope, appleLogo, googlePlayLogo, phone, megaphone, vk, linkedin, odnoklassniki, viber, telegram, twitter }
+export { envelope, device, tv, logo, appleLogo, googlePlayLogo, phone, megaphone, vk, linkedin, odnoklassniki, viber, telegram, twitter }
