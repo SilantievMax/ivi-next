@@ -3,13 +3,16 @@ import React, { FC, useRef, useState } from 'react'
 
 import { Button } from 'components/Button/Button'
 import ModalWindow from 'components/ModalWindow/ModalWindow'
+import Profile from 'components/Profile/Profile'
 
 import { bell, logo, magnifyingGlass, paple } from 'img/imges'
 
 import styles from './Header.module.scss'
+import ListCategories from './ListСategories/ListСategories'
 
 const Header: FC = () => {
-  const [isHovering, setIsHovering] = useState(true)
+  const isAuth = false
+  const [isHovering, setIsHovering] = useState(false)
   const [isVariant, setVariant] = useState('')
 
   const handleMouseOver = (value: string) => {
@@ -20,6 +23,26 @@ const Header: FC = () => {
   const handleMouseOut = () => {
     setIsHovering(false)
   }
+
+  const renderComponentListCategory = () => {
+    switch (isVariant) {
+      case 'movies':
+        return <ListCategories children={isVariant} variant={isVariant} />
+      case 'series':
+        return <ListCategories children={isVariant} variant={isVariant} />
+      case 'animation':
+        return <ListCategories children={isVariant} variant={isVariant} />
+      case 'tvplus':
+        return <ListCategories children={isVariant} variant={isVariant} />
+      case 'profile':
+        return <ListCategories children={<Profile />} variant={isVariant} />
+      case 'bell':
+        return <ListCategories children={isVariant} variant={isVariant} />
+      default:
+        return <ListCategories children={''} variant={isVariant} />
+    }
+  }
+
   return (
     <header className={styles.header}>
       <div className={styles.header__t}>
@@ -50,10 +73,10 @@ const Header: FC = () => {
       <div className={styles.header__b}>
         <Button color='gradient' children='Оплатить подписку' onMouseOver={handleMouseOut} />
         <Button img={magnifyingGlass.src} children={<h3 className={styles.color}>Поиск</h3>} onMouseOver={handleMouseOut} />
-        <Button img={bell.src} onMouseOver={() => handleMouseOver('bell')} />
-        <Button className={styles.costom_btn} img={paple.src} onMouseOver={() => handleMouseOver('paple')} />
+        {isAuth ? <Button img={bell.src} onMouseOver={() => handleMouseOver('bell')} /> : <Button img={bell.src} onMouseOver={() => handleMouseOver('')} />}
+        <Button className={styles.costom_btn} img={paple.src} onMouseOver={() => handleMouseOver('profile')} />
       </div>
-      {isHovering && <ModalWindow onMouseLeave={handleMouseOut} children={<h1>{isVariant}</h1>} />}
+      {isHovering && <ModalWindow onMouseLeave={handleMouseOut} children={renderComponentListCategory()} />}
     </header>
   )
 }
