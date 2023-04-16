@@ -1,0 +1,50 @@
+@import 'styles/vars';
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 100;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  &__t,
+  &__b {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.nav {
+  font-family: $font600;
+  color: #9d9696;
+  font-size: 17px;
+  transition: color 0.3s;
+
+  a {
+    margin-left: 20px;
+    &:hover {
+      color: #f3efef;
+    }
+  }
+}
+
+.color {
+  font-family: $font600;
+  color: #9d9696;
+  margin-left: 4px;
+}
+
+.header__b {
+  button {
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+}
+
+.costom_btn {
+  border: 1px solid #9d9696;
+  padding: 8px;
+}
