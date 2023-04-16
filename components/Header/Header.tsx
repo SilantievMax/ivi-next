@@ -9,11 +9,12 @@ import { bell, logo, magnifyingGlass, paple } from 'img/imges'
 import styles from './Header.module.scss'
 
 const Header: FC = () => {
-  const [isHovering, setIsHovering] = useState(false)
-  const refContainer = document.body
-  console.log(refContainer)
-  const handleMouseOver = () => {
+  const [isHovering, setIsHovering] = useState(true)
+  const [isVariant, setVariant] = useState('')
+
+  const handleMouseOver = (value: string) => {
     setIsHovering(true)
+    setVariant(value)
   }
 
   const handleMouseOut = () => {
@@ -32,16 +33,16 @@ const Header: FC = () => {
           <Link href='/new' onMouseOver={handleMouseOut}>
             Что нового
           </Link>
-          <Link href='/movies' onMouseOver={handleMouseOver}>
+          <Link href='/movies' onMouseOver={() => handleMouseOver('movies')}>
             Фильмы
           </Link>
-          <Link href='/series' onMouseOver={handleMouseOver}>
+          <Link href='/series' onMouseOver={() => handleMouseOver('series')}>
             Сериалы
           </Link>
-          <Link href='/animation' onMouseOver={handleMouseOver}>
+          <Link href='/animation' onMouseOver={() => handleMouseOver('animation')}>
             Мультфильмы
           </Link>
-          <Link href='/tvplus' onMouseOver={handleMouseOver}>
+          <Link href='/tvplus' onMouseOver={() => handleMouseOver('tvplus')}>
             TV+
           </Link>
         </nav>
@@ -49,14 +50,10 @@ const Header: FC = () => {
       <div className={styles.header__b}>
         <Button color='gradient' children='Оплатить подписку' onMouseOver={handleMouseOut} />
         <Button img={magnifyingGlass.src} children={<h3 className={styles.color}>Поиск</h3>} onMouseOver={handleMouseOut} />
-        <Button img={bell.src} onMouseOver={handleMouseOver} />
-        <Button className={styles.costom_btn} img={paple.src} onMouseOver={handleMouseOver} />
+        <Button img={bell.src} onMouseOver={() => handleMouseOver('bell')} />
+        <Button className={styles.costom_btn} img={paple.src} onMouseOver={() => handleMouseOver('paple')} />
       </div>
-      {isHovering && (
-        <div onMouseLeave={handleMouseOut}>
-          <ModalWindow />
-        </div>
-      )}
+      {isHovering && <ModalWindow onMouseLeave={handleMouseOut} children={<h1>{isVariant}</h1>} />}
     </header>
   )
 }

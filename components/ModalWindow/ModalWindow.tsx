@@ -1,12 +1,13 @@
 import React, { FC } from 'react'
 
 import styles from './ModalWindow.module.scss'
+import { ModalWindowProps } from './ModalWindow.props'
 
-const ModalWindow: FC = () => {
+const ModalWindow: FC<ModalWindowProps> = ({ onMouseLeave, children }) => {
   return (
-    <div className={styles.sectin}>
+    <div onMouseLeave={onMouseLeave} className={styles.sectin}>
       <div className={styles.line}></div>
-      ModalWindow
+      <div className={styles.continer}>{children}</div>
     </div>
   )
 }
