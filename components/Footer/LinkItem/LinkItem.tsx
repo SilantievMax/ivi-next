@@ -12,8 +12,8 @@ const LinkItem: FC<LinkItemProps> = ({ heading, data }) => {
   return (
     <div className={styles.item}>
       <h6 className={styles.text}>{heading}</h6>
-      {data.map(({ title, link }) => (
-        <a className={styles.link} href={link} target='_blank'>
+      {data.map(({ title, link }, id) => (
+        <a key={id} className={styles.link} href={link} target='_blank'>
           {title}
         </a>
       ))}

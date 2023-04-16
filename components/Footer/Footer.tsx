@@ -3,7 +3,7 @@ import React, { FC } from 'react'
 
 import { Button } from 'components/Button/Button'
 
-import { appleLogo, envelope, googlePlayLogo, linkedin, megaphone, odnoklassniki, phone, telegram, twitter, viber, vk } from 'img/imges'
+import { appleLogo, device, envelope, googlePlayLogo, linkedin, megaphone, odnoklassniki, phone, telegram, tv, twitter, viber, vk } from 'img/imges'
 
 import styles from './Footer.module.scss'
 import LinkItem from './LinkItem/LinkItem'
@@ -107,7 +107,7 @@ const Footer: FC = () => {
             <div className={styles.btn_wrapper__item}>
               <Button
                 size='smart'
-                img={googlePlayLogo.src}
+                img={tv.src}
                 color='gray'
                 children={
                   <>
@@ -120,7 +120,7 @@ const Footer: FC = () => {
             <div className={styles.btn_wrapper__item}>
               <Button
                 size='smart'
-                img={googlePlayLogo.src}
+                img={device.src}
                 color='gray'
                 children={
                   <>

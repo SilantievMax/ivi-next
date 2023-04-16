@@ -1,14 +1,19 @@
-import React, { FC, useEffect, useState } from 'react'
-import { Navigation } from 'swiper'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import React, { FC, useEffect, useState } from 'react';
+import { Navigation } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { Button } from '../Button/Button'
 
-import style from './Reviews.module.scss'
-import Review from './Rewiew/Review'
-import useWindowSize from './widthWindow'
+
+import { Button } from '../Button/Button';
+
+
+
+import style from './Reviews.module.scss';
+import Review from './Rewiew/Review';
+import useWindowSize from './widthWindow';
+
 
 interface IReviews {
   items: any
@@ -18,6 +23,7 @@ interface IReviews {
 }
 
 const Reviews: FC<IReviews> = ({ titleBtn, items, btn, aboutTheFilm }) => {
+ 
   return (
     <>
       <section className={style.reviews}>
@@ -33,11 +39,9 @@ const Reviews: FC<IReviews> = ({ titleBtn, items, btn, aboutTheFilm }) => {
         <div className={style.gallery}>
           <Swiper navigation modules={[Navigation]} freeMode={true} spaceBetween={20} slidesPerView={useWindowSize()}>
             {items ? items.map((feedback: any, i: number) => (
-              <>
-                <SwiperSlide key={i}>
+                <SwiperSlide key={feedback.id}>
                   <Review rewiew={feedback} />
-                </SwiperSlide>
-              </>
+                </SwiperSlide>         
             )) : <Review  />}
           </Swiper>
         </div>

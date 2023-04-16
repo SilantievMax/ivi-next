@@ -5,6 +5,8 @@ import { feedback, review } from '../../Reviews/props/props'
 
 import { Button } from '@/components/Button/Button'
 import Reviews from '@/components/Reviews/Reviews'
+import PersonPage from '../PersonPage/PersonPage'
+import Movies from '../Movies/Movies'
 
 const HomePage: FC = () => {
   const { t, i18n } = useTranslation()
@@ -18,9 +20,9 @@ const HomePage: FC = () => {
       {/* <button onClick={() => changeLanguage('en')}>EN</button>
       <button onClick={() => changeLanguage('ru')}>RU</button>
       <h1>{t('Welcome to React')}</h1> */}
-
-      <Reviews items={feedback} titleBtn='Отзывы' btn='Оставить отзывы' aboutTheFilm='О фильме...' />
-      <Reviews items={review} titleBtn='Рецензия' btn='Написать рецензию' />
+ {/* <Movies/> */}
+      {/* <Reviews items={feedback} titleBtn='Отзывы' btn='Оставить отзывы' aboutTheFilm='О фильме...' /> */}
+      {/* <Reviews items={review} titleBtn='Рецензия' btn='Написать рецензию' /> */}
     </div>
   )
 }
