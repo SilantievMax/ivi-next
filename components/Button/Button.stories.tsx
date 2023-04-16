@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { BsApple, BsTelephone, FaTelegramPlane } from 'react-icons/all';
 
-
-
 import { Button } from './Button';
 
 
