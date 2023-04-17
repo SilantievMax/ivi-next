@@ -80,3 +80,10 @@ export const ReviewBtn: Story = {
     size: 'reviews'
   }
 }
+export const Disable: Story = {
+  args: {
+    children: 'Отправить',
+    color: 'red',
+    disable: true
+  }
+}
