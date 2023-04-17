@@ -1,17 +1,18 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { FiX } from 'react-icons/fi'
 import FilterItem from '@/components/Filter/FilterItem'
 import styles from './filter.module.scss'
-import Carousel from '@/components/Carousel/Carousel'
-import { AiOutlineCheck } from 'react-icons/ai'
 import FilterLi from '@/components/Filter/FilterLi'
 import { Simulate } from 'react-dom/test-utils'
-import invalid = Simulate.invalid
 import { Slider } from '@mui/material'
 import { Button } from '@/components/Button/Button'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectReviewAmount, setReviewAmount } from '@/store/reducers/filterReducer'
+import { selectRate, setRate } from '@/store/reducers/filterReducer'
+import { selectSort } from '@/store/reducers/sortReducer'
 
 const Filter = () => {
-  const [reviewAmount, setReviewAmount] = useState<number>(0)
+  const [pickedReviewAmount, setSickedReviewAmount] = useState<number>(0)
   const [rateAmount, setRateAmount] = useState<number>(7.3)
   const yearArray = [
     'Все годы',
@@ -102,12 +103,16 @@ const Filter = () => {
     'Фэнтези'
   ]
   const handleReviewChange = (event: Event, newValue: number | number[]) => {
-    setReviewAmount(newValue as number);
+    setSickedReviewAmount(newValue as number);
   };
 
   const handleRateChange = (event: Event, newValue: number | number[]) => {
     setRateAmount(newValue as number);
   };
+
+  const dispatch = useDispatch()
+  const reduxRate = useSelector(selectRate)
+  const reduxAmount = useSelector(selectReviewAmount)
 
   return (
     <div className={styles.filtersContainer}>
@@ -124,7 +129,6 @@ const Filter = () => {
                       </div>
                     } />
         <FilterItem
-
           content={
             <div className={styles.filterDropdown__content}>
               <ul className={styles.filterDropdown__list}>
@@ -147,20 +151,20 @@ const Filter = () => {
         } title='Годы' />
         <FilterItem content={
           <div className={styles.filterDropdown__slider}>
-            <span>{`От ${reviewAmount}`}</span>
-            <Slider sx={{color: '#8c85b9'}} onChange={handleReviewChange} min={0} max={500000} step={10000} value={reviewAmount} defaultValue={reviewAmount} aria-label="Default" valueLabelDisplay="auto"/>
-            <Button color='gradient' children='Подтвердить'/>
+            <span>{`От ${pickedReviewAmount}`}</span>
+            <Slider sx={{color: '#8c85b9'}} onChange={handleReviewChange} min={0} max={500000} step={10000} value={pickedReviewAmount} defaultValue={pickedReviewAmount} aria-label="Default" valueLabelDisplay="auto"/>
+            <Button onClick={() => dispatch(setReviewAmount(pickedReviewAmount))} color='darkRed' children='Подтвердить'/>
           </div>
         } title='Количество оценок(от)' />
         <FilterItem content={
           <div className={styles.filterDropdown__slider}>
             <span>{`От ${rateAmount}`}</span>
             <Slider sx={{color: '#8c85b9'}} onChange={handleRateChange} min={0} max={10} step={0.1} value={rateAmount} defaultValue={rateAmount} aria-label="Default" valueLabelDisplay="auto"/>
-            <Button color='gradient' children='Подтвердить'/>
+            <Button onClick={() => dispatch(setRate(rateAmount))} color='darkRed' children='Подтвердить'/>
           </div>
         } title='Рейтинг(от)' />
       </div>
-      <div className={styles.removeFilterBox}>
+      <div  className={styles.removeFilterBox}>
         <FiX className={styles.removeFilterBox__btn} />
         Сбросить фильтры
       </div>

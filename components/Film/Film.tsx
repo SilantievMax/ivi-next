@@ -8,7 +8,7 @@ interface IFilm {
 const Film = (props: IFilm) => {
   const {src} = props
   return (
-    <Link as='movies/id' href='/PickedMoviePage'>
+    <Link href='/PickedMoviePage'>
       <div className={styles.filmCard__container}>
         <div style={{backgroundImage: `url('${src}')`}} className={styles.filmCard}>
           <div className={styles.filmCard__inside}>

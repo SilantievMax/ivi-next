@@ -41,7 +41,6 @@ const Sort = () => {
         {sortArray.map((el, idx) =>
           <div onClick={() => {
             setActive(false)
-            //setCurrentSort(`${el}`)
             dispatch(setSort(`${el}`))
           }} className={reduxSort === el ? `${styles.greyText} ${styles.dropdownMenu__item} ${styles.active}` : `${styles.greyText} ${styles.dropdownMenu__item}`} key={idx}>{el}</div>
         )}

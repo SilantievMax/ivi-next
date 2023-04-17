@@ -2,7 +2,7 @@ import React, {
   AllHTMLAttributes,
   ButtonHTMLAttributes,
   DetailedHTMLProps, HTMLAttributes,
-  ReactNode,
+  ReactNode, useEffect, useRef,
   useState
 } from 'react'
 import { AiOutlineDown, AiOutlineUp } from 'react-icons/ai'
@@ -24,8 +24,25 @@ const FilterItem = ({
   const [active, setActive] = useState<boolean>(false)
   const [visibility, setVisibility] = useState<boolean>(false)
 
+  function removeActive(ref: any) {
+    useEffect(() => {
+      function handleClickOutside(event: any) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          setActive(false)
+          setVisibility(false)
+        }
+      }
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
+  }
+  const wrapperRef = useRef(null);
+  removeActive(wrapperRef);
+
   return (
-    <div onClick={onClick}
+    <div ref={wrapperRef} onClick={onClick}
          className={styles.filtersWrapper}>
       <div onClick={() => {
         setVisibility(!visibility)

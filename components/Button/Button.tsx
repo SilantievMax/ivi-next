@@ -18,6 +18,7 @@ export const Button = ({
         [styles.img]: size === "img",
         [styles.gradient]: color === 'gradient',
         [styles.red]: color === 'red',
+        [styles.darkRed]: color === 'darkRed',
         [styles.redOpacity]: color === 'redOpacity',
         [styles.gray]: color === 'gray',
         [styles.lightGray]: color === 'lightGray',

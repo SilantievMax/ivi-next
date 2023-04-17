@@ -1,4 +1,5 @@
 .carousel {
+  position: relative;
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -8,16 +9,33 @@
 
 .carouselWrapper {
   overflow: hidden;
+  width: 100%;
 }
 
 .hidden {
   visibility: hidden;
 }
 
-.arrow {
+.rightArrow {
   cursor: pointer;
   height: 32px;
   width: 20px;
+  position: absolute;
+  right: -25px;
+
+  &:hover {
+    color: #FFFFFF;
+  }
+}
+
+
+
+.leftArrow {
+  position: absolute;
+  cursor: pointer;
+  height: 32px;
+  width: 20px;
+  left: -25px;
 
   &:hover {
     color: #FFFFFF;

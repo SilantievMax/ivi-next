@@ -3,11 +3,11 @@ import { AppState } from '../store'
 import { HYDRATE } from 'next-redux-wrapper'
 
 
-export interface CartItem {
+export interface sortItem {
   sort: string
 }
 
-const initialState: CartItem = {
+const initialState: sortItem = {
   sort: 'По количеству оценок'
 }
 
