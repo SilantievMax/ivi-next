@@ -145,6 +145,14 @@
 }
 
 
+
+.moviesContainer {
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+  padding: 20px 12px;
+}
+
 .greyText {
   color: rgba(255, 255, 255, .56);
 }
