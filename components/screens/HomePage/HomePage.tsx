@@ -21,7 +21,7 @@ const HomePage: FC = () => {
       <button onClick={() => changeLanguage('ru')}>RU</button>
       <h1>{t('Welcome to React')}</h1> */}
  {/* <Movies/> */}
-      {/* <Reviews items={feedback} titleBtn='Отзывы' btn='Оставить отзывы' aboutTheFilm='О фильме...' /> */}
+       <Reviews items={feedback} titleBtn='Отзывы' btn='Оставить отзывы' aboutTheFilm='О фильме...' />
       {/* <Reviews items={review} titleBtn='Рецензия' btn='Написать рецензию' /> */}
     </div>
   )

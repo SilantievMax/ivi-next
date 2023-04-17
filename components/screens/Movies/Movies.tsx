@@ -9,6 +9,7 @@ import { Navigation } from 'swiper'
 import useWindowSize from '@/components/Reviews/widthWindow'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import Review from '@/components/Reviews/Rewiew/Review'
+import HomePage from '@/components/screens/HomePage/HomePage'
 
 const Movies = () => {
   const headersArray = ['2022 год', '2021 год', '2020 год', '2019 год', '2018 год', 'Бесплатные', 'Русские фильмы', 'Советские фильмы', 'Американские фильмы', 'Индийские фильмы', 'Комедии', 'Ужасы', 'Фантастические', 'Мелодрамы', 'Триллеры', 'Драмы']
@@ -151,11 +152,10 @@ const Movies = () => {
         transition={500}
         className={styles.standardCarouselItems}
       />
-      <Carousel items={[<Film key={1} src='https://b1.filmpro.ru/c/549479.jpg'/>]} size='standard' transition={300} className={styles.moviesContainer}/>
+      <Carousel items={[<Film key={1} src=''/>]} size='standard' transition={300} className={styles.moviesContainer}/>
 
       <div>
     </div>
-
     </div>
   )
 }

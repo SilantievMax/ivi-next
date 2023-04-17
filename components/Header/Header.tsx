@@ -56,7 +56,7 @@ const Header: FC = () => {
           <Link href='/new' onMouseOver={handleMouseOut}>
             Что нового
           </Link>
-          <Link as='movies' href='/MoviesPage' onMouseOver={() => handleMouseOver('movies')}>
+          <Link  href='/MoviesPage' onMouseOver={() => handleMouseOver('movies')}>
             Фильмы
           </Link>
           <Link href='/series' onMouseOver={() => handleMouseOver('series')}>

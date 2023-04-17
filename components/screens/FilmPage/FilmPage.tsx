@@ -3,11 +3,13 @@ import styles from './filmpage.module.scss'
 import Link from 'next/link'
 import { BiBookmark, BiFilm, BiVolumeLow, BsPlay, FiUpload } from 'react-icons/all'
 import ReactPlayer from 'react-player'
+import Reviews from '@/components/Reviews/Reviews'
+import { feedback } from '@/components/Reviews/props/props'
 
 const FilmPage = () => {
   const [showFullDescription, setShowFullDescription] = useState<boolean>(false)
   // useEffect(() => {
-  //   fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films/301/', {
+  //   fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films/23423/videos', {
   //     method: 'GET',
   //     headers: {
   //       'X-API-KEY': '9867f920-35d0-4b28-b36a-2f5e7d5100f1',
@@ -108,7 +110,6 @@ const FilmPage = () => {
             </div>
           </div>
         </div>
-
         <div className={styles.filmSection__content}>
           <div className={styles.filmTitle}>
             <h1 className={styles.filmTitle__content}>{`${data.nameRu} (Фильм ${data.year})`}</h1>
@@ -216,6 +217,7 @@ const FilmPage = () => {
           </div>
         </div>
       </div>
+      <Reviews items={feedback} titleBtn='Отзывы' btn='Оставить отзывы' aboutTheFilm='О фильме...' />
     </div>
   )
 }
