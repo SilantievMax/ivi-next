@@ -10,7 +10,7 @@ const PersonPage: FC = () => {
   const router = useRouter()
   const [person, setPerson] = useState<IPerson>()
 
-  console.log(person)
+  // console.log(person)
 
   const fetchById = async () => {
     fetch('https://kinopoiskapiunofficial.tech/api/v1/staff/66539', {

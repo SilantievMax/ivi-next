@@ -29,10 +29,7 @@
   text-align: center;
   padding: 50px 0;
 }
-.voteBtns {
-  display: flex;
-  gap: 10px;
-}
+
 .name {
   color: #a5a1b2;
   margin-bottom: 8px;
@@ -70,33 +67,10 @@
   font-weight: 400;
   font-style: normal;
 }
-.vote {
-  color: #73a32f;
-  font-size: 15px;
-  line-height: 20px;
-  font-weight: 700;
-  font-style: normal;
 
-  box-sizing: border-box;
-  padding-left: 8px;
-  padding-right: 8px;
-  min-width: 42px;
-  text-align: center;
-}
 .footer {
   margin-top: 10px;
   display: flex;
   justify-content: space-between;
 }
-.like {
-  width: 16px;
-  height: 16px;
-  font-size: 16px;
-  line-height: 16px;
-}
-.likei {
-  fill: rgba(255, 255, 255, 0.486);
-}
-.likei:hover {
-  fill: rgba(255, 255, 255, 0.726);
-}
+

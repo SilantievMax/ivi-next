@@ -4,6 +4,7 @@ import styles from './Button.module.scss'
 import { ButtonProps } from './Button.props'
 
 export const Button = ({
+  disable,
   children,
   size,
   img,
@@ -13,20 +14,21 @@ export const Button = ({
   ...props
 }: ButtonProps): JSX.Element => {
   return (
-    <button
-      className={cn(styles.button, className, {
-        [styles.img]: size === "img",
-        [styles.gradient]: color === 'gradient',
+    <button disabled={disable}
+      className={`${cn(styles.button, className, {
         [styles.red]: color === 'red',
-        [styles.redOpacity]: color === 'redOpacity',
         [styles.gray]: color === 'gray',
+        [styles.gradient]: color === 'gradient',
         [styles.lightGray]: color === 'lightGray',
+        [styles.redOpacity]: color === 'redOpacity',
+        [styles.img]: size === "img",
         [styles.icon]: size === 'icon',
-        [styles.circle]: size === 'circle',
         [styles.smart]: size === 'smart',
+        [styles.circle]: size === 'circle',
         [styles.border]: size === 'border',
-        [styles.reviews]: size === 'reviews'
-      })}
+        [styles.reviews]: size === 'reviews',
+        [styles.comment]: size === 'comment',
+      })} ${disable && styles.disable}` }
       {...props}
     >
       {icon}
