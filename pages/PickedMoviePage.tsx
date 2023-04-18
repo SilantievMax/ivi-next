@@ -1,5 +1,5 @@
+import FilmPage from '@/src/components/screens/FilmPage/FilmPage'
 import React from 'react'
-import FilmPage from '@/components/screens/FilmPage/FilmPage'
 
 const PickedMoviePage = () => {
   return (
