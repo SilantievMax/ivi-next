@@ -6,7 +6,7 @@ import '@/src/i18next/18n'
 
 import Layout from '@/src/components/Layout/Layout'
 import { wrapper } from '@/src/store/store'
-import '@/src/styles/globals.scss'
+import '@/styles/globals.scss'
 
 const App = ({ Component, pageProps, ...rest }: AppProps) => {
   const { store } = wrapper.useWrappedStore(rest)
