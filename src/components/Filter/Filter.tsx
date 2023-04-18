@@ -1,25 +1,15 @@
 import { Slider } from '@mui/material'
-import React, { useEffect, useRef, useState } from 'react'
-import { Simulate } from 'react-dom/test-utils'
-import { AiOutlineCheck } from 'react-icons/ai'
 import React, { useState } from 'react'
 import { FiX } from 'react-icons/fi'
-import FilterItem from '@/components/Filter/FilterItem'
 import styles from './filter.module.scss'
-import FilterLi from '@/components/Filter/FilterLi'
-import { Simulate } from 'react-dom/test-utils'
-import { Slider } from '@mui/material'
-import { Button } from '@/components/Button/Button'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectReviewAmount, setReviewAmount } from '@/store/reducers/filterReducer'
-import { selectRate, setRate } from '@/store/reducers/filterReducer'
-import { selectSort } from '@/store/reducers/sortReducer'
+import { selectReviewAmount, setReviewAmount } from '../../store/reducers/filterReducer'
+import { selectRate, setRate } from '../../store/reducers/filterReducer'
 import FilterItem from './FilterItem'
 import FilterLi from './FilterLi'
 import { Button } from '@/src/components/Button/Button'
-import Carousel from '@/src/components/Carousel/Carousel'
+import { useOuside } from '@/src/hooks/useOutside'
 
-import invalid = Simulate.invalid
 
 const Filter = () => {
   const [pickedReviewAmount, setSickedReviewAmount] = useState<number>(0)
@@ -123,7 +113,6 @@ const Filter = () => {
   const dispatch = useDispatch()
   const reduxRate = useSelector(selectRate)
   const reduxAmount = useSelector(selectReviewAmount)
-
   return (
     <div className={styles.filtersContainer}>
       <div className={styles.filtersContainer__item}>

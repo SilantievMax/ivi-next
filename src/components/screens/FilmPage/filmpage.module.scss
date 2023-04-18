@@ -28,6 +28,17 @@
   background-repeat: no-repeat;
 }
 
+.popup__wrapper {
+  z-index: 101;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(7,5,14,.96);
+}
+
 .filmActorCard {
   display: flex;
   align-items: center;
@@ -102,19 +113,153 @@
 
 }
 
-.playerWrapper {
-  position: sticky;
-  padding-right: 32px;
-  top: 32px;
-  display: inline-block;
-  vertical-align: top;
+
+.playerWindow {
+  width: 100%;
+}
+
+.actorSection__wrapper {
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+}
+
+.showActorsBtn {
+  margin-top: 20px;
+  background-color: #1a1627;
+  height: 88px;
+  width: 88px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.48);
+  cursor: pointer;
+  transition: 0.4s;
+
+  &:hover {
+    background-color: #231f34;
+    color: white;
+  }
+}
+
+.actor__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.filmPage__titleText {
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.actorSection {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.actorImage__Wrapper{
+  border-radius: 50px;
+  height: 88px;
+  width: 88px;
+}
+
+.underline {
+  cursor: pointer;
+  transition: 0.4s;
+  box-shadow: 0 1px 0 rgb(255 255 255 / 16%), inset 0 0 0 rgb(255 255 255 / 16%);
+
+  &:hover {
+    box-shadow: 0 1px 0 #fff, inset 0 0 0 #fff;
+  }
+}
+
+.galleryWrapper {
+  padding: 20px 0;
+}
+
+.mainContent {
+  padding: 12px 0 24px 0;
+}
+
+.watchAllDevicesImageWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  padding: 0 20px;
+}
+
+.watchAllDevices__content {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  width: 100%;
+}
+
+.posterPic {
+  position: absolute;
+  left: 120px;
+  top: 3px;
+  width: 337px;
+  height: 192px;
+  border-radius: 2px;
+}
+
+.devicePic {
+  z-index: 1;
+}
+
+.posterMobilePic {
+  position: absolute;
+  right: 48px;
+  bottom: 7px;
+  width: 188px;
+  height: 102px;
+  border-radius: 4px;
+  z-index: 1;
+}
+
+.ipadPic {
+  position: absolute;
+  right: 42px;
+  bottom: 0;
+  z-index: 1;
+  width: 200px;
+  height: 136px;
+}
+
+.watchAllDevicesSection {
+  padding: 40px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  &__btn {
+    width: 215px;
+    height: 40px;
+    padding: 9px 15px;
+    transition-duration: 80ms;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 500;
+    font-style: normal;
+  }
 }
 
 .player {
-  width: 62%;
+  width: 100%;
+  row-gap: 20px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 32px;
   display: flex;
   flex-direction: column;
-  row-gap: 15px;
+  vertical-align: top;
+  padding-right: 32px;
 }
 
 .playerOptions {
@@ -166,6 +311,18 @@
   border-radius: 12px;
   padding: 10px;
   cursor: pointer;
+}
+
+.slide {
+  width: 100px;
+}
+
+.moviesContainer {
+  display: flex;
+  flex-direction: row;
+  column-gap: 25px;
+  padding: 20px 0;
+  transition: 0.4s;
 }
 
 .filmQuality {

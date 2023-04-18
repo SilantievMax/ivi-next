@@ -1,16 +1,21 @@
-import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
-import { BiBookmark, BiFilm, BiVolumeLow, BsPlay, FiUpload } from 'react-icons/all';
-import ReactPlayer from 'react-player';
-
-
-
-import styles from './filmpage.module.scss';
+import React, { useEffect, useState } from 'react'
+import styles from './filmpage.module.scss'
+import Link from 'next/link'
+import { BiBookmark, BiFilm, BiVolumeLow } from 'react-icons/bi'
+import { BsPlay } from 'react-icons/bs'
+import { FiUpload } from 'react-icons/fi'
+import ReactPlayer from 'react-player'
+import { Button } from '../../Button/Button'
+import style from '@/components/Reviews/Reviews.module.scss'
 import Reviews from '@/src/components/Reviews/Reviews'
-import { feedback } from '@/src/components/Reviews/props/props';
-
+import Carousel from '@/src/components/Carousel/Carousel'
+import Film from '@/src/components/Film/Film'
+import { feedback } from '@/src/components/Reviews/props/props'
 
 const FilmPage = () => {
+
+  const actorsList: string[] = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+  const [showActorsWindow, setShowActorsWindow] = useState<boolean>(false)
   const [showFullDescription, setShowFullDescription] = useState<boolean>(false)
   // useEffect(() => {
   //   fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films/23423/videos', {
@@ -88,8 +93,23 @@ const FilmPage = () => {
 
   return (
     <div className={styles.filmPageWrapper}>
+      {showActorsWindow ? <>
+        <span onClick={() => setShowActorsWindow(false)}>К фильму</span>
+        <div className={styles.popup__wrapper}>
+
+        </div>
+        <div></div>
+      </> : ''}
+      {/*<div className={style.gallery}>*/}
+      {/*<Swiper navigation modules={[Navigation]} freeMode={true} spaceBetween={0} slidesPerView={7} >*/}
+      {/*  {[1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3].map((el, idx) => (*/}
+      {/*    <SwiperSlide className={styles.slide} key={idx}>*/}
+      {/*      <Film key={1} src=''/>*/}
+      {/*    </SwiperSlide>*/}
+      {/*  ))}*/}
+      {/*</Swiper></div>*/}
       <div className={styles.breadCrumbs}>
-        <Link as='/movies' href='/MoviesPage'>
+        <Link href='/MoviesPage'>
           <span
             className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Фильмы</span>
         </Link>
@@ -98,21 +118,24 @@ const FilmPage = () => {
           className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Триллеры</span>
       </div>
       <div className={styles.filmSectionContainer}>
-        <div className={styles.player}>
-          <ReactPlayer width='100%' className={styles.playerWrapper}
-                       url='https://www.youtube.com/watch?v=VjhT_TnD_f8' />
-          <div className={styles.playerOptions}>
-            <div className={styles.option}>
-              <BsPlay className={styles.playImg}/>
-              <span>Трейлер</span>
-            </div>
-            <div className={styles.option}>
-              <FiUpload/>
-            </div>
-            <div className={styles.option}>
-              <BiBookmark/>
+        <div className={styles.playerWindow}>
+          <div className={styles.player}>
+            <ReactPlayer width='100%' className={styles.playerWrapper}
+                         url='https://www.youtube.com/watch?v=VjhT_TnD_f8' />
+            <div className={styles.playerOptions}>
+              <div className={styles.option}>
+                <BsPlay className={styles.playImg} />
+                <span>Трейлер</span>
+              </div>
+              <div className={styles.option}>
+                <FiUpload />
+              </div>
+              <div className={styles.option}>
+                <BiBookmark />
+              </div>
             </div>
           </div>
+
         </div>
         <div className={styles.filmSection__content}>
           <div className={styles.filmTitle}>
@@ -221,7 +244,61 @@ const FilmPage = () => {
           </div>
         </div>
       </div>
-      <Reviews items={feedback} titleBtn='Отзывы' btn='Оставить отзывы' aboutTheFilm='О фильме...' />
+      <div className={styles.galleryWrapper}>
+        <span className={styles.filmPage__titleText}>{`С фильмом «${data.nameRu}» смотрят`}</span>
+        <Carousel items={[<Film key={1} src='' />, <Film key={1} src='' />, <Film key={1} src='' />,
+          <Film key={1} src='' />,  <Film key={1} src='' />,  <Film key={1} src='' />,  <Film key={1} src='' />,  <Film key={1} src='' />,  <Film key={1} src='' />,  <Film key={1} src='' />]} size={'standard'} transition={350}
+                  className={styles.moviesContainer} />
+      </div>
+      <div className={styles.galleryWrapper}>
+        <span className={`${styles.filmPage__titleText} ${styles.underline}`}>Актеры и создатели</span>
+        <div className={styles.actorSection__wrapper}>
+          {actorsList.map((el, idx) =>
+            idx <= 9 ?
+              <div className={styles.actorSection}>
+                <img className={styles.actorImage__Wrapper} src='https://thumbs.dfs.ivi.ru/storage37/contents/4/b/57c06f0d0149b0a4965acf8f339437.jpg/88x88/?q=85' alt='actorImg'/>
+                <div className={styles.actor__info}>
+                  <span>Оливье</span>
+                  <span>Накаш</span>
+                  <span>Режиссёр</span>
+                </div>
+              </div> : ''
+          )}
+          <div onClick={() => setShowActorsWindow(true)} className={styles.showActorsBtn}>Ещё</div>
+        </div>
+      </div>
+      <Reviews items={feedback} titleBtn='Отзывы' btn='Оставить отзывы'
+               aboutTheFilm='О фильме...' />
+      <div className={styles.watchAllDevicesSection}>
+        <div className={styles.watchAllDevices__content}>
+          <span className={styles.filmPage__titleText}>Cмотреть «1+1» на всех устройствах</span>
+          <span className={`${styles.filmDescription__font} ${styles.mainContent}`}>Приложение доступно для скачивания на iOS, Android, SmartTV и приставках</span>
+          <Link href='https://www.ivi.ru/devices'><Button className={styles.watchAllDevicesSection__btn} color='darkRed'>Подключить устройства</Button></Link>
+        </div>
+        <div className={styles.watchAllDevicesImageWrapper}>
+          <img src='https://www.ivi.ru/images/_ds/watchAllDevices/tv-without-poster.png' height={272} width={536} className={styles.devicePic}/>
+          <img src='https://www.ivi.ru/images/_ds/watchAllDevices/ipad-without-poster.png' className={styles.ipadPic} />
+          <img src='https://thumbs.dfs.ivi.ru/storage8/contents/0/e/8091320a67fabb8119ac00fdc386c5.jpg/400x226/' className={styles.posterPic}/>
+          <img src='https://thumbs.dfs.ivi.ru/storage8/contents/0/e/8091320a67fabb8119ac00fdc386c5.jpg/400x226/' className={styles.posterMobilePic}/>
+        </div>
+      </div>
+      <div className={styles.breadCrumbs}>
+        <Link href='/'>
+          <span
+            className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Мой Иви</span>
+        </Link>
+        <span className={styles.dot}>.</span>
+        <Link href='/MoviesPage'>
+          <span
+            className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Фильмы</span>
+        </Link>
+        <span className={styles.dot}>.</span>
+        <span
+          className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{data.genres[0].genre}</span>
+        <span className={styles.dot}>.</span>
+        <span
+          className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{data.nameRu}</span>
+      </div>
     </div>
   )
 }
