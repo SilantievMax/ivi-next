@@ -7,6 +7,7 @@
   transition: transform .2s, -webkit-transform .2s, -o-transform .2s;
   display: flex;
   flex-direction: row;
+  
 }
 
 .standardCarouselItems {
@@ -84,6 +85,9 @@
   padding: 8px;
   display: flex;
   align-items: center;
+  img{
+    width: 100%;
+  }
 }
 
 .postersContainer {

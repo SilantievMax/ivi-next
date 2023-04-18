@@ -1,14 +1,17 @@
-import { Slider } from '@mui/material'
-import React, { useEffect, useRef, useState } from 'react'
-import { Simulate } from 'react-dom/test-utils'
-import { AiOutlineCheck } from 'react-icons/ai'
-import { FiX } from 'react-icons/fi'
+import { Slider } from '@mui/material';
+import React, { useEffect, useRef, useState } from 'react';
+import { Simulate } from 'react-dom/test-utils';
+import { AiOutlineCheck } from 'react-icons/ai';
+import { FiX } from 'react-icons/fi';
 
-import styles from './filter.module.scss'
-import FilterItem from './FilterItem'
-import FilterLi from './FilterLi'
-import { Button } from '@/src/components/Button/Button'
-import Carousel from '@/src/components/Carousel/Carousel'
+
+
+import FilterItem from './FilterItem';
+import FilterLi from './FilterLi';
+import styles from './filter.module.scss';
+import { Button } from '@/src/components/Button/Button';
+import Carousel from '@/src/components/Carousel/Carousel';
+
 
 import invalid = Simulate.invalid
 
@@ -110,7 +113,7 @@ const Filter = () => {
   const handleRateChange = (event: Event, newValue: number | number[]) => {
     setRateAmount(newValue as number)
   }
-
+  
   return (
     <div className={styles.filtersContainer}>
       <div className={styles.filtersContainer__item}>
