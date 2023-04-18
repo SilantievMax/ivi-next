@@ -97,6 +97,13 @@ const FilmPage = () => {
 
   return (
     <div className={styles.filmPageWrapper}>
+      {showActorsWindow ? <>
+        <span onClick={() => setShowActorsWindow(false)}>К фильму</span>
+        <div className={styles.popup__wrapper}>
+          
+        </div>
+        <div></div>
+      </> : ''}
       {/*<div className={style.gallery}>*/}
       {/*<Swiper navigation modules={[Navigation]} freeMode={true} spaceBetween={0} slidesPerView={7} >*/}
       {/*  {[1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3].map((el, idx) => (*/}
@@ -261,7 +268,7 @@ const FilmPage = () => {
               </div>
             </div> : ''
           )}
-          <div className={styles.showActorsBtn}>Ещё</div>
+          <div onClick={() => setShowActorsWindow(true)} className={styles.showActorsBtn}>Ещё</div>
         </div>
       </div>
       <Reviews items={feedback} titleBtn='Отзывы' btn='Оставить отзывы'
