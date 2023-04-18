@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
-import { Navigation } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-
+import React, { useState } from 'react'
+import { Navigation } from 'swiper'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 import styles from './movies.module.scss'
-import Film from '@/src/components//Film/Film';
-import { Button } from '@/src/components/Button/Button';
-import Carousel from '@/src/components/Carousel/Carousel';
-import Filter from '@/src/components/Filter/Filter';
-import Review from '@/src/components/Reviews/Rewiew/Review';
-import useWindowSize from '@/src/components/Reviews/widthWindow';
-import Sort from '@/src/components/Sort/Sort';
-import HomePage from '@/src/components/screens/HomePage/HomePage';
-
+import Film from '@/src/components//Film/Film'
+import { Button } from '@/src/components/Button/Button'
+import Carousel from '@/src/components/Carousel/Carousel'
+import Filter from '@/src/components/Filter/Filter'
+import Review from '@/src/components/Reviews/Rewiew/Review'
+import useWindowSize from '@/src/components/Reviews/widthWindow'
+import Sort from '@/src/components/Sort/Sort'
+import HomePage from '@/src/components/screens/HomePage/HomePage'
 
 const Movies = () => {
   const headersArray = [
@@ -142,21 +141,29 @@ const Movies = () => {
       <Sort />
       <Filter />
       <h2 className={styles.sectionHeader}>Фильмы-новинки</h2>
-      <Carousel
-        items={genreList.map((el, idx) => (
-          <div key={idx} title={el.name} className={styles.postersContainer}>
-            <a href={el.url} className={styles.carouselItem}>
-              <img className={styles.border} src={el.src} width={252} height={173} alt='poster' />
-            </a>
-            <span>{el.name}</span>
-          </div>
-        ))}
-        size='standard'
-        transition={500}
-        className={styles.standardCarouselItems}
-      />
-      <Carousel items={[<Film key={1} src='' />]} size='standard' transition={300} className={styles.moviesContainer} />
-
+      <div>
+        <Swiper navigation modules={[Navigation]} freeMode={true} spaceBetween={10} slidesPerView={useWindowSize('movie')}>
+          {genreList.map((el: any, idx: number) => (
+            <SwiperSlide key={idx}>
+              <div key={idx} title={el.name} className={styles.postersContainer}>
+                <a href={el.url} className={styles.carouselItem}>
+                  <img className={styles.border} src={el.src} width={252} height={173} alt='poster' />
+                </a>
+                <span>{el.name}</span>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+      <div>
+        <Swiper navigation modules={[Navigation]} freeMode={true} spaceBetween={10} slidesPerView={useWindowSize('movie')}>
+          {genreList.map((el: any, idx: number) => (
+            <SwiperSlide key={idx}>
+              <Film key={1} src='' />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
       <div></div>
     </div>
   )
