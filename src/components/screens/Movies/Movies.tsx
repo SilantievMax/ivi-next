@@ -13,6 +13,7 @@ import Review from '@/src/components/Reviews/Rewiew/Review'
 import useWindowSize from '@/src/components/Reviews/widthWindow'
 import Sort from '@/src/components/Sort/Sort'
 import HomePage from '@/src/components/screens/HomePage/HomePage'
+import Breadcrumbs from '../../BreadCrumbNavigation/BreadCrumbNavigation'
 
 const Movies = () => {
   const headersArray = [
@@ -91,10 +92,12 @@ const Movies = () => {
   return (
     <div className={styles.filmsSection}>
       <div className={styles.headingContainer}>
+        
+        <Breadcrumbs />
         {/*<span className='films-section__heading white-text heading-font'>Мой Иви</span>*/}
-        <span className={`${styles.filmsSection__heading} ${styles.headingFont}`}>Мой Иви</span>
+        {/* <span className={`${styles.filmsSection__heading} ${styles.headingFont}`}>Мой Иви</span>
         <span className={`${styles.greyText} ${styles.headingFont}`}>/</span>
-        <span className={`${styles.greyText} ${styles.headingFont}`}>Фильмы</span>
+        <span className={`${styles.greyText} ${styles.headingFont}`}>Фильмы</span> */}
       </div>
       <div className={styles.filmsSection__description}>
         <h1 className={styles.filmsSection__title}>Фильмы смотреть онлайн</h1>
