@@ -1,9 +1,15 @@
-import HomePage from '@/src/components/screens/HomePage/HomePage'
-import React, { FC } from 'react'
+import React, { FC } from 'react';
+
+
+
+import HomePage from '@/src/components/screens/HomePage/HomePage';
+
 
 const Home: FC = () => {
-  return( 
-  <HomePage/>
+  return (
+    <>
+      <HomePage />
+    </>
   )
 }
 
