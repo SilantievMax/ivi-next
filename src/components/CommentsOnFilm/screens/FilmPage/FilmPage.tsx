@@ -5,16 +5,11 @@ import { BiBookmark, BiFilm, BiVolumeLow } from 'react-icons/bi'
 import { BsPlay } from 'react-icons/bs'
 import { FiUpload } from 'react-icons/fi'
 import ReactPlayer from 'react-player'
-import Reviews from '@/components/Reviews/Reviews'
-import { feedback } from '@/components/Reviews/props/props'
-import { Navigation } from 'swiper'
-import useWindowSize from '@/components/Reviews/widthWindow'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import Review from '@/components/Reviews/Rewiew/Review'
-import Film from '@/components/Film/Film'
-import style from '@/components/Reviews/Reviews.module.scss'
-import Carousel from '@/components/Carousel/Carousel'
-import { Button } from '@/components/Button/Button'
+import Carousel from '@/src/components/Carousel/Carousel'
+import Film from '@/src/components/Film/Film'
+import { Button } from '@/src/components/Button/Button'
+import Reviews from '@/src/components/CommentsOnFilm/Reviews/Reviews'
+import { feedback } from '@/src/components/CommentsOnFilm/Reviews/props/props'
 
 const FilmPage = () => {
 
@@ -100,7 +95,7 @@ const FilmPage = () => {
       {showActorsWindow ? <>
         <span onClick={() => setShowActorsWindow(false)}>К фильму</span>
         <div className={styles.popup__wrapper}>
-          
+
         </div>
         <div></div>
       </> : ''}

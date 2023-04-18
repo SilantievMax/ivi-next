@@ -5,8 +5,8 @@ import { feedback, review } from '../../Reviews/props/props'
 import Movies from '../Movies/Movies'
 import PersonPage from '../PersonPage/PersonPage'
 
-import Reviews from '@/components/Reviews/Reviews'
 import { Button } from '@/src/components/Button/Button'
+import Reviews from '@/src/components/CommentsOnFilm/Reviews/Reviews'
 
 const HomePage: FC = () => {
   const { t, i18n } = useTranslation()

@@ -17,6 +17,15 @@
   transition: transform .4s
 }
 
+.swiper {
+  display: flex;
+  flex-direction: row;
+}
+
+.slide {
+  width: 300px;
+}
+
 .filmsSection {
   flex-direction: column;
   font-family: 'Finlandica-Regular', sans-serif;

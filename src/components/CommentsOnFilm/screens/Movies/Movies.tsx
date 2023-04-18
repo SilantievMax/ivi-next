@@ -3,14 +3,12 @@ import { Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import styles from './movies.module.scss'
-import Film from '@/components/Film/Film'
-import Filter from '@/components/Filter/Filter'
-import Review from '@/components/Reviews/Rewiew/Review'
-import useWindowSize from '@/components/Reviews/widthWindow'
+import Film from '../../../Film/Film'
+import Filter from '../../../Filter/Filter'
 import Sort from '@/src/components/Sort/Sort'
-import HomePage from '@/components/screens/HomePage/HomePage'
 import { Button } from '@/src/components/Button/Button'
 import Carousel from '@/src/components/Carousel/Carousel'
+import useWindowSize from '@/src/components/CommentsOnFilm/Reviews/widthWindow'
 
 const Movies = () => {
   const headersArray = [
@@ -126,6 +124,18 @@ const Movies = () => {
           {showDescription ? 'Свернуть' : 'Развернуть'}
         </span>
       </div>
+      {/*<Swiper style={{display: 'flex', flexDirection: 'row'}} navigation modules={[Navigation]} freeMode={true} spaceBetween={10} slidesPerView={useWindowSize('movie')}>*/}
+      {/*  {genreList.map((el: any, idx: number) => (*/}
+      {/*    <SwiperSlide style={{width: '270px', display: 'flex', flexDirection: 'row'}} className={styles.slide} key={idx}>*/}
+      {/*      <div key={idx} title={el.name} className={styles.postersContainer}>*/}
+      {/*        <a href={el.url} className={styles.carouselItem}>*/}
+      {/*          <img className={styles.border} src={el.src} width={252} height={173} alt='poster' />*/}
+      {/*        </a>*/}
+      {/*        <span>{el.name}</span>*/}
+      {/*      </div>*/}
+      {/*    </SwiperSlide>*/}
+      {/*  ))}*/}
+      {/*</Swiper>*/}
       <Carousel
         items={headersArray.map((el, idx) => (
           <Button color='lightGray' size='circle' key={idx} className={styles.filterBtn}>
