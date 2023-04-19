@@ -3,8 +3,8 @@
   width: 153px;
   transition-duration: .4s;
   border-radius: 8px;
-  background-size: contain;
-
+  background-size: cover;
+  background-position: center;
 
   &__text {
     font-size: 13px;
@@ -16,12 +16,13 @@
 
   &__inside {
     display: flex;
-    background-color: rgba(7,5,14,.8);
-    opacity: 50%;
     height: inherit;
     width: inherit;
     align-items: flex-end;
     border-radius: 5px;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
 
     &__content {
       row-gap: 3px;

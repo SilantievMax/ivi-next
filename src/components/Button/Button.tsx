@@ -17,6 +17,8 @@ export const Button = ({
     <button disabled={disable}
       className={`${cn(styles.button, className, {
         [styles.red]: color === 'red',
+        [styles.darkRed]: color === 'darkRed',
+        [styles.redOpacity]: color === 'redOpacity',
         [styles.gray]: color === 'gray',
         [styles.gradient]: color === 'gradient',
         [styles.lightGray]: color === 'lightGray',

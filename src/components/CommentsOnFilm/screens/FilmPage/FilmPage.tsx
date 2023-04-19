@@ -1,13 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import styles from './filmpage.module.scss'
 import Link from 'next/link'
-import { BiBookmark, BiFilm, BiVolumeLow, BsPlay, FiUpload } from 'react-icons/all'
+import { BiBookmark, BiFilm, BiVolumeLow } from 'react-icons/bi'
+import { BsPlay } from 'react-icons/bs'
+import { FiUpload } from 'react-icons/fi'
 import ReactPlayer from 'react-player'
-import Reviews from '@/components/Reviews/Reviews'
-import { feedback } from '@/components/Reviews/props/props'
+import Carousel from '@/src/components/Carousel/Carousel'
+import Film from '@/src/components/Film/Film'
+import { Button } from '@/src/components/Button/Button'
+import Reviews from '@/src/components/CommentsOnFilm/Reviews/Reviews'
+import { feedback } from '@/src/components/CommentsOnFilm/Reviews/props/props'
+import BreadCrumbNavigation from '@/src/components/BreadCrumbNavigation/BreadCrumbNavigation'
+import { IFilm } from '@/src/types/types'
+import { GetStaticPaths, GetStaticProps } from 'next'
+import { ParsedUrl } from 'next/dist/shared/lib/router/utils/parse-url'
+import { NextParsedUrlQuery } from 'next/dist/server/request-meta'
+import { selectPickedMovie, setPickedMovie } from '@/src/store/reducers/dataBaseReducer'
+import { useDispatch, useSelector } from 'react-redux'
+
 
 const FilmPage = () => {
+  const pickedFilm = useSelector(selectPickedMovie)
+  const actorsList: string[] = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+  const [showActorsWindow, setShowActorsWindow] = useState<boolean>(false)
   const [showFullDescription, setShowFullDescription] = useState<boolean>(false)
+  const dispatch = useDispatch()
   // useEffect(() => {
   //   fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films/23423/videos', {
   //     method: 'GET',
@@ -21,117 +38,94 @@ const FilmPage = () => {
   //     .catch(err => console.log(err))
   // }, [])
 
-  const data = {
-    'kinopoiskId': 301,
-    'imdbId': null,
-    'nameRu': 'Матрица',
-    'nameEn': null,
-    'nameOriginal': 'The Matrix',
-    'posterUrl': 'https://kinopoiskapiunofficial.tech/images/posters/kp/301.jpg',
-    'posterUrlPreview': 'https://kinopoiskapiunofficial.tech/images/posters/kp_small/301.jpg',
-    'coverUrl': 'https://avatars.mds.yandex.net/get-ott/2419418/2a0000017c27e0e090b55381c1b06e5c5b0b/orig',
-    'logoUrl': null,
-    'reviewsCount': 314,
-    'ratingGoodReview': null,
-    'ratingGoodReviewVoteCount': 0,
-    'ratingKinopoisk': 8.5,
-    'ratingKinopoiskVoteCount': 671197,
-    'ratingImdb': 8.7,
-    'ratingImdbVoteCount': 1933291,
-    'ratingFilmCritics': 7.8,
-    'ratingFilmCriticsVoteCount': 161,
-    'ratingAwait': null,
-    'ratingAwaitCount': 0,
-    'ratingRfCritics': 60,
-    'ratingRfCriticsVoteCount': 5,
-    'webUrl': 'https://www.kinopoisk.ru/film/301/',
-    'year': 1999,
-    'filmLength': 136,
-    'slogan': 'Добро пожаловать в реальный мир',
-    'description': 'Жизнь Томаса Андерсона разделена на две части: днём он — самый обычный офисный работник, получающий нагоняи от начальства, а ночью превращается в хакера по имени Нео, и нет места в сети, куда он бы не смог проникнуть. Но однажды всё меняется. Томас узнаёт ужасающую правду о реальности.',
-    'shortDescription': 'Хакер Нео узнает, что его мир — виртуальный. Выдающийся экшен, доказавший, что зрелищное кино может быть умным',
-    'editorAnnotation': null,
-    'isTicketsAvailable': false,
-    'productionStatus': null,
-    'type': 'FILM',
-    'ratingMpaa': 'r',
-    'ratingAgeLimits': 'age16',
-    'countries': [
-      {
-        'country': 'США'
+  useEffect(() => {
+    fetch(`http://localhost:3001/movies/${pickedFilm.id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
       },
-      {
-        'country': 'Австралия'
-      }
-    ],
-    'genres': [
-      {
-        'genre': 'фантастика'
-      },
-      {
-        'genre': 'боевик'
-      }
-    ],
-    'startYear': null,
-    'endYear': null,
-    'serial': false,
-    'shortFilm': false,
-    'completed': false,
-    'hasImax': false,
-    'has3D': false,
-    'lastSync': '2023-03-06T20:44:06.648197'
-  }
+    })
+      .then(res => res.json())
+      .then(json => dispatch(setPickedMovie(json)))
+      .catch(err => console.log(err))
+  }, [pickedFilm])
 
   return (
     <div className={styles.filmPageWrapper}>
-      <div className={styles.breadCrumbs}>
-        <Link as='/movies' href='/MoviesPage'>
-          <span
-            className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Фильмы</span>
-        </Link>
-        <span className={styles.dot}>.</span>
-        <span
-          className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Триллеры</span>
-      </div>
+      {showActorsWindow ? <div className={styles.fullscreen__popup}>
+        <span onClick={() => setShowActorsWindow(false)}>К фильму</span>
+        <div className={styles.popup__wrapper}>
+        </div>
+        <div className={styles.scroll__wrapper}></div>
+      </div> : ''}
+      {/*<div className={style.gallery}>*/}
+      {/*<Swiper navigation modules={[Navigation]} freeMode={true} spaceBetween={0} slidesPerView={7} >*/}
+      {/*  {[1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3].map((el, idx) => (*/}
+      {/*    <SwiperSlide className={styles.slide} key={idx}>*/}
+      {/*      <Film key={1} src=''/>*/}
+      {/*    </SwiperSlide>*/}
+      {/*  ))}*/}
+      {/*</Swiper></div>*/}
+      {/*<div className={styles.breadCrumbs}>*/}
+      {/*  <Link href='/Index'>*/}
+      {/*    <span*/}
+      {/*      className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Фильмы</span>*/}
+      {/*  </Link>*/}
+      {/*  <span className={styles.dot}>.</span>*/}
+      {/*  <span*/}
+      {/*    className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Триллеры</span>*/}
+      {/*</div>*/}
+      <BreadCrumbNavigation />
       <div className={styles.filmSectionContainer}>
-        <div className={styles.player}>
-          <ReactPlayer width='100%' className={styles.playerWrapper}
-                       url='https://www.youtube.com/watch?v=VjhT_TnD_f8' />
-          <div className={styles.playerOptions}>
-            <div className={styles.option}>
-              <BsPlay className={styles.playImg}/>
-              <span>Трейлер</span>
-            </div>
-            <div className={styles.option}>
-              <FiUpload/>
-            </div>
-            <div className={styles.option}>
-              <BiBookmark/>
+        <div className={styles.playerWindow}>
+          <div className={styles.player}>
+            {/*<ReactPlayer width='100%' className={styles.playerWrapper}*/}
+            {/*             url='https://www.youtube.com/watch?v=VjhT_TnD_f8' />*/}
+            <div className={styles.playerOptions}>
+              <div className={styles.option}>
+                <BsPlay className={styles.playImg} />
+                <span>Трейлер</span>
+              </div>
+              <div className={styles.option}>
+                <FiUpload />
+              </div>
+              <div className={styles.option}>
+                <BiBookmark />
+              </div>
             </div>
           </div>
+
         </div>
         <div className={styles.filmSection__content}>
           <div className={styles.filmTitle}>
-            <h1 className={styles.filmTitle__content}>{`${data.nameRu} (Фильм ${data.year})`}</h1>
+            <h1
+              className={styles.filmTitle__content}>{`${pickedFilm.nameRu} (Фильм ${pickedFilm.year})`}</h1>
           </div>
           <div className={styles.filmDescriptionWrapper}>
             <div className={styles.filmDescription}>
             <span
-              className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{data.year}</span>
-              <span className={styles.filmDescription__font}>2ч. 13мин. 18+</span>
+              className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{pickedFilm.year}</span>
+              <span
+                className={styles.filmDescription__font}>{`2ч. 13мин. ${pickedFilm.ratingAgeLimits}+`}</span>
             </div>
             <div className={styles.genreParams}>
-            <span
-              className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>США</span>
-              <span className={styles.dot}>.</span>
+              {/*{filme.countries.map(el => <span>{el.nameRu}</span>)}*/}
               <span
-                className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Триллеры</span>
-              <span className={styles.dot}>.</span>
-              <span
-                className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Драмы</span>
-              <span className={styles.dot}>.</span>
-              <span
-                className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Криминал</span>
+                className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{pickedFilm.countries[0].nameRu}</span>
+              {pickedFilm.genres.map((el, idx) => <div className={styles.genreParams} key={idx}>
+                <span key={idx} className={styles.dot}>.</span>
+                <span key={el.nameRu}
+                  className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{el.nameRu}</span>
+              </div>)}
+              {/*<span className={styles.dot}>.</span>*/}
+              {/*<span*/}
+              {/*  className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Триллеры</span>*/}
+              {/*<span className={styles.dot}>.</span>*/}
+              {/*<span*/}
+              {/*  className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Драмы</span>*/}
+              {/*<span className={styles.dot}>.</span>*/}
+              {/*<span*/}
+              {/*  className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Криминал</span>*/}
             </div>
             <div className={styles.genreLanguage}>
               <div className={`${styles.filmQuality} ${styles.filmQuality__text}`}>FullHD</div>
@@ -156,22 +150,22 @@ const FilmPage = () => {
             <div className={styles.filmActorCard__wrapper}>
               <div className={styles.filmActorCard}>
                 <div className={styles.ratePlate}></div>
-                <span className={styles.rate}>{data.ratingFilmCritics}</span>
+                <span className={styles.rate}>{pickedFilm.ratingKinopoisk}</span>
               </div>
               <span>Рейтинг Иви</span>
             </div>
             <div className={styles.filmActorCard__wrapper}>
               <div className={styles.filmActorCard}>
                 <div className={styles.actor}
-                     style={{ backgroundImage: `url(${data.posterUrl})` }}></div>
+                     style={{ backgroundImage: `url(${pickedFilm.posterUrl})` }}></div>
               </div>
               <span>Эдвард Нортон</span>
             </div>
           </div>
-          <div className={styles.filmDescription__font}>{data.shortDescription}</div>
+          <div className={styles.filmDescription__font}>{pickedFilm.shortDescription}</div>
           {showFullDescription
             ? <div className={styles.fullDescriptionWrapper}>
-              <span className={styles.filmDescription__font}>{data.description}</span>
+              <span className={styles.filmDescription__font}>{pickedFilm.description}</span>
               <div className={styles.fullDescriptionData}>
                 <div className={styles.fullDescription__content}>
                   <span className={styles.filmDescription__font}>Языки</span>
@@ -203,13 +197,13 @@ const FilmPage = () => {
           <div className={styles.summaryWrapper}>
             <div className={styles.summary}>
               <div className={styles.filmActorCard}>
-                <span className={styles.summaryRate}>{data.ratingFilmCritics}</span>
+                <span className={styles.summaryRate}>{pickedFilm.ratingKinopoisk}</span>
               </div>
               <div className={styles.summaryReviews__wrapper}>
                 <span>Рейтинг Иви</span>
                 <span className={styles.filmDescription__font}>Интересный сюжет</span>
                 <span
-                  className={styles.ratingFont}>{`${data.ratingKinopoiskVoteCount} оценок`}</span>
+                  className={styles.ratingFont}>{`${pickedFilm.ratingKinopoiskVoteCount} оценок`}</span>
               </div>
             </div>
 
@@ -217,9 +211,74 @@ const FilmPage = () => {
           </div>
         </div>
       </div>
-      <Reviews items={feedback} titleBtn='Отзывы' btn='Оставить отзывы' aboutTheFilm='О фильме...' />
+      <div className={styles.galleryWrapper}>
+        <span
+          className={styles.filmPage__titleText}>{`С фильмом «${pickedFilm.nameRu}» смотрят`}</span>
+        {/*<Carousel items={[<Film key={1} src='' />, <Film key={1} src='' />, <Film key={1} src='' />,*/}
+        {/*  <Film key={1} src='' />,  <Film key={1} src='' />,  <Film key={1} src='' />,  <Film key={1} src='' />,  <Film key={1} src='' />,  <Film key={1} src='' />,  <Film key={1} src='' />]} size={'standard'} transition={350}*/}
+        {/*          className={styles.moviesContainer} />*/}
+      </div>
+      <div className={styles.galleryWrapper}>
+        <span
+          className={`${styles.filmPage__titleText} ${styles.underline}`}>Актеры и создатели</span>
+        <div className={styles.actorSection__wrapper}>
+          {actorsList.map((el, idx) =>
+            idx <= 9 ?
+              <div key={idx} className={styles.actorSection}>
+                <img className={styles.actorImage__Wrapper}
+                     src='https://thumbs.dfs.ivi.ru/storage37/contents/4/b/57c06f0d0149b0a4965acf8f339437.jpg/88x88/?q=85'
+                     alt='actorImg' />
+                <div className={styles.actor__info}>
+                  <span>Оливье</span>
+                  <span>Накаш</span>
+                  <span>Режиссёр</span>
+                </div>
+              </div> : ''
+          )}
+          <div onClick={() => setShowActorsWindow(true)} className={styles.showActorsBtn}>Ещё</div>
+        </div>
+      </div>
+      <Reviews items={feedback} titleBtn='Отзывы' btn='Оставить отзывы'
+               aboutTheFilm='О фильме...' />
+      <div className={styles.watchAllDevicesSection}>
+        <div className={styles.watchAllDevices__content}>
+          <span
+            className={styles.filmPage__titleText}>{`Cмотреть «${pickedFilm.nameRu}» на всех устройствах`}</span>
+          <span className={`${styles.filmDescription__font} ${styles.mainContent}`}>Приложение доступно для скачивания на iOS, Android, SmartTV и приставках</span>
+          <Link href='https://www.ivi.ru/devices'><Button
+            className={styles.watchAllDevicesSection__btn} color='darkRed'>Подключить
+            устройства</Button></Link>
+        </div>
+        <div className={styles.watchAllDevicesImageWrapper}>
+          <img src='https://www.ivi.ru/images/_ds/watchAllDevices/tv-without-poster.png'
+               height={272} width={536} className={styles.devicePic} alt='devisePic' />
+          <img src='https://www.ivi.ru/images/_ds/watchAllDevices/ipad-without-poster.png'
+               className={styles.ipadPic} alt='devisePic' />
+          <img src={pickedFilm.posterUrl} className={styles.posterPic} alt='devisePic' />
+          <img src={pickedFilm.posterUrl} className={styles.posterMobilePic} alt='devisePic' />
+        </div>
+      </div>
+      <div className={styles.breadCrumbs}>
+        <Link href='/'>
+          <span
+            className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Мой Иви</span>
+        </Link>
+        <span className={styles.dot}>.</span>
+        <Link href='/movies'>
+          <span
+            className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Фильмы</span>
+        </Link>
+        <span className={styles.dot}>.</span>
+        <span
+          className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{pickedFilm.genres[0].nameRu}</span>
+        <span className={styles.dot}>.</span>
+        <span
+          className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{pickedFilm.nameRu}</span>
+      </div>
     </div>
   )
 }
 
 export default FilmPage
+
+

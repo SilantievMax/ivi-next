@@ -3,12 +3,12 @@ import { AppState } from '../store'
 import { HYDRATE } from 'next-redux-wrapper'
 
 
-export interface CartItem {
-  sort: string
+export interface sortItem {
+  sort: { type: string, query: string }
 }
 
-const initialState: CartItem = {
-  sort: 'По количеству оценок'
+const initialState: sortItem = {
+  sort: { type: 'По количеству оценок', query: 'ratingKinopoiskVoteCount-ASC' }
 }
 
 export const itemSlice = createSlice({

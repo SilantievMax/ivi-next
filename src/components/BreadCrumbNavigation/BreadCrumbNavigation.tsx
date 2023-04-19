@@ -20,6 +20,9 @@ const getPathFromUrl = (url: string): string => {
  * special chars to more readable chars
  *
  * @param title - The breadcrumb title
+ * @param toUpperCase
+ * @param replaceCharacterList
+ * @param transformLabel
  * @returns The transformed title or the result of the custom transformLabel function
  *
  */
@@ -30,7 +33,6 @@ const convertBreadcrumb = (
   transformLabel?: ((title: string) => React.ReactNode) | undefined
 ): React.ReactNode => {
   let transformedTitle = getPathFromUrl(title)
-  console.log(transformedTitle)
 
   if (transformLabel) {
     return transformLabel(transformedTitle)
@@ -98,7 +100,7 @@ export interface BreadcrumbsProps {
 
 const defaultProps: BreadcrumbsProps = {
   useDefaultStyle: false,
-  rootLabel: 'Home',
+  rootLabel: 'Мой иви',
   omitRootLabel: false,
   labelsToUppercase: false,
   replaceCharacterList: [{ from: '-', to: ' ' }],

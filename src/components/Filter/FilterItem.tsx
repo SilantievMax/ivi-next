@@ -24,17 +24,18 @@ const FilterItem = ({
   // const [visibility, setVisibility] = useState<boolean>(false)
 const { ref, isShow, setIsShow } = useOuside(false)
   return (
-    <div onClick={onClick}
+    <div ref={ref} onClick={onClick}
          className={styles.filtersWrapper}>
-      <div ref={ref} onClick={() => {
+      <div onClick={() => {
         setIsShow(!isShow)
-        // setActive(!active)
       }} className={styles.filtersContainer__filter}>
         <span>{title}</span>
         {isShow ? <AiOutlineUp /> :
           <AiOutlineDown />}
       </div>
-      {isShow ? content : ''}
+      <div ref={ref}>
+        {isShow ? content : ''}
+      </div>
     </div>
   )
 }
