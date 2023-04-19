@@ -4,11 +4,11 @@ import { HYDRATE } from 'next-redux-wrapper'
 
 
 export interface sortItem {
-  sort: string
+  sort: { type: string, query: string }
 }
 
 const initialState: sortItem = {
-  sort: 'По количеству оценок'
+  sort: { type: 'По количеству оценок', query: 'ratingKinopoiskVoteCount-ASC' }
 }
 
 export const itemSlice = createSlice({

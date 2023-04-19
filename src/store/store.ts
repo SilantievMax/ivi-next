@@ -3,12 +3,14 @@ import { createWrapper } from 'next-redux-wrapper'
 
 import { itemSlice } from '@/src/store/reducers/sortReducer'
 import { filterSlice } from '@/src/store/reducers/filterReducer'
+import { dataBaseSlice } from '@/src/store/reducers/dataBaseReducer'
 
 const makeStore = () =>
   configureStore({
     reducer: {
       [itemSlice.name]: itemSlice.reducer,
-      [filterSlice.name]: filterSlice.reducer
+      [filterSlice.name]: filterSlice.reducer,
+      [dataBaseSlice.name]: dataBaseSlice.reducer
     },
     devTools: true
   })

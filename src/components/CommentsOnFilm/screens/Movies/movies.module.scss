@@ -93,6 +93,14 @@
   align-items: center;
 }
 
+.filmCardsWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-top: 30px;
+}
+
 .postersContainer {
   display: flex;
   flex-direction: column;

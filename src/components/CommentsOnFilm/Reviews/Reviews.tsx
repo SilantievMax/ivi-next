@@ -33,7 +33,7 @@ const Reviews: FC<IReviews> = ({ titleBtn, items, btn, aboutTheFilm }) => {
         </Link>
       </header>
       <div className={styles.gallery}>
-        <Swiper navigation modules={[Navigation]} freeMode={true} spaceBetween={20} slidesPerView={useWindowSize()}>
+        <Swiper navigation modules={[Navigation]} freeMode={true} spaceBetween={20} slidesPerView={useWindowSize('reviews')}>
           {items ? (
             items.map((feedback: any, i: number) => (
               <SwiperSlide key={feedback.id}>
