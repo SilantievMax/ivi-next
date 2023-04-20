@@ -1,4 +1,4 @@
-// @import 'styles/vars';
+@import 'styles/vars';
 
 .container {
   height: 300px;
@@ -13,7 +13,7 @@
 
   p {
     font-size: 15px;
-    // font-family: $font500;
+    font-family: 'ivi Sans', sans-serif;
     color: #989595;
   }
 }

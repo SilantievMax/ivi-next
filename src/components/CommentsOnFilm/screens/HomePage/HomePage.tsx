@@ -1,11 +1,12 @@
 import React, { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import Movies from '../Movies/Movies'
+import { feedback, review } from '../../Reviews/props/props'
+import MoviesPage from '../Movies/MoviesPage'
 import PersonPage from '../PersonPage/PersonPage'
 
-import Reviews from '@/src/components/Reviews/Reviews'
-import { feedback, review } from '@/src/components/Reviews/props/props'
+import { Button } from '@/src/components/Button/Button'
+import Reviews from '@/src/components/CommentsOnFilm/Reviews/Reviews'
 
 const HomePage: FC = () => {
   const { t, i18n } = useTranslation()
@@ -19,7 +20,7 @@ const HomePage: FC = () => {
       {/* <button onClick={() => changeLanguage('en')}>EN</button>
       <button onClick={() => changeLanguage('ru')}>RU</button>
       <h1>{t('Welcome to React')}</h1> */}
-      {/* <Movies/> */}
+      {/* <Index/> */}
       <Reviews items={feedback} titleBtn='Отзывы' btn='Оставить отзывы' aboutTheFilm='О фильме...' />
       {/* <Reviews items={review} titleBtn='Рецензия' btn='Написать рецензию' /> */}
     </div>

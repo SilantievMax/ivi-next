@@ -1,11 +1,11 @@
-
+@import 'styles/vars';
 .item {
   display: flex;
   flex-direction: column;
 }
 
 .text {
-  font-weight: 700;
+  font-weight: 600;
   font-size: 15px;
 }
 

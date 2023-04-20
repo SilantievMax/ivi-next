@@ -73,6 +73,16 @@
   background-color: #0c0a11;
   border-color: #1f1b2e;
 }
+
+.darkRed {
+  background-color: #ea003d;
+  border-color: #ea003d;
+
+  &:hover {
+    background-color: #ff0f4d;
+    border-color: #ff0f4d;
+  }
+}
 .icon {
   padding: 0 10px;
   background-color: rgb(63, 62, 62);

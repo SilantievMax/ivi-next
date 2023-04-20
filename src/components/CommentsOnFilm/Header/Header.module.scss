@@ -1,3 +1,5 @@
+@import 'styles/vars';
+
 .header {
   display: flex;
   align-items: center;
@@ -15,7 +17,7 @@
 }
 
 .nav {
-  font-weight: 600;
+  font-family: 'ivi Sans', sans-serif;
   color: #9d9696;
   font-size: 17px;
   transition: color 0.3s;
@@ -29,7 +31,7 @@
 }
 
 .color {
-  font-weight: 600;
+  font-family: 'ivi Sans', sans-serif;
   color: #9d9696;
   margin-left: 4px;
 }

@@ -1,21 +1,18 @@
-import React, { useState } from 'react'
-import { Navigation } from 'swiper'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import { Swiper, SwiperSlide } from 'swiper/react'
-
+import React, { useEffect, useState } from 'react'
 import styles from './movies.module.scss'
-import Film from '@/src/components//Film/Film'
+import Film from '../../../Film/Film'
+import Filter from '../../../Filter/Filter'
+import Sort from '@/src/components/Sort/Sort'
 import { Button } from '@/src/components/Button/Button'
 import Carousel from '@/src/components/Carousel/Carousel'
-import Filter from '@/src/components/Filter/Filter'
-import Review from '@/src/components/Reviews/Rewiew/Review'
-import useWindowSize from '@/src/components/Reviews/widthWindow'
-import Sort from '@/src/components/Sort/Sort'
-import HomePage from '@/src/components/screens/HomePage/HomePage'
-import Breadcrumbs from '../../BreadCrumbNavigation/BreadCrumbNavigation'
+import BreadCrumbNavigation from '@/src/components/BreadCrumbNavigation/BreadCrumbNavigation'
+import { selectSort } from '@/src/store/reducers/sortReducer'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectMoviesList, setMoviesList } from '@/src/store/reducers/dataBaseReducer'
 
-const Movies = () => {
+
+const MoviesPage = () => {
+
   const headersArray = [
     '2022 год',
     '2021 год',
@@ -34,10 +31,9 @@ const Movies = () => {
     'Триллеры',
     'Драмы'
   ]
-  const [data, setData] = useState<any[]>([])
-  const [genres, setGenres] = useState<any[]>([])
+  const movies = useSelector(selectMoviesList)
+  const sort = useSelector(selectSort)
   const [showDescription, setShowDescription] = useState<boolean>(false)
-
   const genreList = [
     {
       name: 'Премьеры на Иви',
@@ -75,30 +71,43 @@ const Movies = () => {
       url: 'https://www.ivi.ru/collections/avod-movies'
     }
   ]
-
-  // useEffect(() => {
-  //   fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films/301', {
-  //     method: 'GET',
-  //     headers: {
-  //       'X-API-KEY': '9867f920-35d0-4b28-b36a-2f5e7d5100f1',
-  //       'Content-Type': 'application/json',
+  const dispatch = useDispatch()
+  // async function getStaticProps() {
+  //   // Call an external API endpoint to get posts.
+  //   // You can use any data fetching library
+  //   const res = await fetch('http://localhost:3001/movies/1')
+  //   const posts = await res.json()
+  //
+  //   // By returning { props: { posts } }, the Blog component
+  //   // will receive `posts` as a prop at build time
+  //   return {
+  //     props: {
+  //       posts,
   //     },
-  //   })
-  //     .then(res => res.json())
-  //     .then(json => console.log(json))
-  //     .catch(err => console.log(err))
-  // }, [])
+  //   }
+  // }
+
+  useEffect(() => {
+    fetch(`http://localhost:3003/info?order=${sort.query}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(res => res.json())
+      .then(json => dispatch(setMoviesList(json.rows)))
+      .catch(err => console.log(err))
+  }, [sort])
 
   return (
     <div className={styles.filmsSection}>
-      <div className={styles.headingContainer}>
-        
-        <Breadcrumbs />
-        {/*<span className='films-section__heading white-text heading-font'>Мой Иви</span>*/}
-        {/* <span className={`${styles.filmsSection__heading} ${styles.headingFont}`}>Мой Иви</span>
-        <span className={`${styles.greyText} ${styles.headingFont}`}>/</span>
-        <span className={`${styles.greyText} ${styles.headingFont}`}>Фильмы</span> */}
-      </div>
+      {/*<div className={styles.headingContainer}>*/}
+      {/*  /!*<span className='films-section__heading white-text heading-font'>Мой Иви</span>*!/*/}
+      {/*  <span className={`${styles.filmsSection__heading} ${styles.headingFont}`}>Мой Иви</span>*/}
+      {/*  <span className={`${styles.greyText} ${styles.headingFont}`}>/</span>*/}
+      {/*  <span className={`${styles.greyText} ${styles.headingFont}`}>Фильмы</span>*/}
+      {/*</div>*/}
+      <BreadCrumbNavigation useDefaultStyle={false}/>
       <div className={styles.filmsSection__description}>
         <h1 className={styles.filmsSection__title}>Фильмы смотреть онлайн</h1>
         <div className={styles.descriptionWrapper}>
@@ -131,6 +140,24 @@ const Movies = () => {
           {showDescription ? 'Свернуть' : 'Развернуть'}
         </span>
       </div>
+      {/*<Swiper style={{display: 'flex', flexDirection: 'row'}} navigation modules={[Navigation]} freeMode={true} spaceBetween={10} slidesPerView={useWindowSize('movie')}>*/}
+      {/*  {genreList.map((el: any, idx: number) => (*/}
+      {/*    <SwiperSlide style={{width: '270px', display: 'flex', flexDirection: 'row'}} className={styles.slide} key={idx}>*/}
+      {/*      <div key={idx} title={el.name} className={styles.postersContainer}>*/}
+      {/*        <a href={el.url} className={styles.carouselItem}>*/}
+      {/*          <img className={styles.border} src={el.src} width={252} height={173} alt='poster' />*/}
+      {/*        </a>*/}
+      {/*        <span>{el.name}</span>*/}
+      {/*      </div>*/}
+      {/*    </SwiperSlide>*/}
+      {/*  ))}*/}
+      {/*</Swiper>*/}
+      {/*<div className={styles.filmCardsWrapper}>*/}
+      {/*  {data.map((el, idx) =>*/}
+      {/*    <Film key={idx} src={el.posterUrl} rate={el.ratingKinopoisk}/>*/}
+      {/*  )}*/}
+      {/*</div>*/}
+
       <Carousel
         items={headersArray.map((el, idx) => (
           <Button color='lightGray' size='circle' key={idx} className={styles.filterBtn}>
@@ -143,33 +170,25 @@ const Movies = () => {
       />
       <Sort />
       <Filter />
+      <div className={styles.filmCardsWrapper}>
+        {movies.map((el, idx) => <Film key={idx} film={el}/>)}
+      </div>
       <h2 className={styles.sectionHeader}>Фильмы-новинки</h2>
-      <div>
-        <Swiper navigation modules={[Navigation]} freeMode={true} spaceBetween={10} slidesPerView={useWindowSize('movie')}>
-          {genreList.map((el: any, idx: number) => (
-            <SwiperSlide key={idx}>
-              <div key={idx} title={el.name} className={styles.postersContainer}>
-                <a href={el.url} className={styles.carouselItem}>
-                  <img className={styles.border} src={el.src} width={252} height={173} alt='poster' />
-                </a>
-                <span>{el.name}</span>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-      <div>
-        <Swiper navigation modules={[Navigation]} freeMode={true} spaceBetween={10} slidesPerView={useWindowSize('movie')}>
-          {genreList.map((el: any, idx: number) => (
-            <SwiperSlide key={idx}>
-              <Film key={1} src='' />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-      <div></div>
+      <Carousel
+        items={genreList.map((el, idx) => (
+          <div key={idx} title={el.name} className={styles.postersContainer}>
+            <a href={el.url} className={styles.carouselItem}>
+              <img className={styles.border} src={el.src} width={273} height={173} alt='poster' />
+            </a>
+            <span>{el.name}</span>
+          </div>
+        ))}
+        size='standard'
+        transition={314}
+        className={styles.standardCarouselItems}
+      />
     </div>
   )
 }
 
-export default Movies
+export default MoviesPage
