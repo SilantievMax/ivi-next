@@ -11,7 +11,9 @@ i18n.use(initReactI18next).init({
         'Full filmography': 'Full filmography',
         '8 movies': '8 movies',
         Rating: 'Rating:',
-        'More detailed': 'More detailed'
+        'More detailed': 'More detailed',
+        movies: 'Movies',
+        comedy: 'Comedy'
       }
     },
     ru: {
@@ -21,7 +23,9 @@ i18n.use(initReactI18next).init({
         'Full filmography': 'Полная фильмография',
         '8 movies': '8 фильмов',
         Rating: 'Рейтинг:',
-        'More detailed': 'Подробнее'
+        'More detailed': 'Подробнее',
+        movies: 'Фильмы',
+        comedy: 'Комедии'
       }
     }
   },
