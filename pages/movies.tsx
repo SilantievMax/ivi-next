@@ -1,5 +1,5 @@
 import React from 'react'
-import MoviesPage from '@/src/components/CommentsOnFilm/screens/Movies/MoviesPage'
+import MoviesPage from '@/src/components/screens/Movies/MoviesPage'
 
 const Index = () => {
   return (

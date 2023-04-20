@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+import Film from '../../Film/Film'
+import Filter from '../../Filter/Filter'
+
 import styles from './movies.module.scss'
-import Film from '../../../Film/Film'
-import Filter from '../../../Filter/Filter'
-import Sort from '@/src/components/Sort/Sort'
+import BreadCrumbNavigation from '@/src/components/BreadCrumbNavigation/MainBreadCrumb/MainBreadCrumbs'
 import { Button } from '@/src/components/Button/Button'
 import Carousel from '@/src/components/Carousel/Carousel'
-import BreadCrumbNavigation from '@/src/components/BreadCrumbNavigation/BreadCrumbNavigation'
-import { selectSort } from '@/src/store/reducers/sortReducer'
-import { useDispatch, useSelector } from 'react-redux'
+import Sort from '@/src/components/Sort/Sort'
 import { selectMoviesList, setMoviesList } from '@/src/store/reducers/dataBaseReducer'
-
+import { selectSort } from '@/src/store/reducers/sortReducer'
 
 const MoviesPage = () => {
-
   const headersArray = [
     '2022 год',
     '2021 год',
@@ -91,8 +91,8 @@ const MoviesPage = () => {
     fetch(`http://localhost:3003/info?order=${sort.query}`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json',
-      },
+        'Content-Type': 'application/json'
+      }
     })
       .then(res => res.json())
       .then(json => dispatch(setMoviesList(json.rows)))
@@ -107,7 +107,7 @@ const MoviesPage = () => {
       {/*  <span className={`${styles.greyText} ${styles.headingFont}`}>/</span>*/}
       {/*  <span className={`${styles.greyText} ${styles.headingFont}`}>Фильмы</span>*/}
       {/*</div>*/}
-      <BreadCrumbNavigation useDefaultStyle={false}/>
+      <BreadCrumbNavigation useDefaultStyle={false} />
       <div className={styles.filmsSection__description}>
         <h1 className={styles.filmsSection__title}>Фильмы смотреть онлайн</h1>
         <div className={styles.descriptionWrapper}>
@@ -171,7 +171,9 @@ const MoviesPage = () => {
       <Sort />
       <Filter />
       <div className={styles.filmCardsWrapper}>
-        {movies.map((el, idx) => <Film key={idx} film={el}/>)}
+        {movies.map((el, idx) => (
+          <Film key={idx} film={el} />
+        ))}
       </div>
       <h2 className={styles.sectionHeader}>Фильмы-новинки</h2>
       <Carousel
