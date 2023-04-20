@@ -72,21 +72,6 @@ const MoviesPage = () => {
     }
   ]
   const dispatch = useDispatch()
-  // async function getStaticProps() {
-  //   // Call an external API endpoint to get posts.
-  //   // You can use any data fetching library
-  //   const res = await fetch('http://localhost:3001/movies/1')
-  //   const posts = await res.json()
-  //
-  //   // By returning { props: { posts } }, the Blog component
-  //   // will receive `posts` as a prop at build time
-  //   return {
-  //     props: {
-  //       posts,
-  //     },
-  //   }
-  // }
-
   useEffect(() => {
     fetch(`http://localhost:3003/info?order=${sort.query}`, {
       method: 'GET',
@@ -99,14 +84,20 @@ const MoviesPage = () => {
       .catch(err => console.log(err))
   }, [sort])
 
+  useEffect(() => {
+    fetch(`http://localhost:3003/info?order=${sort.query}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(res => res.json())
+      .then(json => dispatch(setMoviesList(json.rows)))
+      .catch(err => console.log(err))
+  }, [])
+
   return (
     <div className={styles.filmsSection}>
-      {/*<div className={styles.headingContainer}>*/}
-      {/*  /!*<span className='films-section__heading white-text heading-font'>Мой Иви</span>*!/*/}
-      {/*  <span className={`${styles.filmsSection__heading} ${styles.headingFont}`}>Мой Иви</span>*/}
-      {/*  <span className={`${styles.greyText} ${styles.headingFont}`}>/</span>*/}
-      {/*  <span className={`${styles.greyText} ${styles.headingFont}`}>Фильмы</span>*/}
-      {/*</div>*/}
       <BreadCrumbNavigation useDefaultStyle={false}/>
       <div className={styles.filmsSection__description}>
         <h1 className={styles.filmsSection__title}>Фильмы смотреть онлайн</h1>

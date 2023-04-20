@@ -9,6 +9,13 @@ interface Genre {
   nameEn: string,
 }
 
+export interface ITrailer {
+  id: number,
+  name: string,
+  site: string,
+  url: string
+}
+
 export interface IFilm {
   id: number,
   nameRu: string,

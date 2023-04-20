@@ -8,8 +8,8 @@ const Film = (props: {film: IFilm}) => {
   const dispatch = useDispatch()
 
   return (
-    <Link onClick={() => dispatch(setPickedMovie(props.film))} href={`/movies/${props.film.id}`}>
-      <div className={styles.filmCard__container}>
+    <Link href={`/movies/${props.film.id}`}>
+      <div onClick={() => dispatch(setPickedMovie(props.film))} className={styles.filmCard__container}>
         <div style={{backgroundImage: `url('${props.film.posterUrl}')`}} className={styles.filmCard}>
           <div className={styles.filmCard__inside}>
             <div className={styles.filmCard__inside__content}>
