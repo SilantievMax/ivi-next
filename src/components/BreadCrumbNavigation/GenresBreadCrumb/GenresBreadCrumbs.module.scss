@@ -2,7 +2,7 @@
   list-style: none;
   overflow: hidden;
   float: left;
-  color: rgba(255, 255, 255, 0.56);
+  color: rgb(255, 255, 255);
   font-size: 15px;
   line-height: 20px;
   font-weight: 500;
@@ -87,6 +87,7 @@
   
   pointer-events: none;
   cursor: default;
+  color: #7e798f;
   // padding-right: 20px;
 }
 // .breadcrumb li:last-child a::before {

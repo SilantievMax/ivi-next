@@ -6,7 +6,7 @@ import MoviesPage from '../Movies/MoviesPage'
 import PersonPage from '../PersonPage/PersonPage'
 
 import { Button } from '@/src/components/Button/Button'
-import Reviews from '@/src/components/CommentsOnFilm/Reviews/Reviews'
+import Reviews from '@/src/components/Reviews/Reviews'
 
 const HomePage: FC = () => {
   const { t, i18n } = useTranslation()
