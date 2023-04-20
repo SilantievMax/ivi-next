@@ -1,16 +1,22 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
+
+
+import GenrsBreadCrumbs from '../../BreadCrumbNavigation/GenresBreadCrumb/GenrsBreadCrumbs';
 import Film from '../../Film/Film'
 import Filter from '../../Filter/Filter'
 
-import styles from './movies.module.scss'
-import BreadCrumbNavigation from '@/src/components/BreadCrumbNavigation/MainBreadCrumb/MainBreadCrumbs'
-import { Button } from '@/src/components/Button/Button'
-import Carousel from '@/src/components/Carousel/Carousel'
-import Sort from '@/src/components/Sort/Sort'
-import { selectMoviesList, setMoviesList } from '@/src/store/reducers/dataBaseReducer'
-import { selectSort } from '@/src/store/reducers/sortReducer'
+
+
+import styles from './movies.module.scss';
+import MainBreadCrumbs from '@/src/components/BreadCrumbNavigation/MainBreadCrumb/MainBreadCrumbs';
+import { Button } from '@/src/components/Button/Button';
+import Carousel from '@/src/components/Carousel/Carousel';
+import Sort from '@/src/components/Sort/Sort';
+import { selectMoviesList, setMoviesList } from '@/src/store/reducers/dataBaseReducer';
+import { selectSort } from '@/src/store/reducers/sortReducer';
+
 
 const MoviesPage = () => {
   const headersArray = [
@@ -107,7 +113,8 @@ const MoviesPage = () => {
       {/*  <span className={`${styles.greyText} ${styles.headingFont}`}>/</span>*/}
       {/*  <span className={`${styles.greyText} ${styles.headingFont}`}>Фильмы</span>*/}
       {/*</div>*/}
-      <BreadCrumbNavigation useDefaultStyle={false} />
+      <GenrsBreadCrumbs/>
+      <MainBreadCrumbs />
       <div className={styles.filmsSection__description}>
         <h1 className={styles.filmsSection__title}>Фильмы смотреть онлайн</h1>
         <div className={styles.descriptionWrapper}>

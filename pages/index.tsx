@@ -4,8 +4,10 @@ import { useDispatch } from 'react-redux'
 import { setMoviesList } from '@/src/store/reducers/dataBaseReducer'
 
 const Home: FC = () => {
-  return(
-  <HomePage/>
+  return (
+    <>
+      <HomePage />
+    </>
   )
 }
 

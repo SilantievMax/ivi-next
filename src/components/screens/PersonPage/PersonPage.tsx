@@ -1,22 +1,25 @@
 import { useRouter } from 'next/router';
 import React, { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+
+
+
 import style from './Person.module.scss';
 import { IFilms, IPerson } from './PersonInterfase';
 import PersonMovies from './PersonMovies';
+
 
 const PersonPage: FC = () => {
   const { t } = useTranslation()
   const router = useRouter()
   const [person, setPerson] = useState<IPerson>()
 
-  // console.log(person)
+  console.log(person)
 
   const fetchById = async () => {
-    fetch('https://kinopoiskapiunofficial.tech/api/v1/staff/66539', {
+    fetch('http://localhost:3003/info', {
       method: 'GET',
       headers: {
-        'X-API-KEY': '44bb910d-c711-4b9c-a9c5-3f5e02162110',
         'Content-Type': 'application/json'
       }
     })
