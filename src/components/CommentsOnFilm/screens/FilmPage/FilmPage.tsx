@@ -17,11 +17,10 @@ import {
 } from '@/src/store/reducers/dataBaseReducer'
 import { useDispatch, useSelector } from 'react-redux'
 import { Oval } from 'react-loader-spinner'
+import { calcTime } from '@/src/functions/functions'
 
 
 const FilmPage = () => {
-  //const isLoading = useSelector(selectIsLoading)
-
   const actorsList: string[] = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
   const [showActorsWindow, setShowActorsWindow] = useState<boolean>(false)
   const [showFullDescription, setShowFullDescription] = useState<boolean>(false)
@@ -43,7 +42,7 @@ const FilmPage = () => {
       .then(res => res.json())
       .then(json => setPickedTrailer(json))
       .catch(err => console.log(err))
-  }, [])
+  }, [pickedFilm])
 
 
 
@@ -57,7 +56,7 @@ const FilmPage = () => {
       .then(res => res.json())
       .then(json => setSimilars(json))
       .catch(err => console.log(err))
-  }, [])
+  }, [pickedFilm])
 
   useEffect(() => {
     fetch(`http://localhost:3001/movies/${pickedFilm.id}`, {
@@ -70,7 +69,7 @@ const FilmPage = () => {
       .then(json => setData(json))
       .catch(err => console.log(err))
       .finally(() => setIsLoading(false))
-  }, [])
+  }, [pickedFilm])
   // useEffect(() => {
   //   fetch(`http://localhost:3001/movies/${pickedFilm.id}`, {
   //     method: 'GET',
