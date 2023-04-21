@@ -17,7 +17,7 @@ const Film = (props: {film: IFilm}) => {
               <span className={`${styles.filmCard__text} ${styles.gray}`}>сюжет</span>
               <div className={styles.progress}></div>
               <span className={styles.filmCard__text}>{`${props.film.year}, ${props.film.countries[0].nameRu}, ${props.film.genres[0].nameRu}`}</span>
-              <span className={styles.filmCard__text}>{`${props.film.filmLength} минуты`}</span>
+              <span className={styles.filmCard__text}>{`${props.film.filmLength} мин.`}</span>
             </div>
           </div>
 

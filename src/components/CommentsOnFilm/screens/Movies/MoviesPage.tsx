@@ -9,10 +9,17 @@ import BreadCrumbNavigation from '@/src/components/BreadCrumbNavigation/BreadCru
 import { selectSort } from '@/src/store/reducers/sortReducer'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectMoviesList, setMoviesList } from '@/src/store/reducers/dataBaseReducer'
+import {
+  selectCountries,
+  selectGenres,
+  selectRate,
+  selectReviewAmount
+} from '@/src/store/reducers/filterReducer'
 
 
 const MoviesPage = () => {
-
+  const rate = useSelector(selectRate)
+  const reviewAmount = useSelector(selectReviewAmount)
   const headersArray = [
     '2022 год',
     '2021 год',
@@ -33,6 +40,8 @@ const MoviesPage = () => {
   ]
   const movies = useSelector(selectMoviesList)
   const sort = useSelector(selectSort)
+  const countries = useSelector(selectCountries)
+  const genres = useSelector(selectGenres)
   const [showDescription, setShowDescription] = useState<boolean>(false)
   const genreList = [
     {
@@ -73,7 +82,7 @@ const MoviesPage = () => {
   ]
   const dispatch = useDispatch()
   useEffect(() => {
-    fetch(`http://localhost:3003/info?order=${sort.query}`, {
+    fetch(`http://localhost:3003/info?order=${sort.query}&minRating=${rate}&numRatings=${reviewAmount}&genres=${genres.toString()}&countries=${countries.toString()}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -82,20 +91,7 @@ const MoviesPage = () => {
       .then(res => res.json())
       .then(json => dispatch(setMoviesList(json.rows)))
       .catch(err => console.log(err))
-  }, [sort])
-
-  useEffect(() => {
-    fetch(`http://localhost:3003/info?order=${sort.query}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(res => res.json())
-      .then(json => dispatch(setMoviesList(json.rows)))
-      .catch(err => console.log(err))
-  }, [])
-
+  }, [sort, rate, reviewAmount, genres, countries])
   return (
     <div className={styles.filmsSection}>
       <BreadCrumbNavigation useDefaultStyle={false}/>

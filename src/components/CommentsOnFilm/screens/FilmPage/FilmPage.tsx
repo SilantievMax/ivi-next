@@ -12,14 +12,8 @@ import Reviews from '@/src/components/CommentsOnFilm/Reviews/Reviews'
 import { feedback } from '@/src/components/CommentsOnFilm/Reviews/props/props'
 import BreadCrumbNavigation from '@/src/components/BreadCrumbNavigation/BreadCrumbNavigation'
 import { IFilm, ITrailer } from '@/src/types/types'
-import { GetStaticPaths, GetStaticProps } from 'next'
-import { ParsedUrl } from 'next/dist/shared/lib/router/utils/parse-url'
-import { NextParsedUrlQuery } from 'next/dist/server/request-meta'
 import {
-  selectIsLoading,
-  selectPickedMovie, selectPickedMovieSimilars,
-  selectPickedMovieTrailers, setIsLoading,
-  setPickedMovie, setPickedMovieTrailers
+  selectPickedMovie,
 } from '@/src/store/reducers/dataBaseReducer'
 import { useDispatch, useSelector } from 'react-redux'
 import { Oval } from 'react-loader-spinner'
@@ -50,6 +44,8 @@ const FilmPage = () => {
       .then(json => setPickedTrailer(json))
       .catch(err => console.log(err))
   }, [])
+
+
 
   useEffect(() => {
     fetch(`http://localhost:3001/movies/${pickedFilm.id}/similar`, {
@@ -87,7 +83,6 @@ const FilmPage = () => {
   //     .finally(() => setIsLoading(false))
   //     .catch(err => console.log(err))
   // }, [])
-  console.log(similars)
   if (!data.genres || !pickedTrailer.length) return <Oval wrapperClass={styles.loader} color='rgba(255, 255, 255, .72)' secondaryColor='red'/>
   return (
     <div className={styles.filmPageWrapper}>
@@ -147,7 +142,7 @@ const FilmPage = () => {
         <span
           className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{data.year}</span>
                 <span
-                  className={styles.filmDescription__font}>{`2ч. 13мин. ${data.ratingAgeLimits.slice(3)}+`}</span>
+                  className={styles.filmDescription__font}>{`${calcTime(data.filmLength)} ${data.ratingAgeLimits.slice(3)}+`}</span>
               </div>
               <div className={styles.genreParams}>
                 <span
@@ -247,8 +242,8 @@ const FilmPage = () => {
         <span
           className={styles.filmPage__titleText}>{`С фильмом «${data.nameRu}» смотрят`}</span>
 
-          {/*<Carousel items={similars.map(el => <Film film={el}/>)} size={'standard'} transition={350}*/}
-          {/*          className={styles.moviesContainer} />*/}
+          <Carousel items={similars.map(el => <Film film={el}/>)} size={'standard'} transition={350}
+                    className={styles.moviesContainer} />
         </div>
         <div className={styles.galleryWrapper}>
         <span
