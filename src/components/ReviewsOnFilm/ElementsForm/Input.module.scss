@@ -1,0 +1,111 @@
+.form {
+  &__input {
+    display: inline-block;
+    vertical-align: top;
+    // position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 40px;
+    position: relative;
+    // overflow: hidden;
+    border-radius: 8px;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+
+    input {
+      position: absolute;
+      padding: 18px 12px 2px 12px;
+      background-color: #d9d7e0;
+      color: #1f1b2e;
+      box-sizing: border-box;
+      display: block;
+      width: 100%;
+      border-width: 0;
+      cursor: pointer;
+      transition-property: background-color, color;
+      font-size: 15px;
+      line-height: 20px;
+      font-weight: 500;
+      font-style: normal;
+      outline: 0;
+    }
+    input:focus {
+      cursor: text;
+    }
+    &_lable {
+      color: #000;
+      font-size: 16px;
+      line-height: 16px;
+      padding: 5px 10px;
+      pointer-events: none;
+      position: absolute;
+      transition: all 200ms;
+      top: 12px;
+      left: 0px;
+    }
+  }
+
+  &__textarea {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 140px;
+    // overflow: hidden;
+    border-radius: 8px;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    textarea {
+      padding: 18px 12px 2px 12px;
+      background-color: #d9d7e0;
+      color: #1f1b2e;
+      box-sizing: border-box;
+      display: block;
+      width: 100%;
+      border-width: 0;
+      cursor: pointer;
+      transition-property: background-color, color;
+      font-size: 15px;
+      line-height: 20px;
+      font-weight: 500;
+      font-style: normal;
+      outline: 0;
+      height: 100%;
+      resize: none;
+    }
+  }
+}
+.form__input:focus + .form__input_lable,
+.form__input:not(:placeholder-shown) + lable {
+  top: -4px;
+  font-size: 12px;
+  cursor: text;
+}
+.form__textarea:focus + .form__input_lable,
+.form__textarea:not(:placeholder-shown) + lable {
+  top: -4px;
+  font-size: 12px;
+  cursor: text !important;
+}
+
+.errorAlert {
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 400;
+  font-style: normal;
+  top: 40px;
+  left: 10px;
+  position: absolute;
+  color: #ff542e;
+}
+.errorAlertText {
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 400;
+  font-style: normal;
+  top: 140px;
+  left: 10px;
+  position: absolute;
+  color: #ff542e;
+}
