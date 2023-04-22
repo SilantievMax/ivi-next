@@ -1,8 +1,8 @@
 import React from 'react'
-import FilmPage from '@/src/components/CommentsOnFilm/screens/FilmPage/FilmPage'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { NextParsedUrlQuery } from 'next/dist/server/request-meta'
 import { IFilm } from '@/src/types/types'
+import FilmPage from '@/src/components/screens/FilmPage/FilmPage'
 
 
 

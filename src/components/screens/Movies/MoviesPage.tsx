@@ -1,24 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
-
-
-import GenrsBreadCrumbs from '../../BreadCrumbNavigation/GenresBreadCrumb/GenrsBreadCrumbs';
-import Film from '../../Film/Film'
-import Filter from '../../Filter/Filter'
-
-
-
-import styles from './movies.module.scss';
-import MainBreadCrumbs from '@/src/components/BreadCrumbNavigation/MainBreadCrumb/MainBreadCrumbs';
-import { Button } from '@/src/components/Button/Button';
-import Carousel from '@/src/components/Carousel/Carousel';
-import Sort from '@/src/components/Sort/Sort';
-import { selectMoviesList, setMoviesList } from '@/src/store/reducers/dataBaseReducer';
-import { selectSort } from '@/src/store/reducers/sortReducer';
+import React, { useEffect, useState } from 'react'
+import styles from './movies.module.scss'
+import Sort from '@/src/components/Sort/Sort'
+import { Button } from '@/src/components/Button/Button'
+import Carousel from '@/src/components/Carousel/Carousel'
+import BreadCrumbNavigation from '@/src/components/BreadCrumbNavigation/MainBreadCrumb/MainBreadCrumbs'
+import { selectSort } from '@/src/store/reducers/sortReducer'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectMoviesList, setMoviesList } from '@/src/store/reducers/dataBaseReducer'
+import {
+  selectCountries,
+  selectGenres, selectPickedYear,
+  selectRate,
+  selectReviewAmount
+} from '@/src/store/reducers/filterReducer'
+import Film from '@/src/components/Film/Film'
+import Filter from '@/src/components/Filter/Filter'
 
 
 const MoviesPage = () => {
+  const rate = useSelector(selectRate)
+  const reviewAmount = useSelector(selectReviewAmount)
   const headersArray = [
     '2022 год',
     '2021 год',
@@ -39,6 +40,9 @@ const MoviesPage = () => {
   ]
   const movies = useSelector(selectMoviesList)
   const sort = useSelector(selectSort)
+  const countries = useSelector(selectCountries)
+  const genres = useSelector(selectGenres)
+  const year = useSelector(selectPickedYear)
   const [showDescription, setShowDescription] = useState<boolean>(false)
   const genreList = [
     {
@@ -78,43 +82,18 @@ const MoviesPage = () => {
     }
   ]
   const dispatch = useDispatch()
-  // async function getStaticProps() {
-  //   // Call an external API endpoint to get posts.
-  //   // You can use any data fetching library
-  //   const res = await fetch('http://localhost:3001/movies/1')
-  //   const posts = await res.json()
-  //
-  //   // By returning { props: { posts } }, the Blog component
-  //   // will receive `posts` as a prop at build time
-  //   return {
-  //     props: {
-  //       posts,
-  //     },
-  //   }
-  // }
-
   useEffect(() => {
-    fetch(`http://localhost:3003/info?order=${sort.query}`, {
+    fetch(`http://localhost:3003/info?order=${sort.query}&minRating=${rate}&numRatings=${reviewAmount}&genres=${genres.toString()}&countries=${countries.toString()}&years=${year}`, {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
     })
       .then(res => res.json())
       .then(json => dispatch(setMoviesList(json.rows)))
       .catch(err => console.log(err))
-  }, [sort])
-
+  }, [sort, rate, reviewAmount, genres, countries])
+  console.log(year)
   return (
     <div className={styles.filmsSection}>
-      {/*<div className={styles.headingContainer}>*/}
-      {/*  /!*<span className='films-section__heading white-text heading-font'>Мой Иви</span>*!/*/}
-      {/*  <span className={`${styles.filmsSection__heading} ${styles.headingFont}`}>Мой Иви</span>*/}
-      {/*  <span className={`${styles.greyText} ${styles.headingFont}`}>/</span>*/}
-      {/*  <span className={`${styles.greyText} ${styles.headingFont}`}>Фильмы</span>*/}
-      {/*</div>*/}
-      <GenrsBreadCrumbs/>
-      <MainBreadCrumbs />
+      <BreadCrumbNavigation useDefaultStyle={false}/>
       <div className={styles.filmsSection__description}>
         <h1 className={styles.filmsSection__title}>Фильмы смотреть онлайн</h1>
         <div className={styles.descriptionWrapper}>
@@ -178,9 +157,7 @@ const MoviesPage = () => {
       <Sort />
       <Filter />
       <div className={styles.filmCardsWrapper}>
-        {movies.map((el, idx) => (
-          <Film key={idx} film={el} />
-        ))}
+        {movies.map((el, idx) => <Film key={idx} film={el}/>)}
       </div>
       <h2 className={styles.sectionHeader}>Фильмы-новинки</h2>
       <Carousel

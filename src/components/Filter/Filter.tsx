@@ -1,17 +1,29 @@
 import { Slider } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FiX } from 'react-icons/fi'
 import styles from './filter.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectReviewAmount, setReviewAmount } from '../../store/reducers/filterReducer'
+import {
+  selectCountries,
+  selectGenres,
+  selectReviewAmount, setCountries,
+  setGenres, setPickedYear,
+  setReviewAmount
+} from '../../store/reducers/filterReducer'
 import { selectRate, setRate } from '../../store/reducers/filterReducer'
 import FilterItem from './FilterItem'
 import FilterLi from './FilterLi'
 import { Button } from '@/src/components/Button/Button'
 import { useOuside } from '@/src/hooks/useOutside'
+import { setMoviesList } from '@/src/store/reducers/dataBaseReducer'
+import { IGenre } from '@/src/types/types'
+import { capitalize } from '@mui/material'
 
 
 const Filter = () => {
+  const dispatch = useDispatch()
+  const genres = useSelector(selectGenres)
+  const countries = useSelector(selectCountries)
   const [pickedReviewAmount, setSickedReviewAmount] = useState<number>(0)
   const [rateAmount, setRateAmount] = useState<number>(7.3)
   const yearArray = [
@@ -32,76 +44,10 @@ const Filter = () => {
     '2010-2015',
     '2000-2010',
     '1990-2000',
-    '1980-1990',
-    'до 1980'
+    '1980-1990'
   ]
-  const countryArray = [
-    'Австралия',
-    'Аргентина',
-    'Армения',
-    'Беларусь',
-    'Бельгия',
-    'Бразилия',
-    'Великобритания',
-    'Венгрия',
-    'Германия',
-    'Гонконг',
-    'Дания',
-    'Индия',
-    'Ирландия',
-    'Испания',
-    'Италия',
-    'Казахстан',
-    'Канада',
-    'Китай',
-    'Колумбия',
-    'Мексика',
-    'Нидерланды',
-    'Новая Зеландия',
-    'Норвегия',
-    'Польша',
-    'Россия',
-    'СССР',
-    'США',
-    'Таиланд',
-    'Турция',
-    'Финляндия',
-    'Франция',
-    'Швейцария',
-    'Швеция',
-    'ЮАР',
-    'Южная Корея',
-    'Япония'
-  ]
-  const genreArray = [
-    'Артхаус',
-    'Биография',
-    'Боевики',
-    'Вестерн',
-    'Военные',
-    'Детективы',
-    'Для детей',
-    'Документальные',
-    'Драмы',
-    'Зарубежные',
-    'Исторические',
-    'Катастрофы',
-    'Комедии',
-    'Криминал',
-    'Мелодрамы',
-    'Мистические',
-    'Музыкальные',
-    'По комиксам',
-    'Приключения',
-    'Русские',
-    'Семейные',
-    'Советские',
-    'Спорт',
-    'Триллеры',
-    'Ужасы',
-    'Фантастика',
-    'Фэнтези'
-  ]
+  const [genresArray, setGenresArray] = useState<IGenre[]>([])
+  const [countryArray, setCountryArray] = useState<IGenre[]>([])
   const handleReviewChange = (event: Event, newValue: number | number[]) => {
     setSickedReviewAmount(newValue as number)
   }
@@ -110,9 +56,46 @@ const Filter = () => {
     setRateAmount(newValue as number)
   }
 
-  const dispatch = useDispatch()
-  const reduxRate = useSelector(selectRate)
-  const reduxAmount = useSelector(selectReviewAmount)
+  useEffect(() => {
+    fetch('http://localhost:3001/movies/filters/genres', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(res => res.json())
+      .then(json => setGenresArray(json))
+      .catch(err => console.log(err))
+    fetch('http://localhost:3001/movies/filters/countries', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(res => res.json())
+      .then(json => setCountryArray(json))
+      .catch(err => console.log(err))
+  }, [])
+
+  const addGenre = (id: number) => {
+    if (genres.indexOf(id) === -1) {
+      dispatch(setGenres([...genres, id]))
+    } else {
+      let arr = [...genres]
+      arr.splice(arr.indexOf(id), 1)
+      dispatch(setGenres(arr))
+    }
+  }
+
+  const addCountry = (id: number) => {
+    if (countries.indexOf(id) === -1) {
+      dispatch(setCountries([...countries, id]))
+    } else {
+      let arr = [...countries]
+      arr.splice(arr.indexOf(id), 1)
+      dispatch(setCountries(arr))
+    }
+  }
   return (
     <div className={styles.filtersContainer}>
       <div className={styles.filtersContainer__item}>
@@ -121,20 +104,23 @@ const Filter = () => {
           content={
             <div className={styles.filterDropdown__content}>
               <ul className={styles.filterDropdown__list}>
-                {genreArray.map((el, idx) => (
-                  <FilterLi key={idx} content={el} className={styles.filterDropdown__item} />
+                {genresArray.map((el, idx) => (
+                  <div key={idx} onClick={() => addGenre(el.id)}>
+                    <FilterLi  content={capitalize(el.nameRu)} className={styles.filterDropdown__item} />
+                  </div>
                 ))}
               </ul>
             </div>
           }
         />
         <FilterItem
-
           content={
             <div className={styles.filterDropdown__content}>
               <ul className={styles.filterDropdown__list}>
                 {countryArray.map((el, idx) => (
-                  <FilterLi key={idx} content={el} className={styles.filterDropdown__item} />
+                  <div key={idx} onClick={() => addCountry(el.id)}>
+                    <FilterLi content={capitalize(el.nameRu)} className={styles.filterDropdown__item} />
+                  </div>
                 ))}
               </ul>
             </div>
@@ -143,8 +129,10 @@ const Filter = () => {
           <div className={styles.filterDropdown__content}>
             <ul className={styles.filterDropdown__column}>
               {yearArray.map((el, idx) =>
-                <FilterLi key={idx} content={el}
-                          className={styles.filterDropdown__item} />
+                <div onClick={() => dispatch(setPickedYear(el.split(' ')[0]))} key={idx}>
+                  <FilterLi content={el}
+                            className={styles.filterDropdown__item} />
+                </div>
               )}
             </ul>
           </div>
@@ -164,7 +152,13 @@ const Filter = () => {
           </div>
         } title='Рейтинг(от)' />
       </div>
-      <div  className={styles.removeFilterBox}>
+      <div onClick={() => {
+        dispatch(setReviewAmount(0))
+        dispatch(setRate(7.3))
+        dispatch(setCountries([]))
+        dispatch(setGenres([]))
+      }
+      } className={styles.removeFilterBox}>
         <FiX className={styles.removeFilterBox__btn} />
         Сбросить фильтры
       </div>
