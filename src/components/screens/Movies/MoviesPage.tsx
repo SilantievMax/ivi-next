@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import styles from './movies.module.scss'
-import Film from '../../../Film/Film'
-import Filter from '../../../Filter/Filter'
 import Sort from '@/src/components/Sort/Sort'
 import { Button } from '@/src/components/Button/Button'
 import Carousel from '@/src/components/Carousel/Carousel'
-import BreadCrumbNavigation from '@/src/components/BreadCrumbNavigation/BreadCrumbNavigation'
+import BreadCrumbNavigation from '@/src/components/BreadCrumbNavigation/MainBreadCrumb/MainBreadCrumbs'
 import { selectSort } from '@/src/store/reducers/sortReducer'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectMoviesList, setMoviesList } from '@/src/store/reducers/dataBaseReducer'
@@ -15,6 +13,8 @@ import {
   selectRate,
   selectReviewAmount
 } from '@/src/store/reducers/filterReducer'
+import Film from '@/src/components/Film/Film'
+import Filter from '@/src/components/Filter/Filter'
 
 
 const MoviesPage = () => {

@@ -8,9 +8,7 @@ import ReactPlayer from 'react-player'
 import Carousel from '@/src/components/Carousel/Carousel'
 import Film from '@/src/components/Film/Film'
 import { Button } from '@/src/components/Button/Button'
-import Reviews from '@/src/components/CommentsOnFilm/Reviews/Reviews'
-import { feedback } from '@/src/components/CommentsOnFilm/Reviews/props/props'
-import BreadCrumbNavigation from '@/src/components/BreadCrumbNavigation/BreadCrumbNavigation'
+import BreadCrumbNavigation from '@/src/components/BreadCrumbNavigation/MainBreadCrumb/MainBreadCrumbs'
 import { IFilm, ITrailer } from '@/src/types/types'
 import {
   selectPickedMovie,
@@ -18,6 +16,8 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { Oval } from 'react-loader-spinner'
 import { calcTime } from '@/src/functions/functions'
+import Reviews from '@/src/components/Reviews/Reviews'
+import { feedback } from '@/src/components/Reviews/props/props'
 
 
 const FilmPage = () => {
