@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectMoviesList, setMoviesList } from '@/src/store/reducers/dataBaseReducer'
 import {
   selectCountries,
-  selectGenres,
+  selectGenres, selectPickedYear,
   selectRate,
   selectReviewAmount
 } from '@/src/store/reducers/filterReducer'
@@ -42,6 +42,7 @@ const MoviesPage = () => {
   const sort = useSelector(selectSort)
   const countries = useSelector(selectCountries)
   const genres = useSelector(selectGenres)
+  const year = useSelector(selectPickedYear)
   const [showDescription, setShowDescription] = useState<boolean>(false)
   const genreList = [
     {
@@ -82,16 +83,14 @@ const MoviesPage = () => {
   ]
   const dispatch = useDispatch()
   useEffect(() => {
-    fetch(`http://localhost:3003/info?order=${sort.query}&minRating=${rate}&numRatings=${reviewAmount}&genres=${genres.toString()}&countries=${countries.toString()}`, {
+    fetch(`http://localhost:3003/info?order=${sort.query}&minRating=${rate}&numRatings=${reviewAmount}&genres=${genres.toString()}&countries=${countries.toString()}&years=${year}`, {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
     })
       .then(res => res.json())
       .then(json => dispatch(setMoviesList(json.rows)))
       .catch(err => console.log(err))
   }, [sort, rate, reviewAmount, genres, countries])
+  console.log(year)
   return (
     <div className={styles.filmsSection}>
       <BreadCrumbNavigation useDefaultStyle={false}/>

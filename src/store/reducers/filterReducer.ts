@@ -9,13 +9,15 @@ export interface filterItem {
   rate: number
   genres: number[]
   countries: number[]
+  pickedYear: string
 }
 
 const initialState: filterItem = {
   reviews: 0,
   rate: 0,
   countries: [],
-  genres: []
+  genres: [],
+  pickedYear: ''
 }
 
 export const filterSlice = createSlice({
@@ -33,6 +35,9 @@ export const filterSlice = createSlice({
     },
     setGenres(state, action) {
       state.genres = action.payload
+    },
+    setPickedYear(state, action) {
+      state.pickedYear = action.payload
     }
   },
 
@@ -48,8 +53,9 @@ export const filterSlice = createSlice({
 })
 
 
-export const { setReviewAmount, setRate, setGenres, setCountries } = filterSlice.actions
+export const { setReviewAmount, setRate, setGenres, setCountries, setPickedYear } = filterSlice.actions
 export const selectReviewAmount = (state: AppState) => state.filter.reviews
 export const selectRate = (state: AppState) => state.filter.rate
 export const selectGenres = (state: AppState) => state.filter.genres
 export const selectCountries = (state: AppState) => state.filter.countries
+export const selectPickedYear = (state: AppState) => state.filter.pickedYear

@@ -7,7 +7,7 @@ import {
   selectCountries,
   selectGenres,
   selectReviewAmount, setCountries,
-  setGenres,
+  setGenres, setPickedYear,
   setReviewAmount
 } from '../../store/reducers/filterReducer'
 import { selectRate, setRate } from '../../store/reducers/filterReducer'
@@ -44,8 +44,7 @@ const Filter = () => {
     '2010-2015',
     '2000-2010',
     '1990-2000',
-    '1980-1990',
-    'до 1980'
+    '1980-1990'
   ]
   const [genresArray, setGenresArray] = useState<IGenre[]>([])
   const [countryArray, setCountryArray] = useState<IGenre[]>([])
@@ -106,8 +105,8 @@ const Filter = () => {
             <div className={styles.filterDropdown__content}>
               <ul className={styles.filterDropdown__list}>
                 {genresArray.map((el, idx) => (
-                  <div onClick={() => addGenre(el.id)}>
-                    <FilterLi key={idx} content={capitalize(el.nameRu)} className={styles.filterDropdown__item} />
+                  <div key={idx} onClick={() => addGenre(el.id)}>
+                    <FilterLi  content={capitalize(el.nameRu)} className={styles.filterDropdown__item} />
                   </div>
                 ))}
               </ul>
@@ -119,8 +118,8 @@ const Filter = () => {
             <div className={styles.filterDropdown__content}>
               <ul className={styles.filterDropdown__list}>
                 {countryArray.map((el, idx) => (
-                  <div onClick={() => addCountry(el.id)}>
-                    <FilterLi key={idx} content={capitalize(el.nameRu)} className={styles.filterDropdown__item} />
+                  <div key={idx} onClick={() => addCountry(el.id)}>
+                    <FilterLi content={capitalize(el.nameRu)} className={styles.filterDropdown__item} />
                   </div>
                 ))}
               </ul>
@@ -130,8 +129,10 @@ const Filter = () => {
           <div className={styles.filterDropdown__content}>
             <ul className={styles.filterDropdown__column}>
               {yearArray.map((el, idx) =>
-                <FilterLi key={idx} content={el}
-                          className={styles.filterDropdown__item} />
+                <div onClick={() => dispatch(setPickedYear(el.split(' ')[0]))} key={idx}>
+                  <FilterLi content={el}
+                            className={styles.filterDropdown__item} />
+                </div>
               )}
             </ul>
           </div>
