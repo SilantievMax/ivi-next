@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 
-import styles from './BreadCrumbNavigation.module.scss'
+import styles from './GenresBreadCrumbs.module.scss'
 
 /**
  * Takes an URL String and removes query params and hash params

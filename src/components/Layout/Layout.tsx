@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from 'react'
-import Header from '@/src/components/CommentsOnFilm/Header/Header'
+import Header from '@/src/components/Header/Header'
 import Wrapper from '../Wrapper/Wrapper'
-import Footer from '@/src/components/CommentsOnFilm/Footer/Footer'
+import Footer from '@/src/components/Footer/Footer'
 
 interface LayoutProps {
   children: ReactNode
