@@ -3,10 +3,17 @@ export interface ILinks {
   link: string
 }
 
-interface Genre {
+export interface IGenre {
   id: number,
   nameRu: string,
   nameEn: string,
+}
+
+export interface ITrailer {
+  id: number,
+  name: string,
+  site: string,
+  url: string
 }
 
 export interface IFilm {
@@ -31,6 +38,6 @@ export interface IFilm {
   serial: boolean,
   shortFilm: boolean,
   completed: boolean,
-  genres: Genre[]
-  countries: Genre[]
+  genres: IGenre[]
+  countries: IGenre[]
 }
