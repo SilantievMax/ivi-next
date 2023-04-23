@@ -8,7 +8,7 @@
   overflow-y: auto;
   top: 0;
   left: 0;
-  background-color:rgba(0, 0, 0, 0.91);
+  background-color:rgba(1, 0, 12, 0.91);
   padding: 0 20px;
   @media (max-width: 1160px) {
     margin-left: 0;
@@ -30,6 +30,10 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
+  &_btn{
+    display: flex;
+    flex-direction: column;
+  }
 }
 .comentBtn {
   align-self: flex-start;
