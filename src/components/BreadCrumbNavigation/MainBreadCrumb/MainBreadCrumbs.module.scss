@@ -17,39 +17,7 @@
   position: relative;
   display: block;
   float: left;
-  
 }
-
-// .breadcrumb li a::after {
-//   content: ' ';
-//   display: block;
-//   width: 0;
-//   height: 0;
-//   border-top: 50px solid transparent; /* Go big on the size, and let overflow hide */
-//   border-bottom: 50px solid transparent;
-//   // border-left: 30px solid rgb(230, 224, 224);
-//   position: absolute;
-//   top: 50%;
-//   margin-top: -50px;
-//   left: 100%;
-//   z-index: 2;
-// }
-
-// .breadcrumb li a::before {
-//   content: ' ';
-//   display: block;
-//   width: 0;
-//   height: 0;
-//   border-top: 50px solid transparent;
-//   border-bottom: 50px solid transparent;
-//   border-left: 30px solid white;
-//   position: absolute;
-//   top: 50%;
-//   margin-top: -50px;
-//   margin-left: 1px;
-//   left: 100%;
-//   z-index: 1;
-// }
 
 .breadcrumb li:first-child {
   // pointer-events: visible !important;
@@ -82,32 +50,20 @@
   // border-left-color: rgb(224, 233, 233);
 }
 .breadcrumb li:last-child a {
-  // background: rgb(238, 235, 232) !important;
-  // color: rgb(179, 176, 176);
-  
   pointer-events: none;
   cursor: default;
   color: #7e798f;
-  // padding-right: 20px;
+  
 }
-// .breadcrumb li:last-child a::before {
-//   content: '/';
-//   margin: 0 7px;
-// }
-
 .slash::before{
    content: '/';
   margin: 0 7px;
+  float: left; 
 }
 
-.breadcrumb li a {
- 
-}
 
 .breadcrumb li a:hover {
   box-shadow: 0 0 0 #7e798f, inset 0 -1.5em 0 #7e798f;
   transition-duration: 80ms;
 }
-.breadcrumb li a:hover:after {
-  // border-left-color: rgb(194, 226, 221) !important;
-}
+

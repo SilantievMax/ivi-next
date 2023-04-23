@@ -1,13 +1,12 @@
-import { useRouter } from 'next/router';
-import React, { FC, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useRouter } from 'next/router'
+import React, { FC, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
-
-
-import style from './Person.module.scss';
-import { IFilms, IPerson } from './PersonInterfase';
-import PersonMovies from './PersonMovies';
-
+import { Button } from '../../Button/Button'
+import {MdArrowBackIosNew} from 'react-icons/md'
+import style from './Person.module.scss'
+import { IFilms, IPerson } from './PersonInterfase'
+import PersonMovies from './PersonMovies'
 
 const PersonPage: FC = () => {
   const { t } = useTranslation()
@@ -35,10 +34,9 @@ const PersonPage: FC = () => {
   return (
     <div className={style.personPage}>
       <div className={style.personPage__btn}>
-        
-        <div className={style.personPage__btnIcon}> </div>
-        <div onClick={() => router.back()}>{t('Back')}</div>
-     
+      <Button onClick={() => router.back()} size='iconGoBack' children='Назад' icon={<MdArrowBackIosNew size={25}/>}/>
+        {/* <div className={style.personPage__btnIcon}> </div>
+        <div onClick={() => router.back()}>{t('Back')}</div> */}
       </div>
       <section className={style.person}>
         <div className={style.person__header}>
@@ -55,9 +53,11 @@ const PersonPage: FC = () => {
           <p>{t('8 movies')}</p>
         </div>
         <span className={style.border}></span>
-        {person?.films.filter((j,i)=>i<8).map((movie: IFilms, i) => (
-          <PersonMovies key={i} movie={movie} />
-        ))}
+        {person?.films
+          .filter((j, i) => i < 8)
+          .map((movie: IFilms, i) => (
+            <PersonMovies key={i} movie={movie} />
+          ))}
       </section>
     </div>
   )

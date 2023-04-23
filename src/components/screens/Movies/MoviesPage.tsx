@@ -16,7 +16,6 @@ import {
 import Film from '@/src/components/Film/Film'
 import Filter from '@/src/components/Filter/Filter'
 
-
 const MoviesPage = () => {
   const rate = useSelector(selectRate)
   const reviewAmount = useSelector(selectReviewAmount)
@@ -93,7 +92,9 @@ const MoviesPage = () => {
   console.log(year)
   return (
     <div className={styles.filmsSection}>
+
       <BreadCrumbNavigation useDefaultStyle={false}/>
+
       <div className={styles.filmsSection__description}>
         <h1 className={styles.filmsSection__title}>Фильмы смотреть онлайн</h1>
         <div className={styles.descriptionWrapper}>

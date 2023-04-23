@@ -7,6 +7,7 @@ import PersonPage from '../PersonPage/PersonPage'
 
 import { Button } from '@/src/components/Button/Button'
 import Reviews from '@/src/components/Reviews/Reviews'
+import AdminPage from '../AdminPage/AdminPage'
 
 const HomePage: FC = () => {
   const { t, i18n } = useTranslation()
@@ -17,14 +18,16 @@ const HomePage: FC = () => {
 
   return (
     <div>
+      {/* <AdminPage/> */}
+      {/* <PersonPage/> */}
       {/* <button onClick={() => changeLanguage('en')}>EN</button>
       <button onClick={() => changeLanguage('ru')}>RU</button>
       <h1>{t('Welcome to React')}</h1> */}
       {/* <Index/> */}
-      <Reviews items={feedback} titleBtn='Отзывы' btn='Оставить отзывы' aboutTheFilm='О фильме...' />
-      {/* <Reviews items={review} titleBtn='Рецензия' btn='Написать рецензию' /> */}
+      {/* <Reviews  titleBtn='Отзывы' btn='Оставить отзывы' aboutTheFilm='О фильме...' /> */}
+      {/* <Reviews  movieId={1}  titleBtn='Рецензии' btn='Написать рецензию' /> */}
     </div>
-  )
+  ) 
 }
 
 export default HomePage

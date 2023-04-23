@@ -1,29 +1,24 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import cn from 'classnames'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
-
-
-import { Breadcrumb, BreadcrumbsProps } from '../BreadCrumdsModels';
-import { convertBreadcrumb } from '../ConvertBreadcrumd';
-
-
-
-import styles from './GenresBreadCrumbs.module.scss';
-
+import styles from './BreadCrumbNavigation.module.scss'
+import { Breadcrumb, BreadcrumbsProps } from './BreadCrumdsModels'
+import { convertBreadcrumb } from './ConvertBreadcrumd'
 
 const defaultProps: BreadcrumbsProps = {
-  rootLabel: '/movies',
+  rootLabel: '',
   omitRootLabel: true,
   labelsToUppercase: false,
   replaceCharacterList: [{ from: '-', to: ' ' }],
   transformLabel: undefined,
   omitIndexList: undefined,
   inactiveItemStyle: null,
-  inactiveItemClassName: `${styles.slash}`,
+  inactiveItemClassName: '',
   activeItemStyle: null,
-  activeItemClassName: 'point'
+  activeItemClassName: ''
 }
 
 /**
@@ -48,7 +43,7 @@ const Breadcrumbs = ({
 }: BreadcrumbsProps) => {
   const router = useRouter()
   const [breadcrumbs, setBreadcrumbs] = useState<Array<Breadcrumb> | null>(null)
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
 
   useEffect(() => {
     if (router) {
@@ -70,11 +65,11 @@ const Breadcrumbs = ({
   }
 
   return (
-    <nav className={styles.breadcrumb} aria-label='breadcrumbs'>
+    <nav  className={ `${cn( styles.breadcrumb, { [styles.pointBreadcrumb]: inactiveItemClassName === 'point', [styles.slashBreadcrumb]: activeItemClassName === 'slash' })}` } aria-label='breadcrumbs'>
       <ul>
         {!omitRootLabel && (
           <li>
-            <Link href='/'>{convertBreadcrumb(rootLabel || 'Movies', labelsToUppercase, replaceCharacterList, transformLabel)}</Link>
+            <Link href='/'>{convertBreadcrumb(rootLabel || 'Home', labelsToUppercase, replaceCharacterList, transformLabel)}</Link>
           </li>
         )}
         {breadcrumbs.length >= 1 &&
@@ -85,7 +80,11 @@ const Breadcrumbs = ({
             return (
               <li
                 key={breadcrumb.href}
-                className={i === breadcrumbs.length - 1 ? activeItemClassName : inactiveItemClassName}
+                className={
+                  i === breadcrumbs.length - 1
+                    ? `${cn({ [styles.slash]: activeItemClassName === 'slash' })}`
+                    : `${cn({ [styles.point]: inactiveItemClassName === 'point'})}`
+                }
                 style={i === breadcrumbs.length - 1 ? activeItemStyle : inactiveItemStyle}
               >
                 <Link href={breadcrumb.href}>{t(`${convertBreadcrumb(breadcrumb.breadcrumb, labelsToUppercase, replaceCharacterList, transformLabel)}`)}</Link>

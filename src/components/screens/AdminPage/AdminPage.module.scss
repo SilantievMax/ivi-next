@@ -1,0 +1,38 @@
+.adminPage{
+    display: flex;
+
+}
+.menu{
+    border-right: solid;
+    border-radius: 10px;
+    width: 100px;
+    height: 100px;
+    li{
+        cursor: pointer;
+        margin: 10px 0;
+    }
+    li:hover{
+        cursor: pointer;
+        color: rgba(255, 255, 255, 0.651);
+    }
+}
+.adminPanel{
+    padding: 0 30px;
+    // border: solid;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    &__header{
+        display: flex;
+        justify-content: space-between;
+        button{
+            margin-bottom: 10px;
+        }
+    }
+    &__list{
+        padding-top: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
