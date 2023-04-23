@@ -11,6 +11,10 @@
     flex-direction: column;
     gap: 10px;
   }
+  &_btn{
+    border: solid;
+    width: 100%;
+  }
 }
 .comments_btn {
   @media (max-width: 599px) {

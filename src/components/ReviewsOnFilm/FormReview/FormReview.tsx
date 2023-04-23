@@ -17,7 +17,7 @@ interface FormReviewProps {
   setShow: React.Dispatch<React.SetStateAction<boolean>>
   formName: 'Review' | 'Comment'
   idReview: number | null
-  movieId: string | number | string[]
+  movieId: string | number | string[] | undefined
 }
 
 const FormReview = ({ setShow, formName, idReview, movieId }: FormReviewProps) => {
@@ -26,7 +26,7 @@ const FormReview = ({ setShow, formName, idReview, movieId }: FormReviewProps) =
   const [placeholder, setPlaceholder] = useState('')
 
   const [disable, setDisable] = useState(false)
-  // console.log(idReview)
+  console.log(movieId)
 
   const {
     register,
