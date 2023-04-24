@@ -89,7 +89,6 @@ const MoviesPage = () => {
       .then(json => dispatch(setMoviesList(json.rows)))
       .catch(err => console.log(err))
   }, [sort, rate, reviewAmount, genres, countries])
-  console.log(year)
   return (
     <div className={styles.filmsSection}>
 

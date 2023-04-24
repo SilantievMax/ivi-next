@@ -9,7 +9,7 @@ const Film = (props: {film: IFilm}) => {
 
   return (
     <Link href={`/movies/${props.film.id}`}>
-      <div onClick={() => dispatch(setPickedMovie(props.film))} className={styles.filmCard__container}>
+      <div onClick={() => dispatch(setPickedMovie(props.film.id))} className={styles.filmCard__container}>
         <div style={{backgroundImage: `url('${props.film.posterUrl}')`}} className={styles.filmCard}>
           <div className={styles.filmCard__inside}>
             <div className={styles.filmCard__inside__content}>

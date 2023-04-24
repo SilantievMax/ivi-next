@@ -53,8 +53,8 @@ const FilmPage = () => {
   }, [pickedFilm])
 
   useEffect(() => {
-    // console.log(pickedFilm.id)
-    fetch(`http://localhost:3001/movies/${pickedFilm.id}/videos`, {
+    console.log(pickedFilm)
+    fetch(`http://localhost:3001/movies/${pickedFilm}/videos`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -66,7 +66,7 @@ const FilmPage = () => {
   }, [pickedFilm])
 
   useEffect(() => {
-    fetch(`http://localhost:3001/movies/${pickedFilm.id}/similar`, {
+    fetch(`http://localhost:3001/movies/${pickedFilm}/similar`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -78,7 +78,7 @@ const FilmPage = () => {
   }, [pickedFilm])
 
   useEffect(() => {
-    fetch(`http://localhost:3001/movies/${pickedFilm.id}`, {
+    fetch(`http://localhost:3001/movies/${pickedFilm}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'

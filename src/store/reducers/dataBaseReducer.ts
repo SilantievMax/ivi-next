@@ -6,7 +6,7 @@ import { IFilm, ITrailer } from '@/src/types/types'
 
 export interface filterItem {
   moviesList: IFilm[]
-  pickedMovie: IFilm
+  pickedMovie: number
   pickedMovieTrailers: ITrailer[]
   pickedMovieSimilars: IFilm[]
   isLoading: boolean
@@ -14,7 +14,7 @@ export interface filterItem {
 
 const initialState: filterItem = {
   moviesList: [],
-  pickedMovie: {} as IFilm,
+  pickedMovie: 8,
   pickedMovieSimilars: [],
   pickedMovieTrailers: [],
   isLoading: false
