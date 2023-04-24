@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { useRouter, withRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { MdArrowBackIosNew } from 'react-icons/md'
 import { useSelector } from 'react-redux'
@@ -13,7 +13,7 @@ import { useOuside } from '@/src/hooks/useOutside'
 import { selectPickedMovie } from '@/src/store/reducers/dataBaseReducer'
 import { IReviews } from '@/src/types/CommentsType'
 
-const ReviewsOnFilm = () => {
+const ReviewsOnFilm = withRouter( () => {
   const pickedFilm = useSelector(selectPickedMovie)
   console.log(pickedFilm)
   const { ref, isShow, setIsShow } = useOuside(false)
@@ -61,6 +61,6 @@ const ReviewsOnFilm = () => {
       </div>
     </div>
   )
-}
+})
 
 export default ReviewsOnFilm

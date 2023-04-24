@@ -1,61 +1,65 @@
 import { useRouter } from 'next/router'
 import React, { FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { MdArrowBackIosNew } from 'react-icons/md'
+import { Oval } from 'react-loader-spinner'
 
 import { Button } from '../../Button/Button'
-import {MdArrowBackIosNew} from 'react-icons/md'
-import style from './Person.module.scss'
-import { IFilms, IPerson } from './PersonInterfase'
+
+import styles from './Person.module.scss'
 import PersonMovies from './PersonMovies'
+import { IInfoPerson, IPersonMovies } from '@/src/types/PersonTypes'
 
 const PersonPage: FC = () => {
+  const {
+    back,
+    query: { id }
+  } = useRouter()
   const { t } = useTranslation()
-  const router = useRouter()
-  const [person, setPerson] = useState<IPerson>()
-
-  console.log(person)
+  const [person, getPerson] = useState<IInfoPerson>()
+  // console.log(person?.person);
 
   const fetchById = async () => {
-    fetch('http://localhost:3003/info', {
+    fetch(`http://localhost:3003/info/person/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
       }
     })
       .then(res => res.json())
-      .then(json => setPerson(json))
+      .then(json => getPerson(json))
       .catch(err => console.log(err))
   }
 
   useEffect(() => {
     fetchById()
-  }, [])
+  }, [id])
+
+  if (!person?.person) return <Oval wrapperClass={styles.loader} color='rgba(255, 255, 255, .72)' secondaryColor='red' />
 
   return (
-    <div className={style.personPage}>
-      <div className={style.personPage__btn}>
-      <Button onClick={() => router.back()} size='iconGoBack' children='Назад' icon={<MdArrowBackIosNew size={25}/>}/>
-        {/* <div className={style.personPage__btnIcon}> </div>
-        <div onClick={() => router.back()}>{t('Back')}</div> */}
+    <div className={styles.personPage}>
+      <div className={styles.personPage__btn}>
+        <Button onClick={() => back()} size='iconGoBack' children='Назад' icon={<MdArrowBackIosNew size={25} />} />
       </div>
-      <section className={style.person}>
-        <div className={style.person__header}>
-          <div className={style.person__img}>
-            <img src='https://kinopoiskapiunofficial.tech/images/actor_posters/kp/66539.jpg' alt='' />
+      <section className={styles.person}>
+        <div className={styles.person__header}>
+          <div className={styles.person__img}>
+            <img src={`${person?.person.posterUrl}`} alt='' />
           </div>
-          <h2 className={style.person__name}>Винс Гиллиган</h2>
-          <p className={style.person__enName}>Vince Gilligan</p>
+          <h2 className={styles.person__name}>{`${person?.person.nameRu}`}</h2>
+          <p className={styles.person__enName}>{`${person?.person.nameEn}`}</p>
         </div>
       </section>
-      <section className={style.movies}>
-        <div className={style.movies__header}>
+      <section className={styles.movies}>
+        <div className={styles.movies__header}>
           <h3>{t('Full filmography')}</h3>
-          <p>{t('8 movies')}</p>
+          <p>{`${person?.movies.length} фильма`}</p>
         </div>
-        <span className={style.border}></span>
-        {person?.films
+        <span className={styles.border}></span>
+        {person?.movies
           .filter((j, i) => i < 8)
-          .map((movie: IFilms, i) => (
+          .map((movie: IPersonMovies, i) => (
             <PersonMovies key={i} movie={movie} />
           ))}
       </section>

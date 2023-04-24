@@ -21,11 +21,11 @@ export interface BreadcrumbsProps {
   /** An inline style object for the inactive breadcrumb list item */
   inactiveItemStyle?: any | null
   /** Classes to be used for the inactive breadcrumb list item */
-  inactiveItemClassName?: string | 'point'
+  inactiveItemClassName?: 'point' | ''
   /** An inline style object for the active breadcrumb list item */
   activeItemStyle?: any | null
   /** Classes to be used for the active breadcrumb list item */
-  activeItemClassName?: string | 'slash'
+  activeItemClassName?: 'slash' | ''
 }
 
 export interface Breadcrumb {

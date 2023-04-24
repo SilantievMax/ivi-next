@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 import styles from './filmpage.module.scss';
-import BreadCrumbNavigation from '@/src/components/BreadCrumbNavigation/MainBreadCrumb/MainBreadCrumbs';
+import BreadCrumbNavigation from '@/src/components/BreadCrumbNavigation/BreadCrumbNavigation';
 import { Button } from '@/src/components/Button/Button';
 import Carousel from '@/src/components/Carousel/Carousel';
 import Film from '@/src/components/Film/Film';
@@ -131,7 +131,8 @@ const FilmPage = () => {
         {/*  <span*/}
         {/*    className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Триллеры</span>*/}
         {/*</div>*/}
-        <BreadCrumbNavigation />
+
+        <BreadCrumbNavigation inactiveItemClassName='point' omitRootLabel={true} />
         <div className={styles.filmSectionContainer}>
           <div className={styles.playerWindow}>
             <div className={styles.player}>

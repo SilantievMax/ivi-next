@@ -50,7 +50,11 @@
 .breadcrumb li:last-child a {
 }
 
+// .slash{
+//   color: aqua;
+// }
 .slash::before {
+
   content: '/';
   margin: 0 7px;
   float: left;
@@ -72,7 +76,9 @@
   box-shadow: 0 0 0 #7e798f, inset 0 -1.5em 0 #7e798f;
   transition-duration: 80ms;
 }
-
+// .point{
+//   color: aqua;
+// }
 .point::before {
   display: inline-block;
   content: '';
