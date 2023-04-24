@@ -24,11 +24,33 @@
 .popup {
   z-index: 102;
 
+  &__smallText{
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 400;
+    font-style: normal;
+    color: #d9d7e0;
+    max-width: 80px;
+  }
+
+  &__boldText {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
   &__items {
     display: flex;
     flex-direction: column;
     row-gap: 20px;
     padding-bottom: 30px;
+  }
+
+  &__filmLengthContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 8px;
+
   }
 
   &__button {
@@ -41,6 +63,13 @@
     row-gap: 10px;
     max-width: 128px;
     width: 100%;
+  }
+
+  &__filmCard {
+    display: flex;
+    flex-direction: column;
+    margin-left: 12%;
+    row-gap: 5px;
   }
 
   &__crewWrapper {
@@ -84,6 +113,20 @@
   background-size: cover;
   border-radius: 8px;
   background-repeat: no-repeat;
+}
+
+.filmCard {
+  height: 235px;
+  width: 153px;
+  transition-duration: .4s;
+  border-radius: 8px;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.04) translateY(-2%);
+  }
 }
 
 .scroll__wrapper {
@@ -524,6 +567,8 @@
 }
 
 .popupBtn {
+  display: flex;
+  align-items: center;
   position: absolute;
   top: 50px;
   left: 30px;

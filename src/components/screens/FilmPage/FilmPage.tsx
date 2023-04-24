@@ -18,8 +18,11 @@ import { useSelector } from 'react-redux'
 import { Oval } from 'react-loader-spinner'
 import { calcTime } from '@/src/functions/functions'
 import Reviews from '@/src/components/Reviews/Reviews'
-import { feedback } from '@/src/components/Reviews/props/props'
-
+import { useRouter } from 'next/router'
+import { IReviews } from '@/src/types/CommentsType'
+import { capitalize } from '@mui/material'
+import { TfiTimer } from 'react-icons/tfi'
+import { MdArrowBackIosNew } from 'react-icons/md'
 
 const FilmPage = () => {
   const [showActorsWindow, setShowActorsWindow] = useState<boolean>(false)
@@ -86,18 +89,6 @@ const FilmPage = () => {
       .catch(err => console.log(err))
       .finally(() => setIsLoading(false))
   }, [pickedFilm])
-  // useEffect(() => {
-  //   fetch(`http://localhost:3001/movies/${pickedFilm.id}`, {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   })
-  //     .then(res => res.json())
-  //     .then(json => console.log(json))
-  //     .finally(() => setIsLoading(false))
-  //     .catch(err => console.log(err))
-  // }, [])
   if (!data.genres || !pickedTrailer.length) return <Oval wrapperClass={styles.loader}
                                                           color='rgba(255, 255, 255, .72)'
                                                           secondaryColor='red' />
@@ -108,13 +99,15 @@ const FilmPage = () => {
         {showActorsWindow ? <div className={styles.fullscreen__popup}>
           <div className={styles.popup}>
             <div className={styles.popup__wrapper}>
-              <span
-                className={`${styles.popupBtn} ${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}
-                onClick={() => {
-                  setShowActorsWindow(false)
-                  setShowFullList(false)
-                  document.body.classList.remove('popupActive')
-                }}> {`< К фильму`}</span>
+              <div onClick={() => {
+                setShowActorsWindow(false)
+                setShowFullList(false)
+                document.body.classList.remove('popupActive')}}
+                   className={`${styles.popupBtn} ${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>
+                <MdArrowBackIosNew size={25} />
+                <span> К фильму</span>
+              </div>
+
               <div className={styles.popup__crewWrapper}>
                 <span
                   className={styles.popupFilmTitle}>{`${data.nameRu} (Фильм ${data.year})`}</span>
@@ -123,14 +116,17 @@ const FilmPage = () => {
                   <div className={styles.popup__crewContainer}>
                     {crewList.map((elem, idx) =>
                       elem.roles.map(el => el.nameRu === 'Режиссеры' ?
-                        <div className={styles.popup__card} key={idx}>
-                          <img className={styles.crewImage__wrapper}
-                               src={elem.posterUrl}
-                               width={60}
-                               alt='actorImg' />
-                          <span>{elem.nameRu}</span>
-                        </div> : ''
-                    ))}
+                        <Link onClick={() => document.body.classList.remove('popupActive')}
+                              href={`/person/${elem.id}`}>
+                          <div className={styles.popup__card} key={idx}>
+                            <img className={styles.crewImage__wrapper}
+                                 src={elem.posterUrl}
+                                 width={60}
+                                 alt='actorImg' />
+                            <span>{elem.nameRu}</span>
+                          </div>
+                        </Link> : ''
+                      ))}
                   </div>
                 </div>
                 <div className={styles.popup__crewContainer}>
@@ -139,36 +135,50 @@ const FilmPage = () => {
                     {crewList.map((el, idx) =>
                       el.roles[0].nameRu === 'Актеры' ?
                         idx < 21 ?
-                        <div className={styles.popup__card} key={idx}>
-                          <img className={styles.crewImage__wrapper}
-                               src={el.posterUrl}
-                               width={60}
-                               alt='actorImg' />
-                          <span>{el.nameRu}</span>
-                        </div> : <div className={showFullList ? `${styles.popup__card}` : `${styles.popup__card} ${styles.hidden}`} key={idx}>
-                            <img className={styles.crewImage__wrapper}
-                                 src={el.posterUrl}
-                                 width={60}
-                                 alt='actorImg' />
-                            <span>{el.nameRu}</span>
-                          </div> : ''
+                          <Link onClick={() => document.body.classList.remove('popupActive')}
+                                href={`/person/${el.id}`}>
+                            <div className={styles.popup__card} key={idx}>
+                              <img className={styles.crewImage__wrapper}
+                                   src={el.posterUrl}
+                                   width={60}
+                                   alt='actorImg' />
+                              <span>{el.nameRu}</span>
+                            </div>
+                          </Link> :
+                          <Link onClick={() => document.body.classList.remove('popupActive')}
+                                href={`/person/${el.id}`}>
+                            <div
+                              className={showFullList ? `${styles.popup__card}` : `${styles.popup__card} ${styles.hidden}`}
+                              key={idx}>
+                              <img className={styles.crewImage__wrapper}
+                                   src={el.posterUrl}
+                                   width={60}
+                                   alt='actorImg' />
+                              <span>{el.nameRu}</span>
+                            </div>
+                          </Link> : ''
                     )}
                   </div>
-                  <Button style={{display: showFullList ? 'none' : 'flex'}} className={styles.popup__button} color='gray' type='submit' onClick={() => setShowFullList(true)}>Показать ещё</Button>
+                  <Button style={{ display: showFullList ? 'none' : 'flex' }}
+                          className={styles.popup__button} color='gray' type='submit'
+                          onClick={() => setShowFullList(true)}>Показать ещё</Button>
                 </div>
                 <div className={styles.popup__items}>
                   <span className={styles.popup__header}>Продюсеры</span>
                   <div className={styles.popup__crewContainer}>
-                  {crewList.map((elem, idx) =>
-                    elem.roles.map(el => el.nameRu === 'Продюсеры' ?
-                      <div className={styles.popup__card} key={idx}>
-                        <img className={styles.crewImage__wrapper}
-                             src={elem.posterUrl}
-                             width={60}
-                             alt='actorImg' />
-                        <span>{elem.nameRu}</span>
-                      </div> : ''
-                    ))}
+                    {crewList.map((elem, idx) =>
+                      elem.roles.map(el => el.nameRu === 'Продюсеры' ?
+                        <Link onClick={() => document.body.classList.remove('popupActive')}
+                              href={`/person/${elem.id}`}>
+                          <div className={styles.popup__card} key={idx}>
+                            <img className={styles.crewImage__wrapper}
+                                 src={elem.posterUrl}
+                                 width={60}
+                                 alt='actorImg' />
+                            <span>{elem.nameRu}</span>
+                          </div>
+                        </Link> : ''
+                      ))}
                   </div>
                 </div>
                 <div className={styles.popup__items}>
@@ -176,21 +186,36 @@ const FilmPage = () => {
                   <div className={styles.popup__crewContainer}>
                     {crewList.map((elem, idx) =>
                       elem.roles.map(el => el.nameRu === 'Сценаристы' ?
-                        <div className={styles.popup__card} key={idx}>
-                          <img className={styles.crewImage__wrapper}
-                               src={elem.posterUrl}
-                               width={60}
-                               alt='actorImg' />
-                          <span>{elem.nameRu}</span>
-                        </div> : ''
+                        <Link onClick={() => document.body.classList.remove('popupActive')}
+                              href={`/person/${elem.id}`}>
+                          <div className={styles.popup__card} key={idx}>
+                            <img className={styles.crewImage__wrapper}
+                                 src={elem.posterUrl}
+                                 width={60}
+                                 alt='actorImg' />
+                            <span>{elem.nameRu}</span>
+                          </div>
+                        </Link> : ''
                       ))}
                   </div>
 
                 </div>
               </div>
+              <div className={styles.popup__filmCard}>
+                <div onClick={() => {
+                  setShowActorsWindow(false)
+                  document.body.classList.remove('popupActive')
+                }} style={{ backgroundImage: `url('${data.posterUrl}')` }}
+                     className={styles.filmCard}>
+                </div>
+                <span className={styles.popup__boldText}>{data.ratingKinopoisk}</span>
+                <span className={styles.popup__smallText}>{`${data.year}, ${data.countries[0].nameRu}, ${capitalize(data.genres[0].nameRu)}`}</span>
+                <div className={styles.popup__filmLengthContainer}>
+                  <TfiTimer color='red' />
+                  <span className={styles.popup__smallText}>{`${data.filmLength} мин.`}</span>
+                </div>
+              </div>
             </div>
-
-            <div className={styles.scroll__wrapper}></div>
           </div>
         </div> : ''
         }
@@ -353,18 +378,20 @@ const FilmPage = () => {
           <div className={styles.actorSection__wrapper}>
             {crewList.map((el, idx) =>
               idx <= 9 ?
-                <div key={idx} className={styles.actorSection}>
-                  <img className={styles.actorImage__Wrapper}
-                       src={el.posterUrl}
-                       width={60}
-                       alt='actorImg' />
-                  <div className={styles.actor__info}>
-                    <span>{el.nameRu.split(' ')[0]}</span>
-                    <span>{el.nameRu.split(' ')[el.nameRu.split(' ').length - 1]}</span>
-                    <span
-                      className={styles.filmDescription__font}>{el.roles[0].nameRu.toLowerCase()}</span>
+                <Link href={`/person/${el.id}`}>
+                  <div key={idx} className={styles.actorSection}>
+                    <img className={styles.actorImage__Wrapper}
+                         src={el.posterUrl}
+                         width={60}
+                         alt='actorImg' />
+                    <div className={styles.actor__info}>
+                      <span>{el.nameRu.split(' ')[0]}</span>
+                      <span>{el.nameRu.split(' ')[el.nameRu.split(' ').length - 1]}</span>
+                      <span
+                        className={styles.filmDescription__font}>{el.roles[0].nameRu.toLowerCase()}</span>
+                    </div>
                   </div>
-                </div> : ''
+                </Link> : ''
             )}
             <div onClick={() => {
               setShowActorsWindow(true)
@@ -373,7 +400,8 @@ const FilmPage = () => {
             </div>
           </div>
         </div>
-        <Reviews reviews={reviews} titleBtn='Рецензии' btn='Оставить рецензию' numberOfReviews={reviews.length} aboutTheFilm={`На фильм "${pickedFilm.nameRu}"`} />
+        <Reviews reviews={reviews} titleBtn='Рецензии' btn='Оставить рецензию'
+                 numberOfReviews={reviews.length} aboutTheFilm={`На фильм "${data.nameRu}"`} />
         <div className={styles.watchAllDevicesSection}>
           <div className={styles.watchAllDevices__content}>
         <span
@@ -384,24 +412,30 @@ const FilmPage = () => {
               устройства</Button></Link>
           </div>
           <div className={styles.watchAllDevicesImageWrapper}>
-            <img src='https://www.ivi.ru/images/_ds/watchAllDevices/tv-without-poster.png' height={272} width={536} className={styles.devicePic} alt='devisePic' />
-            <img src='https://www.ivi.ru/images/_ds/watchAllDevices/ipad-without-poster.png' className={styles.ipadPic} alt='devisePic' />
+            <img src='https://www.ivi.ru/images/_ds/watchAllDevices/tv-without-poster.png'
+                 height={272} width={536} className={styles.devicePic} alt='devisePic' />
+            <img src='https://www.ivi.ru/images/_ds/watchAllDevices/ipad-without-poster.png'
+                 className={styles.ipadPic} alt='devisePic' />
             <img src={data.posterUrl} className={styles.posterPic} alt='devisePic' />
             <img src={data.posterUrl} className={styles.posterMobilePic} alt='devisePic' />
           </div>
         </div>
         <div className={styles.breadCrumbs}>
           <Link href='/'>
-            <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Мой Иви</span>
+            <span
+              className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Мой Иви</span>
           </Link>
           <span className={styles.dot}>.</span>
           <Link href='/movies'>
-            <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Фильмы</span>
+            <span
+              className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Фильмы</span>
           </Link>
           <span className={styles.dot}>.</span>
-          <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{data.genres[0].nameRu}</span>
+          <span
+            className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{data.genres[0].nameRu}</span>
           <span className={styles.dot}>.</span>
-          <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{data.nameRu}</span>
+          <span
+            className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{data.nameRu}</span>
         </div>
       </div>
     </div>
