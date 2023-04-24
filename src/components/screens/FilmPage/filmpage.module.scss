@@ -11,6 +11,12 @@
   column-gap: 5px;
 }
 
+.actorsParams {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 5px;
+}
+
 .fullscreen__popup{
   position: fixed;
   left: 0;
@@ -111,8 +117,8 @@
   height: 44px;
   width: 44px;
   background-size: cover;
+  background-position: center;
   border-radius: 8px;
-  background-repeat: no-repeat;
 }
 
 .filmCard {
@@ -179,11 +185,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   row-gap: 7px;
-  max-width: 80px;
+  max-width: 70px;
   width: 100%;
   text-align: center;
+  justify-content: space-between;
 }
 
 .genreLanguage {
