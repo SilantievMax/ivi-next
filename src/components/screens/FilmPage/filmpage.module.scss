@@ -21,6 +21,53 @@
   z-index: 101;
 }
 
+.popup {
+  z-index: 102;
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    padding-bottom: 30px;
+  }
+
+  &__button {
+    width: 100%;
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    max-width: 128px;
+    width: 100%;
+  }
+
+  &__crewWrapper {
+    max-width: 600px;
+    width: 100%;
+    row-gap: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__crewContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  &__header {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 700;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
 .rate {
   position: absolute;
   font-size: 15px;
@@ -48,6 +95,8 @@
 }
 
 .popup__wrapper {
+  display: flex;
+  justify-content: center;
   z-index: 101;
   position: absolute;
   left: 0;
@@ -55,6 +104,15 @@
   top: 0;
   bottom: 0;
   background-color: rgba(7,5,14,.96);
+  padding: 100px 0;
+  overflow-y: scroll;
+}
+
+.popupFilmTitle {
+  margin-bottom: 20px;
+  font-size: 40px;
+  line-height: 44px;
+  font-weight: 900;
 }
 
 .filmActorCard {
@@ -184,6 +242,14 @@
   border-radius: 50px;
   height: 88px;
   width: 88px;
+  object-fit: cover;
+}
+
+.crewImage__wrapper {
+  border-radius: 100px;
+  height: 128px;
+  width: 128px;
+  object-fit: cover;
 }
 
 .underline {
@@ -455,6 +521,12 @@
   display: flex;
   flex-direction: column;
   row-gap: 5px;
+}
+
+.popupBtn {
+  position: absolute;
+  top: 50px;
+  left: 30px;
 }
 
 .filmDescription__font {

@@ -67,4 +67,9 @@ ul {
   list-style: none;
 }
 
+.popupActive {
+  overflow: hidden;
+  min-height: 100%;
+}
+
 @import "./swiper";

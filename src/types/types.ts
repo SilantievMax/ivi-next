@@ -41,3 +41,15 @@ export interface IFilm {
   genres: IGenre[]
   countries: IGenre[]
 }
+
+interface IRoles {
+  nameRu: string,
+  nameEn: string
+}
+export interface ICrew {
+  id: number,
+  nameRu: string,
+  nameEn: string,
+  posterUrl: string,
+  roles: IRoles[]
+}
