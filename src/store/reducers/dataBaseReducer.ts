@@ -38,7 +38,7 @@ export const dataBaseSlice = createSlice({
     },
     setIsLoading(state, action) {
       state.pickedMovie = action.payload
-    },
+    }
   },
 
 
@@ -53,7 +53,13 @@ export const dataBaseSlice = createSlice({
 })
 
 
-export const { setMoviesList, setPickedMovie, setPickedMovieSimilars, setPickedMovieTrailers, setIsLoading } = dataBaseSlice.actions
+export const {
+  setMoviesList,
+  setPickedMovie,
+  setPickedMovieSimilars,
+  setPickedMovieTrailers,
+  setIsLoading
+} = dataBaseSlice.actions
 export const selectMoviesList = (state: AppState) => state.db.moviesList
 export const selectPickedMovie = (state: AppState) => state.db.pickedMovie
 export const selectPickedMovieSimilars = (state: AppState) => state.db.pickedMovieSimilars
