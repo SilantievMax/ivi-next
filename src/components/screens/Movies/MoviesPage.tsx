@@ -89,7 +89,7 @@ const MoviesPage: FC = () => {
       .then(res => res.json())
       .then(json => dispatch(setMoviesList(json.rows)))
       .catch(err => console.log(err))
-  }, [sort, rate, reviewAmount, genres, countries])
+  }, [sort, rate, reviewAmount, genres, countries, year])
   return (
     <div className={styles.filmsSection}>
       <BreadCrumbNavigation activeItemClassName='slash' omitRootLabel={false} rootLabel={'Мой иви'} />

@@ -272,11 +272,11 @@ const FilmPage = () => {
               <div className={styles.genreParams}>
                 <span
                   className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{data.countries[0].nameRu}</span>
-                {data.genres.map((el, idx) => <div className={styles.genreParams} key={idx}>
+                {data.genres.map((el, idx) => idx < 4 ? <div className={styles.genreParams} key={idx}>
                   <span className={styles.dot}>.</span>
                   <span key={el.nameRu}
                         className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{el.nameRu}</span>
-                </div>)}
+                </div> : '')}
               </div>
               <div className={styles.genreLanguage}>
                 <div className={`${styles.filmQuality} ${styles.filmQuality__text}`}>FullHD</div>
@@ -297,7 +297,7 @@ const FilmPage = () => {
               </div>
 
             </div>
-            <div className={styles.genreParams}>
+            <div className={styles.actorsParams}>
               <div className={styles.filmActorCard__wrapper}>
                 <div className={styles.filmActorCard}>
                   <div className={styles.ratePlate}></div>
@@ -305,13 +305,15 @@ const FilmPage = () => {
                 </div>
                 <span>Рейтинг Иви</span>
               </div>
-              <div className={styles.filmActorCard__wrapper}>
-                <div className={styles.filmActorCard}>
-                  <div className={styles.actor}
-                       style={{ backgroundImage: `url(${data.posterUrl})` }}></div>
-                </div>
-                <span>Эдвард Нортон</span>
-              </div>
+              {crewList.map((el, idx) => idx < 4 ?
+                <div key={idx} className={styles.filmActorCard__wrapper}>
+                  <div className={styles.filmActorCard}>
+                    <div className={styles.actor}
+                         style={{ backgroundImage: `url(${el.posterUrl})` }}></div>
+                  </div>
+                  <span>{el.nameRu}</span>
+                </div> : ''
+              )}
             </div>
             <div className={styles.filmDescription__font}>{data.shortDescription}</div>
             {showFullDescription
