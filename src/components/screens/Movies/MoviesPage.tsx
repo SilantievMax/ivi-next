@@ -81,7 +81,7 @@ const MoviesPage: FC = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     fetch(
-      `http://localhost:3003/info?order=${sort.query}&minRating=${rate}&numRatings=${reviewAmount}&genres=${genres.toString()}&countries=${countries.toString()}&years=${year}`,
+      `http://localhost:3003/info?limit=20&order=${sort.query}&minRating=${rate}&numRatings=${reviewAmount}&genres=${genres.toString()}&countries=${countries.toString()}&years=${year}`,
       {
         method: 'GET'
       }

@@ -116,9 +116,9 @@ const FilmPage = () => {
                   <div className={styles.popup__crewContainer}>
                     {crewList.map((elem, idx) =>
                       elem.roles.map(el => el.nameRu === 'Режиссеры' ?
-                        <Link onClick={() => document.body.classList.remove('popupActive')}
+                        <Link key={idx} onClick={() => document.body.classList.remove('popupActive')}
                               href={`/person/${elem.id}`}>
-                          <div className={styles.popup__card} key={idx}>
+                          <div className={styles.popup__card} >
                             <img className={styles.crewImage__wrapper}
                                  src={elem.posterUrl}
                                  width={60}
@@ -135,9 +135,9 @@ const FilmPage = () => {
                     {crewList.map((el, idx) =>
                       el.roles[0].nameRu === 'Актеры' ?
                         idx < 21 ?
-                          <Link onClick={() => document.body.classList.remove('popupActive')}
+                          <Link key={idx} onClick={() => document.body.classList.remove('popupActive')}
                                 href={`/person/${el.id}`}>
-                            <div className={styles.popup__card} key={idx}>
+                            <div className={styles.popup__card}>
                               <img className={styles.crewImage__wrapper}
                                    src={el.posterUrl}
                                    width={60}
@@ -145,11 +145,10 @@ const FilmPage = () => {
                               <span>{el.nameRu}</span>
                             </div>
                           </Link> :
-                          <Link onClick={() => document.body.classList.remove('popupActive')}
+                          <Link key={idx} onClick={() => document.body.classList.remove('popupActive')}
                                 href={`/person/${el.id}`}>
                             <div
-                              className={showFullList ? `${styles.popup__card}` : `${styles.popup__card} ${styles.hidden}`}
-                              key={idx}>
+                              className={showFullList ? `${styles.popup__card}` : `${styles.popup__card} ${styles.hidden}`}>
                               <img className={styles.crewImage__wrapper}
                                    src={el.posterUrl}
                                    width={60}
@@ -168,9 +167,9 @@ const FilmPage = () => {
                   <div className={styles.popup__crewContainer}>
                     {crewList.map((elem, idx) =>
                       elem.roles.map(el => el.nameRu === 'Продюсеры' ?
-                        <Link onClick={() => document.body.classList.remove('popupActive')}
+                        <Link key={idx} onClick={() => document.body.classList.remove('popupActive')}
                               href={`/person/${elem.id}`}>
-                          <div className={styles.popup__card} key={idx}>
+                          <div className={styles.popup__card}>
                             <img className={styles.crewImage__wrapper}
                                  src={elem.posterUrl}
                                  width={60}
@@ -186,9 +185,9 @@ const FilmPage = () => {
                   <div className={styles.popup__crewContainer}>
                     {crewList.map((elem, idx) =>
                       elem.roles.map(el => el.nameRu === 'Сценаристы' ?
-                        <Link onClick={() => document.body.classList.remove('popupActive')}
+                        <Link key={idx} onClick={() => document.body.classList.remove('popupActive')}
                               href={`/person/${elem.id}`}>
-                          <div className={styles.popup__card} key={idx}>
+                          <div className={styles.popup__card}>
                             <img className={styles.crewImage__wrapper}
                                  src={elem.posterUrl}
                                  width={60}
@@ -378,8 +377,8 @@ const FilmPage = () => {
           <div className={styles.actorSection__wrapper}>
             {crewList.map((el, idx) =>
               idx <= 9 ?
-                <Link href={`/person/${el.id}`}>
-                  <div key={idx} className={styles.actorSection}>
+                <Link key={idx} href={`/person/${el.id}`}>
+                  <div className={styles.actorSection}>
                     <img className={styles.actorImage__Wrapper}
                          src={el.posterUrl}
                          width={60}
