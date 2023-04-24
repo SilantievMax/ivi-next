@@ -1,3 +1,6 @@
+import { type } from "os";
+
+
 export interface ILinks {
   title: string
   link: string
@@ -52,4 +55,8 @@ export interface ICrew {
   nameEn: string,
   posterUrl: string,
   roles: IRoles[]
+}
+
+export type TypeFilm = {
+  moviesList: IFilm
 }

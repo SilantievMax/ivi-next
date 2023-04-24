@@ -31,6 +31,12 @@ const FilmPage = () => {
   const [crewList, setCrewList] = useState<ICrew[]>([])
   const [similars, setSimilars] = useState<IFilm[]>([] as IFilm[])
   const [data, setData] = useState<IFilm>({} as IFilm)
+  const [reviews, setReviews] = useState<IReviews[]>([] as IReviews[])
+
+  const {
+    query: { id }
+  } = useRouter()
+  //Запрос на рецензии к фильму по id
   useEffect(() => {
     fetch(`http://localhost:3001/movies/${pickedFilm}/videos`, {
       method: 'GET',
@@ -205,7 +211,8 @@ const FilmPage = () => {
         {/*  <span*/}
         {/*    className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Триллеры</span>*/}
         {/*</div>*/}
-        <BreadCrumbNavigation />
+
+        <BreadCrumbNavigation inactiveItemClassName='point' omitRootLabel={true} />
         <div className={styles.filmSectionContainer}>
           <div className={styles.playerWindow}>
             <div className={styles.player}>
@@ -366,6 +373,7 @@ const FilmPage = () => {
             </div>
           </div>
         </div>
+        <Reviews reviews={reviews} titleBtn='Рецензии' btn='Оставить рецензию' numberOfReviews={reviews.length} aboutTheFilm={`На фильм "${pickedFilm.nameRu}"`} />
         <div className={styles.watchAllDevicesSection}>
           <div className={styles.watchAllDevices__content}>
         <span
@@ -376,30 +384,24 @@ const FilmPage = () => {
               устройства</Button></Link>
           </div>
           <div className={styles.watchAllDevicesImageWrapper}>
-            <img src='https://www.ivi.ru/images/_ds/watchAllDevices/tv-without-poster.png'
-                 height={272} width={536} className={styles.devicePic} alt='devisePic' />
-            <img src='https://www.ivi.ru/images/_ds/watchAllDevices/ipad-without-poster.png'
-                 className={styles.ipadPic} alt='devisePic' />
+            <img src='https://www.ivi.ru/images/_ds/watchAllDevices/tv-without-poster.png' height={272} width={536} className={styles.devicePic} alt='devisePic' />
+            <img src='https://www.ivi.ru/images/_ds/watchAllDevices/ipad-without-poster.png' className={styles.ipadPic} alt='devisePic' />
             <img src={data.posterUrl} className={styles.posterPic} alt='devisePic' />
             <img src={data.posterUrl} className={styles.posterMobilePic} alt='devisePic' />
           </div>
         </div>
         <div className={styles.breadCrumbs}>
           <Link href='/'>
-        <span
-          className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Мой Иви</span>
+            <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Мой Иви</span>
           </Link>
           <span className={styles.dot}>.</span>
           <Link href='/movies'>
-        <span
-          className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Фильмы</span>
+            <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Фильмы</span>
           </Link>
           <span className={styles.dot}>.</span>
-          <span
-            className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{data.genres[0].nameRu}</span>
+          <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{data.genres[0].nameRu}</span>
           <span className={styles.dot}>.</span>
-          <span
-            className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{data.nameRu}</span>
+          <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{data.nameRu}</span>
         </div>
       </div>
     </div>
@@ -407,5 +409,3 @@ const FilmPage = () => {
 }
 
 export default FilmPage
-
-

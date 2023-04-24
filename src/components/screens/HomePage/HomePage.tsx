@@ -1,13 +1,18 @@
-import React, { FC } from 'react'
-import { useTranslation } from 'react-i18next'
+import React, { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { feedback, review } from '../../Reviews/props/props'
-import MoviesPage from '../Movies/MoviesPage'
-import PersonPage from '../PersonPage/PersonPage'
 
-import { Button } from '@/src/components/Button/Button'
-import Reviews from '@/src/components/Reviews/Reviews'
-import AdminPage from '../AdminPage/AdminPage'
+
+import { feedback, review } from '../../Reviews/props/props';
+import AdminPage from '../AdminPage/AdminPage';
+import MoviesPage from '../Movies/MoviesPage';
+import PersonPage from '../PersonPage/PersonPage';
+
+
+
+import { Button } from '@/src/components/Button/Button';
+import Reviews from '@/src/components/Reviews/Reviews';
+
 
 const HomePage: FC = () => {
   const { t, i18n } = useTranslation()
