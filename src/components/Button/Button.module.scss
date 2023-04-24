@@ -12,7 +12,7 @@
   background-color: transparent;
   cursor: pointer;
   white-space: nowrap;
-  width: 100%;
+  // width: 100%;
 }
 .button:active {
   opacity: 1;
@@ -186,4 +186,23 @@
 }
 .comment:hover {
   color: white;
+}
+.iconGoBack {
+  gap: 10px;
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.836);
+  svg {
+    transition-duration: 0.3s;
+  }
+}
+.iconGoBack:hover {
+  color: white;
+  svg {
+    transition-duration: 0.3s;
+    margin-right: -5px;
+    height: 30px;
+    width: 30px;
+  }
 }

@@ -5,6 +5,10 @@
   padding: 20px;
   border-radius: 8px;
   // min-width: 411px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   cursor: pointer;
 }
 .review:hover {
