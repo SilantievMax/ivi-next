@@ -25,10 +25,20 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/person/[id]": [
+    "/movies": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/person/[id].js"
+      "static/chunks/pages/movies.js"
+    ],
+    "/movies/[id]": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/movies/[id].js"
+    ],
+    "/movies/comment/[id]": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/movies/comment/[id].js"
     ]
   },
   "ampFirstPages": []

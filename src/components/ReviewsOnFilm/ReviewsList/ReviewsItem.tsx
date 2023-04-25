@@ -13,9 +13,8 @@ interface CommentProps {
 }
 
 const Comment = ({ comment }: CommentProps) => {
-  const { movieId } = comment
   const [showReview, setShowReview] = useState(false)
-  const { author, date, description, id, title} = comment || {}
+  const { author, date, description, id, title, movieId} = comment || {}
   const { ref, isShow, setIsShow } = useOuside(false)
   return (
     <li className={styles.container}>

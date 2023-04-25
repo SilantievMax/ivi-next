@@ -1,4 +1,4 @@
-import { FieldErrors, UseFormRegister } from "react-hook-form";
+import { FieldErrors, UseFormRegister, UseFormWatch } from "react-hook-form";
 
 
 export interface IReviews {
@@ -25,4 +25,13 @@ export interface IReviewsInput {
   placeholder?: string
   register: UseFormRegister<IInputs>
   errors: FieldErrors<IInputs>
+  watch: UseFormWatch<IInputs>
+  dirtyFields?: Partial<
+    Readonly<{
+      type?: boolean | undefined
+      title?: boolean | undefined
+      description?: boolean | undefined
+      repliedOnComment?: boolean | undefined
+    }>
+  >
 }

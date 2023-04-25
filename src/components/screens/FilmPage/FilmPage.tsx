@@ -1,27 +1,24 @@
-import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
-import { BiBookmark, BiFilm, BiVolumeLow } from 'react-icons/bi';
-import { BsPlay } from 'react-icons/bs';
-import { FiUpload } from 'react-icons/fi';
-import { Oval } from 'react-loader-spinner';
-import ReactPlayer from 'react-player';
-import { useDispatch, useSelector } from 'react-redux';
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import React, { useEffect, useState } from 'react'
+import { BiBookmark, BiFilm, BiVolumeLow } from 'react-icons/bi'
+import { BsPlay } from 'react-icons/bs'
+import { FiUpload } from 'react-icons/fi'
+import { Oval } from 'react-loader-spinner'
+import ReactPlayer from 'react-player'
+import { useDispatch, useSelector } from 'react-redux'
 
-
-
-import styles from './filmpage.module.scss';
-import BreadCrumbNavigation from '@/src/components/BreadCrumbNavigation/BreadCrumbNavigation';
-import { Button } from '@/src/components/Button/Button';
-import Carousel from '@/src/components/Carousel/Carousel';
-import Film from '@/src/components/Film/Film';
-import Reviews from '@/src/components/Reviews/Reviews';
-import { feedback } from '@/src/components/Reviews/props/props';
-import { calcTime } from '@/src/functions/functions';
-import { selectPickedMovie } from '@/src/store/reducers/dataBaseReducer';
-import { IReviews } from '@/src/types/CommentsType';
-import { IFilm, ITrailer } from '@/src/types/types';
-import { useRouter } from 'next/router';
-
+import styles from './filmpage.module.scss'
+import BreadCrumbNavigation from '@/src/components/BreadCrumbNavigation/BreadCrumbNavigation'
+import { Button } from '@/src/components/Button/Button'
+import Carousel from '@/src/components/Carousel/Carousel'
+import Film from '@/src/components/Film/Film'
+import Reviews from '@/src/components/Reviews/Reviews'
+import { feedback } from '@/src/components/Reviews/props/props'
+import { calcTime } from '@/src/functions/functions'
+import { selectPickedMovie } from '@/src/store/reducers/dataBaseReducer'
+import { IReviews } from '@/src/types/CommentsType'
+import { IFilm, ITrailer } from '@/src/types/types'
 
 const FilmPage = () => {
   const actorsList: string[] = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
@@ -41,7 +38,7 @@ const FilmPage = () => {
   } = useRouter()
   //Запрос на рецензии к фильму по id
   useEffect(() => {
-    fetch(`http://localhost:3004/comments/${pickedFilm.id }/tree`, {
+    fetch(`http://localhost:3004/comments/${id}/tree`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -50,11 +47,11 @@ const FilmPage = () => {
       .then(res => res.json())
       .then(json => setReviews(json))
       .catch(err => console.log(err))
-  }, [pickedFilm])
+  }, [id])
 
   useEffect(() => {
-    console.log(pickedFilm)
-    fetch(`http://localhost:3001/movies/${pickedFilm}/videos`, {
+    // console.log(pickedFilm)
+    fetch(`http://localhost:3001/movies/${id}/videos`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -63,10 +60,10 @@ const FilmPage = () => {
       .then(res => res.json())
       .then(json => setPickedTrailer(json))
       .catch(err => console.log(err))
-  }, [pickedFilm])
+  }, [id])
 
   useEffect(() => {
-    fetch(`http://localhost:3001/movies/${pickedFilm}/similar`, {
+    fetch(`http://localhost:3001/movies/${id}/similar`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -75,10 +72,10 @@ const FilmPage = () => {
       .then(res => res.json())
       .then(json => setSimilars(json))
       .catch(err => console.log(err))
-  }, [pickedFilm])
+  }, [id])
 
   useEffect(() => {
-    fetch(`http://localhost:3001/movies/${pickedFilm}`, {
+    fetch(`http://localhost:3001/movies/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -88,7 +85,7 @@ const FilmPage = () => {
       .then(json => setData(json))
       .catch(err => console.log(err))
       .finally(() => setIsLoading(false))
-  }, [pickedFilm])
+  }, [id])
   // useEffect(() => {
   //   fetch(`http://localhost:3001/movies/${pickedFilm.id}`, {
   //     method: 'GET',
@@ -289,7 +286,11 @@ const FilmPage = () => {
             </div>
           </div>
         </div>
-        <Reviews reviews={reviews} titleBtn='Рецензии' btn='Оставить рецензию' numberOfReviews={reviews.length} aboutTheFilm={`На фильм "${pickedFilm.nameRu}"`} />
+        {reviews.length > 0 ? (
+          <Reviews reviews={reviews} titleBtn='Рецензии' btn='Оставить рецензию' numberOfReviews={reviews.length} aboutTheFilm={`На фильм "${data.nameRu}"`} />
+        ) : (
+          ''
+        )}
         <div className={styles.watchAllDevicesSection}>
           <div className={styles.watchAllDevices__content}>
             <span className={styles.filmPage__titleText}>{`Cмотреть «${data.nameRu}» на всех устройствах`}</span>

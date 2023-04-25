@@ -7,11 +7,12 @@ import { Button } from '@/src/components/Button/Button'
 import { IPersonMovies } from '@/src/types/PersonTypes'
 
 const PersonMovies: FC<{ movie: IPersonMovies }> = ({ movie }) => {
-  const { ratingKinopoisk, posterUrlPreview, nameRu } = movie
+  const { ratingKinopoisk, posterUrlPreview, nameRu, id } = movie
+
   const { t } = useTranslation()
   return (
     <div className={style.movie}>
-      <Link href='' className={style.movie__link}>
+      <Link href={`/movies/${id}`} className={style.movie__link}>
         <div className={style.movie__img}>
           <img src={`${posterUrlPreview}`} alt='' />
         </div>
