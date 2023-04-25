@@ -1,7 +1,8 @@
 import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
-import '@/src/i18next/18n'
+
 import Layout from '@/src/components/Layout/Layout'
+import '@/src/i18next/i18n'
 import { wrapper } from '@/src/store/store'
 import '@/styles/globals.scss'
 
@@ -10,9 +11,9 @@ const App = ({ Component, pageProps, ...rest }: AppProps) => {
 
   return (
     <Provider store={store}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
     </Provider>
   )
 }

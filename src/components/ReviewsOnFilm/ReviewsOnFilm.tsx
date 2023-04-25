@@ -66,8 +66,7 @@ const ReviewsOnFilm = withRouter(() => {
           </div>
         </div>
         <div className={styles.movie}>
-          <Link href={''} className={styles.movie__preview}>
-            {' '}
+          <Link href={`/movies/${id}`} className={styles.movie__preview}>
             <img src={data.posterUrlPreview} alt='' />
           </Link>
           {data.id && (

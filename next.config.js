@@ -6,6 +6,11 @@ const nextConfig = {
     PARSER_URL: 'http://localhost:3002',
     INFO_URL: 'http://localhost:3003',
     COMMENT_URL: 'http://localhost:3004'
+  },
+  i18n:{
+    locales: ["ru", "en"],
+    defaultLocale: "en",
+    localeDetection: false
   }
 }
 
