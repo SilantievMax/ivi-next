@@ -33,7 +33,6 @@ const FilmPage = () => {
   const [similars, setSimilars] = useState<IFilm[]>([] as IFilm[])
   const [data, setData] = useState<IFilm>({} as IFilm)
   const [reviews, setReviews] = useState<IReviews[]>([] as IReviews[])
-
   const {
     query: { id }
   } = useRouter()
@@ -52,7 +51,6 @@ const FilmPage = () => {
   }, [id])
 
   useEffect(() => {
-    // console.log(pickedFilm)
     fetch(`http://localhost:3001/movies/${id}/videos`, {
       method: 'GET',
       headers: {
@@ -65,8 +63,7 @@ const FilmPage = () => {
   }, [id])
 
   useEffect(() => {
-
-    fetch(`http://localhost:3001/movies/${id}/similar`, {
+    fetch(`http://localhost:3005/persons/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -77,9 +74,8 @@ const FilmPage = () => {
       .catch(err => console.log(err))
   }, [id])
 
-
   useEffect(() => {
-    fetch(`http://localhost:3001/movies/${pickedFilm}/similar`, {
+    fetch(`http://localhost:3001/movies/${id}/similar`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -89,6 +85,7 @@ const FilmPage = () => {
       .then(json => setSimilars(json))
       .catch(err => console.log(err))
   }, [id])
+
 
   useEffect(() => {
     fetch(`http://localhost:3001/movies/${id}`, {
@@ -102,15 +99,15 @@ const FilmPage = () => {
       .catch(err => console.log(err))
       .finally(() => setIsLoading(false))
   }, [id])
+  const calcTime = (num: number) => {
+    return `${Math.floor(num / 60)}${t('hour')} ${num % 60}${t('min')}`
+  }
   if (!data.genres || !pickedTrailer.length) return <Oval wrapperClass={styles.loader}
                                                           color='rgba(255, 255, 255, .72)'
                                                           secondaryColor='red' />
 
 
-  const calcTime = (num: number) => {
-    return `${Math.floor(num / 60)}${t('hour')} ${num % 60}${t('min')}`
-  }
-  console.log(data)
+
   return (
     <div className={styles.filmPageWrapper}>
       <div>
@@ -386,8 +383,7 @@ const FilmPage = () => {
         </div>
         <div className={styles.galleryWrapper}>
         <span
-          className={styles.filmPage__titleText}>{`С фильмом «${i18n.language === 'en' ? data.nameEn : data.nameRu}» смотрят`}</span>
-
+          className={styles.filmPage__titleText}>{`${t('watchWithFilm')} «${i18n.language === 'en' ? data.nameEn : data.nameRu}» ${t('watches')}`}</span>
           <Carousel items={similars.map((el, idx) => <Film key={idx} film={el} />)}
                     size={'standard'} transition={350}
                     className={styles.moviesContainer} />

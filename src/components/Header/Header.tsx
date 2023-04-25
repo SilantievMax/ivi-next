@@ -48,8 +48,6 @@ const Header: FC = () => {
   }
   return (
     <header className={styles.header}>
-      <button onClick={() => changeLanguage('en')}>EN</button>
-      <button onClick={() => changeLanguage('ru')}>RU</button>
       <div className={styles.header__t}>
         <Link href='/' onMouseOver={handleMouseOut}>
           <img src={logo.src} alt='logo' />
