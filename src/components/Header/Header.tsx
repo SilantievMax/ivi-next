@@ -9,6 +9,7 @@ import ModalWindow from '@/src/components/ModalWindow/ModalWindow'
 import Profile from '@/src/components/Profile/Profile'
 import { lngs } from '@/src/i18next/lngs'
 import { bell, logo, magnifyingGlass, paple } from '@/src/img/imges'
+import i18n, { changeLanguage } from 'i18next'
 
 const Header: FC = () => {
   const isAuth = false
@@ -45,7 +46,6 @@ const Header: FC = () => {
         return <ListCategories children={''} variant={isVariant} />
     }
   }
-
   return (
     <header className={styles.header}>
       <div className={styles.header__t}>

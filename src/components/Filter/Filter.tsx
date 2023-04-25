@@ -16,6 +16,7 @@ import FilterLi from './FilterLi'
 import { Button } from '@/src/components/Button/Button'
 import { IGenre } from '@/src/types/types'
 import { capitalize } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 
 
 const Filter = () => {
@@ -26,6 +27,7 @@ const Filter = () => {
   const [rateAmount, setRateAmount] = useState<number>(7.3)
   const genresList = useSelector(selectGenresList)
   const countryList = useSelector(selectCountryList)
+  const { t } = useTranslation()
   const yearArray = [
     'Все годы',
     '2023 год',
@@ -100,7 +102,7 @@ const Filter = () => {
     <div className={styles.filtersContainer}>
       <div className={styles.filtersContainer__item}>
         <FilterItem
-          title='Жанры'
+          title={t('genres')}
           content={
             <div className={styles.filterDropdown__content}>
               <ul className={styles.filterDropdown__list}>
@@ -130,7 +132,7 @@ const Filter = () => {
                 ))}
               </ul>
             </div>
-          } title='Страны' />
+          } title={t('countries')} />
         <FilterItem content={
           <div className={styles.filterDropdown__content}>
             <ul className={styles.filterDropdown__column}>
@@ -142,21 +144,21 @@ const Filter = () => {
               )}
             </ul>
           </div>
-        } title='Годы' />
+        } title={t('years')} />
         <FilterItem content={
           <div className={styles.filterDropdown__slider}>
             <span>{`От ${pickedReviewAmount}`}</span>
             <Slider sx={{color: '#8c85b9'}} onChange={handleReviewChange} min={0} max={500000} step={10000} value={pickedReviewAmount} defaultValue={pickedReviewAmount} aria-label="Default" valueLabelDisplay="auto"/>
             <Button onClick={() => dispatch(setReviewAmount(pickedReviewAmount))} color='darkRed' children='Подтвердить'/>
           </div>
-        } title='Количество оценок(от)' />
+        } title={t('numberOfRatings')} />
         <FilterItem content={
           <div className={styles.filterDropdown__slider}>
             <span>{`От ${rateAmount}`}</span>
             <Slider sx={{color: '#8c85b9'}} onChange={handleRateChange} min={0} max={10} step={0.1} value={rateAmount} defaultValue={rateAmount} aria-label="Default" valueLabelDisplay="auto"/>
             <Button onClick={() => dispatch(setRate(rateAmount))} color='darkRed' children='Подтвердить'/>
           </div>
-        } title='Рейтинг(от)' />
+        } title={t('rate')} />
       </div>
       <div onClick={() => {
         dispatch(setReviewAmount(0))
@@ -167,7 +169,7 @@ const Filter = () => {
       }
       } className={styles.removeFilterBox}>
         <FiX className={styles.removeFilterBox__btn} />
-        Сбросить фильтры
+        {t('deleteFilters')}
       </div>
     </div>
   )

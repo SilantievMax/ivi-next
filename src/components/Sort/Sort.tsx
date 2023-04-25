@@ -5,14 +5,15 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import styles from './sort.module.scss'
 import { selectSort, setSort } from '@/src/store/reducers/sortReducer'
+import { useTranslation } from 'react-i18next'
 
 const Sort = () => {
-
+  const { t } = useTranslation()
   const sortArray = [
-    { type: 'По количеству оценок', query: 'ratingKinopoiskVoteCount-ASC' },
-    { type: 'По рейтингу', query: 'ratingKinopoisk-ASC' },
-    { type: 'По дате выхода' , query: 'year-DESC'},
-    { type: 'По алфавиту', query: 'nameRu-ASC' }
+    { type: 'sortByAmount', query: 'ratingKinopoiskVoteCount-ASC' },
+    { type: 'sortByRating', query: 'ratingKinopoisk-ASC' },
+    { type: 'sortByDate' , query: 'year-DESC'},
+    { type: 'sortByAlphabet', query: 'nameRu-ASC' }
   ]
   const [active, setActive] = useState<boolean>(false)
   const dispatch = useDispatch()
@@ -38,11 +39,11 @@ const Sort = () => {
     <div ref={wrapperRef}>
       <div onClick={() => setActive(!active)} className={styles.genreSorting}>
         <FiAlignRight />
-        <div>{reduxSort.type}</div>
+        <div>{t(reduxSort.type)}</div>
         {active ? <AiOutlineUp /> : <AiOutlineDown />}
       </div>
       <div className={active ? `${styles.dropdownMenu}` : `${styles.none}`}>
-        <div className={`${styles.greyText} ${styles.dropdownMenu__item}`}>Сортировать</div>
+        <div className={`${styles.greyText} ${styles.dropdownMenu__item}`}>{t('sort')}</div>
         {sortArray.map((el, idx) => (
           <div
             onClick={() => {
@@ -52,7 +53,7 @@ const Sort = () => {
             className={reduxSort.type === el.type ? `${styles.greyText} ${styles.dropdownMenu__item} ${styles.active}` : `${styles.greyText} ${styles.dropdownMenu__item}`}
             key={idx}
           >
-            {el.type}
+            {t(el.type)}
           </div>
         ))}
       </div>
