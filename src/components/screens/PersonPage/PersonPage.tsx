@@ -17,7 +17,6 @@ const PersonPage: FC = () => {
   } = useRouter()
   const { t } = useTranslation()
   const [person, getPerson] = useState<IInfoPerson>()
-  // console.log(person?.person);
 
   const fetchById = async () => {
     fetch(`http://localhost:3003/info/person/${id}`, {

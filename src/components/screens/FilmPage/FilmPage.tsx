@@ -40,7 +40,20 @@ const FilmPage = () => {
   const { t } = useTranslation()
   //Запрос на рецензии к фильму по id
   useEffect(() => {
-    fetch(`http://localhost:3001/movies/${pickedFilm}/videos`, {
+    fetch(`http://localhost:3004/comments/${id}/tree`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => res.json())
+      .then(json => setReviews(json))
+      .catch(err => console.log(err))
+  }, [id])
+
+  useEffect(() => {
+    // console.log(pickedFilm)
+    fetch(`http://localhost:3001/movies/${id}/videos`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -49,10 +62,11 @@ const FilmPage = () => {
       .then(res => res.json())
       .then(json => setPickedTrailer(json))
       .catch(err => console.log(err))
-  }, [pickedFilm])
+  }, [id])
 
   useEffect(() => {
-    fetch(`http://localhost:3005/persons/${pickedFilm}`, {
+
+    fetch(`http://localhost:3001/movies/${id}/similar`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -61,7 +75,7 @@ const FilmPage = () => {
       .then(res => res.json())
       .then(json => setCrewList(json))
       .catch(err => console.log(err))
-  }, [pickedFilm])
+  }, [id])
 
 
   useEffect(() => {
@@ -74,10 +88,10 @@ const FilmPage = () => {
       .then(res => res.json())
       .then(json => setSimilars(json))
       .catch(err => console.log(err))
-  }, [pickedFilm])
+  }, [id])
 
   useEffect(() => {
-    fetch(`http://localhost:3001/movies/${pickedFilm}`, {
+    fetch(`http://localhost:3001/movies/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -87,7 +101,7 @@ const FilmPage = () => {
       .then(json => setData(json))
       .catch(err => console.log(err))
       .finally(() => setIsLoading(false))
-  }, [pickedFilm])
+  }, [id])
   if (!data.genres || !pickedTrailer.length) return <Oval wrapperClass={styles.loader}
                                                           color='rgba(255, 255, 255, .72)'
                                                           secondaryColor='red' />
@@ -406,8 +420,12 @@ const FilmPage = () => {
             </div>
           </div>
         </div>
-        <Reviews reviews={reviews} titleBtn={t('reviews')} btn={t('createReview')}
-                 numberOfReviews={reviews.length} aboutTheFilm={`${t('onFilm')} "${i18n.language === 'en' ? data.nameEn : data.nameRu}"`} />
+
+        {reviews.length > 0 ? (
+          <Reviews reviews={reviews} titleBtn={t('reviews')} btn={t('createReview')} numberOfReviews={reviews.length} aboutTheFilm={`${t('onFilm')} "${i18n.language === 'en' ? data.nameEn : data.nameRu}"`} />
+        ) : (
+          ''
+        )}
         <div className={styles.watchAllDevicesSection}>
           <div className={styles.watchAllDevices__content}>
         <span

@@ -2,12 +2,10 @@
   &__input {
     display: inline-block;
     vertical-align: top;
-    // position: relative;
     margin-bottom: 20px;
     width: 100%;
     height: 40px;
     position: relative;
-    // overflow: hidden;
     border-radius: 8px;
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
@@ -44,7 +42,6 @@
       left: 0px;
     }
   }
-
   &__textarea {
     display: inline-block;
     vertical-align: top;
@@ -52,7 +49,6 @@
     margin-bottom: 20px;
     width: 100%;
     height: 140px;
-    // overflow: hidden;
     border-radius: 8px;
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
@@ -74,19 +70,26 @@
       height: 100%;
       resize: none;
     }
+    textarea:focus{
+      cursor: text;
+    }
   }
 }
 .form__input:focus + .form__input_lable,
 .form__input:not(:placeholder-shown) + lable {
   top: -4px;
   font-size: 12px;
-  cursor: text;
+  cursor: text !important;
 }
 .form__textarea:focus + .form__input_lable,
 .form__textarea:not(:placeholder-shown) + lable {
   top: -4px;
   font-size: 12px;
   cursor: text !important;
+}
+.focus{
+  top: -4px;
+  font-size: 12px;
 }
 
 .errorAlert {
