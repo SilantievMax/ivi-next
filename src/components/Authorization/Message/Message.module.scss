@@ -13,5 +13,9 @@
     font-size: 12px;
     color: #9a9494;
     padding-top: 9px;
+
+    &:first-letter {
+      text-transform: capitalize;
+    }
   }
 }

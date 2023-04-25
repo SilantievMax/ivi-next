@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useRef, useState } from 'react'
 
 import { Button } from '../Button/Button'
 
@@ -12,7 +12,6 @@ const messagesArr = [{ messages: 'Войдите или зарегистриру
 const Authorization: FC = () => {
   const [messages, setMessages] = useState(messagesArr)
   const [isForm, setisForm] = useState('')
-  // const [errors, setErrors] = useState('')
 
   const onClickAutn = () => {
     setisForm('auth')
@@ -36,6 +35,16 @@ const Authorization: FC = () => {
     setMessages([...messages, { messages: 'Ошибка:', description: text }])
     console.log(errors)
   }
+
+  const messagesEndRef = useRef(null)
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  useEffect(() => {
+    scrollToBottom()
+  }, [messages, isForm])
 
   return (
     <div className={styles.continder}>
@@ -62,6 +71,7 @@ const Authorization: FC = () => {
           </div>
         )}
       </div>
+      <div ref={messagesEndRef}></div>
     </div>
   )
 }

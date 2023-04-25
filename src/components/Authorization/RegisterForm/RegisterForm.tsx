@@ -11,7 +11,7 @@ interface RegisterFormProps {
 const RegisterForm: FC<RegisterFormProps> = ({ setErrors, onCliclForm }) => {
   const {
     register,
-    formState: { errors, isValid },
+    formState: { errors },
     handleSubmit,
     reset
   } = useForm({
@@ -27,26 +27,26 @@ const RegisterForm: FC<RegisterFormProps> = ({ setErrors, onCliclForm }) => {
     <div>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <label>
-          Login: {errors?.login && errors?.login?.message}
+          Login:
           <input
             {...register('login', {
-              required: 'Напишите свою почту',
+              required: 'введите свою почту',
               pattern: {
                 value: /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
-                message: 'Неверный формат почты'
+                message: 'неверный формат почты'
               }
             })}
           />
         </label>
         <label>
-          password: {errors?.password && errors?.password?.message}
+          password:
           <input
             type='password'
             {...register('password', {
-              required: 'Напишите пароль',
+              required: 'введите свой пароль',
               minLength: {
                 value: 5,
-                message: 'Пароль должен быть больше 5 символов'
+                message: 'пароль должен быть больше 5 символов'
               }
             })}
           />
