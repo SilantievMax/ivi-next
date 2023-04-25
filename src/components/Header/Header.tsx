@@ -8,6 +8,7 @@ import styles from './Header.module.scss'
 import ListCategories from './ListСategories/ListСategories'
 import { Button } from '@/src/components/Button/Button'
 import { bell, logo, magnifyingGlass, paple } from '@/src/img/imges'
+import i18n, { changeLanguage } from 'i18next'
 
 const Header: FC = () => {
   const isAuth = false
@@ -41,9 +42,10 @@ const Header: FC = () => {
         return <ListCategories children={''} variant={isVariant} />
     }
   }
-
   return (
     <header className={styles.header}>
+      <button onClick={() => changeLanguage('en')}>EN</button>
+      <button onClick={() => changeLanguage('ru')}>RU</button>
       <div className={styles.header__t}>
         <Link href='/' onMouseOver={handleMouseOut}>
           <img src={logo.src} alt='logo' />

@@ -12,27 +12,24 @@ import PersonPage from '../PersonPage/PersonPage';
 
 import { Button } from '@/src/components/Button/Button';
 import Reviews from '@/src/components/Reviews/Reviews';
+import Index from '@/pages/movies'
+import { changeLanguage } from 'i18next'
 
 
 const HomePage: FC = () => {
   const { t, i18n } = useTranslation()
 
-  const changeLanguage = (language: string) => {
-    i18n.changeLanguage(language)
-  }
 
   return (
     <div>
-      {/* <AdminPage/> */}
-      {/* <PersonPage/> */}
-      {/* <button onClick={() => changeLanguage('en')}>EN</button>
+    <AdminPage/>
+    <PersonPage/>
+     <button onClick={() => changeLanguage('en')}>EN</button>
       <button onClick={() => changeLanguage('ru')}>RU</button>
-      <h1>{t('Welcome to React')}</h1> */}
-      {/* <Index/> */}
-      {/* <Reviews  titleBtn='Отзывы' btn='Оставить отзывы' aboutTheFilm='О фильме...' /> */}
-      {/* <Reviews  movieId={1}  titleBtn='Рецензии' btn='Написать рецензию' /> */}
+      <h1>{t('Welcome to React')}</h1>
+      <Index/>
     </div>
-  ) 
+  )
 }
 
 export default HomePage

@@ -8,7 +8,7 @@ export interface sortItem {
 }
 
 const initialState: sortItem = {
-  sort: { type: 'По количеству оценок', query: 'ratingKinopoiskVoteCount-ASC' }
+  sort: { type: 'sortByAmount', query: 'ratingKinopoiskVoteCount-ASC' }
 }
 
 export const itemSlice = createSlice({
