@@ -4,18 +4,16 @@ import { FiX } from 'react-icons/fi'
 import styles from './filter.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  selectCountries,
-  selectGenres,
-  selectReviewAmount, setCountries,
-  setGenres, setPickedYear,
+  selectCountries, selectCountryList,
+  selectGenres, selectGenresList,
+  setCountries, setCountriesList,
+  setGenres, setGenresList, setPickedYear,
   setReviewAmount
 } from '../../store/reducers/filterReducer'
-import { selectRate, setRate } from '../../store/reducers/filterReducer'
+import { setRate } from '../../store/reducers/filterReducer'
 import FilterItem from './FilterItem'
 import FilterLi from './FilterLi'
 import { Button } from '@/src/components/Button/Button'
-import { useOuside } from '@/src/hooks/useOutside'
-import { setMoviesList } from '@/src/store/reducers/dataBaseReducer'
 import { IGenre } from '@/src/types/types'
 import { capitalize } from '@mui/material'
 
@@ -26,6 +24,8 @@ const Filter = () => {
   const countries = useSelector(selectCountries)
   const [pickedReviewAmount, setSickedReviewAmount] = useState<number>(0)
   const [rateAmount, setRateAmount] = useState<number>(7.3)
+  const genresList = useSelector(selectGenresList)
+  const countryList = useSelector(selectCountryList)
   const yearArray = [
     'Все годы',
     '2023 год',
@@ -105,8 +105,11 @@ const Filter = () => {
             <div className={styles.filterDropdown__content}>
               <ul className={styles.filterDropdown__list}>
                 {genresArray.map((el, idx) => (
-                  <div key={idx} onClick={() => addGenre(el.id)}>
-                    <FilterLi  content={capitalize(el.nameRu)} className={styles.filterDropdown__item} />
+                  <div key={idx} onClick={() => {
+                    dispatch(setGenresList([...genresList, capitalize(el.nameRu)]))
+                    addGenre(el.id)
+                  }}>
+                    <FilterLi id={el.id} content={capitalize(el.nameRu)} className={styles.filterDropdown__item} />
                   </div>
                 ))}
               </ul>
@@ -118,8 +121,11 @@ const Filter = () => {
             <div className={styles.filterDropdown__content}>
               <ul className={styles.filterDropdown__list}>
                 {countryArray.map((el, idx) => (
-                  <div key={idx} onClick={() => addCountry(el.id)}>
-                    <FilterLi content={capitalize(el.nameRu)} className={styles.filterDropdown__item} />
+                  <div key={idx} onClick={() => {
+                    addCountry(el.id)
+                    dispatch(setCountriesList([...countryList, capitalize(el.nameRu)]))
+                  }}>
+                    <FilterLi id={el.id} content={capitalize(el.nameRu)} className={styles.filterDropdown__item} />
                   </div>
                 ))}
               </ul>
@@ -157,6 +163,7 @@ const Filter = () => {
         dispatch(setRate(7.3))
         dispatch(setCountries([]))
         dispatch(setGenres([]))
+        dispatch(setPickedYear('Все годы'))
       }
       } className={styles.removeFilterBox}>
         <FiX className={styles.removeFilterBox__btn} />

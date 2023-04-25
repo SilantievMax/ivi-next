@@ -81,7 +81,7 @@ const MoviesPage: FC = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     fetch(
-      `http://localhost:3003/info?order=${sort.query}&minRating=${rate}&numRatings=${reviewAmount}&genres=${genres.toString()}&countries=${countries.toString()}&years=${year}`,
+      `http://localhost:3003/info?limit=20&order=${sort.query}&minRating=${rate}&numRatings=${reviewAmount}&genres=${genres.toString()}&countries=${countries.toString()}&years=${year}`,
       {
         method: 'GET'
       }
@@ -89,7 +89,7 @@ const MoviesPage: FC = () => {
       .then(res => res.json())
       .then(json => dispatch(setMoviesList(json.rows)))
       .catch(err => console.log(err))
-  }, [sort, rate, reviewAmount, genres, countries])
+  }, [sort, rate, reviewAmount, genres, countries, year])
   return (
     <div className={styles.filmsSection}>
       <BreadCrumbNavigation activeItemClassName='slash' omitRootLabel={false} rootLabel={'Мой иви'} />
