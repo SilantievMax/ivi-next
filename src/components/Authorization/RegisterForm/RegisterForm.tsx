@@ -3,7 +3,12 @@ import { useForm } from 'react-hook-form'
 
 import styles from './RegisterForm.module.scss'
 
-const RegisterForm: FC = () => {
+interface RegisterFormProps {
+  setErrors?: any
+  onCliclForm?: any
+}
+
+const RegisterForm: FC<RegisterFormProps> = ({ setErrors, onCliclForm }) => {
   const {
     register,
     formState: { errors, isValid },
@@ -25,7 +30,7 @@ const RegisterForm: FC = () => {
           Login: {errors?.login && errors?.login?.message}
           <input
             {...register('login', {
-              required: 'Заполните это поле',
+              required: 'Напишите свою почту',
               pattern: {
                 value: /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
                 message: 'Неверный формат почты'
@@ -38,7 +43,7 @@ const RegisterForm: FC = () => {
           <input
             type='password'
             {...register('password', {
-              required: 'Заполните это поле',
+              required: 'Напишите пароль',
               minLength: {
                 value: 5,
                 message: 'Пароль должен быть больше 5 символов'
@@ -46,7 +51,12 @@ const RegisterForm: FC = () => {
             })}
           />
         </label>
-        <input type='submit' disabled={!isValid} />
+        <input
+          onClick={() => {
+            onCliclForm(errors)
+          }}
+          type='submit'
+        />
       </form>
     </div>
   )
