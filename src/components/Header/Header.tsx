@@ -1,16 +1,17 @@
 import Link from 'next/link'
 import React, { FC, useRef, useState } from 'react'
-
-import ModalWindow from '@/src/components/ModalWindow/ModalWindow'
-import Profile from '@/src/components/Profile/Profile'
+import { useSelector } from 'react-redux'
 
 import styles from './Header.module.scss'
 import ListCategories from './ListСategories/ListСategories'
 import { Button } from '@/src/components/Button/Button'
+import ModalWindow from '@/src/components/ModalWindow/ModalWindow'
+import Profile from '@/src/components/Profile/Profile'
 import { bell, logo, magnifyingGlass, paple } from '@/src/img/imges'
+import { selectIsAuth } from '@/src/store/reducers/authReducer'
 
 const Header: FC = () => {
-  const isAuth = false
+  const isAuth = useSelector(selectIsAuth)
   const [isHovering, setIsHovering] = useState(false)
   const [isVariant, setVariant] = useState('')
 
