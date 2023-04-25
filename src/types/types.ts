@@ -1,3 +1,6 @@
+import { type } from "os";
+
+
 export interface ILinks {
   title: string
   link: string
@@ -40,4 +43,7 @@ export interface IFilm {
   completed: boolean,
   genres: IGenre[]
   countries: IGenre[]
+}
+export type TypeFilm = {
+  moviesList: IFilm
 }

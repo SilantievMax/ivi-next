@@ -12,7 +12,7 @@
   background-color: transparent;
   cursor: pointer;
   white-space: nowrap;
-  width: 100%;
+  // width: 100%;
 }
 .button:active {
   opacity: 1;
@@ -175,7 +175,6 @@
 }
 .disable {
   opacity: 0.5;
-  pointer-events: none;
 }
 .comment {
   color: #a5a1b2;

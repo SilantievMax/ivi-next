@@ -10,7 +10,7 @@ import { convertBreadcrumb } from './ConvertBreadcrumd'
 
 const defaultProps: BreadcrumbsProps = {
   rootLabel: '',
-  omitRootLabel: true,
+  omitRootLabel: false,
   labelsToUppercase: false,
   replaceCharacterList: [{ from: '-', to: ' ' }],
   transformLabel: undefined,

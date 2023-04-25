@@ -3,24 +3,25 @@ import React, { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import style from './Person.module.scss'
-import { IFilms } from './PersonInterfase'
 import { Button } from '@/src/components/Button/Button'
+import { IPersonMovies } from '@/src/types/PersonTypes'
 
-const PersonMovies: FC<{ movie: IFilms }> = ({ movie }) => {
-  const { rating, nameRu } = movie
+const PersonMovies: FC<{ movie: IPersonMovies }> = ({ movie }) => {
+  const { ratingKinopoisk, posterUrlPreview, nameRu, id } = movie
+
   const { t } = useTranslation()
   return (
     <div className={style.movie}>
-      <Link href='' className={style.movie__link}>
+      <Link href={`/movies/${id}`} className={style.movie__link}>
         <div className={style.movie__img}>
-          <img src='https://thumbs.dfs.ivi.ru/storage23/contents/0/2/bc8048ba414c2e1c6ade434126b6c9.jpg/172x264/?q=85' alt='' />
+          <img src={`${posterUrlPreview}`} alt='' />
         </div>
         <div className={style.movie__body}>
           <div className={style.movie__header}>
             <span>2018</span>
             <h3>{nameRu}</h3>
             <p>
-              {t('Rating:')} {rating}
+              {t('Rating:')} {ratingKinopoisk}
             </p>
           </div>
           <Button className={style.movie__btn} color='gray'>

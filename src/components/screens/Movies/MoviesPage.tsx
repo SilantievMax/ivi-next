@@ -1,22 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
 import styles from './movies.module.scss'
-import Sort from '@/src/components/Sort/Sort'
+import BreadCrumbNavigation from '@/src/components/BreadCrumbNavigation/BreadCrumbNavigation'
 import { Button } from '@/src/components/Button/Button'
 import Carousel from '@/src/components/Carousel/Carousel'
-import BreadCrumbNavigation from '@/src/components/BreadCrumbNavigation/MainBreadCrumb/MainBreadCrumbs'
-import { selectSort } from '@/src/store/reducers/sortReducer'
-import { useDispatch, useSelector } from 'react-redux'
-import { selectMoviesList, setMoviesList } from '@/src/store/reducers/dataBaseReducer'
-import {
-  selectCountries,
-  selectGenres, selectPickedYear,
-  selectRate,
-  selectReviewAmount
-} from '@/src/store/reducers/filterReducer'
 import Film from '@/src/components/Film/Film'
 import Filter from '@/src/components/Filter/Filter'
+import Sort from '@/src/components/Sort/Sort'
+import { InfoService } from '@/src/services/info.service'
+import { selectMoviesList, setMoviesList } from '@/src/store/reducers/dataBaseReducer'
+import { selectCountries, selectGenres, selectPickedYear, selectRate, selectReviewAmount } from '@/src/store/reducers/filterReducer'
+import { selectSort } from '@/src/store/reducers/sortReducer'
+import { TypeFilm } from '@/src/types/types'
 
-const MoviesPage = () => {
+const MoviesPage: FC = () => {
   const rate = useSelector(selectRate)
   const reviewAmount = useSelector(selectReviewAmount)
   const headersArray = [
@@ -82,18 +80,19 @@ const MoviesPage = () => {
   ]
   const dispatch = useDispatch()
   useEffect(() => {
-    fetch(`http://localhost:3003/info?order=${sort.query}&minRating=${rate}&numRatings=${reviewAmount}&genres=${genres.toString()}&countries=${countries.toString()}&years=${year}`, {
-      method: 'GET',
-    })
+    fetch(
+      `http://localhost:3003/info?order=${sort.query}&minRating=${rate}&numRatings=${reviewAmount}&genres=${genres.toString()}&countries=${countries.toString()}&years=${year}`,
+      {
+        method: 'GET'
+      }
+    )
       .then(res => res.json())
       .then(json => dispatch(setMoviesList(json.rows)))
       .catch(err => console.log(err))
   }, [sort, rate, reviewAmount, genres, countries])
-  console.log(year)
   return (
     <div className={styles.filmsSection}>
-
-      <BreadCrumbNavigation useDefaultStyle={false}/>
+      <BreadCrumbNavigation activeItemClassName='slash' omitRootLabel={false} rootLabel={'Мой иви'} />
 
       <div className={styles.filmsSection__description}>
         <h1 className={styles.filmsSection__title}>Фильмы смотреть онлайн</h1>
@@ -158,7 +157,9 @@ const MoviesPage = () => {
       <Sort />
       <Filter />
       <div className={styles.filmCardsWrapper}>
-        {movies.map((el, idx) => <Film key={idx} film={el}/>)}
+        {movies.map((el, idx) => (
+          <Film key={idx} film={el} />
+        ))}
       </div>
       <h2 className={styles.sectionHeader}>Фильмы-новинки</h2>
       <Carousel

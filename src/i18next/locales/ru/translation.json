@@ -1,0 +1,16 @@
+{
+  "translation": {
+    "Welcome to React": "Добро пожаловать в React и react-i18next",
+    "Back": "Назад",
+    "Full filmography": "Полная фильмография",
+    "8 movies": "8 фильмов",
+    "Rating": "Рейтинг:",
+    "More detailed": "Подробнее",
+    "movies": "Фильмы",
+    "comedy": "Комедии",
+    "myIvi": "Мой иви",
+    "whatNew": "Что нового",
+    "serials": "Сериалы",
+    "cartoons": "Мультфильмы"
+  }
+}
