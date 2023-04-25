@@ -1,3 +1,26 @@
+<<<<<<< HEAD
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import React, { useEffect, useState } from 'react'
+import { BiBookmark, BiFilm, BiVolumeLow } from 'react-icons/bi'
+import { BsPlay } from 'react-icons/bs'
+import { FiUpload } from 'react-icons/fi'
+import { Oval } from 'react-loader-spinner'
+import ReactPlayer from 'react-player'
+import { useDispatch, useSelector } from 'react-redux'
+
+import styles from './filmpage.module.scss'
+import BreadCrumbNavigation from '@/src/components/BreadCrumbNavigation/BreadCrumbNavigation'
+import { Button } from '@/src/components/Button/Button'
+import Carousel from '@/src/components/Carousel/Carousel'
+import Film from '@/src/components/Film/Film'
+import Reviews from '@/src/components/Reviews/Reviews'
+import { feedback } from '@/src/components/Reviews/props/props'
+import { calcTime } from '@/src/functions/functions'
+import { selectPickedMovie } from '@/src/store/reducers/dataBaseReducer'
+import { IReviews } from '@/src/types/CommentsType'
+import { IFilm, ITrailer } from '@/src/types/types'
+=======
 import React, { useEffect, useState } from 'react'
 import styles from './filmpage.module.scss'
 import Link from 'next/link'
@@ -23,6 +46,7 @@ import { IReviews } from '@/src/types/CommentsType'
 import { capitalize } from '@mui/material'
 import { TfiTimer } from 'react-icons/tfi'
 import { MdArrowBackIosNew } from 'react-icons/md'
+>>>>>>> main
 
 const FilmPage = () => {
   const [showActorsWindow, setShowActorsWindow] = useState<boolean>(false)
@@ -41,7 +65,24 @@ const FilmPage = () => {
   } = useRouter()
   //Запрос на рецензии к фильму по id
   useEffect(() => {
+<<<<<<< HEAD
+    fetch(`http://localhost:3004/comments/${id}/tree`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => res.json())
+      .then(json => setReviews(json))
+      .catch(err => console.log(err))
+  }, [id])
+
+  useEffect(() => {
+    // console.log(pickedFilm)
+    fetch(`http://localhost:3001/movies/${id}/videos`, {
+=======
     fetch(`http://localhost:3001/movies/${pickedFilm}/videos`, {
+>>>>>>> main
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -50,9 +91,12 @@ const FilmPage = () => {
       .then(res => res.json())
       .then(json => setPickedTrailer(json))
       .catch(err => console.log(err))
-  }, [pickedFilm])
+  }, [id])
 
   useEffect(() => {
+<<<<<<< HEAD
+    fetch(`http://localhost:3001/movies/${id}/similar`, {
+=======
     fetch(`http://localhost:3005/persons/${pickedFilm}`, {
       method: 'GET',
       headers: {
@@ -67,6 +111,7 @@ const FilmPage = () => {
 
   useEffect(() => {
     fetch(`http://localhost:3001/movies/${pickedFilm}/similar`, {
+>>>>>>> main
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -75,10 +120,10 @@ const FilmPage = () => {
       .then(res => res.json())
       .then(json => setSimilars(json))
       .catch(err => console.log(err))
-  }, [pickedFilm])
+  }, [id])
 
   useEffect(() => {
-    fetch(`http://localhost:3001/movies/${pickedFilm}`, {
+    fetch(`http://localhost:3001/movies/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -88,10 +133,27 @@ const FilmPage = () => {
       .then(json => setData(json))
       .catch(err => console.log(err))
       .finally(() => setIsLoading(false))
+<<<<<<< HEAD
+  }, [id])
+  // useEffect(() => {
+  //   fetch(`http://localhost:3001/movies/${pickedFilm.id}`, {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   })
+  //     .then(res => res.json())
+  //     .then(json => console.log(json))
+  //     .finally(() => setIsLoading(false))
+  //     .catch(err => console.log(err))
+  // }, [])
+  if (!data.genres || !pickedTrailer.length) return <Oval wrapperClass={styles.loader} color='rgba(255, 255, 255, .72)' secondaryColor='red' />
+=======
   }, [pickedFilm])
   if (!data.genres || !pickedTrailer.length) return <Oval wrapperClass={styles.loader}
                                                           color='rgba(255, 255, 255, .72)'
                                                           secondaryColor='red' />
+>>>>>>> main
   return (
     <div className={styles.filmPageWrapper}>
       <div>
@@ -401,8 +463,16 @@ const FilmPage = () => {
             </div>
           </div>
         </div>
+<<<<<<< HEAD
+        {reviews.length > 0 ? (
+          <Reviews reviews={reviews} titleBtn='Рецензии' btn='Оставить рецензию' numberOfReviews={reviews.length} aboutTheFilm={`На фильм "${data.nameRu}"`} />
+        ) : (
+          ''
+        )}
+=======
         <Reviews reviews={reviews} titleBtn='Рецензии' btn='Оставить рецензию'
                  numberOfReviews={reviews.length} aboutTheFilm={`На фильм "${data.nameRu}"`} />
+>>>>>>> main
         <div className={styles.watchAllDevicesSection}>
           <div className={styles.watchAllDevices__content}>
         <span

@@ -1,4 +1,5 @@
 .conteiner {
+  position: relative;
   position: fixed;
   opacity: 1;
   z-index: 100;
@@ -8,7 +9,7 @@
   overflow-y: auto;
   top: 0;
   left: 0;
-  background-color:rgba(1, 0, 12, 0.91);
+  background-color: rgba(1, 0, 12, 0.91);
   padding: 0 20px;
   @media (max-width: 1160px) {
     margin-left: 0;
@@ -17,7 +18,7 @@
     margin-left: 0;
     justify-content: space-between;
   }
-  &__wrapper{
+  &__wrapper {
     max-width: 1279px;
     height: 100%;
     margin-right: auto;
@@ -30,7 +31,8 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
-  &_btn{
+  width: 100%;
+  &_btn {
     display: flex;
     flex-direction: column;
   }
@@ -48,17 +50,29 @@
 .movie {
   padding-left: 12px;
   padding-right: 12px;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  width: 16.66666667%;
   margin-left: 16.66666667%;
   @media (max-width: 1160px) {
-    width: 12.5%;
+    min-width: 12.5%;
     margin-left: 12.5%;
   }
   @media (max-width: 880px) {
     display: none;
+  }
+  &__preview {
+    cursor: pointer;
+    border-radius: 18px;
+    display: block;
+    overflow: hidden;
+    transition: 0.3s linear;
+    img {
+      width: 100%;
+      height: auto;
+      margin: 0;
+    }
+  }
+  &__preview:hover {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
   }
 }
 .error {
@@ -66,8 +80,39 @@
   color: red;
   background-color: red;
 }
-.btnGoBack{
+.btnGoBack {
   position: absolute;
   top: 50px;
   left: 0px;
+}
+.movieInfo {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+.rating {
+  display: flex;
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 700;
+  font-style: normal;
+  overflow: hidden;
+  // white-space: nowrap;
+  // text-overflow: ellipsis;
+  // -webkit-align-self: center;
+  // -ms-flex-item-align: center;
+  // align-self: center;
+  height: 28px;
+  gap: 7px;
+}
+.year {
+  margin-top: 5px;
+  line-height: 16px;
+  font-weight: 400;
+  font-style: normal;
+  color: #a5a1b2;
+  font-size: 13px;
+  p {
+    padding: 1px;
+  }
 }

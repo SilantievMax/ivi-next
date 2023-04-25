@@ -1,19 +1,23 @@
-import React from 'react'
-import FilmPage from '@/src/components/screens/FilmPage/FilmPage'
-import { GetStaticPaths, GetStaticProps } from 'next'
-import { NextParsedUrlQuery } from 'next/dist/server/request-meta'
-import { IFilm } from '@/src/types/types'
+import { GetStaticPaths, GetStaticProps } from 'next';
+import { NextParsedUrlQuery } from 'next/dist/server/request-meta';
+import React from 'react';
+
+
+
+import FilmPage from '@/src/components/screens/FilmPage/FilmPage';
+import { IFilm } from '@/src/types/types';
+import { MoviesService } from '@/src/services/movies.sevice';
+
 
 interface Params extends NextParsedUrlQuery{
   id: string,
 }
 
-// export const getStaticProps: GetStaticProps = async (context) => {
-//   console.log(context.params)
-//   const res = await fetch(`http://localhost:3001/movies/${context.params!.id}`)
-//   const film = await res.json() as IFilm
+// export const getStaticProps: GetStaticProps = async () => {
+//   const movie = MoviesService.getAll()
+
 //   return {
-//     props: { film },
+//     props: { movie }
 //   }
 // }
 //
@@ -40,5 +44,3 @@ const DetailedMoviePage = ({film}: {film: IFilm}) => {
 
 
 export default DetailedMoviePage
-
-
