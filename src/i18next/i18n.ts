@@ -7,7 +7,7 @@ import en from './locales/en/translation.json';
 i18n
   .use(initReactI18next)
   .init({
-    debug: true,
+    // debug: true,
     fallbackLng: 'ru',
     resources: {
       ru,   
