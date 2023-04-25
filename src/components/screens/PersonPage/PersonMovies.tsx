@@ -14,7 +14,7 @@ const PersonMovies: FC<{ movie: IPersonMovies }> = ({ movie }) => {
   const dispatch = useDispatch()
   return (
     <div className={style.movie}>
-      <Link href='' className={style.movie__link}>
+      <Link href={`/movies/${movie.id}`} className={style.movie__link}>
         <div className={style.movie__img}>
           <img src={`${posterUrlPreview}`} alt='' />
         </div>

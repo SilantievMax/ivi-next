@@ -322,13 +322,13 @@ const FilmPage = () => {
                 <span className={styles.filmDescription__font}>{t('iviRating')}</span>
               </div>
               {crewList.map((el, idx) => idx < 4 ?
-                <div key={idx} className={styles.filmActorCard__wrapper}>
+                <Link key={idx} href={`/person/${el.id}`}><div className={styles.filmActorCard__wrapper}>
                   <div className={styles.filmActorCard}>
                     <div className={styles.actor}
                          style={{ backgroundImage: `url(${el.posterUrl})` }}></div>
                   </div>
                   <span className={`${styles.filmDescription__font} ${styles.actorTitle}`}>{i18n.language === 'en' ? el.nameEn : el.nameRu}</span>
-                </div> : ''
+                </div></Link> : ''
               )}
             </div>
             <div className={styles.filmDescription__font}>{data.shortDescription}</div>
