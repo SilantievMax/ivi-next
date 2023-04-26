@@ -1,22 +1,31 @@
-import Link from 'next/link'
-import { useRouter, withRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
-import { MdArrowBackIosNew } from 'react-icons/md'
-import { RiBarChartHorizontalFill } from 'react-icons/ri'
+import Link from 'next/link';
+import { useRouter, withRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { MdArrowBackIosNew } from 'react-icons/md';
+import { RiBarChartHorizontalFill } from 'react-icons/ri';
 
-import { Button } from '../Button/Button'
 
-import FormReview from './FormReview/FormReview'
-import CommentList from './ReviewsList/ReviewsList'
-import styles from './ReviewsOnFilm.module.scss'
-import { useOuside } from '@/src/hooks/useOutside'
-import { IReviews } from '@/src/types/CommentsType'
-import { IFilm } from '@/src/types/types'
+
+import { Button } from '../Button/Button';
+
+
+
+import FormReview from './FormReview/FormReview';
+import CommentList from './ReviewsList/ReviewsList';
+import styles from './ReviewsOnFilm.module.scss';
+import { useOuside } from '@/src/hooks/useOutside';
+import { IReviews } from '@/src/types/CommentsType';
+import { IFilm } from '@/src/types/types';
+
 
 const ReviewsOnFilm = () => {
   const { ref, isShow, setIsShow } = useOuside(false)
   const [comment, setComment] = useState<IReviews[]>()
   const [data, setData] = useState<IFilm>({} as IFilm)
+  const { nameEn, genres, nameRu, posterUrlPreview, countries, year, ratingKinopoisk } = data
+  const { t, i18n } = useTranslation()
+  console.log(countries)
 
   const {
     back,
@@ -49,39 +58,38 @@ const ReviewsOnFilm = () => {
     <div className={styles.conteiner}>
       <div className={styles.conteiner__wrapper}>
         <div className={styles.btnGoBack}>
-          <Button onClick={() => back()} size='iconGoBack' icon={<MdArrowBackIosNew size={25} />} children='К фильму' />
+          <Button onClick={() => back()} size='iconGoBack' icon={<MdArrowBackIosNew size={25} />} children={t('to the movie')} />
         </div>
         <div className={styles.coments}>
-          <h2 className={styles.title}>{data.nameRu}</h2>
+          <h2 className={styles.title}>{i18n.language === 'en' ? nameEn : nameRu}</h2>
           <div>
-            <Button size='reviews' children='Рецензии' quantity={comment?.length} />
+            <Button size='reviews' children={t('reviews')} quantity={comment?.length} />
           </div>
           <div ref={ref} className={styles.coments_btn}>
             {isShow ? (
               <FormReview idReview={null} setShow={setIsShow} formName='Review' movieId={id} />
             ) : (
-              <Button size='border' children='Написать рецензию' onClick={() => setIsShow(true)} />
+              <Button size='border' children={t('write a review')} onClick={() => setIsShow(true)} />
             )}
-            <ul className={styles.commentList}>{comment?.length && comment.map((comment) => <CommentList key={comment.id} comment={comment} />)}</ul>
+            <ul className={styles.commentList}>{comment?.length && comment.map(comment => <CommentList key={comment.id} comment={comment} />)}</ul>
           </div>
         </div>
         <div className={styles.movie}>
           <Link href={`/movies/${id}`} className={styles.movie__preview}>
-            <img src={data.posterUrlPreview} alt='' />
+            <img src={posterUrlPreview} alt='' />
           </Link>
           {data.id && (
             <div className={styles.movieInfo}>
               <div className={styles.rating}>
-                <h3>{data.ratingKinopoisk}</h3>
+                <h3>{ratingKinopoisk}</h3>
                 <RiBarChartHorizontalFill size={27} />
               </div>
               <div>
                 <div className={styles.year}>
                   <p>
-                    {data.year}, {data.countries ? data.countries.map(countrie => countrie.nameRu) : ''}
+                    {year}, {countries ? countries.map(countrie => `${countrie.nameRu}, `) : ''}
                   </p>
-                  {data.genres ? data.genres.map((ganre, i) => <p key={ganre.id}
-                  >{ganre.nameRu[0].toUpperCase() + ganre.nameRu.slice(1)}</p>) : ''}
+                  {genres ? genres.map((ganre, i) => <p key={ganre.id}>{ganre.nameRu[0].toUpperCase() + ganre.nameRu.slice(1)}</p>) : ''}
                 </div>
               </div>
             </div>

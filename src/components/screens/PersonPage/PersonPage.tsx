@@ -8,6 +8,7 @@ import { Button } from '../../Button/Button'
 
 import styles from './Person.module.scss'
 import PersonMovies from './PersonMovies'
+import { declensionOfWords } from './declensionOfWords'
 import { IInfoPerson, IPersonMovies } from '@/src/types/PersonTypes'
 
 const PersonPage: FC = () => {
@@ -15,7 +16,7 @@ const PersonPage: FC = () => {
     back,
     query: { id }
   } = useRouter()
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const [person, getPerson] = useState<IInfoPerson>()
 
   const fetchById = async () => {
@@ -33,27 +34,28 @@ const PersonPage: FC = () => {
   useEffect(() => {
     fetchById()
   }, [id])
-
   if (!person?.person) return <Oval wrapperClass={styles.loader} color='rgba(255, 255, 255, .72)' secondaryColor='red' />
 
   return (
     <div className={styles.personPage}>
       <div className={styles.personPage__btn}>
-        <Button onClick={() => back()} size='iconGoBack' children='Назад' icon={<MdArrowBackIosNew size={25} />} />
+        <Button onClick={() => back()} size='iconGoBack' children={t('Back')} icon={<MdArrowBackIosNew size={25} />} />
       </div>
       <section className={styles.person}>
         <div className={styles.person__header}>
           <div className={styles.person__img}>
             <img src={`${person?.person.posterUrl}`} alt='' />
           </div>
-          <h2 className={styles.person__name}>{`${person?.person.nameRu}`}</h2>
+          <h2 className={styles.person__name}>{i18n.language === 'en' ? `${person?.person.nameEn}` : `${person?.person.nameRu}`}</h2>
           <p className={styles.person__enName}>{`${person?.person.nameEn}`}</p>
         </div>
       </section>
       <section className={styles.movies}>
         <div className={styles.movies__header}>
           <h3>{t('Full filmography')}</h3>
-          <p>{`${person?.movies.length} фильма`}</p>
+          <p>
+            {`${person?.movies.length}`} {declensionOfWords(Number(`${person?.movies.length}`), [t('1movie'), t('2movies'), t('0movie')])}
+          </p>
         </div>
         <span className={styles.border}></span>
         {person?.movies
