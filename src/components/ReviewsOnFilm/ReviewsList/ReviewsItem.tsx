@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import FormReview from '../FormReview/FormReview'
 
@@ -14,8 +15,9 @@ interface CommentProps {
 
 const Comment = ({ comment }: CommentProps) => {
   const [showReview, setShowReview] = useState(false)
-  const { author, date, description, id, title, movieId} = comment || {}
+  const { author, date, description, id, title, movieId } = comment || {}
   const { ref, isShow, setIsShow } = useOuside(false)
+  const { t } = useTranslation()
   return (
     <li className={styles.container}>
       <header className={styles.header}>
@@ -35,14 +37,14 @@ const Comment = ({ comment }: CommentProps) => {
               <>
                 <p> {description && description.length >= 130 ? description.slice(0, 130) + ' ...' : description}</p>{' '}
                 <div className={styles.buttonText}>
-                  <Button size='comment' onClick={() => setShowReview(true)} children='Развернуть' />
+                  <Button size='comment' onClick={() => setShowReview(true)} children={t('expandBtn')} />
                 </div>{' '}
               </>
             ) : (
               <>
                 <p>{description}</p>{' '}
                 <div className={styles.buttonText}>
-                  <Button size='comment' onClick={() => setShowReview(false)} children='Свернуть' />
+                  <Button size='comment' onClick={() => setShowReview(false)} children={t('collapseBtn')} />
                 </div>{' '}
               </>
             )}
@@ -51,7 +53,7 @@ const Comment = ({ comment }: CommentProps) => {
           <p> {description}</p>
         )}
       </div>
-      <div className={styles.button}>{!isShow && <Button size='border' children='Ответить' onClick={() => setIsShow(true)} />}</div>
+      <div className={styles.button}>{!isShow && <Button size='border' children={t('answer')} onClick={() => setIsShow(true)} />}</div>
       <div ref={ref}>{isShow && <FormReview movieId={movieId} setShow={setIsShow} formName={'Comment'} idReview={id} />}</div>
     </li>
   )

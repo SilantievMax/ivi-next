@@ -5,23 +5,20 @@ import { useTranslation } from 'react-i18next'
 import style from './Person.module.scss'
 import { Button } from '@/src/components/Button/Button'
 import { IPersonMovies } from '@/src/types/PersonTypes'
-import { useDispatch } from 'react-redux'
-import { setPickedMovie } from '@/src/store/reducers/dataBaseReducer'
 
 const PersonMovies: FC<{ movie: IPersonMovies }> = ({ movie }) => {
-  const { ratingKinopoisk, posterUrlPreview, nameRu, id } = movie
-  const { t } = useTranslation()
+  const { ratingKinopoisk, posterUrlPreview, nameRu, nameEn, year } = movie
+  const { t, i18n } = useTranslation()
   return (
     <div className={style.movie}>
       <Link href={`/movies/${movie.id}`} className={style.movie__link}>
-
         <div className={style.movie__img}>
           <img src={`${posterUrlPreview}`} alt='' />
         </div>
         <div className={style.movie__body}>
           <div className={style.movie__header}>
-            <span>2018</span>
-            <h3>{nameRu}</h3>
+            <span>{year}</span>
+            <h3>{i18n.language === 'en' ? nameEn : nameRu}</h3>
             <p>
               {t('Rating:')} {ratingKinopoisk}
             </p>

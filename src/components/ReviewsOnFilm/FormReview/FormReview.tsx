@@ -1,13 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
-import { Button } from '../../Button/Button'
-import NameInput from '../ElementsForm/NameInput'
-import ReviewInput from '../ElementsForm/ReviewInput'
 
-import styles from './FormReview.module.scss'
-import { usePersistForm } from './usePersistForm'
-import { IInputs } from '@/src/types/CommentsType'
+
+import { Button } from '../../Button/Button';
+import NameInput from '../ElementsForm/NameInput';
+import ReviewInput from '../ElementsForm/ReviewInput';
+
+
+
+import styles from './FormReview.module.scss';
+import { usePersistForm } from './usePersistForm';
+import { IInputs } from '@/src/types/CommentsType';
+
 
 interface FormReviewProps {
   setShow: React.Dispatch<React.SetStateAction<boolean>>
@@ -21,7 +27,7 @@ const FormReview = ({ setShow, formName, idReview, movieId }: FormReviewProps) =
   const [nameReview, setReviewInput] = useState(false)
   const [placeholder, setPlaceholder] = useState('')
   const FORM_DATA_KEY = `FORM_DATA_KEY_${idReview}`
-
+  const { t, i18n } = useTranslation()
   const getSavedData = (): IInputs => {
     let data = localStorage.getItem(FORM_DATA_KEY)
     if (data) {
@@ -70,11 +76,11 @@ const FormReview = ({ setShow, formName, idReview, movieId }: FormReviewProps) =
       case 'Review':
         setNameInput(true)
         setReviewInput(true)
-        setPlaceholder('Ваша рецензия')
+        setPlaceholder(`${t('your review')}`)
         break
       case 'Comment':
         setReviewInput(true)
-        setPlaceholder('Ваш коментарий')
+        setPlaceholder(`${t('your comment')}`)
         break
       default:
         setNameInput(true)
@@ -89,10 +95,10 @@ const FormReview = ({ setShow, formName, idReview, movieId }: FormReviewProps) =
       {nameReview && <ReviewInput register={register} errors={errors} placeholder={placeholder} watch={watch} />}
       <div className={styles.form__buttons}>
         <div>
-          <Button size='border' children='Отменить' onClick={() => cancelComments()} />
+          <Button size='border' children={t('cancel')} onClick={() => cancelComments()} />
         </div>
         <div>
-          <Button disables={!isValid} type='submit' color='red' children='Отправить' />
+          <Button disables={!isValid} type='submit' color='red' children={t('send')} />
         </div>
       </div>
     </form>

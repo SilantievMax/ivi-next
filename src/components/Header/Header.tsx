@@ -1,6 +1,9 @@
+import i18n, { changeLanguage } from 'i18next'
 import Link from 'next/link'
-import React, { FC, useRef, useState } from 'react'
+import React, { FC, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import LanguageBtn from '../LanguageBtn/LanguageBtn'
 
 import styles from './Header.module.scss'
 import ListCategories from './ListСategories/ListСategories'
@@ -9,7 +12,6 @@ import ModalWindow from '@/src/components/ModalWindow/ModalWindow'
 import Profile from '@/src/components/Profile/Profile'
 import { lngs } from '@/src/i18next/lngs'
 import { bell, logo, magnifyingGlass, paple } from '@/src/img/imges'
-import i18n, { changeLanguage } from 'i18next'
 
 const Header: FC = () => {
   const isAuth = false
@@ -49,6 +51,7 @@ const Header: FC = () => {
   return (
     <header className={styles.header}>
       <div className={styles.header__t}>
+        <LanguageBtn />
         <Link href='/' onMouseOver={handleMouseOut}>
           <img src={logo.src} alt='logo' />
         </Link>
@@ -80,15 +83,7 @@ const Header: FC = () => {
         <Button className={styles.costom_btn} img={paple.src} onMouseOver={() => handleMouseOver('profile')} />
       </div>
       {isHovering && <ModalWindow onMouseLeave={handleMouseOut} children={renderComponentListCategory()} />}
-      <div>
-        {Object.keys(lngs).map(lng  => (
-          <Button type='submit' key={lng} onClick={() => i18n.changeLanguage(lng)} disabled={i18n.resolvedLanguage === lng}>
-            {lngs[lng].nativeName}
-          </Button>
-        ))}
-        {/* <button onClick={() => changeLanguage('en')}>EN</button>
-        <button onClick={() => changeLanguage('ru')}>RU</button> */}
-      </div>
+      <div></div>
     </header>
   )
 }
