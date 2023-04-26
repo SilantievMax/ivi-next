@@ -14,7 +14,6 @@ import ReactPlayer from 'react-player'
 import { useSelector } from 'react-redux'
 
 import styles from './filmpage.module.scss'
-import BreadCrumbNavigation from '@/src/components/BreadCrumbNavigation/MainBreadCrumb/MainBreadCrumbs'
 import { Button } from '@/src/components/Button/Button'
 import Carousel from '@/src/components/Carousel/Carousel'
 import Film from '@/src/components/Film/Film'
@@ -22,6 +21,7 @@ import Reviews from '@/src/components/Reviews/Reviews'
 import { selectPickedMovie } from '@/src/store/reducers/dataBaseReducer'
 import { IReviews } from '@/src/types/CommentsType'
 import { ICrew, IFilm, ITrailer } from '@/src/types/types'
+import BreadCrumbNavigation from '../../BreadCrumbNavigation/BreadCrumbNavigation'
 
 const FilmPage = () => {
   const [showActorsWindow, setShowActorsWindow] = useState<boolean>(false)
@@ -251,8 +251,7 @@ const FilmPage = () => {
         {/*  <span*/}
         {/*    className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Триллеры</span>*/}
         {/*</div>*/}
-
-        <BreadCrumbNavigation inactiveItemClassName='point' omitRootLabel={true} />
+        <BreadCrumbNavigation activeItemClassName='point'  omitRootLabel={true} />
         <div className={styles.filmSectionContainer}>
           <div className={styles.playerWindow}>
             <div className={styles.player}>

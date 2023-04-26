@@ -16,7 +16,7 @@ const HomePage: FC = () => {
       {/* <button onClick={() => changeLanguage('en')}>EN</button>
       <button onClick={() => changeLanguage('ru')}>RU</button> */}
       {/* <h1>{t('Welcome to React')}</h1> */}
-      <Index />
+      {/* <Index /> */}
     </div>
   )
 }

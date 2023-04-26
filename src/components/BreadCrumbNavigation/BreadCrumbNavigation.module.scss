@@ -6,6 +6,7 @@
   line-height: 20px;
   font-weight: 500;
   font-style: normal;
+  color: #7e798f;
 }
 .breadcrumb li {
   float: left;
@@ -47,14 +48,11 @@
 .breadcrumb li:nth-child(5) a:after {
   // border-left-color: rgb(224, 233, 233);
 }
-.breadcrumb li:last-child a {
+.breadcrumb li:last-child a:hover{
+  color:rgb(255, 255, 255);
 }
 
-// .slash{
-//   color: aqua;
-// }
 .slash::before {
-
   content: '/';
   margin: 0 7px;
   float: left;
@@ -76,9 +74,12 @@
   box-shadow: 0 0 0 #7e798f, inset 0 -1.5em 0 #7e798f;
   transition-duration: 80ms;
 }
-// .point{
-//   color: aqua;
-// }
+.point{
+  color: #7e798f;
+}
+.point:hover{
+  color: #ffffff;
+}
 .point::before {
   display: inline-block;
   content: '';

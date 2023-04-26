@@ -1,12 +1,15 @@
-import cn from 'classnames'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import cn from 'classnames';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import styles from './BreadCrumbNavigation.module.scss'
-import { Breadcrumb, BreadcrumbsProps } from './BreadCrumdsModels'
-import { convertBreadcrumb } from './ConvertBreadcrumd'
+
+
+import styles from './BreadCrumbNavigation.module.scss';
+import { Breadcrumb, BreadcrumbsProps } from './BreadCrumdsModels';
+import { convertBreadcrumb } from './ConvertBreadcrumd';
+
 
 const defaultProps: BreadcrumbsProps = {
   rootLabel: '',
@@ -42,14 +45,30 @@ const Breadcrumbs = ({
   activeItemClassName
 }: BreadcrumbsProps) => {
   const router = useRouter()
+  
   const [breadcrumbs, setBreadcrumbs] = useState<Array<Breadcrumb> | null>(null)
   const { t } = useTranslation()
-
+  
   useEffect(() => {
     if (router) {
+      if(router.query.iq){
+        const linkPaths = []
+        const linkPath = router.asPath.split('/')
+        linkPath.shift()
+        linkPaths.push(linkPath[0])
+        linkPaths.push(router.query.id)
+        console.log(linkPaths)
+        const pathArray = linkPath.map((path, i) => {
+          return {
+            breadcrumb: path,
+            href: '/' + linkPath.slice(0, i + 1).join('/')
+          }
+        })
+        setBreadcrumbs(pathArray)
+        return
+      }
       const linkPath = router.asPath.split('/')
       linkPath.shift()
-
       const pathArray = linkPath.map((path, i) => {
         return {
           breadcrumb: path,
@@ -57,8 +76,10 @@ const Breadcrumbs = ({
         }
       })
       setBreadcrumbs(pathArray)
+      return
     }
   }, [router])
+// console.log(breadcrumbs)
 
   if (!breadcrumbs) {
     return null
@@ -83,7 +104,7 @@ const Breadcrumbs = ({
                 className={
                   i === breadcrumbs.length - 1
                     ? `${cn({ [styles.slash]: activeItemClassName === 'slash' })}`
-                    : `${cn({ [styles.point]: inactiveItemClassName === 'point'})}`
+                    : `${cn({ [styles.point]: activeItemClassName === 'point'})}`
                 }
                 style={i === breadcrumbs.length - 1 ? activeItemStyle : inactiveItemStyle}
               >
