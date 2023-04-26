@@ -75,7 +75,7 @@ const Authorization: FC = () => {
             <Button
               onClick={() => {
                 setisForm('')
-                setMessages([...messages, { messages: 'назад', position: 'right' }])
+                setMessages([...messages, { messages: 'к регистрации и входу', position: 'right' }])
               }}
               children='Назад'
               color='darkRed'
