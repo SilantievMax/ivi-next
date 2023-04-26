@@ -19,6 +19,21 @@
       text-transform: capitalize;
     }
   }
+
+  a {
+    text-decoration: underline;
+    color: #989191;
+    font-size: 12px;
+
+    &:hover {
+        background-color: #c5c2c2;
+    }
+  }
+
+  span {
+    color: #989191;
+    font-size: 12px;
+  }
 }
 
 .message2 {
