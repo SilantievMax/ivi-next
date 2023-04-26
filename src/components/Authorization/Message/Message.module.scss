@@ -4,6 +4,7 @@
   border-radius: 15px;
   border-bottom-left-radius: 0px;
   width: 80%;
+
   h6 {
     font-size: 15px;
     font-weight: 600;
@@ -18,4 +19,11 @@
       text-transform: capitalize;
     }
   }
+}
+
+.message2 {
+  align-self: flex-end;
+  border-radius: 15px;
+  border-bottom-right-radius: 0px;
+  width: 60%;
 }

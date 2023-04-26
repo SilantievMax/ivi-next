@@ -7,20 +7,27 @@ import LoginForm from './LoginForm/LoginForm'
 import Message from './Message/Message'
 import RegisterForm from './RegisterForm/RegisterForm'
 
-const messagesArr = [{ messages: 'Войдите или зарегистрируйтесь', description: 'чтобы пользоваться сервисом на любом устройстве' }]
+const messagesDisctop: { messages: string; description?: string; position: string }[] = [
+  { messages: 'Войдите или зарегистрируйтесь', description: 'чтобы пользоваться сервисом на любом устройстве', position: 'left' }
+]
 
 const Authorization: FC = () => {
-  const [messages, setMessages] = useState(messagesArr)
+  const [messages, setMessages] = useState(messagesDisctop)
   const [isForm, setisForm] = useState('')
-
-  const onClickAutn = () => {
-    setisForm('auth')
-    setMessages([...messages, { messages: 'Вход:', description: 'Введите логин и пароль для входа' }])
-  }
+  const messagesEndRef = useRef(null)
 
   const onClickLogin = () => {
+    setisForm('auth')
+    setMessages([...messages, { messages: 'войти', position: 'right' }, { messages: 'Вход:', description: 'Введите логин и пароль для входа', position: 'left' }])
+  }
+
+  const onClickAutn = () => {
     setisForm('login')
-    setMessages([...messages, { messages: 'Регистрация:', description: 'Введите свою почту и придумайте сложный пароль' }])
+    setMessages([
+      ...messages,
+      { messages: 'регистрация', position: 'right' },
+      { messages: 'Регистрация:', description: 'Введите свою почту и придумайте сложный пароль', position: 'left' }
+    ])
   }
 
   const onCliclForm = errors => {
@@ -32,11 +39,9 @@ const Authorization: FC = () => {
     } else if (errors?.password) {
       text = errors.password.message
     }
-    setMessages([...messages, { messages: 'Ошибка:', description: text }])
+    setMessages([...messages, { messages: 'Ошибка:', description: text, position: 'left' }])
     console.log(errors)
   }
-
-  const messagesEndRef = useRef(null)
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -54,7 +59,7 @@ const Authorization: FC = () => {
       </div>
       <div className={styles.chat}>
         {messages.map(item => (
-          <Message messages={item.messages} description={item.description} />
+          <Message position={item.position} messages={item.messages} description={item.description} />
         ))}
 
         {isForm === 'auth' && <LoginForm />}
@@ -67,7 +72,14 @@ const Authorization: FC = () => {
           </div>
         ) : (
           <div className={styles.btn}>
-            <Button onClick={() => setisForm('')} children='Назад' color='darkRed' />
+            <Button
+              onClick={() => {
+                setisForm('')
+                setMessages([...messages, { messages: 'назад', position: 'right' }])
+              }}
+              children='Назад'
+              color='darkRed'
+            />
           </div>
         )}
       </div>
