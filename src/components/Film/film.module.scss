@@ -64,6 +64,14 @@
   font-weight: 400;
 }
 
+.filmTitle {
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .progress {
   border-radius: 5px;
   width: 80px;

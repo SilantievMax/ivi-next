@@ -4,12 +4,17 @@ import styles from './film.module.scss';
 import { IFilm } from '@/src/types/types'
 import { setPickedMovie } from '@/src/store/reducers/dataBaseReducer'
 import { useDispatch } from 'react-redux'
+import { useTranslation } from 'react-i18next'
+import i18n from 'i18next'
 const Film = (props: {film: IFilm}) => {
   const dispatch = useDispatch()
+  const { t } = useTranslation()
 
   return (
     <Link href={`/movies/${props.film.id}`}>
-      <div onClick={() => dispatch(setPickedMovie(props.film.id))} className={styles.filmCard__container}>
+      <div onClick={() => {
+        dispatch(setPickedMovie(props.film.id))
+      }} className={styles.filmCard__container}>
         <div style={{backgroundImage: `url('${props.film.posterUrl}')`}} className={styles.filmCard}>
           <div className={styles.filmCard__inside}>
             <div className={styles.filmCard__inside__content}>
@@ -23,8 +28,8 @@ const Film = (props: {film: IFilm}) => {
 
         </div>
         <div className={styles.filmCard__description}>
-          <span>{props.film.nameRu}</span>
-          <span className={styles.subscribeText}>Подписка</span>
+          <span className={styles.filmTitle}>{i18n.language === 'en' ? props.film.nameEn : props.film.nameRu}</span>
+          <span className={styles.subscribeText}>{t('subscribe')}</span>
         </div>
       </div>
     </Link>

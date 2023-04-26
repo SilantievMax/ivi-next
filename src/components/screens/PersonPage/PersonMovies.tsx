@@ -11,10 +11,10 @@ import { setPickedMovie } from '@/src/store/reducers/dataBaseReducer'
 const PersonMovies: FC<{ movie: IPersonMovies }> = ({ movie }) => {
   const { ratingKinopoisk, posterUrlPreview, nameRu, id } = movie
   const { t } = useTranslation()
-  const dispatch = useDispatch()
   return (
     <div className={style.movie}>
-      <Link onClick={() => dispatch(setPickedMovie(id))} href={`/movies/${id}`} className={style.movie__link}>
+      <Link href={`/movies/${movie.id}`} className={style.movie__link}>
+
         <div className={style.movie__img}>
           <img src={`${posterUrlPreview}`} alt='' />
         </div>

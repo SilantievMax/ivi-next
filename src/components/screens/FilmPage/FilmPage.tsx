@@ -1,7 +1,9 @@
 import { capitalize } from '@mui/material'
+import i18n from 'i18next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { BiBookmark, BiFilm, BiVolumeLow } from 'react-icons/bi'
 import { BsPlay } from 'react-icons/bs'
 import { FiUpload } from 'react-icons/fi'
@@ -17,7 +19,6 @@ import { Button } from '@/src/components/Button/Button'
 import Carousel from '@/src/components/Carousel/Carousel'
 import Film from '@/src/components/Film/Film'
 import Reviews from '@/src/components/Reviews/Reviews'
-import { calcTime } from '@/src/functions/functions'
 import { selectPickedMovie } from '@/src/store/reducers/dataBaseReducer'
 import { IReviews } from '@/src/types/CommentsType'
 import { ICrew, IFilm, ITrailer } from '@/src/types/types'
@@ -33,10 +34,10 @@ const FilmPage = () => {
   const [similars, setSimilars] = useState<IFilm[]>([] as IFilm[])
   const [data, setData] = useState<IFilm>({} as IFilm)
   const [reviews, setReviews] = useState<IReviews[]>([] as IReviews[])
-
   const {
     query: { id }
   } = useRouter()
+  const { t } = useTranslation()
   //Запрос на рецензии к фильму по id
   useEffect(() => {
     fetch(`http://localhost:3004/comments/${id}/tree`, {
@@ -98,8 +99,11 @@ const FilmPage = () => {
       .catch(err => console.log(err))
       .finally(() => setIsLoading(false))
   }, [id])
-
+  const calcTime = (num: number) => {
+    return `${Math.floor(num / 60)}${t('hour')} ${num % 60}${t('min')}`
+  }
   if (!data.genres || !pickedTrailer.length) return <Oval wrapperClass={styles.loader} color='rgba(255, 255, 255, .72)' secondaryColor='red' />
+
   return (
     <div className={styles.filmPageWrapper}>
       <div>
@@ -120,7 +124,7 @@ const FilmPage = () => {
                 </div>
 
                 <div className={styles.popup__crewWrapper}>
-                  <span className={styles.popupFilmTitle}>{`${data.nameRu} (Фильм ${data.year})`}</span>
+                  <span className={styles.popupFilmTitle}>{`${i18n.language === 'en' ? data.nameEn : data.nameRu} (${t('film')}${data.year})`}</span>
                   <div className={styles.popup__items}>
                     <span className={styles.popup__header}>Режиссёры</span>
                     <div className={styles.popup__crewContainer}>
@@ -221,7 +225,7 @@ const FilmPage = () => {
                   <span className={styles.popup__smallText}>{`${data.year}, ${data.countries[0].nameRu}, ${capitalize(data.genres[0].nameRu)}`}</span>
                   <div className={styles.popup__filmLengthContainer}>
                     <TfiTimer color='red' />
-                    <span className={styles.popup__smallText}>{`${data.filmLength} мин.`}</span>
+                    <span className={styles.popup__smallText}>{`${data.filmLength} ${t('min')}.`}</span>
                   </div>
                 </div>
               </div>
@@ -256,7 +260,7 @@ const FilmPage = () => {
               <div className={styles.playerOptions}>
                 <div className={styles.option}>
                   <BsPlay className={styles.playImg} />
-                  <span>Трейлер</span>
+                  <span>{t('trailer')}</span>
                 </div>
                 <div className={styles.option}>
                   <FiUpload />
@@ -269,7 +273,7 @@ const FilmPage = () => {
           </div>
           <div className={styles.filmSection__content}>
             <div className={styles.filmTitle}>
-              <h1 className={styles.filmTitle__content}>{`${data.nameRu} (Фильм ${data.year})`}</h1>
+              <h1 className={styles.filmTitle__content}>{`${i18n.language === 'en' ? data.nameEn : data.nameRu} (${t('film')}${data.year})`}</h1>
             </div>
             <div className={styles.filmDescriptionWrapper}>
               <div className={styles.filmDescription}>
@@ -282,9 +286,7 @@ const FilmPage = () => {
                   idx < 4 ? (
                     <div className={styles.genreParams} key={idx}>
                       <span className={styles.dot}>.</span>
-                      <span key={el.nameRu} className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>
-                        {el.nameRu}
-                      </span>
+                      <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{el.nameRu}</span>
                     </div>
                   ) : (
                     ''
@@ -311,16 +313,18 @@ const FilmPage = () => {
                   <div className={styles.ratePlate}></div>
                   <span className={styles.rate}>{data.ratingKinopoisk}</span>
                 </div>
-                <span>Рейтинг Иви</span>
+                <span className={styles.filmDescription__font}>{t('iviRating')}</span>
               </div>
               {crewList.map((el, idx) =>
                 idx < 4 ? (
-                  <div key={idx} className={styles.filmActorCard__wrapper}>
-                    <div className={styles.filmActorCard}>
-                      <div className={styles.actor} style={{ backgroundImage: `url(${el.posterUrl})` }}></div>
+                  <Link key={idx} href={`/person/${el.id}`}>
+                    <div className={styles.filmActorCard__wrapper}>
+                      <div className={styles.filmActorCard}>
+                        <div className={styles.actor} style={{ backgroundImage: `url(${el.posterUrl})` }}></div>
+                      </div>
+                      <span className={`${styles.filmDescription__font} ${styles.actorTitle}`}>{i18n.language === 'en' ? el.nameEn : el.nameRu}</span>
                     </div>
-                    <span>{el.nameRu}</span>
-                  </div>
+                  </Link>
                 ) : (
                   ''
                 )
@@ -332,16 +336,16 @@ const FilmPage = () => {
                 <span className={styles.filmDescription__font}>{data.description}</span>
                 <div className={styles.fullDescriptionData}>
                   <div className={styles.fullDescription__content}>
-                    <span className={styles.filmDescription__font}>Языки</span>
+                    <span className={styles.filmDescription__font}>{t('languages')}</span>
                     <span>Русский, Английский</span>
                   </div>
                   <div className={styles.fullDescription__content}>
-                    <span className={styles.filmDescription__font}>Субтитры</span>
+                    <span className={styles.filmDescription__font}>{t('subtitles')}</span>
                     <span>Русский, Английский</span>
                   </div>
                   <div className={styles.filmDescription__font}>
-                    Изображение и звук.
-                    <span className={styles.filmDescription__warning}> Фактическое качество зависит от устройства и ограничений правообладателя.</span>
+                    {t('voiceVideo')}
+                    <span className={styles.filmDescription__warning}>{t('voiceVideoDesc')}</span>
                     <div className={styles.qualityMarks}>
                       <div className={`${styles.filmQuality} ${styles.filmQuality__text}`}>FullHD</div>
                       <div className={`${styles.filmQuality} ${styles.filmQuality__text}`}>HD</div>
@@ -351,12 +355,12 @@ const FilmPage = () => {
                   </div>
                 </div>
                 <div onClick={() => setShowFullDescription(false)}>
-                  <span className={styles.filmDescription__details}>Свернуть детали</span>
+                  <span className={styles.filmDescription__details}>{t('collapseDetails')}</span>
                 </div>
               </div>
             ) : (
               <div onClick={() => setShowFullDescription(true)}>
-                <span className={styles.filmDescription__details}>Детали о фильме</span>
+                <span className={styles.filmDescription__details}>{t('filmDetails')}</span>
               </div>
             )}
             <div className={styles.summaryWrapper}>
@@ -365,19 +369,18 @@ const FilmPage = () => {
                   <span className={styles.summaryRate}>{data.ratingKinopoisk}</span>
                 </div>
                 <div className={styles.summaryReviews__wrapper}>
-                  <span>Рейтинг Иви</span>
-                  <span className={styles.filmDescription__font}>Интересный сюжет</span>
-                  <span className={styles.ratingFont}>{`${data.ratingKinopoiskVoteCount} оценок`}</span>
+                  <span>{t('iviRating')}</span>
+                  <span className={styles.filmDescription__font}>{t('plotDetails')}</span>
+                  <span className={styles.ratingFont}>{`${data.ratingKinopoiskVoteCount} ${t('reviewsAmount')}`}</span>
                 </div>
               </div>
 
-              <div className={styles.rateBtn}>Оценить</div>
+              <div className={styles.rateBtn}>{t('rateMovie')}</div>
             </div>
           </div>
         </div>
         <div className={styles.galleryWrapper}>
-          <span className={styles.filmPage__titleText}>{`С фильмом «${data.nameRu}» смотрят`}</span>
-
+          <span className={styles.filmPage__titleText}>{`${t('watchWithFilm')} «${i18n.language === 'en' ? data.nameEn : data.nameRu}» ${t('watches')}`}</span>
           <Carousel
             items={similars.map((el, idx) => (
               <Film key={idx} film={el} />
@@ -388,7 +391,7 @@ const FilmPage = () => {
           />
         </div>
         <div className={styles.galleryWrapper}>
-          <span className={`${styles.filmPage__titleText} ${styles.underline}`}>Актеры и создатели</span>
+          <span className={`${styles.filmPage__titleText} ${styles.underline}`}>{t('actorsSecTitle')}</span>
           <div className={styles.actorSection__wrapper}>
             {crewList.map((el, idx) =>
               idx <= 9 ? (
@@ -396,9 +399,13 @@ const FilmPage = () => {
                   <div className={styles.actorSection}>
                     <img className={styles.actorImage__Wrapper} src={el.posterUrl} width={60} alt='actorImg' />
                     <div className={styles.actor__info}>
-                      <span>{el.nameRu.split(' ')[0]}</span>
-                      <span>{el.nameRu.split(' ')[el.nameRu.split(' ').length - 1]}</span>
-                      <span className={styles.filmDescription__font}>{el.roles[0].nameRu.toLowerCase()}</span>
+                      <span>{i18n.language === 'en' ? el.nameEn.split(' ')[0] : el.nameRu.split(' ')[0]}</span>
+                      <span>{i18n.language === 'en' ? el.nameEn.split(' ')[el.nameEn.split(' ').length - 1] : el.nameRu.split(' ')[el.nameRu.split(' ').length - 1]}</span>
+                      <span className={styles.filmDescription__font}>
+                        {i18n.language === 'en'
+                          ? el.roles[0].nameEn.toLowerCase().slice(0, el.roles[0].nameEn.length - 1)
+                          : el.roles[0].nameRu.toLowerCase().slice(0, el.roles[0].nameEn.length - 1)}
+                      </span>
                     </div>
                   </div>
                 </Link>
@@ -413,22 +420,29 @@ const FilmPage = () => {
               }}
               className={styles.showActorsBtn}
             >
-              Ещё
+              {t('showMore')}
             </div>
           </div>
         </div>
+
         {reviews.length > 0 ? (
-          <Reviews reviews={reviews} titleBtn='Рецензии' btn='Оставить рецензию' numberOfReviews={reviews.length} aboutTheFilm={`На фильм "${data.nameRu}"`} />
+          <Reviews
+            reviews={reviews}
+            titleBtn={t('reviews')}
+            btn={t('createReview')}
+            numberOfReviews={reviews.length}
+            aboutTheFilm={`${t('onFilm')} "${i18n.language === 'en' ? data.nameEn : data.nameRu}"`}
+          />
         ) : (
           ''
         )}
         <div className={styles.watchAllDevicesSection}>
           <div className={styles.watchAllDevices__content}>
-            <span className={styles.filmPage__titleText}>{`Cмотреть «${data.nameRu}» на всех устройствах`}</span>
-            <span className={`${styles.filmDescription__font} ${styles.mainContent}`}>Приложение доступно для скачивания на iOS, Android, SmartTV и приставках</span>
+            <span className={styles.filmPage__titleText}>{`${t('watch')} «${i18n.language === 'en' ? data.nameEn : data.nameRu}» ${t('allDevices')}`}</span>
+            <span className={`${styles.filmDescription__font} ${styles.mainContent}`}>{t('connectDeviceDescription')}</span>
             <Link href='https://www.ivi.ru/devices'>
               <Button className={styles.watchAllDevicesSection__btn} color='darkRed'>
-                Подключить устройства
+                {t('connectDevice')}
               </Button>
             </Link>
           </div>
@@ -441,16 +455,16 @@ const FilmPage = () => {
         </div>
         <div className={styles.breadCrumbs}>
           <Link href='/'>
-            <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Мой Иви</span>
+            <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{t('ivi')}</span>
           </Link>
           <span className={styles.dot}>.</span>
           <Link href='/movies'>
-            <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Фильмы</span>
+            <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{t('movies')}</span>
           </Link>
           <span className={styles.dot}>.</span>
-          <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{data.genres[0].nameRu}</span>
+          <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{capitalize(data.genres[0].nameRu)}</span>
           <span className={styles.dot}>.</span>
-          <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{data.nameRu}</span>
+          <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{i18n.language === 'en' ? data.nameEn : data.nameRu}</span>
         </div>
       </div>
     </div>
