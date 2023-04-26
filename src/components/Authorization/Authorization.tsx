@@ -27,7 +27,7 @@ const Authorization: FC = () => {
   const onClickLogin = () => {
     seStatus('Вход')
     setisForm('auth')
-    setMessages([...messages, { messages: 'войти', position: 'right' }, { messages: 'Вход:', description: 'Введите логин и пароль для входа', position: 'left' }])
+    setMessages([...messages, { messages: 'Войти', position: 'right' }, { messages: 'Вход:', description: 'Введите логин и пароль для входа', position: 'left' }])
   }
 
   const onClickAutn = () => {
@@ -35,7 +35,7 @@ const Authorization: FC = () => {
     setisForm('login')
     setMessages([
       ...messages,
-      { messages: 'регистрация', position: 'right' },
+      { messages: 'Регистрация', position: 'right' },
       { messages: 'Регистрация:', description: 'Введите свою почту и придумайте сложный пароль', position: 'left' }
     ])
   }
@@ -43,14 +43,14 @@ const Authorization: FC = () => {
   const onClickBack = () => {
     seStatus('Вход или регистрация')
     setisForm('')
-    setMessages([...messages, { messages: 'к регистрации и входу', position: 'right' }])
+    setMessages([...messages, { messages: 'Вход или регистрация', position: 'right' }])
   }
 
   const openAgreement = () => {
     setisForm('')
     setMessages([
       ...messages,
-      { messages: 'прочитать соглашение', position: 'right' },
+      { messages: 'Прочитать соглашение', position: 'right' },
       {
         messages: 'Соглашение',
         children: (
