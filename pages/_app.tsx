@@ -11,9 +11,9 @@ const App = ({ Component, pageProps, ...rest }: AppProps) => {
 
   return (
     <Provider store={store}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </Provider>
   )
 }

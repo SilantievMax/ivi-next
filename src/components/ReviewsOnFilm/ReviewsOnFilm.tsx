@@ -13,7 +13,7 @@ import { useOuside } from '@/src/hooks/useOutside'
 import { IReviews } from '@/src/types/CommentsType'
 import { IFilm } from '@/src/types/types'
 
-const ReviewsOnFilm = withRouter(() => {
+const ReviewsOnFilm = () => {
   const { ref, isShow, setIsShow } = useOuside(false)
   const [comment, setComment] = useState<IReviews[]>()
   const [data, setData] = useState<IFilm>({} as IFilm)
@@ -62,7 +62,7 @@ const ReviewsOnFilm = withRouter(() => {
             ) : (
               <Button size='border' children='Написать рецензию' onClick={() => setIsShow(true)} />
             )}
-            <ul className={styles.commentList}>{comment?.length && comment.map((comment, i) => <CommentList key={i} comment={comment} />)}</ul>
+            <ul className={styles.commentList}>{comment?.length && comment.map((comment) => <CommentList key={comment.id} comment={comment} />)}</ul>
           </div>
         </div>
         <div className={styles.movie}>
@@ -80,7 +80,8 @@ const ReviewsOnFilm = withRouter(() => {
                   <p>
                     {data.year}, {data.countries ? data.countries.map(countrie => countrie.nameRu) : ''}
                   </p>
-                  {data.genres ? data.genres.map(ganre => <p>{ganre.nameRu[0].toUpperCase() + ganre.nameRu.slice(1)}</p>) : ''}
+                  {data.genres ? data.genres.map((ganre, i) => <p key={ganre.id}
+                  >{ganre.nameRu[0].toUpperCase() + ganre.nameRu.slice(1)}</p>) : ''}
                 </div>
               </div>
             </div>
@@ -89,6 +90,6 @@ const ReviewsOnFilm = withRouter(() => {
       </div>
     </div>
   )
-})
+}
 
 export default ReviewsOnFilm
