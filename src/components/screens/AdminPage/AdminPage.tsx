@@ -1,20 +1,14 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState } from 'react'
 
+import { Button } from '../../Button/Button'
 
-
-import { Button } from '../../Button/Button';
-
-
-
-import styles from './AdminPage.module.scss';
-import ModalMuvie from './ModalMuvie/ModalMuvie';
-import ModalGanre from './ModalGanre/ModalGanre';
-
+import styles from './AdminPage.module.scss'
+import ModalGanre from './ModalGanre/ModalGanre'
+import ModalMuvie from './ModalMuvie/ModalMuvie'
 
 const AdminPage: FC = () => {
-
-    const [showModalMuvie, setShowModalMuvie] = useState(false)
-    const [showModalGange, setShowModalGange] = useState(false)
+  const [showModalMuvie, setShowModalMuvie] = useState(false)
+  const [showModalGange, setShowModalGange] = useState(false)
 
   return (
     <div className={styles.adminPage}>
@@ -28,14 +22,14 @@ const AdminPage: FC = () => {
         <div className={styles.adminPanel__header}>
           <h3>Панель администратора</h3>
           <div>
-            <Button size='border' children={'Добавть фильм'} onClick={()=> setShowModalMuvie(!showModalMuvie)}/>
-            <Button size='border' children={'Добавть жанр'} onClick={()=> setShowModalGange(!showModalGange)}/>
+            <Button size='border' children={'Добавть фильм'} onClick={() => setShowModalMuvie(!showModalMuvie)} />
+            <Button size='border' children={'Добавть жанр'} onClick={() => setShowModalGange(!showModalGange)} />
           </div>
         </div>
         <div className={styles.adminPanel__list}>
-            {showModalMuvie&& <ModalMuvie/>}
-            {showModalGange&& <ModalGanre/>}
-          {!showModalMuvie && !showModalGange&& <div>Список фильмов, жанров</div>}
+          {showModalMuvie && <ModalMuvie />}
+          {showModalGange && <ModalGanre />}
+          {!showModalMuvie && !showModalGange && <div>Список фильмов, жанров</div>}
         </div>
       </div>
     </div>
