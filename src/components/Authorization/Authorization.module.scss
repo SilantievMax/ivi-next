@@ -45,4 +45,10 @@
   width: 50%;
   gap: 5px;
   align-self: flex-end;
+
+  span {
+    cursor: pointer;
+    font-size: 13px;
+    color: #989191;
+  }
 }

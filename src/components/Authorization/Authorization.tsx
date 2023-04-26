@@ -7,7 +7,7 @@ import LoginForm from './LoginForm/LoginForm'
 import Message from './Message/Message'
 import RegisterForm from './RegisterForm/RegisterForm'
 
-const messagesDisctop: { messages: string; description?: string; position: string }[] = [
+const messagesDisctop: { messages?: string; description?: string; position: string }[] = [
   { messages: 'Войдите или зарегистрируйтесь', description: 'чтобы пользоваться сервисом на любом устройстве', position: 'left' }
 ]
 
@@ -16,6 +16,13 @@ const Authorization: FC = () => {
   const [isForm, setisForm] = useState('')
   const [status, seStatus] = useState('Вход или регистрация')
   const messagesEndRef = useRef(null)
+
+  useEffect(() => {
+    scrollToBottom()
+    if (messages.length > 20) {
+      setMessages(messages.slice(-20))
+    }
+  }, [messages, isForm])
 
   const onClickLogin = () => {
     seStatus('Вход')
@@ -39,6 +46,14 @@ const Authorization: FC = () => {
     setMessages([...messages, { messages: 'к регистрации и входу', position: 'right' }])
   }
 
+  const openAgreement = () => {
+    setMessages([
+      ...messages,
+      { messages: 'прочитать соглашение', position: 'right' },
+      { description: 'Политикf конфиденциальности и Пользовательским соглашением', position: 'left' }
+    ])
+  }
+
   const onCliclForm = errors => {
     let text
     if (errors.login && errors.password) {
@@ -55,10 +70,6 @@ const Authorization: FC = () => {
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
-
-  useEffect(() => {
-    scrollToBottom()
-  }, [messages, isForm])
 
   return (
     <div className={styles.continder}>
@@ -84,6 +95,9 @@ const Authorization: FC = () => {
             <Button onClick={onClickBack} children='Назад' color='darkRed' />
           </div>
         )}
+        <div className={styles.btn}>
+          <span onClick={openAgreement}>Соглашение. Нажми перед тем как входить</span>
+        </div>
       </div>
       <div ref={messagesEndRef}></div>
     </div>
