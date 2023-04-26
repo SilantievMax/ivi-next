@@ -1,4 +1,3 @@
-import i18n, { changeLanguage } from 'i18next'
 import Link from 'next/link'
 import React, { FC, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -10,17 +9,14 @@ import ListCategories from './ListСategories/ListСategories'
 import { Button } from '@/src/components/Button/Button'
 import ModalWindow from '@/src/components/ModalWindow/ModalWindow'
 import Profile from '@/src/components/Profile/Profile'
-import { lngs } from '@/src/i18next/lngs'
 import { bell, logo, magnifyingGlass, paple } from '@/src/img/imges'
 
 const Header: FC = () => {
   const isAuth = false
   const [isHovering, setIsHovering] = useState(false)
   const [isVariant, setVariant] = useState('')
-  const { t, i18n } = useTranslation()
-  const changeLanguage = (language: string) => {
-    i18n.changeLanguage(language)
-  }
+  const { t } = useTranslation()
+
   const handleMouseOver = (value: string) => {
     setIsHovering(true)
     setVariant(value)

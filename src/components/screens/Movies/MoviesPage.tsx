@@ -94,8 +94,7 @@ const MoviesPage: FC = () => {
   }, [sort, rate, reviewAmount, genres, countries, year])
   return (
     <div className={styles.filmsSection}>
-      <BreadCrumbNavigation activeItemClassName='slash' omitRootLabel={false} rootLabel={t('ivi')} />
-
+      <BreadCrumbNavigation activeItemClassName='slash' omitRootLabel={false} rootLabel={t('myIvi')} />
       <div className={styles.filmsSection__description}>
         <h1 className={styles.filmsSection__title}>{t('watchFilmsTitle')}</h1>
         <div className={styles.descriptionWrapper}>

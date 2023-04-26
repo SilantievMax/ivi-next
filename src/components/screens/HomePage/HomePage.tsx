@@ -11,12 +11,12 @@ const HomePage: FC = () => {
 
   return (
     <div>
-      {/* <AdminPage /> */}
+      <AdminPage />
       {/* <PersonPage /> */}
       {/* <button onClick={() => changeLanguage('en')}>EN</button>
       <button onClick={() => changeLanguage('ru')}>RU</button> */}
       {/* <h1>{t('Welcome to React')}</h1> */}
-      <Index />
+      {/* <Index /> */}
     </div>
   )
 }

@@ -4,9 +4,8 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '../Button/Button'
 
 const LanguageBtn = () => {
-  const { t, i18n } = useTranslation()
+  const { i18n } = useTranslation()
   const [language, setLanguage] = useState('')
-  console.log(language)
 
   useEffect(() => {
     if (language) {
