@@ -47,6 +47,7 @@ const Authorization: FC = () => {
   }
 
   const openAgreement = () => {
+    setisForm('')
     setMessages([
       ...messages,
       { messages: 'прочитать соглашение', position: 'right' },
