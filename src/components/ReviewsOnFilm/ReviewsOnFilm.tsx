@@ -1,23 +1,18 @@
-import Link from 'next/link';
-import { useRouter, withRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { MdArrowBackIosNew } from 'react-icons/md';
-import { RiBarChartHorizontalFill } from 'react-icons/ri';
+import Link from 'next/link'
+import { useRouter, withRouter } from 'next/router'
+import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { MdArrowBackIosNew } from 'react-icons/md'
+import { RiBarChartHorizontalFill } from 'react-icons/ri'
 
+import { Button } from '../Button/Button'
 
-
-import { Button } from '../Button/Button';
-
-
-
-import FormReview from './FormReview/FormReview';
-import CommentList from './ReviewsList/ReviewsList';
-import styles from './ReviewsOnFilm.module.scss';
-import { useOuside } from '@/src/hooks/useOutside';
-import { IReviews } from '@/src/types/CommentsType';
-import { IFilm } from '@/src/types/types';
-
+import FormReview from './FormReview/FormReview'
+import CommentList from './ReviewsList/ReviewsList'
+import styles from './ReviewsOnFilm.module.scss'
+import { useOuside } from '@/src/hooks/useOutside'
+import { IReviews } from '@/src/types/CommentsType'
+import { IFilm } from '@/src/types/types'
 
 const ReviewsOnFilm = () => {
   const { ref, isShow, setIsShow } = useOuside(false)
@@ -25,7 +20,6 @@ const ReviewsOnFilm = () => {
   const [data, setData] = useState<IFilm>({} as IFilm)
   const { nameEn, genres, nameRu, posterUrlPreview, countries, year, ratingKinopoisk } = data
   const { t, i18n } = useTranslation()
-  console.log(countries)
 
   const {
     back,

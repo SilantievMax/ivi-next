@@ -13,6 +13,8 @@ import { Oval } from 'react-loader-spinner'
 import ReactPlayer from 'react-player'
 import { useSelector } from 'react-redux'
 
+import BreadCrumbNavigation from '../../BreadCrumbNavigation/BreadCrumbNavigation'
+
 import styles from './filmpage.module.scss'
 import { Button } from '@/src/components/Button/Button'
 import Carousel from '@/src/components/Carousel/Carousel'
@@ -21,7 +23,6 @@ import Reviews from '@/src/components/Reviews/Reviews'
 import { selectPickedMovie } from '@/src/store/reducers/dataBaseReducer'
 import { IReviews } from '@/src/types/CommentsType'
 import { ICrew, IFilm, ITrailer } from '@/src/types/types'
-import BreadCrumbNavigation from '../../BreadCrumbNavigation/BreadCrumbNavigation'
 
 const FilmPage = () => {
   const [showActorsWindow, setShowActorsWindow] = useState<boolean>(false)
@@ -102,7 +103,8 @@ const FilmPage = () => {
   const calcTime = (num: number) => {
     return `${Math.floor(num / 60)}${t('hour')} ${num % 60}${t('min')}`
   }
-  if (!data.genres || !pickedTrailer.length) return <Oval wrapperClass={styles.loader} color='rgba(255, 255, 255, .72)' secondaryColor='red' />
+  if (!data.genres || !pickedTrailer.length || !similars.length || !crewList.length)
+    return <Oval wrapperClass={styles.loader} color='rgba(255, 255, 255, .72)' secondaryColor='red' />
 
   return (
     <div className={styles.filmPageWrapper}>
@@ -235,13 +237,13 @@ const FilmPage = () => {
           ''
         )}
         {/*<div className={style.gallery}>*/}
-        {/*<Swiper navigation modules={[Navigation]} freeMode={true} spaceBetween={0} slidesPerView={7} >*/}
+        {/* <Swiper navigation modules={[Navigation]} freeMode={true} spaceBetween={0} slidesPerView={7} >*/}
         {/*  {[1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3].map((el, idx) => (*/}
         {/*    <SwiperSlide className={styles.slide} key={idx}>*/}
         {/*      <Film key={1} src=''/>*/}
         {/*    </SwiperSlide>*/}
         {/*  ))}*/}
-        {/*</Swiper></div>*/}
+        {/*</Swiper></div> */}
         {/*<div className={styles.breadCrumbs}>*/}
         {/*  <Link href='/Index'>*/}
         {/*    <span*/}
@@ -251,7 +253,7 @@ const FilmPage = () => {
         {/*  <span*/}
         {/*    className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Триллеры</span>*/}
         {/*</div>*/}
-        <BreadCrumbNavigation activeItemClassName='point'  omitRootLabel={true} />
+        <BreadCrumbNavigation activeItemClassName='point' omitRootLabel={true} />
         <div className={styles.filmSectionContainer}>
           <div className={styles.playerWindow}>
             <div className={styles.player}>
@@ -281,16 +283,17 @@ const FilmPage = () => {
               </div>
               <div className={styles.genreParams}>
                 <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{data.countries[0].nameRu}</span>
-                {data.genres.map((el, idx) =>
-                  idx < 4 ? (
-                    <div className={styles.genreParams} key={idx}>
-                      <span className={styles.dot}>.</span>
-                      <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{el.nameRu}</span>
-                    </div>
-                  ) : (
-                    ''
-                  )
-                )}
+                {data &&
+                  data.genres.map((el, idx) =>
+                    idx < 4 ? (
+                      <div className={styles.genreParams} key={idx}>
+                        <span className={styles.dot}>.</span>
+                        <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{el.nameRu}</span>
+                      </div>
+                    ) : (
+                      ''
+                    )
+                  )}
               </div>
               <div className={styles.genreLanguage}>
                 <div className={`${styles.filmQuality} ${styles.filmQuality__text}`}>FullHD</div>
@@ -308,26 +311,23 @@ const FilmPage = () => {
             </div>
             <div className={styles.actorsParams}>
               <div className={styles.filmActorCard__wrapper}>
-                <div className={styles.filmActorCard}>
-                  <div className={styles.ratePlate}></div>
-                  <span className={styles.rate}>{data.ratingKinopoisk}</span>
+                <div className={styles.filmActorCard__wrapper}>
+                  <Button style={{pointerEvents: 'none'}} size='img' children={data.ratingKinopoisk} />
+                  <span className={`${styles.filmDescription__font} ${styles.actorTitle}`}></span>
                 </div>
                 <span className={styles.filmDescription__font}>{t('iviRating')}</span>
               </div>
-              {crewList.map((el, idx) =>
-                idx < 4 ? (
-                  <Link key={idx} href={`/person/${el.id}`}>
-                    <div className={styles.filmActorCard__wrapper}>
-                      <div className={styles.filmActorCard}>
-                        <div className={styles.actor} style={{ backgroundImage: `url(${el.posterUrl})` }}></div>
-                      </div>
+              {crewList.length &&
+                crewList.map((el, idx) =>
+                  idx < 4 ? (
+                    <Link key={idx} href={`/person/${el.id}`} className={styles.filmActorCard__wrapper}>
+                      <Button size='img' img={`${el.posterUrl}`} />
                       <span className={`${styles.filmDescription__font} ${styles.actorTitle}`}>{i18n.language === 'en' ? el.nameEn : el.nameRu}</span>
-                    </div>
-                  </Link>
-                ) : (
-                  ''
-                )
-              )}
+                    </Link>
+                  ) : (
+                    ''
+                  )
+                )}
             </div>
             <div className={styles.filmDescription__font}>{data.shortDescription}</div>
             {showFullDescription ? (

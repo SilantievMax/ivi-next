@@ -35,7 +35,7 @@ export const Button = ({
       {...props}
     >
       {icon}
-      {img && <img src={img}></img>}
+      {img && <div> <img src={img}></img></div>}
       <div  className={styles.children}>{children}</div>
      {quantity && <div className={styles.quantity}>{quantity}</div>}
     </button>
