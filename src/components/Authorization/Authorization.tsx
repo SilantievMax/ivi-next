@@ -110,7 +110,7 @@ const Authorization: FC = () => {
           </div>
         )}
         <div className={styles.btn}>
-          <span onClick={openAgreement}>Соглашение. Нажми перед тем как входить</span>
+          <span onClick={openAgreement}>Соглашение! Нажми перед тем как входить</span>
         </div>
       </div>
       <div ref={messagesEndRef}></div>

@@ -4,11 +4,10 @@ import { useForm } from 'react-hook-form'
 import styles from './RegisterForm.module.scss'
 
 interface RegisterFormProps {
-  setErrors?: any
   onCliclForm?: any
 }
 
-const RegisterForm: FC<RegisterFormProps> = ({ setErrors, onCliclForm }) => {
+const RegisterForm: FC<RegisterFormProps> = ({ onCliclForm }) => {
   const {
     register,
     formState: { errors },
@@ -26,9 +25,10 @@ const RegisterForm: FC<RegisterFormProps> = ({ setErrors, onCliclForm }) => {
   return (
     <div>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-        <label>
-          Login:
+        <label className={styles.inputs}>
           <input
+            required='required'
+            type='text'
             {...register('login', {
               required: 'введите свою почту',
               pattern: {
@@ -37,10 +37,11 @@ const RegisterForm: FC<RegisterFormProps> = ({ setErrors, onCliclForm }) => {
               }
             })}
           />
+          <span>Login:</span>
         </label>
-        <label>
-          password:
+        <label className={styles.inputs}>
           <input
+            required='required'
             type='password'
             {...register('password', {
               required: 'введите свой пароль',
@@ -50,12 +51,15 @@ const RegisterForm: FC<RegisterFormProps> = ({ setErrors, onCliclForm }) => {
               }
             })}
           />
+          <span>Password:</span>
         </label>
         <input
+          className={styles.btn}
           onClick={() => {
             onCliclForm(errors)
           }}
           type='submit'
+          value='Зарегистрироваться'
         />
       </form>
     </div>
