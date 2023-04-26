@@ -14,20 +14,29 @@ const messagesDisctop: { messages: string; description?: string; position: strin
 const Authorization: FC = () => {
   const [messages, setMessages] = useState(messagesDisctop)
   const [isForm, setisForm] = useState('')
+  const [status, seStatus] = useState('Вход или регистрация')
   const messagesEndRef = useRef(null)
 
   const onClickLogin = () => {
+    seStatus('Вход')
     setisForm('auth')
     setMessages([...messages, { messages: 'войти', position: 'right' }, { messages: 'Вход:', description: 'Введите логин и пароль для входа', position: 'left' }])
   }
 
   const onClickAutn = () => {
+    seStatus('Регистрация')
     setisForm('login')
     setMessages([
       ...messages,
       { messages: 'регистрация', position: 'right' },
       { messages: 'Регистрация:', description: 'Введите свою почту и придумайте сложный пароль', position: 'left' }
     ])
+  }
+
+  const onClickBack = () => {
+    seStatus('Вход или регистрация')
+    setisForm('')
+    setMessages([...messages, { messages: 'к регистрации и входу', position: 'right' }])
   }
 
   const onCliclForm = errors => {
@@ -54,7 +63,7 @@ const Authorization: FC = () => {
   return (
     <div className={styles.continder}>
       <div className={styles.header}>
-        Вход или регистрация
+        {status}
         <span>&times;</span>
       </div>
       <div className={styles.chat}>
@@ -72,14 +81,7 @@ const Authorization: FC = () => {
           </div>
         ) : (
           <div className={styles.btn}>
-            <Button
-              onClick={() => {
-                setisForm('')
-                setMessages([...messages, { messages: 'к регистрации и входу', position: 'right' }])
-              }}
-              children='Назад'
-              color='darkRed'
-            />
+            <Button onClick={onClickBack} children='Назад' color='darkRed' />
           </div>
         )}
       </div>
