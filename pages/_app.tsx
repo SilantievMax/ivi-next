@@ -11,7 +11,7 @@ const App = ({ Component, pageProps, ...rest }: AppProps) => {
 
   return (
     <Provider store={store}>
-      <Layout>
+      <Layout title='Movies' description='The best custom online cinema developed by the Hotel Group team'>
         <Component {...pageProps} />
       </Layout>
     </Provider>

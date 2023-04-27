@@ -1,19 +1,25 @@
-import React, { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import FormReview from '../FormReview/FormReview'
 
-import styles from './ReviewsItem.module.scss'
-import { Button } from '@/src/components/Button/Button'
-import VoteBtns from '@/src/components/VoteBtns/VoteBtns'
-import { useOuside } from '@/src/hooks/useOutside'
-import { IReviews } from '@/src/types/CommentsType'
+
+import FormReview from '../FormReview/FormReview';
+
+
+
+import styles from './ReviewsItem.module.scss';
+import { Button } from '@/src/components/Button/Button';
+import VoteBtns from '@/src/components/VoteBtns/VoteBtns';
+import { useOuside } from '@/src/hooks/useOutside';
+import { IReviews } from '@/src/types/CommentsType';
+
 
 interface CommentProps {
   comment: IReviews
+  setSent: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Comment = ({ comment }: CommentProps) => {
+const Comment = ({ comment, setSent }: CommentProps) => {
   const [showReview, setShowReview] = useState(false)
   const { author, date, description, id, title, movieId } = comment || {}
   const { ref, isShow, setIsShow } = useOuside(false)
@@ -54,7 +60,7 @@ const Comment = ({ comment }: CommentProps) => {
         )}
       </div>
       <div className={styles.button}>{!isShow && <Button size='border' children={t('answer')} onClick={() => setIsShow(true)} />}</div>
-      <div ref={ref}>{isShow && <FormReview movieId={movieId} setShow={setIsShow} formName={'Comment'} idReview={id} />}</div>
+      <div ref={ref}>{isShow && <FormReview setSent={setSent} movieId={movieId} setShow={setIsShow} formName={'Comment'} idReview={id} />}</div>
     </li>
   )
 }

@@ -20,9 +20,10 @@ interface FormReviewProps {
   formName: 'Review' | 'Comment'
   idReview: number | null
   movieId: string | number | string[] | undefined
+  setSent: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const FormReview = ({ setShow, formName, idReview, movieId }: FormReviewProps) => {
+const FormReview = ({ setShow, formName, idReview, setSent, movieId }: FormReviewProps) => {
   const [nameInput, setNameInput] = useState(false)
   const [nameReview, setReviewInput] = useState(false)
   const [placeholder, setPlaceholder] = useState('')
@@ -46,7 +47,8 @@ const FormReview = ({ setShow, formName, idReview, movieId }: FormReviewProps) =
     formState: { errors, isValid },
     handleSubmit,
     resetField,
-    watch
+    watch,
+    
   } = useForm<IInputs>({ defaultValues: getSavedData() })
 
   const onSubmit = (data: IInputs) => {
@@ -55,7 +57,7 @@ const FormReview = ({ setShow, formName, idReview, movieId }: FormReviewProps) =
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ type: 'POSITIVE', title: `${data.title ? data.title : ''}`, description: `${data.description}`, repliedOnComment: Number(`${idReview}`) })
     }
-    console.log(requestOptions)
+    // console.log(requestOptions)
     fetch(`http://localhost:3004/comments/${movieId}`, requestOptions)
       .then(res => res.json())
       .then(json => console.log(json))
@@ -63,6 +65,7 @@ const FormReview = ({ setShow, formName, idReview, movieId }: FormReviewProps) =
     setShow(false)
     resetField('description')
     resetField('title')
+    setSent(true)
     localStorage.removeItem(FORM_DATA_KEY)
   }
   const cancelComments = () => {

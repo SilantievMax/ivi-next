@@ -14,6 +14,7 @@ import { selectCountries, selectGenres, selectPickedYear, selectRate, selectRevi
 import { selectSort } from '@/src/store/reducers/sortReducer'
 import { TypeFilm } from '@/src/types/types'
 import { useTranslation } from 'react-i18next'
+import Meta from '../../seo/Meta'
 
 const MoviesPage: FC = () => {
   const rate = useSelector(selectRate)
@@ -93,6 +94,7 @@ const MoviesPage: FC = () => {
       .catch(err => console.log(err))
   }, [sort, rate, reviewAmount, genres, countries, year])
   return (
+    <Meta title={t('movies')}>
     <div className={styles.filmsSection}>
       <BreadCrumbNavigation activeItemClassName='slash' omitRootLabel={false} rootLabel={t('myIvi')} />
       <div className={styles.filmsSection__description}>
@@ -168,6 +170,7 @@ const MoviesPage: FC = () => {
         className={styles.standardCarouselItems}
       />
     </div>
+    </Meta>
   )
 }
 

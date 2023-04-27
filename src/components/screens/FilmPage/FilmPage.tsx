@@ -23,6 +23,7 @@ import Reviews from '@/src/components/Reviews/Reviews'
 import { selectPickedMovie } from '@/src/store/reducers/dataBaseReducer'
 import { IReviews } from '@/src/types/CommentsType'
 import { ICrew, IFilm, ITrailer } from '@/src/types/types'
+import Meta from '../../seo/Meta'
 
 const FilmPage = () => {
   const [showActorsWindow, setShowActorsWindow] = useState<boolean>(false)
@@ -107,6 +108,7 @@ const FilmPage = () => {
     return <Oval wrapperClass={styles.loader} color='rgba(255, 255, 255, .72)' secondaryColor='red' />
 
   return (
+   <Meta title={`${i18n.language === 'en' ? data.nameEn : data.nameRu} (${t('film')}${data.year})`} description={data.description}>
     <div className={styles.filmPageWrapper}>
       <div>
         {showActorsWindow ? (
@@ -467,6 +469,7 @@ const FilmPage = () => {
         </div>
       </div>
     </div>
+   </Meta>
   )
 }
 
