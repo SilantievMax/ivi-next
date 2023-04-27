@@ -1,13 +1,17 @@
-import React, { FC, ReactNode } from 'react'
-import Header from '@/src/components/Header/Header'
-import Wrapper from '../Wrapper/Wrapper'
-import Footer from '@/src/components/Footer/Footer'
+import React, { FC, PropsWithChildren, ReactNode } from 'react'
 
-interface LayoutProps {
+import Wrapper from '../Wrapper/Wrapper'
+import Meta from '../seo/Meta'
+import { IMeta } from '../seo/meta.interface'
+
+import Footer from '@/src/components/Footer/Footer'
+import Header from '@/src/components/Header/Header'
+
+interface LayoutProps extends IMeta {
   children: ReactNode
 }
 
-const Layout: FC<LayoutProps> = ({ children }) => {
+const Layout: FC<PropsWithChildren<LayoutProps>> = ({ title, description, children }) => {
   return (
     <>
       <Wrapper>

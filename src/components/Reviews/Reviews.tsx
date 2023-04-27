@@ -26,6 +26,7 @@ const Reviews: FC<ReviewsProps> = ({ titleBtn, reviews, btn, aboutTheFilm, numbe
   } = useRouter()
 
   return (
+    
     <section className={styles.reviews}>
       <header className={styles.header}>
         <div className={styles.header_item}>
