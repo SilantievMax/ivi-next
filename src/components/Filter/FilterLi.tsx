@@ -28,7 +28,7 @@ const FilterLi = (props: ILi) => {
   const pickedGenresList = useSelector(selectGenresList)
 
   return (
-    <div onClick={() => setActive(!active)} className={styles.filterDropdown__itemContainer}>
+    <div onClick={() => setActive(!active)} className={active && content !== 'Все годы' ? `${styles.filterDropdown__itemContainer} ${styles.active}` : styles.filterDropdown__itemContainer}>
       <li className={className}>
         {content}
       </li>

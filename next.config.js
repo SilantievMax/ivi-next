@@ -11,7 +11,17 @@ const nextConfig = {
     locales: ["ru", "en"],
     defaultLocale: "en",
     localeDetection: false
-  }
+  },
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: '/movies:*',
+  //       destination: '/movies',
+  //       permanent: true,
+  //     },
+  //   ]
+  // },
 }
+
 
 module.exports = nextConfig
