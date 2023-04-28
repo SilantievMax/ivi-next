@@ -45,7 +45,6 @@ const Breadcrumbs = ({
   activeItemClassName
 }: BreadcrumbsProps) => {
   const router = useRouter()
-  
   const [breadcrumbs, setBreadcrumbs] = useState<Array<Breadcrumb> | null>(null)
   const { t } = useTranslation()
   function ucFirst(str: string | string[]) {
@@ -53,13 +52,12 @@ const Breadcrumbs = ({
   }
   useEffect(() => {
     if (router) {
-      if(router.query.genre){        
+      if(router.query.genre){
         const linkPaths = []
         const linkPath = router.asPath.split('/')
         linkPath.shift()
         linkPaths.push(linkPath[0])
         linkPaths.push(ucFirst(router.query.genre))
-        console.log(linkPath)
         const pathArray = linkPaths.map((path, i) => {
           return {
             breadcrumb: path,
@@ -69,7 +67,7 @@ const Breadcrumbs = ({
         setBreadcrumbs(pathArray as Breadcrumb[])
         return
       }
-      
+
       const linkPath = router.asPath.split('/')
       linkPath.shift()
       const pathArray = linkPath.map((path, i) => {
@@ -82,7 +80,7 @@ const Breadcrumbs = ({
       return
     }
   }, [router])
-// console.log(breadcrumbs)
+ // console.log(breadcrumbs)
 
   if (!breadcrumbs) {
     return null
@@ -112,7 +110,7 @@ const Breadcrumbs = ({
                 style={i === breadcrumbs.length - 1 ? activeItemStyle : inactiveItemStyle}
               >
                 <Link onClick={() => console.log(breadcrumb.href)
-                } href={breadcrumb.href}>{t(`${convertBreadcrumb(breadcrumb.breadcrumb, labelsToUppercase, replaceCharacterList, transformLabel)}`)}</Link>
+                } href={breadcrumb.href}>{t(`${convertBreadcrumb(breadcrumb.breadcrumb.replaceAll('+', ', '), labelsToUppercase, replaceCharacterList, transformLabel)}`)}</Link>
               </li>
             )
           })}
