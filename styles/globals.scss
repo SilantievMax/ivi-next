@@ -73,4 +73,28 @@ ul {
   min-height: 100%;
 }
 
+.MuiTextField-root {
+  color: #FFFFFF;
+}
+
+.css-e8xg60-MuiFormLabel-root-MuiInputLabel-root {
+  color: rgba(255, 255, 255, 0.56);
+}
+
+.css-3sjdb0-MuiInputBase-root-MuiInput-root:before {
+  border-bottom: 1px solid rgba(93, 93, 93, 0.56);
+}
+
+.css-3sjdb0-MuiInputBase-root-MuiInput-root:hover:not(.Mui-disabled, .Mui-error):before {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.56);
+}
+
+.css-1x51dt5-MuiInputBase-input-MuiInput-input {
+  color: #FFFFFF;
+}
+
+.css-1tqs3sn-MuiFormLabel-root-MuiInputLabel-root {
+  color: rgba(255, 255, 255, 0.56);
+}
+
 @import "./swiper";
