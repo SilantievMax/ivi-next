@@ -1,17 +1,9 @@
-import React, { useState } from 'react';
-import { AiOutlineCheck } from 'react-icons/ai';
-
-
-
-import styles from './filter.module.scss';
+import React, { useState } from 'react'
+import { AiOutlineCheck } from 'react-icons/ai'
 import { useSelector } from 'react-redux'
-import {
-  selectCountries,
-  selectCountryList,
-  selectGenres, selectGenresList,
-  selectPickedYear
-} from '@/src/store/reducers/filterReducer'
 
+import styles from './filter.module.scss'
+import { selectCountries, selectCountryList, selectGenres, selectGenresList, selectPickedYear } from '@/src/store/reducers/filterReducer'
 
 interface ILi {
   content: string

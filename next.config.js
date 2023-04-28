@@ -12,15 +12,16 @@ const nextConfig = {
     defaultLocale: "en",
     localeDetection: false
   },
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: '/movies:*',
-  //       destination: '/movies',
-  //       permanent: true,
-  //     },
-  //   ]
-  // },
+  async redirects() {
+    return [
+      {
+        source: '/movies/:slug',
+        destination: '/movies/',
+        permanent: true,
+      },
+    ]
+  },
+
 }
 
 

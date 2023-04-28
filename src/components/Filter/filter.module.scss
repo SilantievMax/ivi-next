@@ -117,13 +117,11 @@
   background-color: #312b45;
 }
 
-
 .filterDropdown__list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 40px;
   row-gap: 10px;
-
 }
 
 .filterDropdown__itemContainer {
@@ -131,6 +129,7 @@
   flex-direction: row;
   justify-content: space-between;
   column-gap: 20px;
+  cursor: pointer;
   align-items: center;
   color: rgba(255, 255, 255, 0.56);
 }
@@ -138,7 +137,6 @@
 .active {
   color: #FFFFFF;
 }
-
 
 .filterDropdown__itemContainer:hover .filterDropdown__check {
   color: #a5a1b2;
@@ -150,7 +148,7 @@
 }
 
 .filterDropdown__active {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .white {
