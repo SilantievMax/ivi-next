@@ -1,29 +1,34 @@
-import { capitalize } from '@mui/material'
-import i18n from 'i18next'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { BiBookmark, BiFilm, BiVolumeLow } from 'react-icons/bi'
-import { BsPlay } from 'react-icons/bs'
-import { FiUpload } from 'react-icons/fi'
-import { MdArrowBackIosNew } from 'react-icons/md'
-import { TfiTimer } from 'react-icons/tfi'
-import { Oval } from 'react-loader-spinner'
-import ReactPlayer from 'react-player'
-import { useSelector } from 'react-redux'
+import { capitalize } from '@mui/material';
+import i18n from 'i18next';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { BiBookmark, BiFilm, BiVolumeLow } from 'react-icons/bi';
+import { BsPlay } from 'react-icons/bs';
+import { FiUpload } from 'react-icons/fi';
+import { MdArrowBackIosNew } from 'react-icons/md';
+import { TfiTimer } from 'react-icons/tfi';
+import { Oval } from 'react-loader-spinner';
+import ReactPlayer from 'react-player';
+import { useSelector } from 'react-redux';
 
-import BreadCrumbNavigation from '../../BreadCrumbNavigation/BreadCrumbNavigation'
 
-import styles from './filmpage.module.scss'
-import { Button } from '@/src/components/Button/Button'
-import Carousel from '@/src/components/Carousel/Carousel'
-import Film from '@/src/components/Film/Film'
-import Reviews from '@/src/components/Reviews/Reviews'
-import { selectPickedMovie } from '@/src/store/reducers/dataBaseReducer'
-import { IReviews } from '@/src/types/CommentsType'
-import { ICrew, IFilm, ITrailer } from '@/src/types/types'
-import Meta from '../../seo/Meta'
+
+import BreadCrumbNavigation from '../../BreadCrumbNavigation/BreadCrumbNavigation';
+import Meta from '../../seo/Meta';
+
+
+
+import styles from './filmpage.module.scss';
+import { Button } from '@/src/components/Button/Button';
+import Carousel from '@/src/components/Carousel/Carousel';
+import Film from '@/src/components/Film/Film';
+import Reviews from '@/src/components/Reviews/Reviews';
+import { selectPickedMovie } from '@/src/store/reducers/dataBaseReducer';
+import { IReviews } from '@/src/types/CommentsType';
+import { ICrew, IFilm, ITrailer } from '@/src/types/types';
+
 
 const FilmPage = () => {
   const [showActorsWindow, setShowActorsWindow] = useState<boolean>(false)
@@ -41,6 +46,7 @@ const FilmPage = () => {
     query: { id }
   } = useRouter()
   const { t } = useTranslation()
+
   //Запрос на рецензии к фильму по id
   useEffect(() => {
     fetch(`http://localhost:3004/comments/${id}/tree`, {

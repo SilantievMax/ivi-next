@@ -1,12 +1,15 @@
-import cn from 'classnames'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import cn from 'classnames';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import styles from './BreadCrumbNavigation.module.scss'
-import { Breadcrumb, BreadcrumbsProps } from './BreadCrumdsModels'
-import { convertBreadcrumb } from './ConvertBreadcrumd'
+
+
+import styles from './BreadCrumbNavigation.module.scss';
+import { Breadcrumb, BreadcrumbsProps } from './BreadCrumdsModels';
+import { convertBreadcrumb } from './ConvertBreadcrumd';
+
 
 const defaultProps: BreadcrumbsProps = {
   rootLabel: '',
@@ -42,12 +45,31 @@ const Breadcrumbs = ({
   activeItemClassName
 }: BreadcrumbsProps) => {
   const router = useRouter()
-
+  
   const [breadcrumbs, setBreadcrumbs] = useState<Array<Breadcrumb> | null>(null)
   const { t } = useTranslation()
-
+  function ucFirst(str: string | string[]) {
+    return str[0].toUpperCase() + str.slice(1)
+  }
   useEffect(() => {
     if (router) {
+      if(router.query.genre){        
+        const linkPaths = []
+        const linkPath = router.asPath.split('/')
+        linkPath.shift()
+        linkPaths.push(linkPath[0])
+        linkPaths.push(ucFirst(router.query.genre))
+        console.log(linkPath)
+        const pathArray = linkPaths.map((path, i) => {
+          return {
+            breadcrumb: path,
+            href: '/' + linkPath.slice(0, i + 1).join('/')
+          }
+        })
+        setBreadcrumbs(pathArray as Breadcrumb[])
+        return
+      }
+      
       const linkPath = router.asPath.split('/')
       linkPath.shift()
       const pathArray = linkPath.map((path, i) => {
@@ -60,16 +82,14 @@ const Breadcrumbs = ({
       return
     }
   }, [router])
+// console.log(breadcrumbs)
 
   if (!breadcrumbs) {
     return null
   }
 
   return (
-    <nav
-      className={`${cn(styles.breadcrumb, { [styles.pointBreadcrumb]: inactiveItemClassName === 'point', [styles.slashBreadcrumb]: activeItemClassName === 'slash' })}`}
-      aria-label='breadcrumbs'
-    >
+    <nav  className={ `${cn( styles.breadcrumb, { [styles.pointBreadcrumb]: inactiveItemClassName === 'point', [styles.slashBreadcrumb]: activeItemClassName === 'slash' })}` } aria-label='breadcrumbs'>
       <ul>
         {!omitRootLabel && (
           <li>
@@ -86,14 +106,13 @@ const Breadcrumbs = ({
                 key={breadcrumb.href}
                 className={
                   i === breadcrumbs.length - 1
-                    ? `${cn({ [styles.slash]: activeItemClassName === 'slash' })}`
-                    : `${cn({ [styles.slashActive]: inactiveItemClassName === 'slash', [styles.point]: activeItemClassName === 'point' })}`
+                    ? `${cn({ [styles.slash]: activeItemClassName === 'slash'})}`
+                    : `${cn({ [styles.slashActive]: inactiveItemClassName === 'slash',[styles.point]: activeItemClassName === 'point' })}`
                 }
                 style={i === breadcrumbs.length - 1 ? activeItemStyle : inactiveItemStyle}
               >
-                <Link onClick={() => console.log(breadcrumb.href)} href={breadcrumb.href}>
-                  {t(`${convertBreadcrumb(breadcrumb.breadcrumb, labelsToUppercase, replaceCharacterList, transformLabel)}`)}
-                </Link>
+                <Link onClick={() => console.log(breadcrumb.href)
+                } href={breadcrumb.href}>{t(`${convertBreadcrumb(breadcrumb.breadcrumb, labelsToUppercase, replaceCharacterList, transformLabel)}`)}</Link>
               </li>
             )
           })}
