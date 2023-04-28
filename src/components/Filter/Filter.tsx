@@ -26,6 +26,7 @@ const Filter = () => {
   const countries = useSelector(selectCountries)
   const [pickedReviewAmount, setSickedReviewAmount] = useState<number>(0)
   const [rateAmount, setRateAmount] = useState<number>(7.3)
+  const [value, setValue] = useState<string>('')
   const genresList = useSelector(selectGenresList)
   const countryList = useSelector(selectCountryList)
   const { t } = useTranslation()
@@ -80,7 +81,7 @@ const Filter = () => {
       .catch(err => console.log(err))
   }, [])
 
-  const addGenre = (id: number) => {
+  const addGenre = (id: number, genre: string) => {
     if (genres.indexOf(id) === -1) {
       dispatch(setGenres([...genres, id]))
     } else {
@@ -88,15 +89,29 @@ const Filter = () => {
       arr.splice(arr.indexOf(id), 1)
       dispatch(setGenres(arr))
     }
+    if (genresList.indexOf(genre) === -1) {
+      dispatch(setGenresList([...genresList, genre]))
+    } else {
+      let arr = [...genresList]
+      arr.splice(arr.indexOf(genre), 1)
+      dispatch(setGenresList(arr))
+    }
   }
 
-  const addCountry = (id: number) => {
+  const addCountry = (id: number, country: string) => {
     if (countries.indexOf(id) === -1) {
       dispatch(setCountries([...countries, id]))
     } else {
       let arr = [...countries]
       arr.splice(arr.indexOf(id), 1)
       dispatch(setCountries(arr))
+    }
+    if (countryList.indexOf(country) === -1) {
+      dispatch(setCountriesList([...countryList, country]))
+    } else {
+      let arr = [...countryList]
+      arr.splice(arr.indexOf(country), 1)
+      dispatch(setCountriesList(arr))
     }
   }
   const [urlGenre, setUrlGenre] = useState<string[]>([])
@@ -121,12 +136,12 @@ const Filter = () => {
       dispatch(setGenresList([...genresList, capitalize(name)]))
     }
   }
-
   return (
     <div className={styles.filtersContainer}>
       <div className={styles.filtersContainer__item}>
         <FilterItem
           title={t('genres')}
+          type='genre'
           content={
             <div className={styles.filterDropdown__content}>
               <ul className={styles.filterDropdown__list}>
@@ -144,14 +159,11 @@ const Filter = () => {
             <div className={styles.filterDropdown__content}>
               <ul className={styles.filterDropdown__list}>
                 {countryArray.map((el, idx) => (
-                  <div
-                    key={idx}
-                    onClick={() => {
-                      addCountry(el.id)
-                      dispatch(setCountriesList([...countryList, capitalize(el.nameRu)]))
-                    }}
-                  >
-                    <FilterLi id={el.id} content={capitalize(el.nameRu)} className={styles.filterDropdown__item} />
+                  <div key={idx} onClick={() => {
+                    addCountry(el.id, capitalize(el.nameRu))
+                  }}>
+                    <FilterLi id={el.id} content={capitalize(el.nameRu)}
+                              className={styles.filterDropdown__item} />
                   </div>
                 ))}
               </ul>
@@ -225,6 +237,7 @@ const Filter = () => {
         }}
         className={styles.removeFilterBox}
       >
+
         <FiX className={styles.removeFilterBox__btn} />
         {t('deleteFilters')}
       </div>

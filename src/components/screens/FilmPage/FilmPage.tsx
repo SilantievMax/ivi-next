@@ -36,6 +36,7 @@ const FilmPage = () => {
   const [similars, setSimilars] = useState<IFilm[]>([] as IFilm[])
   const [data, setData] = useState<IFilm>({} as IFilm)
   const [reviews, setReviews] = useState<IReviews[]>([] as IReviews[])
+  const defaultTrailer = [{id: 1, name: 'sad', site: 'ds', url:  'https://www.youtube.com/watch?v=YihPA42fdQ8' }]
   const {
     query: { id }
   } = useRouter()
@@ -61,7 +62,7 @@ const FilmPage = () => {
       }
     })
       .then(res => res.json())
-      .then(json => setPickedTrailer(json))
+      .then(json => json.length !== 0 ? setPickedTrailer(json) : setPickedTrailer(defaultTrailer))
       .catch(err => console.log(err))
   }, [id])
 
@@ -104,7 +105,7 @@ const FilmPage = () => {
   const calcTime = (num: number) => {
     return `${Math.floor(num / 60)}${t('hour')} ${num % 60}${t('min')}`
   }
-  if (!data.genres || !pickedTrailer.length || !similars.length || !crewList.length)
+  if (!data.genres || !pickedTrailer.length)
     return <Oval wrapperClass={styles.loader} color='rgba(255, 255, 255, .72)' secondaryColor='red' />
 
   return (

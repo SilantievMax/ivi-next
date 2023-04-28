@@ -20,18 +20,15 @@ const FilterLi = (props: ILi) => {
   const pickedGenresList = useSelector(selectGenresList)
 
   return (
-    <div onClick={() => setActive(!active)} className={styles.filterDropdown__itemContainer}>
-      <li className={className}>{content}</li>
-      <AiOutlineCheck
-        className={
-          content.split(' ')[0] === currentYear ||
-          (pickedGenres.indexOf(id || 0) !== -1 && pickedGenresList.indexOf(content) !== -1) ||
-          (pickedCountries.indexOf(id || 0) !== -1 && pickedCountriesList.indexOf(content) !== -1) ||
-          content === currentYear
-            ? styles.filterDropdown__active
-            : styles.filterDropdown__check
-        }
-      />
+    <div onClick={() => setActive(!active)} className={active && content !== 'Все годы' ? `${styles.filterDropdown__itemContainer} ${styles.active}` : styles.filterDropdown__itemContainer}>
+      <li className={className}>
+        {content}
+      </li>
+      <AiOutlineCheck className={content.split(' ')[0] === currentYear
+        || pickedGenres.indexOf(id || 0) !== -1 && pickedGenresList.indexOf(content) !== -1
+        || pickedCountries.indexOf(id || 0) !== -1 && pickedCountriesList.indexOf(content) !== -1
+        || content === currentYear
+        ? styles.filterDropdown__active : styles.filterDropdown__check}/>
     </div>
   )
 }
