@@ -24,11 +24,10 @@
   cursor: pointer !important;
   transition-duration: 80ms;
 }
-.breadcrumb li:nth-child(2) a {
-  // background: rgb(224, 233, 233);
+.breadcrumb li:nth-child(2) a::before {
 }
 .breadcrumb li:nth-child(2) a:after {
-  // border-left-color: rgb(224, 233, 233);
+  border-left-color: rgb(224, 233, 233);
 }
 .breadcrumb li:nth-child(3) a {
   // background: rgb(224, 233, 233);
@@ -48,10 +47,34 @@
 .breadcrumb li:nth-child(5) a:after {
   // border-left-color: rgb(224, 233, 233);
 }
-.breadcrumb li:last-child a:hover{
-  color:rgb(255, 255, 255);
+.breadcrumb li:last-child a:hover {
+  color: rgb(255, 255, 255);
 }
-
+.slashActive {
+  position: relative;
+  border: none;
+  margin-left: 18px;
+  cursor: pointer;
+}
+.slashActive:hover {
+  box-shadow: 0 0 0 #7e798f, inset 0 -1.5em 0 #7e798f;
+  transition-duration: 80ms;
+}
+.slashActive::after {
+  content: '';
+  border-bottom: solid;
+  width: 100%;
+  height: 115%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.slashActive::before {
+  position: absolute;
+  content: '/';
+  left: -11px;
+  float: left;
+}
 .slash::before {
   content: '/';
   margin: 0 7px;
@@ -74,10 +97,10 @@
   box-shadow: 0 0 0 #7e798f, inset 0 -1.5em 0 #7e798f;
   transition-duration: 80ms;
 }
-.point{
+.point {
   color: #7e798f;
 }
-.point:hover{
+.point:hover {
   color: #ffffff;
 }
 .point::before {

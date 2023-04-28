@@ -1,17 +1,9 @@
-import React, { useState } from 'react';
-import { AiOutlineCheck } from 'react-icons/ai';
-
-
-
-import styles from './filter.module.scss';
+import React, { useState } from 'react'
+import { AiOutlineCheck } from 'react-icons/ai'
 import { useSelector } from 'react-redux'
-import {
-  selectCountries,
-  selectCountryList,
-  selectGenres, selectGenresList,
-  selectPickedYear
-} from '@/src/store/reducers/filterReducer'
 
+import styles from './filter.module.scss'
+import { selectCountries, selectCountryList, selectGenres, selectGenresList, selectPickedYear } from '@/src/store/reducers/filterReducer'
 
 interface ILi {
   content: string
@@ -29,14 +21,17 @@ const FilterLi = (props: ILi) => {
 
   return (
     <div onClick={() => setActive(!active)} className={styles.filterDropdown__itemContainer}>
-      <li className={className}>
-        {content}
-      </li>
-      <AiOutlineCheck className={content.split(' ')[0] === currentYear
-        || pickedGenres.indexOf(id || 0) !== -1 && pickedGenresList.indexOf(content) !== -1
-        || pickedCountries.indexOf(id || 0) !== -1 && pickedCountriesList.indexOf(content) !== -1
-        || content === currentYear
-        ? styles.filterDropdown__active : styles.filterDropdown__check}/>
+      <li className={className}>{content}</li>
+      <AiOutlineCheck
+        className={
+          content.split(' ')[0] === currentYear ||
+          (pickedGenres.indexOf(id || 0) !== -1 && pickedGenresList.indexOf(content) !== -1) ||
+          (pickedCountries.indexOf(id || 0) !== -1 && pickedCountriesList.indexOf(content) !== -1) ||
+          content === currentYear
+            ? styles.filterDropdown__active
+            : styles.filterDropdown__check
+        }
+      />
     </div>
   )
 }

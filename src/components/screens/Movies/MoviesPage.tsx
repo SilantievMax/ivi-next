@@ -96,7 +96,7 @@ const MoviesPage: FC = () => {
   return (
     <Meta title={t('movies')}>
     <div className={styles.filmsSection}>
-      <BreadCrumbNavigation activeItemClassName='slash' omitRootLabel={false} rootLabel={t('myIvi')} />
+      <BreadCrumbNavigation activeItemClassName='slash' inactiveItemClassName='slash' omitRootLabel={false} rootLabel={t('myIvi')} />
       <div className={styles.filmsSection__description}>
         <h1 className={styles.filmsSection__title}>{t('watchFilmsTitle')}</h1>
         <div className={styles.descriptionWrapper}>
