@@ -137,7 +137,7 @@ const Filter = () => {
   }
 
   useEffect(() => {
-    router.push({ pathname: '/movies' }, `/movies/${ucFirst(urlGenre).join(', ')}`, { shallow: true })
+    router.push({ pathname: '/movies' }, `/movies/${ucFirst(urlGenre).join('+')}`, { shallow: true })
   }, [urlGenre])
 
   const urlGenres = (el: IGenre) => {
