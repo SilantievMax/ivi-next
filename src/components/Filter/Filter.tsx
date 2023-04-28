@@ -127,7 +127,7 @@ const Filter = () => {
 
   const urlGenres = (el: IGenre) => {
     const name = el.nameRu
-    addGenre(el.id)
+    addGenre(el.id, name)
     if (urlGenre.includes(name)) {
       setUrlGenre(urlGenre => urlGenre.filter(index => index !== name))
       dispatch(setGenresList([...genresList, capitalize(name)]))

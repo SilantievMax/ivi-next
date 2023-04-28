@@ -11,7 +11,7 @@ const Film = (props: {film: IFilm}) => {
   const { t } = useTranslation()
 
   return (
-    <Link href={`/movies/${props.film.id}`}>
+    <Link href={{pathname: `/movies/${props.film.id}`, query:{genre: `${props.film.genres[0].nameRu}`}}} >
       <div onClick={() => {
         dispatch(setPickedMovie(props.film.id))
       }} className={styles.filmCard__container}>
