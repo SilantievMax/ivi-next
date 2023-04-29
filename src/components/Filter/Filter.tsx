@@ -58,6 +58,7 @@ const Filter = () => {
   ]
   const [genresArray, setGenresArray] = useState<IGenre[]>([])
   const [countryArray, setCountryArray] = useState<IGenre[]>([])
+  const router = useRouter()
   const handleReviewChange = (event: Event, newValue: number | number[]) => {
     setSickedReviewAmount(newValue as number)
   }
@@ -129,28 +130,15 @@ const Filter = () => {
       dispatch(setCountriesList(arr))
     }
   }
-  const [urlGenre, setUrlGenre] = useState<string[]>([])
-  const router = useRouter()
 
   function ucFirst(arr: string[]) {
     return arr.map(str => capitalize(str))
   }
 
   useEffect(() => {
-    router.push({ pathname: '/movies' }, `/movies/${ucFirst(urlGenre).join('+')}`, { shallow: true })
-  }, [urlGenre])
+    router.push({ pathname: '/movies' }, `/movies/${ucFirst(genresList).join('+')}`, { shallow: true })
+  }, [genresList])
 
-  const urlGenres = (el: IGenre) => {
-    const name = el.nameRu
-    addGenre(el.id, name)
-    if (urlGenre.includes(name)) {
-      setUrlGenre(urlGenre => urlGenre.filter(index => index !== name))
-      dispatch(setGenresList([...genresList, capitalize(name)]))
-    } else {
-      setUrlGenre(urlGenre => [...urlGenre, name])
-      dispatch(setGenresList([...genresList, capitalize(name)]))
-    }
-  }
   return (
     <div className={styles.filtersContainer}>
       <div className={styles.filtersContainer__item}>
@@ -161,7 +149,8 @@ const Filter = () => {
             <div className={styles.filterDropdown__content}>
               <ul className={styles.filterDropdown__list}>
                 {genresArray.map((el, idx) => (
-                  <div key={idx} onClick={() => urlGenres(el)}>
+                  <div key={idx} onClick={() => {
+                    addGenre(el.id, el.nameRu)}}>
                     <FilterLi id={el.id} content={capitalize(el.nameRu)}
                               className={styles.filterDropdown__item} />
                   </div>
@@ -265,7 +254,6 @@ const Filter = () => {
           dispatch(setCountries([]))
           dispatch(setGenres([]))
           dispatch(setPickedYear('Все годы'))
-          setUrlGenre([])
           dispatch(setCountriesList([]))
           dispatch(setGenresList([]))
         }}
