@@ -15,11 +15,11 @@ const Layout: FC<PropsWithChildren<LayoutProps>> = ({ title, description, childr
   return (
     <>
       <Wrapper>
-        <Header />
+        {/*<Header />*/}
       </Wrapper>
       <Wrapper>{children}</Wrapper>
       <Wrapper>
-        <Footer />
+        {/*<Footer />*/}
       </Wrapper>
     </>
   )

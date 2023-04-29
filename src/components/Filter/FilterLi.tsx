@@ -21,7 +21,7 @@ const FilterLi = (props: ILi) => {
 
   return (
     <div onClick={() => setActive(!active)} className={active && content !== 'Все годы' ? `${styles.filterDropdown__itemContainer} ${styles.active}` : styles.filterDropdown__itemContainer}>
-      <li className={className}>
+      <li className={`${className} ${styles.listItem}`}>
         {content}
       </li>
       <AiOutlineCheck className={content.split(' ')[0] === currentYear

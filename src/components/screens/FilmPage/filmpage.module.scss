@@ -353,6 +353,8 @@
 
 .devicePic {
   z-index: 1;
+  height: 272px;
+  width: 536px;
 }
 
 .posterMobilePic {
@@ -602,3 +604,109 @@
     }
   }
 }
+
+@media (max-width: 900px) {
+  .filmSectionContainer {
+    flex-direction: column;
+  }
+
+  .filmSectionContainer {
+    align-items: center;
+  }
+
+  .player {
+    padding: 0;
+  }
+
+}
+
+@media (max-width: 1500px) {
+  .actorSection__wrapper {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 900px) {
+  .playerWindow {
+    order: 2;
+  }
+
+  .filmSection__content {
+    order: 1;
+    max-width: inherit;
+    padding: 15px 0;
+  }
+
+  .actorsParams {
+    justify-content: center;
+    column-gap: 15px;
+  }
+  .filmPage__titleText {
+    font-size: 14px;
+  }
+  .filmDescription__font {
+    font-size: 12px;
+  }
+  .watchAllDevicesSection {
+    flex-direction: column;
+    row-gap: 15px;
+  }
+  .actorSection__wrapper {
+    justify-content: center;
+  }
+
+  .devicePic {
+    height: 160px;
+    width: 100%;
+  }
+  .ipadPic {
+    right: 30px;
+    width: 150px;
+    height: 100px;
+  }
+  .posterPic {
+    left: 89px;
+    top: 3px;
+    width: 225px;
+    height: 114px;
+  }
+  .posterMobilePic {
+    right: 36px;
+    bottom: 5px;
+    width: 139px;
+    height: 75px;
+  }
+  .filmTitle {
+    padding: 0;
+  }
+  .watchAllDevicesImageWrapper {
+    padding: 0;
+  }
+  .popup__wrapper {
+    flex-direction: column;
+    padding: 0 20px;
+    justify-content: inherit;
+  }
+  .popup__filmCard {
+    order: 1;
+    justify-content: center;
+    align-items: center;
+    padding: 55px 0;
+    margin: 0;
+  }
+  .popup__crewWrapper {
+    order: 2;
+  }
+  .popup__smallText {
+    text-align: center;
+  }
+  .popup__crewContainer {
+    justify-content: center;
+
+  }
+  .popup__items {
+    align-items: center;
+
+  }
+}
+

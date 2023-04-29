@@ -455,7 +455,7 @@ const FilmPage = () => {
             </Link>
           </div>
           <div className={styles.watchAllDevicesImageWrapper}>
-            <img src='https://www.ivi.ru/images/_ds/watchAllDevices/tv-without-poster.png' height={272} width={536} className={styles.devicePic} alt='devisePic' />
+            <img src='https://www.ivi.ru/images/_ds/watchAllDevices/tv-without-poster.png'  className={styles.devicePic} alt='devisePic' />
             <img src='https://www.ivi.ru/images/_ds/watchAllDevices/ipad-without-poster.png' className={styles.ipadPic} alt='devisePic' />
             <img src={data.posterUrl} className={styles.posterPic} alt='devisePic' />
             <img src={data.posterUrl} className={styles.posterMobilePic} alt='devisePic' />

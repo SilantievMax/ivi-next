@@ -177,3 +177,24 @@
   display: none;
 }
 
+@media (max-width: 1500px) {
+  .filmCardsWrapper {
+    justify-content: center;
+  }
+
+  .filmsSection__description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .filmsSection__title {
+    text-align: center;
+    font-size: 30px;
+  }
+}
+
+

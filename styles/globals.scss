@@ -97,4 +97,11 @@ ul {
   color: rgba(255, 255, 255, 0.56);
 }
 
+@media (max-width: 900px) {
+  .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+    width: 49%;
+  }
+}
+
+
 @import "./swiper";
