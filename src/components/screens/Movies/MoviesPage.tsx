@@ -1,20 +1,26 @@
-import React, { FC, useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { FC, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 
-import styles from './movies.module.scss'
-import BreadCrumbNavigation from '@/src/components/BreadCrumbNavigation/BreadCrumbNavigation'
-import { Button } from '@/src/components/Button/Button'
-import Carousel from '@/src/components/Carousel/Carousel'
-import Film from '@/src/components/Film/Film'
-import Filter from '@/src/components/Filter/Filter'
-import Sort from '@/src/components/Sort/Sort'
-import { InfoService } from '@/src/services/info.service'
-import { selectMoviesList, setMoviesList } from '@/src/store/reducers/dataBaseReducer'
-import { selectCountries, selectGenres, selectPickedYear, selectRate, selectReviewAmount } from '@/src/store/reducers/filterReducer'
-import { selectSort } from '@/src/store/reducers/sortReducer'
-import { TypeFilm } from '@/src/types/types'
-import { useTranslation } from 'react-i18next'
-import Meta from '../../seo/Meta'
+
+
+import Meta from '../../seo/Meta';
+
+
+
+import styles from './movies.module.scss';
+import {MemoBreadcrumbs} from '@/src/components/BreadCrumbNavigation/BreadCrumbNavigation'
+import { Button } from '@/src/components/Button/Button';
+import Carousel from '@/src/components/Carousel/Carousel';
+import Film from '@/src/components/Film/Film';
+import Filter from '@/src/components/Filter/Filter';
+import Sort from '@/src/components/Sort/Sort';
+import { InfoService } from '@/src/services/info.service';
+import { selectMoviesList, setMoviesList } from '@/src/store/reducers/dataBaseReducer';
+import { selectCountries, selectGenres, selectPickedYear, selectRate, selectReviewAmount } from '@/src/store/reducers/filterReducer';
+import { selectSort } from '@/src/store/reducers/sortReducer';
+import { TypeFilm } from '@/src/types/types';
+
 
 const MoviesPage: FC = () => {
   const rate = useSelector(selectRate)
@@ -96,7 +102,7 @@ const MoviesPage: FC = () => {
   return (
     <Meta title={t('movies')}>
     <div className={styles.filmsSection}>
-      <BreadCrumbNavigation activeItemClassName='slash' inactiveItemClassName='slash' omitRootLabel={false} rootLabel={t('myIvi')} />
+      <MemoBreadcrumbs activeItemClassName='slash' inactiveItemClassName='slash' omitRootLabel={false} rootLabel={t('myIvi')} />
       <div className={styles.filmsSection__description}>
         <h1 className={styles.filmsSection__title}>{t('watchFilmsTitle')}</h1>
         <div className={styles.descriptionWrapper}>
