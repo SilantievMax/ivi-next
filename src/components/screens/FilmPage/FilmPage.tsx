@@ -12,6 +12,8 @@ import { TfiTimer } from 'react-icons/tfi'
 import { Oval } from 'react-loader-spinner'
 import ReactPlayer from 'react-player'
 import { useSelector } from 'react-redux'
+import { Navigation } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { MemoBreadcrumbs } from '../../BreadCrumbNavigation/BreadCrumbNavigation'
 import Meta from '../../seo/Meta'
@@ -23,6 +25,7 @@ import Film from '@/src/components/Film/Film'
 import { selectPickedMovie } from '@/src/store/reducers/dataBaseReducer'
 import { IReviews } from '@/src/types/CommentsType'
 import { ICrew, IFilm, ITrailer } from '@/src/types/types'
+
 const LazyReviews = lazy(() => import('@/src/components/Reviews/Reviews'))
 
 const FilmPage = () => {
@@ -383,14 +386,21 @@ const FilmPage = () => {
           </div>
           <div className={styles.galleryWrapper}>
             <span className={styles.filmPage__titleText}>{`${t('watchWithFilm')} «${i18n.language === 'en' ? data.nameEn : data.nameRu}» ${t('watches')}`}</span>
-            <Carousel
+            <Swiper navigation modules={[Navigation]} slidesPerView={'auto'} spaceBetween={20}>
+              {similars.map((el, idx) => (
+                <SwiperSlide key={idx} className={styles.swiper_slide}>
+                  <Film key={idx} film={el} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            {/* <Carousel
               items={similars.map((el, idx) => (
                 <Film key={idx} film={el} />
               ))}
               size={'standard'}
               transition={350}
               className={styles.moviesContainer}
-            />
+            /> */}
           </div>
           <div className={styles.galleryWrapper}>
             <span className={`${styles.filmPage__titleText} ${styles.underline}`}>{t('actorsSecTitle')}</span>
