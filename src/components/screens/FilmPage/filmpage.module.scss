@@ -501,7 +501,9 @@
   flex-direction: column;
   row-gap: 5px;
 }
-
+.swiper_slide{
+  width: auto;
+}
 .loader {
   display: flex;
   justify-content: center;

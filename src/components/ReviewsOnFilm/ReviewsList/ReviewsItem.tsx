@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 
@@ -20,6 +20,7 @@ interface CommentProps {
 }
 
 const Comment = ({ comment, setSent }: CommentProps) => {
+  
   const [showReview, setShowReview] = useState(false)
   const { author, date, description, id, title, movieId } = comment || {}
   const { ref, isShow, setIsShow } = useOuside(false)
@@ -65,4 +66,4 @@ const Comment = ({ comment, setSent }: CommentProps) => {
   )
 }
 
-export default Comment
+export const MemoComment = memo(Comment)

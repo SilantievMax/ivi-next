@@ -1,8 +1,16 @@
 import React, { FC, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
+import { Navigation } from 'swiper'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import { Swiper, SwiperSlide } from 'swiper/react'
+
+import useWindowSize from '../../Reviews/widthWindow'
+import Meta from '../../seo/Meta'
 
 import styles from './movies.module.scss'
-import BreadCrumbNavigation from '@/src/components/BreadCrumbNavigation/BreadCrumbNavigation'
+import { MemoBreadcrumbs } from '@/src/components/BreadCrumbNavigation/BreadCrumbNavigation'
 import { Button } from '@/src/components/Button/Button'
 import Carousel from '@/src/components/Carousel/Carousel'
 import Film from '@/src/components/Film/Film'
@@ -13,8 +21,6 @@ import { selectMoviesList, setMoviesList } from '@/src/store/reducers/dataBaseRe
 import { selectCountries, selectGenres, selectPickedYear, selectRate, selectReviewAmount } from '@/src/store/reducers/filterReducer'
 import { selectSort } from '@/src/store/reducers/sortReducer'
 import { TypeFilm } from '@/src/types/types'
-import { useTranslation } from 'react-i18next'
-import Meta from '../../seo/Meta'
 
 const MoviesPage: FC = () => {
   const rate = useSelector(selectRate)
@@ -84,7 +90,9 @@ const MoviesPage: FC = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     fetch(
-      `http://localhost:3003/info?limit=20&order=${sort.query}&minRating=${rate}&numRatings=${reviewAmount}&genres=${genres.toString()}&countries=${countries.toString()}&years=${year.split(' ')[0]}`,
+      `http://localhost:3003/info?limit=20&order=${sort.query}&minRating=${rate}&numRatings=${reviewAmount}&genres=${genres.toString()}&countries=${countries.toString()}&years=${
+        year.split(' ')[0]
+      }`,
       {
         method: 'GET'
       }
@@ -95,68 +103,82 @@ const MoviesPage: FC = () => {
   }, [sort, rate, reviewAmount, genres, countries, year])
   return (
     <Meta title={t('movies')}>
-    <div className={styles.filmsSection}>
-      <BreadCrumbNavigation activeItemClassName='slash' inactiveItemClassName='slash' omitRootLabel={false} rootLabel={t('myIvi')} />
-      <div className={styles.filmsSection__description}>
-        <h1 className={styles.filmsSection__title}>{t('watchFilmsTitle')}</h1>
-        <div className={styles.descriptionWrapper}>
-          <div className={showDescription ? `${styles.descriptionFont} ${styles.greyText}` : `${styles.descriptionFont} ${styles.greyText} ${styles.hiddenText}`}>
-            {t('filmSectionDescriptionP1')}
+      <div className={styles.filmsSection}>
+        <MemoBreadcrumbs activeItemClassName='slash' inactiveItemClassName='slash' omitRootLabel={false} rootLabel={t('myIvi')} />
+        <div className={styles.filmsSection__description}>
+          <h1 className={styles.filmsSection__title}>{t('watchFilmsTitle')}</h1>
+          <div className={styles.descriptionWrapper}>
+            <div className={showDescription ? `${styles.descriptionFont} ${styles.greyText}` : `${styles.descriptionFont} ${styles.greyText} ${styles.hiddenText}`}>
+              {t('filmSectionDescriptionP1')}
+            </div>
+            <p className={showDescription ? `${styles.descriptionFont} ${styles.greyText}` : `${styles.descriptionFont} ${styles.greyText} ${styles.none}`}>
+              {t('filmSectionDescriptionP2')}
+            </p>
+            <p className={showDescription ? `${styles.descriptionFont} ${styles.greyText}` : `${styles.descriptionFont} ${styles.greyText} ${styles.none}`}>
+              {t('filmSectionDescriptionP3')}
+            </p>
+            <p className={showDescription ? `${styles.descriptionFont} ${styles.greyText}` : `${styles.descriptionFont} ${styles.greyText} ${styles.none}`}>
+              {t('filmSectionDescriptionP4')}
+            </p>
+            <p className={showDescription ? `${styles.descriptionFont} ${styles.greyText}` : `${styles.descriptionFont} ${styles.greyText} ${styles.none}`}>
+              {t('filmSectionDescriptionP5')}
+            </p>
           </div>
-          <p className={showDescription ? `${styles.descriptionFont} ${styles.greyText}` : `${styles.descriptionFont} ${styles.greyText} ${styles.none}`}>
-            {t('filmSectionDescriptionP2')}
-          </p>
-          <p className={showDescription ? `${styles.descriptionFont} ${styles.greyText}` : `${styles.descriptionFont} ${styles.greyText} ${styles.none}`}>
-            {t('filmSectionDescriptionP3')}
-          </p>
-          <p className={showDescription ? `${styles.descriptionFont} ${styles.greyText}` : `${styles.descriptionFont} ${styles.greyText} ${styles.none}`}>
-            {t('filmSectionDescriptionP4')}
-          </p>
-          <p className={showDescription ? `${styles.descriptionFont} ${styles.greyText}` : `${styles.descriptionFont} ${styles.greyText} ${styles.none}`}>
-            {t('filmSectionDescriptionP5')}
-          </p>
+          <span className={styles.clauseToggle} onClick={() => setShowDescription(!showDescription)}>
+            {showDescription ? `${t('collapseBtn')}` : `${t('expandBtn')}`}
+          </span>
         </div>
-        <span className={styles.clauseToggle} onClick={() => setShowDescription(!showDescription)}>
-          {showDescription ? `${ t('collapseBtn') }` : `${t('expandBtn')}`}
-        </span>
-      </div>
-      {/*<Swiper style={{display: 'flex', flexDirection: 'row'}} navigation modules={[Navigation]} freeMode={true} spaceBetween={10} slidesPerView={useWindowSize('movie')}>*/}
-      {/*  {genreList.map((el: any, idx: number) => (*/}
-      {/*    <SwiperSlide style={{width: '270px', display: 'flex', flexDirection: 'row'}} className={styles.slide} key={idx}>*/}
-      {/*      <div key={idx} title={el.name} className={styles.postersContainer}>*/}
-      {/*        <a href={el.url} className={styles.carouselItem}>*/}
-      {/*          <img className={styles.border} src={el.src} width={252} height={173} alt='poster' />*/}
-      {/*        </a>*/}
-      {/*        <span>{el.name}</span>*/}
-      {/*      </div>*/}
-      {/*    </SwiperSlide>*/}
-      {/*  ))}*/}
-      {/*</Swiper>*/}
-      {/*<div className={styles.filmCardsWrapper}>*/}
-      {/*  {data.map((el, idx) =>*/}
-      {/*    <Film key={idx} src={el.posterUrl} rate={el.ratingKinopoisk}/>*/}
-      {/*  )}*/}
-      {/*</div>*/}
-
-      <Carousel
-        items={headersArray.map((el, idx) => (
-          <Button color='lightGray' size='circle' key={idx} className={styles.filterBtn}>
-            <span className={`${styles.filterBtn__font} ${styles.greyText}`}>{el}</span>
-          </Button>
-        ))}
-        size='small'
-        transition={200}
-        className={styles.carouselItems}
-      />
-      <Sort />
-      <Filter />
-      <div className={styles.filmCardsWrapper}>
-        {movies.map((el, idx) => (
-          <Film key={idx} film={el} />
-        ))}
-      </div>
-      <h2 className={styles.sectionHeader}>{t('newFilmsSection')}</h2>
-      <Carousel
+        <div>
+          <Swiper navigation modules={[Navigation]} freeMode={true} spaceBetween={10} slidesPerView={useWindowSize('movie')}>
+            {genreList.map((el: any, idx: number) => (
+              <SwiperSlide key={idx}>
+                <div key={idx} title={el.name} className={styles.postersContainerSwiper}>
+                  <a href={el.url} className={styles.carouselItemSwiper}>
+                    <img className={styles.borderSwiper} src={el.src} alt='poster' />
+                  </a>
+                  <span>{el.name}</span>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+        {/* <div className={styles.filmCardsWrapper}>
+        {data.map((el, idx) =>
+          <Film key={idx} src={el.posterUrl} rate={el.ratingKinopoisk}/>
+        )}
+      </div> */}
+        <div>
+          <Swiper navigation modules={[Navigation]} slidesPerView={'auto'} spaceBetween={10}>
+            {headersArray.map((el, idx) => (
+              <SwiperSlide key={idx} className={styles.swiper_slide} >
+                <div >
+                  <Button color='lightGray' size='circle' key={idx} className={styles.filterBtn}>
+                    <span className={`${styles.filterBtn__font} ${styles.greyText}`}>{el}</span>
+                  </Button>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+        {/* <Carousel
+          items={headersArray.map((el, idx) => (
+            <Button color='lightGray' size='circle' key={idx} className={styles.filterBtn}>
+              <span className={`${styles.filterBtn__font} ${styles.greyText}`}>{el}</span>
+            </Button>
+          ))}
+          size='small'
+          transition={200}
+          className={styles.carouselItems}
+        /> */}
+        <Sort />
+        <Filter />
+        <div className={styles.filmCardsWrapper}>
+          {movies.map((el, idx) => (
+            <Film key={idx} film={el} />
+          ))}
+        </div>
+        <h2 className={styles.sectionHeader}>{t('newFilmsSection')}</h2>
+        {/* <Carousel
         items={genreList.map((el, idx) => (
           <div key={idx} title={el.name} className={styles.postersContainer}>
             <a href={el.url} className={styles.carouselItem}>
@@ -168,8 +190,8 @@ const MoviesPage: FC = () => {
         size='standard'
         transition={314}
         className={styles.standardCarouselItems}
-      />
-    </div>
+      /> */}
+      </div>
     </Meta>
   )
 }

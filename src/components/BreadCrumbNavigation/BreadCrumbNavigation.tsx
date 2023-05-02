@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 
@@ -122,3 +122,5 @@ const Breadcrumbs = ({
 Breadcrumbs.defaultProps = defaultProps
 
 export default Breadcrumbs
+
+export const MemoBreadcrumbs = memo(Breadcrumbs)
