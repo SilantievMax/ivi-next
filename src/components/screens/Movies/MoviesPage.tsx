@@ -12,15 +12,12 @@ import Meta from '../../seo/Meta'
 import styles from './movies.module.scss'
 import { MemoBreadcrumbs } from '@/src/components/BreadCrumbNavigation/BreadCrumbNavigation'
 import { Button } from '@/src/components/Button/Button'
-import Carousel from '@/src/components/Carousel/Carousel'
 import Film from '@/src/components/Film/Film'
 import Filter from '@/src/components/Filter/Filter'
 import Sort from '@/src/components/Sort/Sort'
-import { InfoService } from '@/src/services/info.service'
 import { selectMoviesList, setMoviesList } from '@/src/store/reducers/dataBaseReducer'
 import { selectCountries, selectGenres, selectPickedYear, selectRate, selectReviewAmount } from '@/src/store/reducers/filterReducer'
 import { selectSort } from '@/src/store/reducers/sortReducer'
-import { TypeFilm } from '@/src/types/types'
 
 const MoviesPage: FC = () => {
   const rate = useSelector(selectRate)
@@ -77,7 +74,7 @@ const MoviesPage: FC = () => {
     },
     {
       name: 'bestNew',
-      src: 'https://thumbs.dfs.ivi.ru/storage5/contents/5/3/f24fdc6a202c6b7fd8b733d1dedda1.png/604x406/?q=85',
+      src: 'https://thumbs.dfs.ivi.ru/storage4/contents/5/3/f24fdc6a202c6b7fd8b733d1dedda1.png/604x406/?q=85',
       url: 'https://www.ivi.ru/collections/best-new-movies-on-ivi'
     },
     {
@@ -128,27 +125,14 @@ const MoviesPage: FC = () => {
             {showDescription ? `${t('collapseBtn')}` : `${t('expandBtn')}`}
           </span>
         </div>
-        <div>
-          <Swiper navigation modules={[Navigation]} freeMode={true} spaceBetween={10} slidesPerView={useWindowSize('movie')}>
-            {genreList.map((el: any, idx: number) => (
-              <SwiperSlide key={idx}>
-                <div key={idx} title={el.name} className={styles.postersContainerSwiper}>
-                  <a href={el.url} className={styles.carouselItemSwiper}>
-                    <img className={styles.borderSwiper} src={el.src} alt='poster' />
-                  </a>
-                  <span>{el.name}</span>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
+
         {/* <div className={styles.filmCardsWrapper}>
         {data.map((el, idx) =>
           <Film key={idx} src={el.posterUrl} rate={el.ratingKinopoisk}/>
         )}
       </div> */}
         <div>
-          <Swiper navigation modules={[Navigation]} slidesPerView={'auto'} spaceBetween={10}>
+          <Swiper  navigation modules={[Navigation]} slidesPerView={'auto'} spaceBetween={10}>
             {headersArray.map((el, idx) => (
               <SwiperSlide key={idx} className={styles.swiper_slide} >
                 <div >
@@ -178,6 +162,20 @@ const MoviesPage: FC = () => {
           ))}
         </div>
         <h2 className={styles.sectionHeader}>{t('newFilmsSection')}</h2>
+        <div className={styles.carouselWrapper}>
+          <Swiper navigation modules={[Navigation]} freeMode={true} spaceBetween={10} slidesPerView={useWindowSize('movie')}>
+            {genreList.map((el: any, idx: number) => (
+              <SwiperSlide key={idx}>
+                <div key={idx} title={el.name} className={styles.postersContainerSwiper}>
+                  <a href={el.url} className={styles.carouselItemSwiper}>
+                    <img className={styles.borderSwiper} src={el.src} alt='poster' />
+                  </a>
+                  <span>{t(el.name)}</span>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
         {/* <Carousel
         items={genreList.map((el, idx) => (
           <div key={idx} title={el.name} className={styles.postersContainer}>
