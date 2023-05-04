@@ -11,6 +11,7 @@ const HomePage: FC = () => {
 
   return (
     <div>
+      <p>ok</p>
       <AdminPage />
       {/* <PersonPage /> */}
       {/* <button onClick={() => changeLanguage('en')}>EN</button>

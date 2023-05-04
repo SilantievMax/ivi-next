@@ -15,7 +15,7 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/movies/:slug',
+        source: '/movies/:slug(\\^[a-zA-Z]+$)',
         destination: '/movies/',
         permanent: true,
       },
