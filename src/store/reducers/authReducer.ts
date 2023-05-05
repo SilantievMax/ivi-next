@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+import { AppState } from '../store'
+
 export const selectIsAuth = () => false
 
 export interface IAuth {
@@ -22,3 +24,4 @@ export const authSlice = createSlice({
 
 // export const authReducer = authSlice.actions
 export const { setOpenAuth } = authSlice.actions
+export const selectIpOpenAuth = (state: AppState) => state.auth.ipOpenAuth

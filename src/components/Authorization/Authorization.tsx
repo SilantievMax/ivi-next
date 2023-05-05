@@ -1,4 +1,5 @@
 import React, { FC, ReactNode, useEffect, useRef, useState } from 'react'
+import { useDispatch } from 'react-redux'
 
 import { Button } from '../Button/Button'
 
@@ -6,12 +7,14 @@ import styles from './Authorization.module.scss'
 import LoginForm from './LoginForm/LoginForm'
 import Message from './Message/Message'
 import RegisterForm from './RegisterForm/RegisterForm'
+import { setOpenAuth } from '@/src/store/reducers/authReducer'
 
 const messagesDisctop: { messages?: string; description?: string; position: string; children?: ReactNode }[] = [
   { messages: 'Войдите или зарегистрируйтесь', description: 'чтобы пользоваться сервисом на любом устройстве', position: 'left' }
 ]
 
 const Authorization: FC = () => {
+  const dispatch = useDispatch()
   const [messages, setMessages] = useState(messagesDisctop)
   const [isForm, setisForm] = useState('')
   const [status, seStatus] = useState('Вход или регистрация')
@@ -90,7 +93,7 @@ const Authorization: FC = () => {
     <div className={styles.continder}>
       <div className={styles.header}>
         {status}
-        <span>&times;</span>
+        <span onClick={() => dispatch(setOpenAuth(false))}>&times;</span>
       </div>
       <div className={styles.chat}>
         {messages.map(item => (
