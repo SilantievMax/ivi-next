@@ -41,6 +41,11 @@
   padding-left: 15px;
 }
 
+.settings_wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
 .settings {
   display: flex;
   flex-direction: column;
@@ -51,3 +56,4 @@
     }
   }
 }
+
