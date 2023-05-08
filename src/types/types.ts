@@ -1,12 +1,22 @@
+import { type } from "os";
+
+
 export interface ILinks {
   title: string
   link: string
 }
 
-interface Genre {
+export interface IGenre {
   id: number,
   nameRu: string,
   nameEn: string,
+}
+
+export interface ITrailer {
+  id: number,
+  name: string,
+  site: string,
+  url: string
 }
 
 export interface IFilm {
@@ -31,6 +41,22 @@ export interface IFilm {
   serial: boolean,
   shortFilm: boolean,
   completed: boolean,
-  genres: Genre[]
-  countries: Genre[]
+  genres: IGenre[]
+  countries: IGenre[]
+}
+
+interface IRoles {
+  nameRu: string,
+  nameEn: string
+}
+export interface ICrew {
+  id: number,
+  nameRu: string,
+  nameEn: string,
+  posterUrl: string,
+  roles: IRoles[]
+}
+
+export type TypeFilm = {
+  moviesList: IFilm
 }

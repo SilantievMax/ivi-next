@@ -1,19 +1,41 @@
-import { Slider } from '@mui/material'
-import React, { useState } from 'react'
+import { Slider, TextField, ThemeProvider } from '@mui/material'
+import { capitalize } from '@mui/material'
+import { Router, useRouter } from 'next/router'
+import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { FiX } from 'react-icons/fi'
-import styles from './filter.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectReviewAmount, setReviewAmount } from '../../store/reducers/filterReducer'
-import { selectRate, setRate } from '../../store/reducers/filterReducer'
+import {
+  selectCountries,
+  selectCountryList,
+  selectGenres,
+  selectGenresList,
+  setCountries,
+  setCountriesList,
+  setGenres,
+  setGenresList,
+  setPickedYear,
+  setReviewAmount
+} from '../../store/reducers/filterReducer'
+import { setRate } from '../../store/reducers/filterReducer'
+import { createTheme } from '@mui/material/styles'
 import FilterItem from './FilterItem'
 import FilterLi from './FilterLi'
+import styles from './filter.module.scss'
 import { Button } from '@/src/components/Button/Button'
-import { useOuside } from '@/src/hooks/useOutside'
+import { IGenre } from '@/src/types/types'
 
 
 const Filter = () => {
+  const dispatch = useDispatch()
+  const genres = useSelector(selectGenres)
+  const countries = useSelector(selectCountries)
   const [pickedReviewAmount, setSickedReviewAmount] = useState<number>(0)
   const [rateAmount, setRateAmount] = useState<number>(7.3)
+  const [value, setValue] = useState<string>('')
+  const genresList = useSelector(selectGenresList)
+  const countryList = useSelector(selectCountryList)
+  const { t } = useTranslation()
   const yearArray = [
     'Все годы',
     '2023 год',
@@ -32,141 +54,226 @@ const Filter = () => {
     '2010-2015',
     '2000-2010',
     '1990-2000',
-    '1980-1990',
-    'до 1980'
+    '1980-1990'
   ]
-  const countryArray = [
-    'Австралия',
-    'Аргентина',
-    'Армения',
-    'Беларусь',
-    'Бельгия',
-    'Бразилия',
-    'Великобритания',
-    'Венгрия',
-    'Германия',
-    'Гонконг',
-    'Дания',
-    'Индия',
-    'Ирландия',
-    'Испания',
-    'Италия',
-    'Казахстан',
-    'Канада',
-    'Китай',
-    'Колумбия',
-    'Мексика',
-    'Нидерланды',
-    'Новая Зеландия',
-    'Норвегия',
-    'Польша',
-    'Россия',
-    'СССР',
-    'США',
-    'Таиланд',
-    'Турция',
-    'Финляндия',
-    'Франция',
-    'Швейцария',
-    'Швеция',
-    'ЮАР',
-    'Южная Корея',
-    'Япония'
-  ]
-  const genreArray = [
-    'Артхаус',
-    'Биография',
-    'Боевики',
-    'Вестерн',
-    'Военные',
-    'Детективы',
-    'Для детей',
-    'Документальные',
-    'Драмы',
-    'Зарубежные',
-    'Исторические',
-    'Катастрофы',
-    'Комедии',
-    'Криминал',
-    'Мелодрамы',
-    'Мистические',
-    'Музыкальные',
-    'По комиксам',
-    'Приключения',
-    'Русские',
-    'Семейные',
-    'Советские',
-    'Спорт',
-    'Триллеры',
-    'Ужасы',
-    'Фантастика',
-    'Фэнтези'
-  ]
+  const [genresArray, setGenresArray] = useState<IGenre[]>([])
+  const [countryArray, setCountryArray] = useState<IGenre[]>([])
   const handleReviewChange = (event: Event, newValue: number | number[]) => {
     setSickedReviewAmount(newValue as number)
   }
+
+
+  const theme = createTheme({
+    palette: {
+      secondary: {
+        main: 'rgba(255, 255, 255, 0.56);'
+      }
+    }
+  })
 
   const handleRateChange = (event: Event, newValue: number | number[]) => {
     setRateAmount(newValue as number)
   }
 
-  const dispatch = useDispatch()
-  const reduxRate = useSelector(selectRate)
-  const reduxAmount = useSelector(selectReviewAmount)
+  useEffect(() => {
+    fetch('http://localhost:3001/movies/filters/genres', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => res.json())
+      .then(json => setGenresArray(json))
+      .catch(err => console.log(err))
+    fetch('http://localhost:3001/movies/filters/countries', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => res.json())
+      .then(json => setCountryArray(json))
+      .catch(err => console.log(err))
+  }, [])
+
+  const addGenre = (id: number, genre: string) => {
+    if (genres.indexOf(id) === -1) {
+      dispatch(setGenres([...genres, id]))
+    } else {
+      let arr = [...genres]
+      arr.splice(arr.indexOf(id), 1)
+      dispatch(setGenres(arr))
+    }
+    if (genresList.indexOf(genre) === -1) {
+      dispatch(setGenresList([...genresList, genre]))
+    } else {
+      let arr = [...genresList]
+      arr.splice(arr.indexOf(genre), 1)
+      dispatch(setGenresList(arr))
+    }
+  }
+
+  const addCountry = (id: number, country: string) => {
+    if (countries.indexOf(id) === -1) {
+      dispatch(setCountries([...countries, id]))
+    } else {
+      let arr = [...countries]
+      arr.splice(arr.indexOf(id), 1)
+      dispatch(setCountries(arr))
+    }
+    if (countryList.indexOf(country) === -1) {
+      dispatch(setCountriesList([...countryList, country]))
+    } else {
+      let arr = [...countryList]
+      arr.splice(arr.indexOf(country), 1)
+      dispatch(setCountriesList(arr))
+    }
+  }
+  const [urlGenre, setUrlGenre] = useState<string[]>([])
+  const router = useRouter()
+
+  function ucFirst(arr: string[]) {
+    return arr.map(str => capitalize(str))
+  }
+
+  useEffect(() => {
+    router.push({ pathname: '/movies' }, `/movies/${ucFirst(urlGenre).join('+')}`, { shallow: true })
+  }, [urlGenre])
+
+  const urlGenres = (el: IGenre) => {
+    const name = el.nameRu
+    addGenre(el.id, name)
+    if (urlGenre.includes(name)) {
+      setUrlGenre(urlGenre => urlGenre.filter(index => index !== name))
+      dispatch(setGenresList([...genresList, capitalize(name)]))
+    } else {
+      setUrlGenre(urlGenre => [...urlGenre, name])
+      dispatch(setGenresList([...genresList, capitalize(name)]))
+    }
+  }
   return (
     <div className={styles.filtersContainer}>
       <div className={styles.filtersContainer__item}>
         <FilterItem
-          title='Жанры'
+          title={t('genres')}
+          type='genre'
           content={
             <div className={styles.filterDropdown__content}>
               <ul className={styles.filterDropdown__list}>
-                {genreArray.map((el, idx) => (
-                  <FilterLi key={idx} content={el} className={styles.filterDropdown__item} />
+                {genresArray.map((el, idx) => (
+                  <div key={idx} onClick={() => urlGenres(el)}>
+                    <FilterLi id={el.id} content={capitalize(el.nameRu)}
+                              className={styles.filterDropdown__item} />
+                  </div>
                 ))}
               </ul>
             </div>
           }
         />
         <FilterItem
-
+          type='country'
           content={
             <div className={styles.filterDropdown__content}>
               <ul className={styles.filterDropdown__list}>
                 {countryArray.map((el, idx) => (
-                  <FilterLi key={idx} content={el} className={styles.filterDropdown__item} />
+                  <div key={idx} onClick={() => {
+                    addCountry(el.id, capitalize(el.nameRu))
+                  }}>
+                    <FilterLi id={el.id} content={capitalize(el.nameRu)}
+                              className={styles.filterDropdown__item} />
+                  </div>
                 ))}
               </ul>
             </div>
-          } title='Страны' />
-        <FilterItem content={
-          <div className={styles.filterDropdown__content}>
-            <ul className={styles.filterDropdown__column}>
-              {yearArray.map((el, idx) =>
-                <FilterLi key={idx} content={el}
-                          className={styles.filterDropdown__item} />
-              )}
-            </ul>
-          </div>
-        } title='Годы' />
-        <FilterItem content={
-          <div className={styles.filterDropdown__slider}>
-            <span>{`От ${pickedReviewAmount}`}</span>
-            <Slider sx={{color: '#8c85b9'}} onChange={handleReviewChange} min={0} max={500000} step={10000} value={pickedReviewAmount} defaultValue={pickedReviewAmount} aria-label="Default" valueLabelDisplay="auto"/>
-            <Button onClick={() => dispatch(setReviewAmount(pickedReviewAmount))} color='darkRed' children='Подтвердить'/>
-          </div>
-        } title='Количество оценок(от)' />
-        <FilterItem content={
-          <div className={styles.filterDropdown__slider}>
-            <span>{`От ${rateAmount}`}</span>
-            <Slider sx={{color: '#8c85b9'}} onChange={handleRateChange} min={0} max={10} step={0.1} value={rateAmount} defaultValue={rateAmount} aria-label="Default" valueLabelDisplay="auto"/>
-            <Button onClick={() => dispatch(setRate(rateAmount))} color='darkRed' children='Подтвердить'/>
-          </div>
-        } title='Рейтинг(от)' />
+          }
+          title={t('countries')}
+        />
+        <FilterItem
+          type='year'
+          content={
+            <div className={styles.filterDropdown__content}>
+              <ul className={styles.filterDropdown__column}>
+                {yearArray.map((el, idx) => (
+                  <div onClick={() => dispatch(setPickedYear(el.split(' ')[0]))} key={idx}>
+                    <FilterLi content={el} className={styles.filterDropdown__item} />
+                  </div>
+                ))}
+              </ul>
+            </div>
+          }
+          title={t('years')}
+        />
+        <FilterItem
+          type='rateNum'
+          content={
+            <div className={styles.filterDropdown__slider}>
+              <span>{`От ${pickedReviewAmount}`}</span>
+              <Slider
+                sx={{ color: '#8c85b9' }}
+                onChange={handleReviewChange}
+                min={0}
+                max={500000}
+                step={10000}
+                value={pickedReviewAmount}
+                defaultValue={pickedReviewAmount}
+                aria-label='Default'
+                valueLabelDisplay='auto'
+              />
+              <Button onClick={() => dispatch(setReviewAmount(pickedReviewAmount))} color='darkRed'
+                      children='Подтвердить' />
+            </div>
+          }
+          title={t('numberOfRatings')}
+        />
+        <FilterItem
+          type='rate'
+          content={
+            <div className={styles.filterDropdown__slider}>
+              <span>{`От ${rateAmount}`}</span>
+              <Slider
+                sx={{ color: '#8c85b9' }}
+                onChange={handleRateChange}
+                min={0}
+                max={10}
+                step={0.1}
+                value={rateAmount}
+                defaultValue={rateAmount}
+                aria-label='Default'
+                valueLabelDisplay='auto'
+              />
+              <Button onClick={() => dispatch(setRate(rateAmount))} color='darkRed'
+                      children='Подтвердить' />
+            </div>
+          }
+          title={t('rate')}
+        />
       </div>
-      <div  className={styles.removeFilterBox}>
+      <div className={styles.crewSearch}>
+        <ThemeProvider theme={theme}>
+          <TextField color='secondary' id='standard-basic'
+                     label='Поиск по актёру' variant='standard' value={value}
+                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)} />
+        </ThemeProvider>
+        <ThemeProvider theme={theme}>
+          <TextField color='secondary' id='standard-basic' label='Поиск по Режиссёру' variant='standard' />
+        </ThemeProvider>
+      </div>
+      <div
+        onClick={() => {
+          dispatch(setReviewAmount(0))
+          dispatch(setRate(7.3))
+          dispatch(setCountries([]))
+          dispatch(setGenres([]))
+          dispatch(setPickedYear('Все годы'))
+          setUrlGenre([])
+          dispatch(setCountriesList([]))
+          dispatch(setGenresList([]))
+        }}
+        className={styles.removeFilterBox}
+      >
+
         <FiX className={styles.removeFilterBox__btn} />
-        Сбросить фильтры
+        {t('deleteFilters')}
       </div>
     </div>
   )

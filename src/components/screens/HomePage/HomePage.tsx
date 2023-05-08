@@ -1,28 +1,23 @@
+import { changeLanguage } from 'i18next'
 import React, { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-
-import { feedback, review } from '../../Reviews/props/props'
-import MoviesPage from '../Movies/MoviesPage'
+import AdminPage from '../AdminPage/AdminPage'
 import PersonPage from '../PersonPage/PersonPage'
 
-import { Button } from '@/src/components/Button/Button'
-import Reviews from '@/src/components/Reviews/Reviews'
+import Index from '@/pages/movies'
 
 const HomePage: FC = () => {
   const { t, i18n } = useTranslation()
 
-  const changeLanguage = (language: string) => {
-    i18n.changeLanguage(language)
-  }
-
   return (
     <div>
+      <p>ok</p>
+      <AdminPage />
+      {/* <PersonPage /> */}
       {/* <button onClick={() => changeLanguage('en')}>EN</button>
-      <button onClick={() => changeLanguage('ru')}>RU</button>
-      <h1>{t('Welcome to React')}</h1> */}
-      {/* <Index/> */}
-      <Reviews items={feedback} titleBtn='Отзывы' btn='Оставить отзывы' aboutTheFilm='О фильме...' />
-      {/* <Reviews items={review} titleBtn='Рецензия' btn='Написать рецензию' /> */}
+      <button onClick={() => changeLanguage('ru')}>RU</button> */}
+      {/* <h1>{t('Welcome to React')}</h1> */}
+      {/* <Index /> */}
     </div>
   )
 }

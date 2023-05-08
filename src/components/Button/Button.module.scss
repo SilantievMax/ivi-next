@@ -12,7 +12,7 @@
   background-color: transparent;
   cursor: pointer;
   white-space: nowrap;
-  width: 100%;
+  // width: 100%;
 }
 .button:active {
   opacity: 1;
@@ -111,13 +111,42 @@
   }
 }
 .img {
-  background-color: rgb(173, 169, 169);
+  background-color: rgb(71, 71, 71);
   width: 56px;
   height: 56px;
-  img {
+  position: relative;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  overflow: hidden;
+  div:last-child{
+    background-color:#73a32f;
+    font-size: 16px;
+    padding: 13px;
+    font-weight: 600;
+  }
+  div:first-child {
+    position: absolute;
+    overflow: hidden;
+    border-radius: 8px;
     width: 44px;
     height: 44px;
   }
+  img {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    -o-object-fit: cover;
+    object-fit: cover;
+    width: 44px;
+    height: 44px;
+  }
+}
+.img:hover {
+  background-color: rgb(99, 99, 99);
 }
 .button__text {
   color: white;
@@ -175,7 +204,6 @@
 }
 .disable {
   opacity: 0.5;
-  pointer-events: none;
 }
 .comment {
   color: #a5a1b2;
@@ -186,4 +214,23 @@
 }
 .comment:hover {
   color: white;
+}
+.iconGoBack {
+  gap: 10px;
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.836);
+  svg {
+    transition-duration: 0.3s;
+  }
+}
+.iconGoBack:hover {
+  color: white;
+  svg {
+    transition-duration: 0.3s;
+    margin-right: -5px;
+    height: 30px;
+    width: 30px;
+  }
 }

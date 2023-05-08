@@ -1,11 +1,10 @@
 import React from 'react'
 
-import Breadcrumbs from '@/src/components/BreadCrumbNavigation/MainBreadCrumb/MainBreadCrumbs'
+// import Breadcrumbs from '@/src/components/BreadCrumbNavigation/MainBreadCrumb/MainBreadCrumbs'
 
 const New = () => {
   return (
     <div>
-      <Breadcrumbs />
     </div>
   )
 }

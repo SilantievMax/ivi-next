@@ -1,0 +1,66 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.048);
+  border-radius: 10px;
+}
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  &_content {
+    color: #a5a1b2;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.title {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+  font-style: normal;
+  margin-bottom: 8px;
+  display: inline-block;
+}
+.name {
+  margin-right: 8px;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+  line-height: 16px;
+  font-style: normal;
+}
+.date {
+  margin-right: 12px;
+  font-weight: 400;
+  white-space: nowrap;
+  font-size: 13px;
+  line-height: 16px;
+  font-style: normal;
+}
+.comment {
+  padding-right: 82px;
+  padding-left: 0;
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 400;
+  font-style: normal;
+  color: #d9d7e0;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+.buttonText {
+  align-self: flex-start;
+}
+.button {
+  padding-top: 10px;
+  align-self: flex-end;
+}

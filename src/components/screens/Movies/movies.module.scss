@@ -4,7 +4,7 @@
 
 .carouselItems {
   column-gap: 5px;
-  transition: transform .2s, -webkit-transform .2s, -o-transform .2s;
+  transition: transform 0.2s, -webkit-transform 0.2s, -o-transform 0.2s;
   display: flex;
   flex-direction: row;
 }
@@ -14,7 +14,7 @@
   display: flex;
   flex-direction: row;
   border-radius: 10px;
-  transition: transform .4s
+  transition: transform 0.4s;
 }
 
 .swiper {
@@ -42,7 +42,6 @@
     line-height: 22px;
     font-weight: 400;
     font-style: normal;
-
   }
 
   .descriptionWrapper {
@@ -107,8 +106,42 @@
   row-gap: 10px;
 }
 
-.filterBtn {
+.postersContainerSwiper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  // margin: 0 10px;
+  // width: 270px;
+  // flex-wrap: nowrap;
+  // background-color: #2d0b9c;
+  // overflow: hidden;
+  // padding: 20px;
+  // border-radius: 8px;
+  // min-width: 411px;
+
+  // height: 200px;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: space-between;
+  // cursor: pointer;
+}
+.carouselItemSwiper {
+  border-radius: 10px;
+  background-color: #312b45;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+}
+.borderSwiper {
   width: 100%;
+  border-radius: 3px;
+}
+.swiper_slide {
+  width: auto ;
+}
+
+.filterBtn {
+  // width: 100%;
   padding: 6px 16px;
   border-radius: 16px;
   background-color: #312b45;
@@ -144,13 +177,12 @@
   text-overflow: ellipsis;
 }
 
-
 .clauseToggle {
   display: inline-block;
   margin-top: 8px;
   cursor: pointer;
   font-weight: 500;
-  color: rgba(255, 255, 255, .88);
+  color: rgba(255, 255, 255, 0.88);
   transition: transform 400ms, color 400ms, -webkit-transform 400ms, -o-transform 400ms;
 
   &:hover {
@@ -158,8 +190,6 @@
     transition: color 80ms;
   }
 }
-
-
 
 .moviesContainer {
   display: flex;
@@ -170,10 +200,9 @@
 }
 
 .greyText {
-  color: rgba(255, 255, 255, .56);
+  color: rgba(255, 255, 255, 0.56);
 }
 
 .none {
   display: none;
 }
-

@@ -1,0 +1,13 @@
+.form {
+  &__title {
+    margin-bottom: 12px;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 400;
+    font-style: normal;
+  }
+  &__buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+  }}

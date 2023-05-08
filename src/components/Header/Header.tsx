@@ -1,5 +1,8 @@
 import Link from 'next/link'
-import React, { FC, useRef, useState } from 'react'
+import React, { FC, useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+
+import LanguageBtn from '../LanguageBtn/LanguageBtn'
 
 import styles from './Header.module.scss'
 import ListCategories from './ListСategories/ListСategories'
@@ -12,6 +15,7 @@ const Header: FC = () => {
   const isAuth = false
   const [isHovering, setIsHovering] = useState(false)
   const [isVariant, setVariant] = useState('')
+  const { t } = useTranslation()
 
   const handleMouseOver = (value: string) => {
     setIsHovering(true)
@@ -40,28 +44,28 @@ const Header: FC = () => {
         return <ListCategories children={''} variant={isVariant} />
     }
   }
-
   return (
     <header className={styles.header}>
       <div className={styles.header__t}>
+        <LanguageBtn />
         <Link href='/' onMouseOver={handleMouseOut}>
           <img src={logo.src} alt='logo' />
         </Link>
         <nav className={styles.nav}>
           <Link href='/' onMouseOver={handleMouseOut}>
-            Мой Иви
+            {t('myIvi')}
           </Link>
           <Link href='/new' onMouseOver={handleMouseOut}>
-            Что нового
+            {t('whatNew')}
           </Link>
           <Link href='/movies' onMouseOver={() => handleMouseOver('movies')}>
-            Фильмы
+            {t('movies')}
           </Link>
           <Link href='/series' onMouseOver={() => handleMouseOver('series')}>
-            Сериалы
+            {t('serials')}
           </Link>
           <Link href='/animation' onMouseOver={() => handleMouseOver('animation')}>
-            Мультфильмы
+            {t('cartoons')}
           </Link>
           <Link href='/tvplus' onMouseOver={() => handleMouseOver('tvplus')}>
             TV+
@@ -75,6 +79,7 @@ const Header: FC = () => {
         <Button className={styles.costom_btn} img={paple.src} onMouseOver={() => handleMouseOver('profile')} />
       </div>
       {isHovering && <ModalWindow onMouseLeave={handleMouseOut} children={renderComponentListCategory()} />}
+      <div></div>
     </header>
   )
 }
