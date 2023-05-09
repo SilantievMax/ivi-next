@@ -10,14 +10,12 @@ import Home from '../../pages/index';
 
 import HomePage from '@/src/components/screens/HomePage/HomePage';
 import { store } from '@/src/store/store';
+import Movies from '../../pages/movies'
 
 
-describe('Home', () => {
-  it('renders a heading', () => {
-    render(<Home />)
-
-    const heading = screen.getByText(/Test ok/i)
-
-    expect(heading).toBeInTheDocument()
+describe('Movies', () => {
+  it('renders homepage unchanged', () => {
+    const { container } = render(<Movies />)
+    expect(container).toMatchSnapshot()
   })
 })

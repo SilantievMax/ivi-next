@@ -23,7 +23,7 @@ const initialState: filterItem = {
   countriesList: [],
   genres: [],
   genresList: [],
-  pickedYear: 'Все годы'
+  pickedYear: 'Все'
 }
 
 export const filterSlice = createSlice({

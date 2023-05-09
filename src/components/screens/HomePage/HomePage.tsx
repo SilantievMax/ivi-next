@@ -5,14 +5,14 @@ import AdminPage from '../AdminPage/AdminPage'
 import PersonPage from '../PersonPage/PersonPage'
 
 import Index from '@/pages/movies'
+import HeaderCategory from '@/src/components/HeaderCategory/HeaderCategory'
 
 const HomePage: FC = () => {
   const { t, i18n } = useTranslation()
 
   return (
     <div>
-      <p>ok</p>
-      <AdminPage />
+      {/*<AdminPage />*/}
       {/* <PersonPage /> */}
       {/* <button onClick={() => changeLanguage('en')}>EN</button>
       <button onClick={() => changeLanguage('ru')}>RU</button> */}

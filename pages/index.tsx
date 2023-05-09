@@ -6,8 +6,7 @@ import { setMoviesList } from '@/src/store/reducers/dataBaseReducer'
 const Home: FC = () => {
   return (
     <>
-    Test ok
-      {/* <HomePage /> */}
+       <HomePage />
     </>
   )
 }

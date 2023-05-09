@@ -24,6 +24,7 @@ import FilterLi from './FilterLi'
 import styles from './filter.module.scss'
 import { Button } from '@/src/components/Button/Button'
 import { IGenre } from '@/src/types/types'
+import { yearArray } from '@/src/functions/globalData'
 
 
 const Filter = () => {
@@ -36,26 +37,7 @@ const Filter = () => {
   const genresList = useSelector(selectGenresList)
   const countryList = useSelector(selectCountryList)
   const { t } = useTranslation()
-  const yearArray = [
-    'Все годы',
-    '2023 год',
-    '2022 год',
-    '2021 год',
-    '2020 год',
-    '2019 год',
-    '2018 год',
-    '2017 год',
-    '2016 год',
-    '2022-2023',
-    '2021-2022',
-    '2020-2022',
-    '2019-2020',
-    '2010-2020',
-    '2010-2015',
-    '2000-2010',
-    '1990-2000',
-    '1980-1990'
-  ]
+
   const [genresArray, setGenresArray] = useState<IGenre[]>([])
   const [countryArray, setCountryArray] = useState<IGenre[]>([])
   const router = useRouter()
@@ -150,7 +132,7 @@ const Filter = () => {
               <ul className={styles.filterDropdown__list}>
                 {genresArray.map((el, idx) => (
                   <div key={idx} onClick={() => {
-                    addGenre(el.id, el.nameRu)}}>
+                    addGenre(el.id, capitalize(el.nameRu))}}>
                     <FilterLi id={el.id} content={capitalize(el.nameRu)}
                               className={styles.filterDropdown__item} />
                   </div>

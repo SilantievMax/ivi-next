@@ -10,6 +10,8 @@ import { Button } from '@/src/components/Button/Button'
 import ModalWindow from '@/src/components/ModalWindow/ModalWindow'
 import Profile from '@/src/components/Profile/Profile'
 import { bell, logo, magnifyingGlass, paple } from '@/src/img/imges'
+import FilterItem from '@/src/components/Filter/FilterItem'
+import HeaderCategory from '@/src/components/HeaderCategory/HeaderCategory'
 
 const Header: FC = () => {
   const isAuth = false
@@ -29,9 +31,9 @@ const Header: FC = () => {
   const renderComponentListCategory = () => {
     switch (isVariant) {
       case 'movies':
-        return <ListCategories children={isVariant} variant={isVariant} />
+        return <ListCategories children={<HeaderCategory/>} variant={isVariant} />
       case 'series':
-        return <ListCategories children={isVariant} variant={isVariant} />
+        return <ListCategories children={<HeaderCategory/>} variant={isVariant} />
       case 'animation':
         return <ListCategories children={isVariant} variant={isVariant} />
       case 'tvplus':
@@ -55,19 +57,19 @@ const Header: FC = () => {
           <Link href='/' onMouseOver={handleMouseOut}>
             {t('myIvi')}
           </Link>
-          <Link href='/new' onMouseOver={handleMouseOut}>
+          <Link href='https://www.ivi.ru/new' onMouseOver={handleMouseOut}>
             {t('whatNew')}
           </Link>
           <Link href='/movies' onMouseOver={() => handleMouseOver('movies')}>
             {t('movies')}
           </Link>
-          <Link href='/series' onMouseOver={() => handleMouseOver('series')}>
+          <Link href='/movies' onMouseOver={() => handleMouseOver('series')}>
             {t('serials')}
           </Link>
-          <Link href='/animation' onMouseOver={() => handleMouseOver('animation')}>
+          <Link href='https://www.ivi.ru/animation' onMouseOver={handleMouseOut}>
             {t('cartoons')}
           </Link>
-          <Link href='/tvplus' onMouseOver={() => handleMouseOver('tvplus')}>
+          <Link href='https://www.ivi.ru/tvplus' onMouseOver={handleMouseOut}>
             TV+
           </Link>
         </nav>
