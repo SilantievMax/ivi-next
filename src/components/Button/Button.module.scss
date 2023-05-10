@@ -6,7 +6,6 @@
   align-items: center;
   border: none;
   height: 32px;
-  border-width: 1px;
   border-radius: 8px;
   color: white;
   background-color: transparent;
@@ -74,6 +73,28 @@
   border-color: #1f1b2e;
 }
 
+.mainGray {
+  background-color: #1f1b2e;
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+  &:hover {
+    background-color: #231f34;
+  }
+}
+
+.mainBlueGradient {
+  background-color: #1f1b2e;
+  background-image: url("https://solea-parent.dfs.ivi.ru/picture/bypass/teaserTilePattern_a.svg");
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+
+  &:hover {
+    background-color: #231f34;
+  }
+}
+
 .darkRed {
   background-color: #ea003d;
   border-color: #ea003d;
@@ -85,7 +106,6 @@
 }
 .icon {
   padding: 0 10px;
-  background-color: rgb(63, 62, 62);
   border-color: rgb(51, 50, 50);
 }
 .circle {

@@ -112,12 +112,16 @@
   padding: 20px 0;
 }
 
+.back {
+  background-color: red;
+}
+
 .postersContainerSwiper {
   display: flex;
   flex-direction: column;
   gap: 10px;
   // margin: 0 10px;
-  // width: 270px;
+  //width: 200px;
   // flex-wrap: nowrap;
   // background-color: #2d0b9c;
   // overflow: hidden;
@@ -147,7 +151,6 @@
 }
 
 .filterBtn {
-  // width: 100%;
   padding: 6px 16px;
   border-radius: 16px;
   background-color: #312b45;

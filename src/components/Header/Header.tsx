@@ -75,8 +75,8 @@ const Header: FC = () => {
         </nav>
       </div>
       <div className={styles.header__b}>
-        <Button color='gradient' children='Оплатить подписку' onMouseOver={handleMouseOut} />
-        <Button img={magnifyingGlass.src} children={<h3 className={styles.color}>Поиск</h3>} onMouseOver={handleMouseOut} />
+        <Button color='gradient' children={t('buySubscribe')} onMouseOver={handleMouseOut} />
+        <Button img={magnifyingGlass.src} children={<h3 className={styles.color}>{t('search')}</h3>} onMouseOver={handleMouseOut} />
         {isAuth ? <Button img={bell.src} onMouseOver={() => handleMouseOver('bell')} /> : <Button img={bell.src} onMouseOver={() => handleMouseOver('')} />}
         <Button className={styles.costom_btn} img={paple.src} onMouseOver={() => handleMouseOver('profile')} />
       </div>

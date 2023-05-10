@@ -5,84 +5,39 @@ import { Navigation } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import { Swiper, SwiperSlide } from 'swiper/react'
-
 import useWindowSize from '../../Reviews/widthWindow'
 import Meta from '../../seo/Meta'
-
 import styles from './movies.module.scss'
 import { MemoBreadcrumbs } from '@/src/components/BreadCrumbNavigation/BreadCrumbNavigation'
 import { Button } from '@/src/components/Button/Button'
 import Film from '@/src/components/Film/Film'
 import Filter from '@/src/components/Filter/Filter'
 import Sort from '@/src/components/Sort/Sort'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 import { selectMoviesList, setMoviesList } from '@/src/store/reducers/dataBaseReducer'
-import { selectCountries, selectGenres, selectPickedYear, selectRate, selectReviewAmount } from '@/src/store/reducers/filterReducer'
+import {
+  selectCountries,
+  selectGenres,
+  selectPickedYear,
+  selectRate,
+  selectReviewAmount
+} from '@/src/store/reducers/filterReducer'
 import { selectSort } from '@/src/store/reducers/sortReducer'
+import Slider from 'react-slick'
+import { genreList, headersArray } from '@/src/functions/globalData'
+import LeftArrow from '@/src/components/Arrows/LeftArrow'
+import RightArrow from '@/src/components/Arrows/RightArrow'
 
 const MoviesPage: FC = () => {
   const rate = useSelector(selectRate)
   const reviewAmount = useSelector(selectReviewAmount)
-  const headersArray = [
-    '2022 год',
-    '2021 год',
-    '2020 год',
-    '2019 год',
-    '2018 год',
-    'Бесплатные',
-    'Русские фильмы',
-    'Советские фильмы',
-    'Американские фильмы',
-    'Индийские фильмы',
-    'Комедии',
-    'Ужасы',
-    'Фантастические',
-    'Мелодрамы',
-    'Триллеры',
-    'Драмы'
-  ]
   const movies = useSelector(selectMoviesList)
   const sort = useSelector(selectSort)
   const countries = useSelector(selectCountries)
   const genres = useSelector(selectGenres)
   const year = useSelector(selectPickedYear)
   const [showDescription, setShowDescription] = useState<boolean>(false)
-  const genreList = [
-    {
-      name: 'iviPremiers',
-      src: 'https://thumbs.dfs.ivi.ru/storage5/contents/e/5/a46c24c02991bffcc15cff72344ea0.png/604x406/?q=85',
-      url: 'https://www.ivi.ru/collections/new-movies'
-    },
-    {
-      name: 'newContent',
-      src: 'https://thumbs.dfs.ivi.ru/storage23/contents/2/3/00363ced3df51be0453d43318a5056.png/604x406/?q=85',
-      url: 'https://www.ivi.ru/collections/new-in-svod'
-    },
-    {
-      name: 'best',
-      src: 'https://thumbs.dfs.ivi.ru/storage23/contents/0/4/76774ca880a36b4765473131b03ad0.png/604x406/?q=85',
-      url: 'https://www.ivi.ru/collections/luchshee-v-podpiske'
-    },
-    {
-      name: 'newRussian',
-      src: 'https://thumbs.dfs.ivi.ru/storage9/contents/c/f/e524a887c11e5dc54344b4963ecf70.png/604x406/?q=85',
-      url: 'https://www.ivi.ru/collections/russian-new-movies'
-    },
-    {
-      name: 'newAbroad',
-      src: 'https://thumbs.dfs.ivi.ru/storage4/contents/4/d/27a90983974634bf22d3c7f84e27ce.png/604x406/?q=85',
-      url: 'https://www.ivi.ru/collections/new-foreign-movies'
-    },
-    {
-      name: 'bestNew',
-      src: 'https://thumbs.dfs.ivi.ru/storage4/contents/5/3/f24fdc6a202c6b7fd8b733d1dedda1.png/604x406/?q=85',
-      url: 'https://www.ivi.ru/collections/best-new-movies-on-ivi'
-    },
-    {
-      name: 'freeContent',
-      src: 'https://thumbs.dfs.ivi.ru/storage28/contents/6/6/0180fbc123574c6f079d2fb9a800fb.png/604x406/?q=85',
-      url: 'https://www.ivi.ru/collections/avod-movies'
-    }
-  ]
   const { t } = useTranslation()
   const dispatch = useDispatch()
   useEffect(() => {
@@ -98,30 +53,47 @@ const MoviesPage: FC = () => {
       .then(json => dispatch(setMoviesList(json.rows)))
       .catch(err => console.log(err))
   }, [sort, rate, reviewAmount, genres, countries, year])
+  let settings = {
+    prevArrow:<LeftArrow/>,
+    nextArrow:<RightArrow/>,
+    adaptiveHeight:false,
+    speed: 500,
+    infinite: false,
+    variableWidth: false,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+  }
   return (
     <Meta title={t('movies')}>
       <div className={styles.filmsSection}>
-        <MemoBreadcrumbs activeItemClassName='slash' inactiveItemClassName='slash' omitRootLabel={false} rootLabel={t('myIvi')} />
+        <MemoBreadcrumbs activeItemClassName='slash' inactiveItemClassName='slash'
+                         omitRootLabel={false} rootLabel={t('myIvi')} />
         <div className={styles.filmsSection__description}>
           <h1 className={styles.filmsSection__title}>{t('watchFilmsTitle')}</h1>
           <div className={styles.descriptionWrapper}>
-            <div className={showDescription ? `${styles.descriptionFont} ${styles.greyText}` : `${styles.descriptionFont} ${styles.greyText} ${styles.hiddenText}`}>
+            <div
+              className={showDescription ? `${styles.descriptionFont} ${styles.greyText}` : `${styles.descriptionFont} ${styles.greyText} ${styles.hiddenText}`}>
               {t('filmSectionDescriptionP1')}
             </div>
-            <p className={showDescription ? `${styles.descriptionFont} ${styles.greyText}` : `${styles.descriptionFont} ${styles.greyText} ${styles.none}`}>
+            <p
+              className={showDescription ? `${styles.descriptionFont} ${styles.greyText}` : `${styles.descriptionFont} ${styles.greyText} ${styles.none}`}>
               {t('filmSectionDescriptionP2')}
             </p>
-            <p className={showDescription ? `${styles.descriptionFont} ${styles.greyText}` : `${styles.descriptionFont} ${styles.greyText} ${styles.none}`}>
+            <p
+              className={showDescription ? `${styles.descriptionFont} ${styles.greyText}` : `${styles.descriptionFont} ${styles.greyText} ${styles.none}`}>
               {t('filmSectionDescriptionP3')}
             </p>
-            <p className={showDescription ? `${styles.descriptionFont} ${styles.greyText}` : `${styles.descriptionFont} ${styles.greyText} ${styles.none}`}>
+            <p
+              className={showDescription ? `${styles.descriptionFont} ${styles.greyText}` : `${styles.descriptionFont} ${styles.greyText} ${styles.none}`}>
               {t('filmSectionDescriptionP4')}
             </p>
-            <p className={showDescription ? `${styles.descriptionFont} ${styles.greyText}` : `${styles.descriptionFont} ${styles.greyText} ${styles.none}`}>
+            <p
+              className={showDescription ? `${styles.descriptionFont} ${styles.greyText}` : `${styles.descriptionFont} ${styles.greyText} ${styles.none}`}>
               {t('filmSectionDescriptionP5')}
             </p>
           </div>
-          <span className={styles.clauseToggle} onClick={() => setShowDescription(!showDescription)}>
+          <span className={styles.clauseToggle}
+                onClick={() => setShowDescription(!showDescription)}>
             {showDescription ? `${t('collapseBtn')}` : `${t('expandBtn')}`}
           </span>
         </div>
@@ -144,16 +116,7 @@ const MoviesPage: FC = () => {
             ))}
           </Swiper>
         </div>
-        {/* <Carousel
-          items={headersArray.map((el, idx) => (
-            <Button color='lightGray' size='circle' key={idx} className={styles.filterBtn}>
-              <span className={`${styles.filterBtn__font} ${styles.greyText}`}>{el}</span>
-            </Button>
-          ))}
-          size='small'
-          transition={200}
-          className={styles.carouselItems}
-        /> */}
+
         <Sort />
         <Filter />
         <div className={styles.filmCardsWrapper}>
@@ -176,20 +139,24 @@ const MoviesPage: FC = () => {
             ))}
           </Swiper>
         </div>
-        {/* <Carousel
-        items={genreList.map((el, idx) => (
-          <div key={idx} title={el.name} className={styles.postersContainer}>
-            <a href={el.url} className={styles.carouselItem}>
-              <img className={styles.border} src={el.src} width={273} height={173} alt='poster' />
-            </a>
-            <span>{t(el.name)}</span>
-          </div>
-        ))}
-        size='standard'
-        transition={314}
-        className={styles.standardCarouselItems}
-      /> */}
       </div>
+
+
+
+      {/*<Slider prevArrow=<LeftArrow/>*/}
+      {/*        nextArrow=<RightArrow/>*/}
+      {/*        initialSlide={0}*/}
+      {/*        speed={500}*/}
+      {/*        infinite={true}*/}
+      {/*        variableWidth={true}*/}
+      {/*        slidesToShow={10}*/}
+      {/*        slidesToScroll={5}>*/}
+      {/*  {headersArray.map((el, idx) => (*/}
+      {/*    <Button color='lightGray' size='circle' key={idx} className={styles.filterBtn}>*/}
+      {/*      <span className={`${styles.filterBtn__font} ${styles.greyText}`}>{el}</span>*/}
+      {/*    </Button>*/}
+      {/*  ))}*/}
+      {/*</Slider>*/}
     </Meta>
   )
 }

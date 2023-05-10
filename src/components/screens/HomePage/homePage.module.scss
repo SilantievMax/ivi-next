@@ -1,0 +1,122 @@
+.sliderItemContainer {
+  height: 523px;
+  border-radius: 15px;
+  max-width: 1000px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.sectionTitle {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.filmsWrapper{
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+}
+
+.topSectionWrapper {
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+  padding: 20px 0;
+  align-items: center;
+  max-width: 322px;
+
+
+  &__title {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px;
+    margin-top: -5px;
+  }
+}
+
+.filmsSlider {
+  padding-bottom: 20px;
+}
+
+.list {
+  display: flex;
+  row-gap: 10px;
+  flex-direction: column;
+}
+
+.listElem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 10px;
+  position: relative;
+}
+
+.dot {
+  position: absolute;
+  left: -5px;
+  top: 2px;
+}
+
+.mainSection__description {
+  padding-top: 20px;
+  width: 79%;
+}
+
+.descriptionFont {
+  padding-top: 10px;
+}
+
+.btnContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  padding-top: 15px;
+}
+
+.btn {
+  width: 49%;
+  height: 40px;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+
+}
+
+.center {
+  opacity: unset;
+}
+
+.image {
+  object-fit: cover;
+  position: absolute;
+  border-radius: 15px;
+  max-width: 1120px;
+  width: 100%;
+  height: inherit;
+}
+.slideDescription {
+  position: relative;
+  top: 240px;
+  left: 40px;
+  width: 486px;
+  display: flex;
+  line-height: 22px;
+}
+
+.sliderButton {
+  position: relative;
+  background-color: red;
+  left: 40px;
+  top: 270px;
+}
+.slideInnerImg {
+  position: relative;
+  top: 220px;
+  left: 40px;
+  height: 152px;
+}
