@@ -1,21 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
+import React, { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 
+import { Button } from '../../Button/Button'
+import NameInput from '../ElementsForm/NameInput'
+import ReviewInput from '../ElementsForm/ReviewInput'
 
+import styles from './FormReview.module.scss'
+import { usePersistForm } from './usePersistForm'
+import { IInputs } from '@/src/types/CommentsType'
 
-import { Button } from '../../Button/Button';
-import NameInput from '../ElementsForm/NameInput';
-import ReviewInput from '../ElementsForm/ReviewInput';
-
-
-
-import styles from './FormReview.module.scss';
-import { usePersistForm } from './usePersistForm';
-import { IInputs } from '@/src/types/CommentsType';
-
-
-interface FormReviewProps {
+export interface FormReviewProps {
   setShow: React.Dispatch<React.SetStateAction<boolean>>
   formName: 'Review' | 'Comment'
   idReview: number | null
@@ -47,8 +42,7 @@ const FormReview = ({ setShow, formName, idReview, setSent, movieId }: FormRevie
     formState: { errors, isValid },
     handleSubmit,
     resetField,
-    watch,
-    
+    watch
   } = useForm<IInputs>({ defaultValues: getSavedData() })
 
   const onSubmit = (data: IInputs) => {

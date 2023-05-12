@@ -136,9 +136,13 @@ const Filter = () => {
     return arr.map(str => capitalize(str))
   }
 
+  // JEST TEST ругается что не может прочесть (Cannot read properties of undefined (reading 'push'))
+  // Отключил для работы тестов
   useEffect(() => {
     router.push({ pathname: '/movies' }, `/movies/${ucFirst(urlGenre).join('+')}`, { shallow: true })
   }, [urlGenre])
+  console.log(router);
+  
 
   const urlGenres = (el: IGenre) => {
     const name = el.nameRu
@@ -152,7 +156,7 @@ const Filter = () => {
     }
   }
   return (
-    <div className={styles.filtersContainer}>
+    <div className={styles.filtersContainer} data-testid='filter'>
       <div className={styles.filtersContainer__item}>
         <FilterItem
           title={t('genres')}

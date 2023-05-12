@@ -20,27 +20,28 @@ export interface ITrailer {
 }
 
 export interface IFilm {
-  id: number,
-  nameRu: string,
-  nameEn: string,
-  posterUrl: string,
-  posterUrlPreview: string,
-  coverUrl: string,
-  ratingKinopoisk: number,
-  ratingKinopoiskVoteCount: number,
-  year: number,
-  filmLength: number,
-  slogan: string,
-  description: string,
-  shortDescription: string,
-  type: string,
-  ratingMpaa: string,
-  ratingAgeLimits: string,
-  startYear: number,
-  endYear: number,
-  serial: boolean,
-  shortFilm: boolean,
-  completed: boolean,
+  id: number
+  nameRu: string
+  nameEn: string
+  posterUrl: string
+  kinopoiskId: number
+  posterUrlPreview: string
+  coverUrl: string
+  ratingKinopoisk: number
+  ratingKinopoiskVoteCount: number
+  year: number
+  filmLength: number
+  slogan: string
+  description: string
+  shortDescription: string
+  type: string
+  ratingMpaa: string
+  ratingAgeLimits: string
+  startYear: number
+  endYear: number
+  serial: boolean
+  shortFilm: boolean
+  completed: boolean
   genres: IGenre[]
   countries: IGenre[]
 }

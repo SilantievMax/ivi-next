@@ -1,4 +1,4 @@
-import { Action, ThunkAction, configureStore } from '@reduxjs/toolkit'
+import { Action, ThunkAction, combineReducers, configureStore, createStore } from '@reduxjs/toolkit'
 import { createWrapper } from 'next-redux-wrapper'
 
 import { itemSlice } from '@/src/store/reducers/sortReducer'

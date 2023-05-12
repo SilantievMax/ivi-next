@@ -1,15 +1,12 @@
-import cn from 'classnames';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import React, { memo, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import cn from 'classnames'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import React, { memo, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
-
-
-import styles from './BreadCrumbNavigation.module.scss';
-import { Breadcrumb, BreadcrumbsProps } from './BreadCrumdsModels';
-import { convertBreadcrumb } from './ConvertBreadcrumd';
-
+import styles from './BreadCrumbNavigation.module.scss'
+import { Breadcrumb, BreadcrumbsProps } from './BreadCrumdsModels'
+import { convertBreadcrumb } from './ConvertBreadcrumd'
 
 const defaultProps: BreadcrumbsProps = {
   rootLabel: '',
@@ -44,15 +41,15 @@ const Breadcrumbs = ({
   activeItemStyle,
   activeItemClassName
 }: BreadcrumbsProps) => {
-  const router = useRouter()
   const [breadcrumbs, setBreadcrumbs] = useState<Array<Breadcrumb> | null>(null)
+  const router = useRouter()
   const { t } = useTranslation()
   function ucFirst(str: string | string[]) {
     return str[0].toUpperCase() + str.slice(1)
   }
   useEffect(() => {
     if (router) {
-      if(router.query.genre){
+      if (router.query.genre) {
         const linkPaths = []
         const linkPath = router.asPath.split('/')
         linkPath.shift()
@@ -80,14 +77,17 @@ const Breadcrumbs = ({
       return
     }
   }, [router])
- // console.log(breadcrumbs)
+  // console.log(breadcrumbs)
 
   if (!breadcrumbs) {
     return null
   }
 
   return (
-    <nav  className={ `${cn( styles.breadcrumb, { [styles.pointBreadcrumb]: inactiveItemClassName === 'point', [styles.slashBreadcrumb]: activeItemClassName === 'slash' })}` } aria-label='breadcrumbs'>
+    <nav
+      className={`${cn(styles.breadcrumb, { [styles.pointBreadcrumb]: inactiveItemClassName === 'point', [styles.slashBreadcrumb]: activeItemClassName === 'slash' })}`}
+      aria-label='breadcrumbs'
+    >
       <ul>
         {!omitRootLabel && (
           <li>
@@ -104,13 +104,14 @@ const Breadcrumbs = ({
                 key={breadcrumb.href}
                 className={
                   i === breadcrumbs.length - 1
-                    ? `${cn({ [styles.slash]: activeItemClassName === 'slash'})}`
-                    : `${cn({ [styles.slashActive]: inactiveItemClassName === 'slash',[styles.point]: activeItemClassName === 'point' })}`
+                    ? `${cn({ [styles.slash]: activeItemClassName === 'slash' })}`
+                    : `${cn({ [styles.slashActive]: inactiveItemClassName === 'slash', [styles.point]: activeItemClassName === 'point' })}`
                 }
                 style={i === breadcrumbs.length - 1 ? activeItemStyle : inactiveItemStyle}
               >
-                <Link onClick={() => console.log(breadcrumb.href)
-                } href={breadcrumb.href}>{t(`${convertBreadcrumb(breadcrumb.breadcrumb.replaceAll('+', ', '), labelsToUppercase, replaceCharacterList, transformLabel)}`)}</Link>
+                <Link onClick={() => console.log(breadcrumb.href)} href={breadcrumb.href}>
+                  {t(`${convertBreadcrumb(breadcrumb.breadcrumb.replaceAll('+', ', '), labelsToUppercase, replaceCharacterList, transformLabel)}`)}
+                </Link>
               </li>
             )
           })}

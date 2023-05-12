@@ -1,20 +1,25 @@
-import Link from 'next/link'
-import { useRouter, withRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { MdArrowBackIosNew } from 'react-icons/md'
-import { RiBarChartHorizontalFill } from 'react-icons/ri'
-import { Oval } from 'react-loader-spinner'
+import Link from 'next/link';
+import { useRouter, withRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { MdArrowBackIosNew } from 'react-icons/md';
+import { RiBarChartHorizontalFill } from 'react-icons/ri';
+import { Oval } from 'react-loader-spinner';
 
-import { Button } from '../Button/Button'
-import Meta from '../seo/Meta'
 
-import FormReview from './FormReview/FormReview'
-import ReviewsList from './ReviewsList/ReviewsList'
-import styles from './ReviewsOnFilm.module.scss'
-import { useOuside } from '@/src/hooks/useOutside'
-import { IReviews } from '@/src/types/CommentsType'
-import { IFilm } from '@/src/types/types'
+
+import { Button } from '../Button/Button';
+import Meta from '../seo/Meta';
+
+
+
+import FormReview from './FormReview/FormReview';
+import ReviewsList from './ReviewsList/ReviewsList';
+import styles from './ReviewsOnFilm.module.scss';
+import { useOuside } from '@/src/hooks/useOutside';
+import { IReviews } from '@/src/types/CommentsType';
+import { IFilm } from '@/src/types/types';
+
 
 const ReviewsOnFilm = () => {
   const { ref, isShow, setIsShow } = useOuside(false)
@@ -27,6 +32,8 @@ const ReviewsOnFilm = () => {
     back,
     query: { id }
   } = useRouter()
+  
+  // console.log(comment)
   useEffect(() => {
     setSent(false)
     fetch(`http://localhost:3004/comments/${id}/tree`, {
@@ -68,7 +75,7 @@ const ReviewsOnFilm = () => {
               {isShow ? (
                 <FormReview setSent={setSent} idReview={null} setShow={setIsShow} formName='Review' movieId={id} />
               ) : (
-                <Button size='border' children={t('write a review')} onClick={() => setIsShow(true)} />
+                <Button data-testid="btn-review" size='border' children={t('write a review')} onClick={() => setIsShow(true)} />
               )}
               <ul className={styles.commentList}>{comment?.length && comment.map(comment => <ReviewsList key={comment.id} comment={comment} setSent={setSent} />)}</ul>
             </div>

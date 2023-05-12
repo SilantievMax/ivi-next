@@ -19,6 +19,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/i18next"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/i18next", "jest.config.js"],
   "exclude": ["node_modules"]
 }

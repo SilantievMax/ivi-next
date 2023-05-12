@@ -17,7 +17,7 @@ const LanguageBtn = () => {
   }, [language])
   return (
     <>
-      <Button color='gray' size='circle' onClick={() => setLanguage(language === 'ru' ? 'en' : language === 'en' ? 'ru' : 'ru')} children={language === 'ru' ? 'Ru' : 'En'} />
+      <Button role='language' color='gray' size='circle' onClick={() => setLanguage(language === 'ru' ? 'en' : language === 'en' ? 'ru' : 'ru')} children={language === 'ru' ? 'Ru' : 'En'} />
     </>
   )
 }

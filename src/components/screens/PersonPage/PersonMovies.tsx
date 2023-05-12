@@ -3,7 +3,7 @@ import React, { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import style from './Person.module.scss'
-import { Button } from '@/src/components/Button/Button'
+import { Button } from '../../Button/Button'
 import { IPersonMovies } from '@/src/types/PersonTypes'
 
 const PersonMovies: FC<{ movie: IPersonMovies }> = ({ movie }) => {
