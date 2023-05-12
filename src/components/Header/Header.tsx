@@ -47,7 +47,6 @@ const Header: FC = () => {
   return (
     <header className={styles.header}>
       <div className={styles.header__t}>
-        <LanguageBtn />
         <Link href='/' onMouseOver={handleMouseOut}>
           <img src={logo.src} alt='logo' />
         </Link>
@@ -79,7 +78,6 @@ const Header: FC = () => {
         <Button className={styles.costom_btn} img={paple.src} onMouseOver={() => handleMouseOver('profile')} />
       </div>
       {isHovering && <ModalWindow onMouseLeave={handleMouseOut} children={renderComponentListCategory()} />}
-      <div></div>
     </header>
   )
 }
