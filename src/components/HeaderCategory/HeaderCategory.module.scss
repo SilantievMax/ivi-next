@@ -1,0 +1,54 @@
+.headerContent {
+  display: flex;
+  flex-direction: row;
+  height: 328px;
+
+  &__links {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 100px;
+    row-gap: 6px;
+    width: 100%;
+  }
+}
+
+.linkWrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.listFont {
+  cursor: pointer;
+  color: #ffffff7a;
+  font-size: 15px;
+  margin-top: 8px;
+  transition: color .3s;
+
+  &:hover {
+    color: #fff;
+  }
+}
+
+.border {
+  border-right: 1px solid #ffffff7a;
+  margin-right: 30px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 328px;
+  width: 100%;
+
+  &Header {
+    margin-top: 8px;
+  }
+
+  &__secondBlock {
+  }
+}

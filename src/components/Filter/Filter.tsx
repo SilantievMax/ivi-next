@@ -24,6 +24,7 @@ import FilterLi from './FilterLi'
 import styles from './filter.module.scss'
 import { Button } from '@/src/components/Button/Button'
 import { IGenre } from '@/src/types/types'
+import { yearArray } from '@/src/functions/globalData'
 
 
 const Filter = () => {
@@ -36,28 +37,10 @@ const Filter = () => {
   const genresList = useSelector(selectGenresList)
   const countryList = useSelector(selectCountryList)
   const { t } = useTranslation()
-  const yearArray = [
-    'Все годы',
-    '2023 год',
-    '2022 год',
-    '2021 год',
-    '2020 год',
-    '2019 год',
-    '2018 год',
-    '2017 год',
-    '2016 год',
-    '2022-2023',
-    '2021-2022',
-    '2020-2022',
-    '2019-2020',
-    '2010-2020',
-    '2010-2015',
-    '2000-2010',
-    '1990-2000',
-    '1980-1990'
-  ]
+
   const [genresArray, setGenresArray] = useState<IGenre[]>([])
   const [countryArray, setCountryArray] = useState<IGenre[]>([])
+  const router = useRouter()
   const handleReviewChange = (event: Event, newValue: number | number[]) => {
     setSickedReviewAmount(newValue as number)
   }
@@ -129,32 +112,15 @@ const Filter = () => {
       dispatch(setCountriesList(arr))
     }
   }
-  const [urlGenre, setUrlGenre] = useState<string[]>([])
-  const router = useRouter()
 
   function ucFirst(arr: string[]) {
     return arr.map(str => capitalize(str))
   }
 
-  // JEST TEST ругается что не может прочесть (Cannot read properties of undefined (reading 'push'))
-  // Отключил для работы тестов
   useEffect(() => {
-    router.push({ pathname: '/movies' }, `/movies/${ucFirst(urlGenre).join('+')}`, { shallow: true })
-  }, [urlGenre])
-  console.log(router);
-  
+    router.push({ pathname: '/movies' }, `/movies/${ucFirst(genresList).join('+')}`, { shallow: true })
+  }, [genresList])
 
-  const urlGenres = (el: IGenre) => {
-    const name = el.nameRu
-    addGenre(el.id, name)
-    if (urlGenre.includes(name)) {
-      setUrlGenre(urlGenre => urlGenre.filter(index => index !== name))
-      dispatch(setGenresList([...genresList, capitalize(name)]))
-    } else {
-      setUrlGenre(urlGenre => [...urlGenre, name])
-      dispatch(setGenresList([...genresList, capitalize(name)]))
-    }
-  }
   return (
     <div className={styles.filtersContainer} data-testid='filter'>
       <div className={styles.filtersContainer__item}>
@@ -165,7 +131,8 @@ const Filter = () => {
             <div className={styles.filterDropdown__content}>
               <ul className={styles.filterDropdown__list}>
                 {genresArray.map((el, idx) => (
-                  <div key={idx} onClick={() => urlGenres(el)}>
+                  <div key={idx} onClick={() => {
+                    addGenre(el.id, capitalize(el.nameRu))}}>
                     <FilterLi id={el.id} content={capitalize(el.nameRu)}
                               className={styles.filterDropdown__item} />
                   </div>
@@ -269,7 +236,6 @@ const Filter = () => {
           dispatch(setCountries([]))
           dispatch(setGenres([]))
           dispatch(setPickedYear('Все годы'))
-          setUrlGenre([])
           dispatch(setCountriesList([]))
           dispatch(setGenresList([]))
         }}

@@ -68,6 +68,12 @@ ul {
   list-style: none;
 }
 
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 .popupActive {
   overflow: hidden;
   min-height: 100%;
@@ -96,5 +102,17 @@ ul {
 .css-1tqs3sn-MuiFormLabel-root-MuiInputLabel-root {
   color: rgba(255, 255, 255, 0.56);
 }
+
+
+//.slick-list {margin: 0 -5px;}
+.slick-slide>div {padding: 0 5px;}
+//.slick-slide>img {padding: 0 5px;}
+
+@media (max-width: 900px) {
+  .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+    width: 49%;
+  }
+}
+
 
 @import "./swiper";

@@ -5,33 +5,33 @@ import LinkItem from './LinkItem/LinkItem'
 import { Button } from '@/src/components/Button/Button'
 import { appleLogo, device, envelope, googlePlayLogo, linkedin, megaphone, odnoklassniki, phone, telegram, tv, twitter, viber, vk } from '@/src/img/imges'
 import { ILinks } from '@/src/types/types'
-
+import { useTranslation } from 'react-i18next'
 const aboutLinks: ILinks[] = [
-  { title: 'О компании', link: 'https://corp.ivi.ru/?_gl=1*ej3vmc*_ga*NjYzNjY3NDguMTY1MTQyOTE1MA..*_ga_GETQ4387MJ*MTY4MTMxNTUxMi4yNC4xLjE2ODEzMTc5NjAuNDcuMC4w' },
+  { title: 'aboutCom', link: 'https://corp.ivi.ru/?_gl=1*ej3vmc*_ga*NjYzNjY3NDguMTY1MTQyOTE1MA..*_ga_GETQ4387MJ*MTY4MTMxNTUxMi4yNC4xLjE2ODEzMTc5NjAuNDcuMC4w' },
   {
-    title: 'Вакансии',
+    title: 'jobs',
     link: 'https://corp.ivi.ru/career/?_gl=1*1moy7pv*_ga*NjYzNjY3NDguMTY1MTQyOTE1MA..*_ga_GETQ4387MJ*MTY4MTMxNTUxMi4yNC4xLjE2ODEzMTc5NjAuNDcuMC4w#career-vacancy-block'
   },
-  { title: 'Программа бета-тестирования', link: 'https://www.ivi.ru/pages/beta' },
-  { title: 'Информация для партнёров', link: 'https://www.ivi.ru/info/partners' },
+  { title: 'beta', link: 'https://www.ivi.ru/pages/beta' },
+  { title: 'partners', link: 'https://www.ivi.ru/info/partners' },
   {
-    title: 'Размещение рекламы',
+    title: 'ads',
     link: 'https://corp.ivi.ru/advertisers/?_gl=1*1moy7pv*_ga*NjYzNjY3NDguMTY1MTQyOTE1MA..*_ga_GETQ4387MJ*MTY4MTMxNTUxMi4yNC4xLjE2ODEzMTc5NjAuNDcuMC4w'
   },
-  { title: 'Пользовательское соглашение', link: 'https://www.ivi.ru/info/agreement' },
-  { title: 'Политика конфиденциальности', link: 'https://www.ivi.ru/info/confidential' },
-  { title: 'Комплаенс', link: 'https://www.ivi.ru/info/goryachaya-liniya-komplaens' }
+  { title: 'terms', link: 'https://www.ivi.ru/info/agreement' },
+  { title: 'policy', link: 'https://www.ivi.ru/info/confidential' },
+  { title: 'compliance', link: 'https://www.ivi.ru/info/goryachaya-liniya-komplaens' }
 ]
 
 const sectionsLinks: ILinks[] = [
-  { title: 'Мой Иви', link: 'https://www.ivi.ru/' },
-  { title: 'Что нового', link: 'https://www.ivi.ru/new' },
-  { title: 'Фильмы', link: 'https://www.ivi.ru/movies' },
-  { title: 'Сериалы', link: 'https://www.ivi.ru/series' },
-  { title: 'Мультфильмы', link: 'https://www.ivi.ru/animation' },
+  { title: 'myIvi', link: 'https://www.ivi.ru/' },
+  { title: 'new', link: 'https://www.ivi.ru/new' },
+  { title: 'movies', link: 'https://www.ivi.ru/movies' },
+  { title: 'serials', link: 'https://www.ivi.ru/series' },
+  { title: 'cartoons', link: 'https://www.ivi.ru/animation' },
   { title: 'TV+', link: 'https://www.ivi.ru/tvplus' },
-  { title: 'Что посмотреть', link: 'https://www.ivi.ru/goodmovies' },
-  { title: 'Активация сертификата', link: 'https://www.ivi.ru/cert' }
+  { title: 'whatToSee', link: 'https://www.ivi.ru/goodmovies' },
+  { title: 'promo', link: 'https://www.ivi.ru/cert' }
 ]
 
 const ascLinks: ILinks[] = [
@@ -39,36 +39,37 @@ const ascLinks: ILinks[] = [
 ]
 
 const Footer: FC = () => {
+  const { t } = useTranslation()
   return (
     <footer>
       <ul className={styles.list}>
         <li>
-          <LinkItem heading='О нас' data={aboutLinks} />
+          <LinkItem heading='about' data={aboutLinks} />
         </li>
-        <li>
-          <LinkItem heading='Разделы' data={sectionsLinks} />
+        <li className={styles.footerNavSection}>
+          <LinkItem heading='sections' data={sectionsLinks} />
         </li>
         <li className={styles.item}>
-          <h6 className={styles.text}>Служба поддержки</h6>
+          <h6 className={styles.text}>{t('support')}</h6>
           <span>
-            Мы всегда готовы вам помочь. <br /> Наши операторы онлайн 24/7
+            {t('help')} <br /> {t('operators')}
           </span>
           <div className={styles.btn}>
-            <Button children='Написать в чате' color='gray' />
+            <Button children={t('chat')} color='gray' />
             <div className={styles.pos_btn}>
               <Button img={envelope.src} size='icon' color='gray' />
               <Button img={phone.src} size='icon' color='gray' />
             </div>
           </div>
           <LinkItem data={ascLinks} />
-          <span>Ответы на вопросы</span>
+          <span>{t('QA')}</span>
         </li>
         <li className={styles.megaphone_wrapper}>
           <div className={styles.megaphone}>
             <img src={megaphone.src} alt='' />
           </div>
-          <small>
-            Смотрите фильмы, сериалы и <br /> мультфильмы без рекламы
+          <small className={styles.textWrapper}>
+            {t('watchFilms')}
           </small>
         </li>
       </ul>
@@ -82,7 +83,7 @@ const Footer: FC = () => {
                 color='gray'
                 children={
                   <>
-                    <p>Загрузить в</p>
+                    <p>{t('downloadIn')}</p>
                     <h3>App Store</h3>
                   </>
                 }
@@ -95,7 +96,7 @@ const Footer: FC = () => {
                 color='gray'
                 children={
                   <>
-                    <p>Доступно в</p>
+                    <p>{t('available')}</p>
                     <h3>Google Play</h3>
                   </>
                 }
@@ -108,7 +109,7 @@ const Footer: FC = () => {
                 color='gray'
                 children={
                   <>
-                    <p>Смотрите на</p>
+                    <p>{t('watchOn')}</p>
                     <h3>Smart TV</h3>
                   </>
                 }
@@ -121,7 +122,7 @@ const Footer: FC = () => {
                 color='gray'
                 children={
                   <>
-                    <h3>Все устройства</h3>
+                    <h3>{t('allDev')}</h3>
                   </>
                 }
               />

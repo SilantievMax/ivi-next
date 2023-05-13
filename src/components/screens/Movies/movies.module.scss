@@ -35,6 +35,7 @@
 
   &__description {
     margin-top: 24px;
+    padding-bottom: 20px;
   }
 
   .descriptionFont {
@@ -42,6 +43,7 @@
     line-height: 22px;
     font-weight: 400;
     font-style: normal;
+
   }
 
   .descriptionWrapper {
@@ -106,42 +108,41 @@
   row-gap: 10px;
 }
 
+.carouselWrapper {
+  padding: 20px 0;
+}
+
+.back {
+  background-color: red;
+}
+
 .postersContainerSwiper {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  // margin: 0 10px;
-  // width: 270px;
-  // flex-wrap: nowrap;
-  // background-color: #2d0b9c;
-  // overflow: hidden;
-  // padding: 20px;
-  // border-radius: 8px;
-  // min-width: 411px;
-
-  // height: 200px;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: space-between;
-  // cursor: pointer;
+  margin: 0 10px;
 }
+
 .carouselItemSwiper {
   border-radius: 10px;
   background-color: #312b45;
   padding: 8px;
   display: flex;
   align-items: center;
+  width: 280px;
+  height: 192px;
+  margin-bottom: 10px;
 }
+
 .borderSwiper {
-  width: 100%;
+  width: 263px;
   border-radius: 3px;
 }
+
 .swiper_slide {
-  width: auto ;
+  width: auto;
 }
 
 .filterBtn {
-  // width: 100%;
   padding: 6px 16px;
   border-radius: 16px;
   background-color: #312b45;
@@ -177,6 +178,7 @@
   text-overflow: ellipsis;
 }
 
+
 .clauseToggle {
   display: inline-block;
   margin-top: 8px;
@@ -206,3 +208,25 @@
 .none {
   display: none;
 }
+
+@media (max-width: 1500px) {
+  .filmCardsWrapper {
+    justify-content: center;
+  }
+
+  .filmsSection__description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .filmsSection__title {
+    text-align: center;
+    font-size: 30px;
+  }
+}
+
+

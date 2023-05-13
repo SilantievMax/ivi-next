@@ -84,6 +84,5 @@ export const Disable: Story = {
   args: {
     children: 'Отправить',
     color: 'red',
-    disable: true
   }
 }
