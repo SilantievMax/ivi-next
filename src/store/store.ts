@@ -1,16 +1,18 @@
-import { Action, ThunkAction, configureStore } from '@reduxjs/toolkit'
+import { Action, ThunkAction, combineReducers, configureStore, createStore } from '@reduxjs/toolkit'
 import { createWrapper } from 'next-redux-wrapper'
 
-import { itemSlice } from '@/src/store/reducers/sortReducer'
-import { filterSlice } from '@/src/store/reducers/filterReducer'
+import { authSlice } from '@/src/store/reducers/authReducer'
 import { dataBaseSlice } from '@/src/store/reducers/dataBaseReducer'
+import { filterSlice } from '@/src/store/reducers/filterReducer'
+import { itemSlice } from '@/src/store/reducers/sortReducer'
 
 const makeStore = () =>
   configureStore({
     reducer: {
       [itemSlice.name]: itemSlice.reducer,
       [filterSlice.name]: filterSlice.reducer,
-      [dataBaseSlice.name]: dataBaseSlice.reducer
+      [dataBaseSlice.name]: dataBaseSlice.reducer,
+      [authSlice.name]: authSlice.reducer
     },
     devTools: true
   })

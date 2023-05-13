@@ -42,7 +42,7 @@ const rateNum = useSelector(selectReviewAmount)
 const rate = useSelector(selectRate)
 
   return (
-    <div ref={ref}
+    <div ref={ref} data-testid='genres'
          className={styles.filtersWrapper}>
       <div onClick={() => {
         setIsShow(!isShow)

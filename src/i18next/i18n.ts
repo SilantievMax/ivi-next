@@ -8,6 +8,7 @@ i18n
   .use(initReactI18next)
   .init({
     // debug: true,
+    lng: 'ru',
     fallbackLng: 'ru',
     resources: {
       ru,   

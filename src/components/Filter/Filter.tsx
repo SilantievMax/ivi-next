@@ -122,7 +122,7 @@ const Filter = () => {
   }, [genresList])
 
   return (
-    <div className={styles.filtersContainer}>
+    <div className={styles.filtersContainer} data-testid='filter'>
       <div className={styles.filtersContainer__item}>
         <FilterItem
           title={t('genres')}

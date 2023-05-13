@@ -8,7 +8,7 @@ const NameInput = ({ register, errors, watch }: IReviewsInput) => {
   const { t } = useTranslation()
   return (
     <div className={styles.form__input}>
-      <input
+      <input data-testid="input-title"
         {...register('title', { required: `${t('enter a name')}`, minLength: 3, maxLength: 50, pattern: { value: /^[а-яА-ЯёЁa-zA-Z0-9 !?:;"']+$/, message: `${t('invalid characters')}` } })}
         className={`${styles.form__input} ${styles.test}`}
         type='text'

@@ -88,7 +88,6 @@ const Header: FC = () => {
         <Button className={styles.custom_btn} img={paple.src} onMouseOver={() => handleMouseOver('profile')} />
       </div>
       {isHovering && <ModalWindow onMouseLeave={handleMouseOut} children={renderComponentListCategory()} />}
-      <div></div>
     </header>
   )
 }

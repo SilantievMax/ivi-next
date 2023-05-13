@@ -1,0 +1,44 @@
+.messages {
+  background-color: #2a2741;
+  padding: 18px;
+  border-radius: 15px;
+  border-bottom-left-radius: 0px;
+  width: 80%;
+
+  h6 {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  p {
+    font-size: 12px;
+    color: #9a9494;
+    padding-top: 9px;
+
+    &:first-letter {
+      text-transform: capitalize;
+    }
+  }
+
+  a {
+    text-decoration: underline;
+    color: #989191;
+    font-size: 12px;
+
+    &:hover {
+        background-color: #c5c2c2;
+    }
+  }
+
+  span {
+    color: #989191;
+    font-size: 12px;
+  }
+}
+
+.message2 {
+  align-self: flex-end;
+  border-radius: 15px;
+  border-bottom-right-radius: 0px;
+  width: 40%;
+}
