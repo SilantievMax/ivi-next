@@ -28,6 +28,7 @@ import Slider from 'react-slick'
 import { genreList, headersArray } from '@/src/functions/globalData'
 import LeftArrow from '@/src/components/Arrows/LeftArrow'
 import RightArrow from '@/src/components/Arrows/RightArrow'
+import Link from 'next/link'
 
 const MoviesPage: FC = () => {
   const rate = useSelector(selectRate)
@@ -54,14 +55,59 @@ const MoviesPage: FC = () => {
       .catch(err => console.log(err))
   }, [sort, rate, reviewAmount, genres, countries, year])
   let settings = {
-    prevArrow:<LeftArrow/>,
-    nextArrow:<RightArrow/>,
-    adaptiveHeight:false,
+    prevArrow: <LeftArrow />,
+    nextArrow: <RightArrow />,
     speed: 500,
     infinite: false,
-    variableWidth: false,
+    variableWidth: true,
+    slidesToScroll: 5,
+    initialSlide: 1,
+    slidesToShow: 5,
+    responsive: [
+      {
+        breakpoint: 700,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 4,
+          initialSlide: 1
+        }
+      }
+    ]
+  }
+  let cardsSettings = {
+    prevArrow: <LeftArrow />,
+    nextArrow: <RightArrow />,
+    speed: 500,
+    infinite: false,
+    slidesToScroll: 3,
+    initialSlide: 1,
     slidesToShow: 4,
-    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1250,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          initialSlide: 1
+        }
+      },
+      {
+        breakpoint: 900,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 1
+        }
+      },
+      {
+        breakpoint: 650,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 1,
+        }
+      }
+    ]
   }
   return (
     <Meta title={t('movies')}>
@@ -103,20 +149,13 @@ const MoviesPage: FC = () => {
           <Film key={idx} src={el.posterUrl} rate={el.ratingKinopoisk}/>
         )}
       </div> */}
-        <div>
-          <Swiper  navigation modules={[Navigation]} slidesPerView={'auto'} spaceBetween={10}>
-            {headersArray.map((el, idx) => (
-              <SwiperSlide key={idx} className={styles.swiper_slide} >
-                <div >
-                  <Button color='lightGray' size='circle' key={idx} className={styles.filterBtn}>
-                    <span className={`${styles.filterBtn__font} ${styles.greyText}`}>{el}</span>
-                  </Button>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-
+        <Slider {...settings}>
+          {headersArray.map((el, idx) => (
+            <Button color='lightGray' size='circle' key={idx} className={styles.filterBtn}>
+              <span className={`${styles.filterBtn__font} ${styles.greyText}`}>{el}</span>
+            </Button>
+          ))}
+        </Slider>
         <Sort />
         <Filter />
         <div className={styles.filmCardsWrapper}>
@@ -126,37 +165,18 @@ const MoviesPage: FC = () => {
         </div>
         <h2 className={styles.sectionHeader}>{t('newFilmsSection')}</h2>
         <div className={styles.carouselWrapper}>
-          <Swiper navigation modules={[Navigation]} freeMode={true} spaceBetween={10} slidesPerView={useWindowSize('movie')}>
+          <Slider {...cardsSettings}>
             {genreList.map((el: any, idx: number) => (
-              <SwiperSlide key={idx}>
-                <div key={idx} title={el.name} className={styles.postersContainerSwiper}>
-                  <a href={el.url} className={styles.carouselItemSwiper}>
-                    <img className={styles.borderSwiper} src={el.src} alt='poster' />
-                  </a>
-                  <span>{t(el.name)}</span>
-                </div>
-              </SwiperSlide>
+              <div key={idx} title={el.name} className={styles.postersContainerSwiper}>
+                <Link href={el.url} className={styles.carouselItemSwiper}>
+                  <img className={styles.borderSwiper} src={el.src} alt='poster' />
+                </Link>
+                <span>{t(el.name)}</span>
+              </div>
             ))}
-          </Swiper>
+          </Slider>
         </div>
       </div>
-
-
-
-      {/*<Slider prevArrow=<LeftArrow/>*/}
-      {/*        nextArrow=<RightArrow/>*/}
-      {/*        initialSlide={0}*/}
-      {/*        speed={500}*/}
-      {/*        infinite={true}*/}
-      {/*        variableWidth={true}*/}
-      {/*        slidesToShow={10}*/}
-      {/*        slidesToScroll={5}>*/}
-      {/*  {headersArray.map((el, idx) => (*/}
-      {/*    <Button color='lightGray' size='circle' key={idx} className={styles.filterBtn}>*/}
-      {/*      <span className={`${styles.filterBtn__font} ${styles.greyText}`}>{el}</span>*/}
-      {/*    </Button>*/}
-      {/*  ))}*/}
-      {/*</Slider>*/}
     </Meta>
   )
 }

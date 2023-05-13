@@ -25,7 +25,6 @@ const HomePage: FC = () => {
   let settings = {
     prevArrow: <LeftArrow />,
     nextArrow: <RightArrow />,
-    adaptiveHeight: true,
     speed: 500,
     infinite: true,
     variableWidth: false,
@@ -34,7 +33,15 @@ const HomePage: FC = () => {
     centerMode: true,
     autoplay: true,
     autoplaySpeed: 12000,
-    pauseOnFocus: true
+    pauseOnFocus: true,
+    responsive: [
+      {
+        breakpoint: 1300,
+        settings: {
+          centerMode: false,
+        }
+      }
+    ]
   }
   let top10settings = {
     prevArrow: <LeftArrow />,
@@ -43,7 +50,38 @@ const HomePage: FC = () => {
     infinite: false,
     speed: 500,
     slidesToShow: 5,
-    slidesToScroll: 5
+    slidesToScroll: 5,
+    responsive: [
+      {
+        breakpoint: 1300,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4,
+        }
+      },
+      {
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+        }
+      },
+      {
+        breakpoint: 750,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        }
+      },
+      {
+        breakpoint: 550,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 0
+        }
+      }
+    ]
   }
 
   let filmCardsSettings = {
@@ -53,7 +91,43 @@ const HomePage: FC = () => {
     infinite: false,
     speed: 500,
     slidesToShow: 7,
-    slidesToScroll: 2
+    slidesToScroll: 2,
+    responsive: [
+      {
+        breakpoint: 1300,
+        settings: {
+          slidesToShow: 6,
+          slidesToScroll: 4,
+          initialSlide: 1
+        }
+      },
+      {
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 3,
+          initialSlide: 1
+        }
+      },
+      {
+        breakpoint: 750,
+        settings: {
+          centerMode: true,
+          infinite: true,
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          initialSlide: 1
+        }
+      },
+      {
+        breakpoint: 550,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 1
+        }
+      }
+    ]
   }
   const [data, setData] = useState<IFilm[]>([] as IFilm[])
   const [mainFirstSection, setMainFirstSection] = useState<IFilm[]>([] as IFilm[])

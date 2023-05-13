@@ -119,8 +119,7 @@
 .postersContainerSwiper {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  // margin: 0 10px;
+  margin: 0 10px;
   //width: 200px;
   // flex-wrap: nowrap;
   // background-color: #2d0b9c;
@@ -141,9 +140,12 @@
   padding: 8px;
   display: flex;
   align-items: center;
+  width: 280px;
+  height: 192px;
+  margin-bottom: 10px;
 }
 .borderSwiper {
-  width: 100%;
+  width: 263px;
   border-radius: 3px;
 }
 .swiper_slide {

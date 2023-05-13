@@ -46,7 +46,7 @@ const Footer: FC = () => {
         <li>
           <LinkItem heading='about' data={aboutLinks} />
         </li>
-        <li>
+        <li className={styles.footerNavSection}>
           <LinkItem heading='sections' data={sectionsLinks} />
         </li>
         <li className={styles.item}>
@@ -83,7 +83,7 @@ const Footer: FC = () => {
                 color='gray'
                 children={
                   <>
-                    <p>Загрузить в</p>
+                    <p>{t('downloadIn')}</p>
                     <h3>App Store</h3>
                   </>
                 }
@@ -96,7 +96,7 @@ const Footer: FC = () => {
                 color='gray'
                 children={
                   <>
-                    <p>Доступно в</p>
+                    <p>{t('available')}</p>
                     <h3>Google Play</h3>
                   </>
                 }
@@ -109,7 +109,7 @@ const Footer: FC = () => {
                 color='gray'
                 children={
                   <>
-                    <p>Смотрите на</p>
+                    <p>{t('watchOn')}</p>
                     <h3>Smart TV</h3>
                   </>
                 }
@@ -122,7 +122,7 @@ const Footer: FC = () => {
                 color='gray'
                 children={
                   <>
-                    <h3>Все устройства</h3>
+                    <h3>{t('allDev')}</h3>
                   </>
                 }
               />

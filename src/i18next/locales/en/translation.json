@@ -124,6 +124,10 @@
     "operators": "Our operators are online 24/7",
     "chat": "Chat",
     "QA": "Answers on questions",
-    "watchFilms": "Watch movies, series and cartoons without ads"
+    "watchFilms": "Watch movies, series and cartoons without ads",
+    "downloadIn": "Download to",
+    "available": "Available at",
+    "watchOn": "Watch on",
+    "allDev": "All devices"
   }
 }

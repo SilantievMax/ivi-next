@@ -1,8 +1,6 @@
 .sliderItemContainer {
   height: 523px;
   border-radius: 15px;
-  max-width: 1000px;
-  width: 100%;
   cursor: pointer;
 }
 
@@ -84,7 +82,6 @@
   font-size: 15px;
   font-style: normal;
   font-weight: 500;
-
 }
 
 .center {
@@ -95,9 +92,9 @@
   object-fit: cover;
   position: absolute;
   border-radius: 15px;
-  max-width: 1120px;
-  width: 100%;
   height: inherit;
+  max-width: 1110px;
+  width: 100%;
 }
 .slideDescription {
   position: relative;
@@ -119,4 +116,17 @@
   top: 220px;
   left: 40px;
   height: 152px;
+}
+
+@media (max-width: 1300px) {
+  .slideInnerImg {
+    height: 100px;
+  }
+  .btnContainer {
+    flex-direction: column;
+    row-gap: 10px;
+  }
+  .btn {
+    width: 100%;
+  }
 }
