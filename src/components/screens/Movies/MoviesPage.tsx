@@ -109,6 +109,7 @@ const MoviesPage: FC = () => {
       }
     ]
   }
+  console.log(genres)
   return (
     <Meta title={t('movies')}>
       <div className={styles.filmsSection}>

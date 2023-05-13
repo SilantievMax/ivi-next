@@ -120,20 +120,8 @@
   display: flex;
   flex-direction: column;
   margin: 0 10px;
-  //width: 200px;
-  // flex-wrap: nowrap;
-  // background-color: #2d0b9c;
-  // overflow: hidden;
-  // padding: 20px;
-  // border-radius: 8px;
-  // min-width: 411px;
-
-  // height: 200px;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: space-between;
-  // cursor: pointer;
 }
+
 .carouselItemSwiper {
   border-radius: 10px;
   background-color: #312b45;
@@ -144,12 +132,14 @@
   height: 192px;
   margin-bottom: 10px;
 }
+
 .borderSwiper {
   width: 263px;
   border-radius: 3px;
 }
+
 .swiper_slide {
-  width: auto ;
+  width: auto;
 }
 
 .filterBtn {

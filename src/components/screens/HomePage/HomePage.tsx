@@ -18,6 +18,8 @@ import { IFilm } from '@/src/types/types'
 import { AiOutlineRight } from 'react-icons/ai'
 import Link from 'next/link'
 import Film from '@/src/components/Film/Film'
+import { useDispatch } from 'react-redux'
+import { setGenres, setGenresList } from '@/src/store/reducers/filterReducer'
 
 const HomePage: FC = () => {
   const { t, i18n } = useTranslation()
@@ -163,6 +165,7 @@ const HomePage: FC = () => {
       .then(json => setMainSecondSection(json.rows))
       .catch(err => console.log(err))
   }, [])
+  const dispatch = useDispatch()
   return (
     <div>
       {/*<AdminPage />*/}
@@ -226,7 +229,10 @@ const HomePage: FC = () => {
         {data.map((el, idx) => <MainPageFilm id={idx} film={el} />)}
       </Slider>
       <div>
-        <Link href='/movies' className={styles.topSectionWrapper}>
+        <Link href='/movies' onClick={() => {
+          dispatch(setGenresList(['Боевик']))
+          dispatch(setGenres([2]))
+        }} className={styles.topSectionWrapper}>
           <span className={styles.topSectionWrapper__title}>{t('action')}</span>
           <AiOutlineRight/>
         </Link>
@@ -235,7 +241,10 @@ const HomePage: FC = () => {
         {mainFirstSection.map((el, idx) => <Film key={idx} film={el}/>)}
       </Slider>
       <div>
-        <Link href='/movies' className={styles.topSectionWrapper}>
+        <Link href='/movies' onClick={() => {
+          dispatch(setGenresList(['Драма']))
+          dispatch(setGenres([4]))
+        }} className={styles.topSectionWrapper}>
           <span className={styles.topSectionWrapper__title}>{t('drama')}</span>
           <AiOutlineRight/>
         </Link>
@@ -243,19 +252,6 @@ const HomePage: FC = () => {
       <Slider className={styles.filmsSlider} {...filmCardsSettings}>
         {mainSecondSection.map((el, idx) => <Film key={idx} film={el}/>)}
       </Slider>
-
-
-
-      {/*<Slider {...settings}>*/}
-      {/*  {genreList.map((el: any, idx: number) => (*/}
-      {/*    <div key={idx} title={el.name} className={styles.postersContainerSwiper}>*/}
-      {/*      <a href={el.url} className={styles.carouselItemSwiper}>*/}
-      {/*        <img className={styles.borderSwiper} src={el.src} alt='poster' />*/}
-      {/*      </a>*/}
-      {/*      <span>{t(el.name)}</span>*/}
-      {/*    </div>*/}
-      {/*  ))}*/}
-      {/*</Slider>*/}
     </div>
   )
 }
