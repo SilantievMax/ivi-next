@@ -39,11 +39,12 @@ const MoviesPage: FC = () => {
   const genres = useSelector(selectGenres)
   const year = useSelector(selectPickedYear)
   const [showDescription, setShowDescription] = useState<boolean>(false)
+  const [limit, setLimit] = useState<number>(35)
   const { t } = useTranslation()
   const dispatch = useDispatch()
   useEffect(() => {
     fetch(
-      `http://localhost:3003/info?limit=20&order=${sort.query}&minRating=${rate}&numRatings=${reviewAmount}&genres=${genres.toString()}&countries=${countries.toString()}&years=${
+      `http://localhost:3003/info?limit=${limit}&order=${sort.query}&minRating=${rate}&numRatings=${reviewAmount}&genres=${genres.toString()}&countries=${countries.toString()}&years=${
         year.split(' ')[0]
       }`,
       {
@@ -53,7 +54,7 @@ const MoviesPage: FC = () => {
       .then(res => res.json())
       .then(json => dispatch(setMoviesList(json.rows)))
       .catch(err => console.log(err))
-  }, [sort, rate, reviewAmount, genres, countries, year])
+  }, [sort, rate, reviewAmount, genres, countries, year, limit])
   let settings = {
     prevArrow: <LeftArrow />,
     nextArrow: <RightArrow />,
@@ -163,6 +164,7 @@ const MoviesPage: FC = () => {
           {movies.map((el, idx) => (
             <Film key={idx} film={el} />
           ))}
+          <Button size='moviesBtn' onClick={() => setLimit(limit + 35)}>{t('showMoreBtn')}</Button>
         </div>
         <h2 className={styles.sectionHeader}>{t('newFilmsSection')}</h2>
         <div className={styles.carouselWrapper}>

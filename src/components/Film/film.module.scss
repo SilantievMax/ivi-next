@@ -47,13 +47,18 @@
     max-width: 150px;
   }
 
-  &:hover {
-  transform: scale(1.04) translateY(-2%);
-  }
+
 
   &:hover .filmCard__inside__content {
     transition: 0.4s;
     display: flex;
+  }
+}
+
+.filmSliderCard {
+
+  &:hover {
+    transform: scale(1.04) translateY(-2%);
   }
 }
 

@@ -32,6 +32,7 @@ export const Button = ({
         [styles.border]: size === 'border',
         [styles.reviews]: size === 'reviews',
         [styles.comment]: size === 'comment',
+        [styles.moviesBtn]: size === 'moviesBtn',
         [styles.iconGoBack]: size === 'iconGoBack',
       })} ${disables && styles.disable}` }
       {...props}
