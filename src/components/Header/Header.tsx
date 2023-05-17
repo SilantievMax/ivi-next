@@ -13,7 +13,6 @@ import { bell, logo, magnifyingGlass, paple } from '@/src/img/imges'
 import FilterItem from '@/src/components/Filter/FilterItem'
 import HeaderCategory from '@/src/components/HeaderCategory/HeaderCategory'
 import { RxCross1, RxHamburgerMenu } from 'react-icons/rx'
-import { slide as Menu } from 'react-burger-menu'
 const Header: FC = () => {
   const isAuth = false
   const [isHovering, setIsHovering] = useState(false)

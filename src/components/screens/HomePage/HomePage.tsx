@@ -238,7 +238,7 @@ const HomePage: FC = () => {
         </Link>
       </div>
       <Slider {...filmCardsSettings}>
-        {mainFirstSection.map((el, idx) => <Film key={idx} film={el}/>)}
+        {mainFirstSection.map((el, idx) => <Film type='slider' key={idx} film={el}/>)}
       </Slider>
       <div>
         <Link href='/movies' onClick={() => {
@@ -250,7 +250,7 @@ const HomePage: FC = () => {
         </Link>
       </div>
       <Slider className={styles.filmsSlider} {...filmCardsSettings}>
-        {mainSecondSection.map((el, idx) => <Film key={idx} film={el}/>)}
+        {mainSecondSection.map((el, idx) => <Film type='slider' key={idx} film={el}/>)}
       </Slider>
     </div>
   )

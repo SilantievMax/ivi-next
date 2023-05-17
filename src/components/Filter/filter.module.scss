@@ -41,6 +41,22 @@
   row-gap: 10px;
 }
 
+.searchResContainer {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  position: absolute;
+  background: #3a3a3a;
+  padding: 10px 30px 10px 10px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.dir {
+  left: 414px;
+}
+
 .filtersWrapper {
   max-width: 216px;
   width: 100%;

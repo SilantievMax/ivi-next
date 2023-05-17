@@ -8,7 +8,7 @@ import styles from './film.module.scss'
 import { setPickedMovie } from '@/src/store/reducers/dataBaseReducer'
 import { IFilm } from '@/src/types/types'
 
-const Film = (props: { film: IFilm }) => {
+const Film = (props: { film: IFilm , type?: string} ) => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
 
@@ -20,7 +20,7 @@ const Film = (props: { film: IFilm }) => {
         }}
         className={styles.filmCard__container}
       >
-        <div style={{ backgroundImage: `url('${props.film.posterUrl}')` }} className={styles.filmCard}>
+        <div style={{ backgroundImage: `url('${props.film.posterUrl}')` }} className={props.type !== 'slider' ? `${styles.filmSliderCard} ${styles.filmCard}` : styles.filmCard}>
           <div className={styles.filmCard__inside}>
             <div className={styles.filmCard__inside__content}>
               <span className={styles.rateFont}>{props.film.ratingKinopoisk}</span>
