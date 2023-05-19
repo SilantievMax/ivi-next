@@ -1,6 +1,6 @@
-import { Slider, TextField, ThemeProvider } from '@mui/material'
+import { Slider } from '@mui/material'
 import { capitalize } from '@mui/material'
-import { Router, useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FiX } from 'react-icons/fi'
@@ -18,17 +18,12 @@ import {
   setReviewAmount
 } from '../../store/reducers/filterReducer'
 import { setRate } from '../../store/reducers/filterReducer'
-import { createTheme } from '@mui/material/styles'
 import FilterItem from './FilterItem'
 import FilterLi from './FilterLi'
 import styles from './filter.module.scss'
 import { Button } from '@/src/components/Button/Button'
 import { IGenre } from '@/src/types/types'
-import { yearArray } from '@/src/functions/globalData'
-import Search from 'antd/es/input/Search'
-import Link from 'next/link'
-import { AutoComplete } from 'antd'
-import { useOuside } from '@/src/hooks/useOutside'
+import { yearArray } from '@/src/globalData/globalData'
 import SearchItem from '@/src/components/Filter/SearchItem'
 
 
@@ -38,55 +33,19 @@ const Filter = () => {
   const countries = useSelector(selectCountries)
   const [pickedReviewAmount, setSickedReviewAmount] = useState<number>(0)
   const [rateAmount, setRateAmount] = useState<number>(7.3)
-  const [actorValue, setActorValue] = useState<string>('')
-  const [dirValue, setDirValue] = useState<string>('')
   const genresList = useSelector(selectGenresList)
   const countryList = useSelector(selectCountryList)
   const { t } = useTranslation()
-  const [actorsSearchResult, setActorsSearchResult] = useState<string[]>([])
-  const [directorsSearchResult, setDirectorsSearchResult] = useState<string[]>([])
   const [genresArray, setGenresArray] = useState<IGenre[]>([])
   const [countryArray, setCountryArray] = useState<IGenre[]>([])
-  const [cur, setCur] = useState<boolean>(false)
   const router = useRouter()
   const handleReviewChange = (event: Event, newValue: number | number[]) => {
     setSickedReviewAmount(newValue as number)
   }
 
-
-
-
   const handleRateChange = (event: Event, newValue: number | number[]) => {
     setRateAmount(newValue as number)
   }
-
-  useEffect(() => {
-    if (actorValue.length !== 0) {
-      fetch(`http://localhost:3005/persons/actors?keywords=${actorValue}&page=1&limit=10`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(res => res.json())
-        .then(json => setActorsSearchResult(json))
-        .catch(err => console.log(err))
-    }
-  }, [actorValue])
-
-  useEffect(() => {
-    if (dirValue.length !== 0) {
-      fetch(`http://localhost:3005/persons/directors?keywords=${dirValue}&page=1&limit=10`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(res => res.json())
-        .then(json => setDirectorsSearchResult(json))
-        .catch(err => console.log(err))
-    }
-  }, [dirValue])
 
   useEffect(() => {
     fetch('http://localhost:3001/movies/filters/genres', {
@@ -148,7 +107,7 @@ const Filter = () => {
   }
 
   useEffect(() => {
-    router.push({ pathname: '/movies' }, `/movies/${ucFirst(genresList).join('+')}`, { shallow: true })
+    genresList.length ? router.push({ pathname: '/movies' }, `/movies/genres=${ucFirst(genresList).join('+')}`, { shallow: true }) : ''
   }, [genresList])
 
 
@@ -163,7 +122,8 @@ const Filter = () => {
               <ul className={styles.filterDropdown__list}>
                 {genresArray.map((el, idx) => (
                   <div key={idx} onClick={() => {
-                    addGenre(el.id, capitalize(el.nameRu))}}>
+                    addGenre(el.id, capitalize(el.nameRu))
+                  }}>
                     <FilterLi id={el.id} content={capitalize(el.nameRu)}
                               className={styles.filterDropdown__item} />
                   </div>
@@ -251,36 +211,8 @@ const Filter = () => {
         />
       </div>
       <div className={styles.crewSearch}>
-
-          <SearchItem type='actors'/>
-          <SearchItem type='directors'/>
-          {/*<div ref={ref}>*/}
-          {/*  <ThemeProvider theme={theme}>*/}
-          {/*    <TextField color='secondary' id='standard-basic'*/}
-          {/*               onClick={() => setIsShow(true)}*/}
-          {/*               label='Поиск по актёру' variant='standard' value={actorValue}*/}
-          {/*               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setActorValue(e.target.value)} />*/}
-          {/*    {isShow && actorValue.length !== 0 ? <div className={styles.searchResContainer}>{actorsSearchResult.map((el: any, idx) => <Link*/}
-          {/*      href={`person/${el.id}`} key={idx}>{el.nameRu}</Link>)}</div> : ''}*/}
-          {/*  </ThemeProvider>*/}
-          {/*</div>*/}
-
-
-
-        {/*<div ref={ref}>*/}
-        {/*  <ThemeProvider theme={theme}>*/}
-        {/*    <TextField color='secondary'*/}
-        {/*               id='standard-basic' label='Поиск по Режиссёру'*/}
-        {/*               onClick={() => setIsShow(true)}*/}
-        {/*               value={dirValue}*/}
-        {/*               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDirValue(e.target.value)}*/}
-        {/*               variant='standard' />*/}
-        {/*    {isShow && dirValue.length !== 0 ? <div className={`${styles.searchResContainer} ${styles.dir}`}>{directorsSearchResult.map((el: any, idx) => <Link*/}
-        {/*      href={`person/${el.id}`} key={idx}>{el.nameRu}</Link>)}</div> : ''}*/}
-        {/*  </ThemeProvider>*/}
-        {/*</div>*/}
-
-
+        <SearchItem type='actors' />
+        <SearchItem type='directors' />
       </div>
       <div
         onClick={() => {

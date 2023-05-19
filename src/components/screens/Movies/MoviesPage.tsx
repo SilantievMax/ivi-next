@@ -1,11 +1,8 @@
 import React, { FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { Navigation } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/navigation'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import useWindowSize from '../../Reviews/widthWindow'
 import Meta from '../../seo/Meta'
 import styles from './movies.module.scss'
 import { MemoBreadcrumbs } from '@/src/components/BreadCrumbNavigation/BreadCrumbNavigation'
@@ -25,7 +22,7 @@ import {
 } from '@/src/store/reducers/filterReducer'
 import { selectSort } from '@/src/store/reducers/sortReducer'
 import Slider from 'react-slick'
-import { genreList, headersArray } from '@/src/functions/globalData'
+import { genreList, headersArray } from '@/src/globalData/globalData'
 import LeftArrow from '@/src/components/Arrows/LeftArrow'
 import RightArrow from '@/src/components/Arrows/RightArrow'
 import Link from 'next/link'
@@ -110,7 +107,6 @@ const MoviesPage: FC = () => {
       }
     ]
   }
-  console.log(genres)
   return (
     <Meta title={t('movies')}>
       <div className={styles.filmsSection}>

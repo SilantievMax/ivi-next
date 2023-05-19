@@ -82,7 +82,7 @@ const Breadcrumbs = ({
   if (!breadcrumbs) {
     return null
   }
-
+   console.log('genres=dasdas'.split('=')[1])
   return (
     <nav
       className={`${cn(styles.breadcrumb, { [styles.pointBreadcrumb]: inactiveItemClassName === 'point', [styles.slashBreadcrumb]: activeItemClassName === 'slash' })}`}
@@ -110,7 +110,7 @@ const Breadcrumbs = ({
                 style={i === breadcrumbs.length - 1 ? activeItemStyle : inactiveItemStyle}
               >
                 <Link onClick={() => console.log(breadcrumb.href)} href={breadcrumb.href}>
-                  {t(`${convertBreadcrumb(breadcrumb.breadcrumb.replaceAll('+', ', '), labelsToUppercase, replaceCharacterList, transformLabel)}`)}
+                  {t(`${convertBreadcrumb(breadcrumb.breadcrumb.replaceAll('+', ', ').replaceAll('genres=', ''), labelsToUppercase, replaceCharacterList, transformLabel)}`)}
                 </Link>
               </li>
             )

@@ -7,7 +7,7 @@ import {
   setGenres,
   setGenresList, setPickedYear
 } from '@/src/store/reducers/filterReducer'
-import { headerDataArray, headerYearArray } from '@/src/functions/globalData'
+import { headerDataArray, headerYearArray } from '@/src/globalData/globalData'
 import { IGenre } from '@/src/types/types'
 import styles from './HeaderCategory.module.scss'
 import Link from 'next/link'

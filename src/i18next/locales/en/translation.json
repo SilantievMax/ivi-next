@@ -129,6 +129,8 @@
     "available": "Available at",
     "watchOn": "Watch on",
     "allDev": "All devices",
-    "showMoreBtn": "Show more"
+    "showMoreBtn": "Show more",
+    "actorSearch": "Search by actor",
+    "directorSearch": "Search by director"
   }
 }
