@@ -129,6 +129,8 @@
     "available": "Доступно в",
     "watchOn": "Смотрите на",
     "allDev": "Все устройства",
-    "showMoreBtn": "Показать ещё"
+    "showMoreBtn": "Показать ещё",
+    "actorSearch": "Поиск по актёру",
+    "directorSearch": "Поиск по режиссёру"
   }
 }

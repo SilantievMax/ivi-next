@@ -9,7 +9,7 @@ import { Button } from '@/src/components/Button/Button'
 import {
   contentList,
   mainPageSliderData
-} from '@/src/functions/globalData'
+} from '@/src/globalData/globalData'
 import LeftArrow from '@/src/components/Arrows/LeftArrow'
 import RightArrow from '@/src/components/Arrows/RightArrow'
 import { RxDotFilled } from 'react-icons/rx'
@@ -169,10 +169,6 @@ const HomePage: FC = () => {
   return (
     <div>
       {/*<AdminPage />*/}
-      {/* <PersonPage /> */}
-      {/* <button onClick={() => changeLanguage('en')}>EN</button>
-      <button onClick={() => changeLanguage('ru')}>RU</button> */}
-      {/* <h1>{t('Welcome to React')}</h1> */}
       <Slider {...settings}>
         {mainPageSliderData.map((el, idx) =>
           <div key={idx} className={styles.sliderItemContainer}>
@@ -226,7 +222,7 @@ const HomePage: FC = () => {
       </div>
 
       <Slider {...top10settings}>
-        {data.map((el, idx) => <MainPageFilm id={idx} film={el} />)}
+        {data.map((el, idx) => <MainPageFilm key={idx} id={idx} film={el} />)}
       </Slider>
       <div>
         <Link href='/movies' onClick={() => {

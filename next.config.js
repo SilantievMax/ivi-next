@@ -15,7 +15,7 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/movies/:slug',
+        source: `/movies/genres=:slug`,
         destination: '/movies/',
         permanent: true,
       },
