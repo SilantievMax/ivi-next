@@ -12,7 +12,7 @@ const HomePage: FC = () => {
   return (
     <div>
       <p>Test ok</p>
-      <AdminPage />
+      {/* <AdminPage /> */}
       {/* <PersonPage /> */}
       {/* <button onClick={() => changeLanguage('en')}>EN</button>
       <button onClick={() => changeLanguage('ru')}>RU</button> */}

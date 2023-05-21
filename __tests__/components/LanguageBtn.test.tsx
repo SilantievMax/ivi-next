@@ -1,12 +1,9 @@
-import '@testing-library/jest-dom';
-import { fireEvent, render, screen } from '@testing-library/react';
-import { I18nextProvider } from 'react-i18next';
+import '@testing-library/jest-dom'
+import { fireEvent, render, screen } from '@testing-library/react'
+import { I18nextProvider } from 'react-i18next'
 
-
-
-import LanguageBtn from '@/src/components/LanguageBtn/LanguageBtn';
-import i18n from '@/src/i18next/i18n';
-
+import LanguageBtn from '@/src/components/LanguageBtn/LanguageBtn'
+import i18n from '@/src/i18next/i18n'
 
 describe('LanguageBtn', () => {
   it('Checking the language change button', () => {

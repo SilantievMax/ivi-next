@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 
-
-
-import {MemoComment} from './ReviewsItem'
-import { IReviews } from '@/src/types/CommentsType';
-
+import { MemoComment } from './ReviewsItem'
+import { IReviews } from '@/src/types/CommentsType'
 
 interface CommentListProps {
   comment: IReviews
@@ -21,11 +18,11 @@ const ReviewsList = ({ comment, setSent }: CommentListProps) => {
   }, [comment])
   return (
     <>
-      <MemoComment comment={comment}  setSent={setSent}/>
+      <MemoComment comment={comment} setSent={setSent} />
       {replies &&
         comment.replies.map((replies, i) => (
           <div key={i} style={{ marginLeft: '30px' }}>
-            <ReviewsList comment={replies} setSent={setSent}/>
+            <ReviewsList comment={replies} setSent={setSent} />
           </div>
         ))}
     </>

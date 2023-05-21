@@ -1,18 +1,13 @@
-import React, { memo, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import React, { memo, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
+import FormReview from '../FormReview/FormReview'
 
-
-import FormReview from '../FormReview/FormReview';
-
-
-
-import styles from './ReviewsItem.module.scss';
-import { Button } from '@/src/components/Button/Button';
-import VoteBtns from '@/src/components/VoteBtns/VoteBtns';
-import { useOuside } from '@/src/hooks/useOutside';
-import { IReviews } from '@/src/types/CommentsType';
-
+import styles from './ReviewsItem.module.scss'
+import { Button } from '@/src/components/Button/Button'
+import VoteBtns from '@/src/components/VoteBtns/VoteBtns'
+import { useOuside } from '@/src/hooks/useOutside'
+import { IReviews } from '@/src/types/CommentsType'
 
 interface CommentProps {
   comment: IReviews
@@ -20,7 +15,6 @@ interface CommentProps {
 }
 
 const Comment = ({ comment, setSent }: CommentProps) => {
-  
   const [showReview, setShowReview] = useState(false)
   const { author, date, description, id, title, movieId } = comment || {}
   const { ref, isShow, setIsShow } = useOuside(false)

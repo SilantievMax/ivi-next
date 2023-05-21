@@ -136,12 +136,10 @@ const Filter = () => {
     return arr.map(str => capitalize(str))
   }
 
-  // JEST TEST ругается что не может прочесть (Cannot read properties of undefined (reading 'push'))
-  // Отключил для работы тестов
   useEffect(() => {
     router.push({ pathname: '/movies' }, `/movies/${ucFirst(urlGenre).join('+')}`, { shallow: true })
   }, [urlGenre])
-  console.log(router);
+  // console.log(router);
   
 
   const urlGenres = (el: IGenre) => {
