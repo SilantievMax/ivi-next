@@ -20,7 +20,6 @@ import Meta from '../../seo/Meta'
 
 import styles from './filmpage.module.scss'
 import { Button } from '@/src/components/Button/Button'
-import Carousel from '@/src/components/Carousel/Carousel'
 import Film from '@/src/components/Film/Film'
 import { selectPickedMovie } from '@/src/store/reducers/dataBaseReducer'
 import { IReviews } from '@/src/types/CommentsType'
@@ -109,7 +108,7 @@ const FilmPage = () => {
   const calcTime = (num: number) => {
     return `${Math.floor(num / 60)}${t('hour')} ${num % 60}${t('min')}`
   }
-  if (!data.genres || !pickedTrailer.length) return <Oval wrapperClass={styles.loader} color='rgba(255, 255, 255, .72)' secondaryColor='red' />
+  if (!data.genres || !pickedTrailer.length || !similars.length || !crewList.length) return <Oval wrapperClass={styles.loader} color='rgba(255, 255, 255, .72)' secondaryColor='red' />
 
   return (
     <Meta title={`${i18n.language === 'en' ? data.nameEn : data.nameRu} (${t('film')}${data.year})`} description={data.description}>
@@ -242,23 +241,6 @@ const FilmPage = () => {
           ) : (
             ''
           )}
-          {/*<div className={style.gallery}>*/}
-          {/* <Swiper navigation modules={[Navigation]} freeMode={true} spaceBetween={0} slidesPerView={7} >*/}
-          {/*  {[1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3].map((el, idx) => (*/}
-          {/*    <SwiperSlide className={styles.slide} key={idx}>*/}
-          {/*      <Film key={1} src=''/>*/}
-          {/*    </SwiperSlide>*/}
-          {/*  ))}*/}
-          {/*</Swiper></div> */}
-          {/*<div className={styles.breadCrumbs}>*/}
-          {/*  <Link href='/Index'>*/}
-          {/*    <span*/}
-          {/*      className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Фильмы</span>*/}
-          {/*  </Link>*/}
-          {/*  <span className={styles.dot}>.</span>*/}
-          {/*  <span*/}
-          {/*    className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Триллеры</span>*/}
-          {/*</div>*/}
           <MemoBreadcrumbs activeItemClassName='point' omitRootLabel={true} />
           <div className={styles.filmSectionContainer}>
             <div className={styles.playerWindow}>
@@ -386,21 +368,13 @@ const FilmPage = () => {
           </div>
           <div className={styles.galleryWrapper}>
             <span className={styles.filmPage__titleText}>{`${t('watchWithFilm')} «${i18n.language === 'en' ? data.nameEn : data.nameRu}» ${t('watches')}`}</span>
-            <Swiper navigation modules={[Navigation]} slidesPerView={'auto'} spaceBetween={20}>
+            <Swiper className={styles.sliderWrapper} navigation modules={[Navigation]} slidesPerView={'auto'} spaceBetween={20}>
               {similars.map((el, idx) => (
                 <SwiperSlide key={idx} className={styles.swiper_slide}>
-                  <Film key={idx} film={el} />
+                  <Film type='slider' key={idx} film={el} />
                 </SwiperSlide>
               ))}
             </Swiper>
-            {/* <Carousel
-              items={similars.map((el, idx) => (
-                <Film key={idx} film={el} />
-              ))}
-              size={'standard'}
-              transition={350}
-              className={styles.moviesContainer}
-            /> */}
           </div>
           <div className={styles.galleryWrapper}>
             <span className={`${styles.filmPage__titleText} ${styles.underline}`}>{t('actorsSecTitle')}</span>

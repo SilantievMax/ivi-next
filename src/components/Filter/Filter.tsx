@@ -1,6 +1,6 @@
-import { Slider, TextField, ThemeProvider } from '@mui/material'
+import { Slider } from '@mui/material'
 import { capitalize } from '@mui/material'
-import { Router, useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FiX } from 'react-icons/fi'
@@ -18,12 +18,13 @@ import {
   setReviewAmount
 } from '../../store/reducers/filterReducer'
 import { setRate } from '../../store/reducers/filterReducer'
-import { createTheme } from '@mui/material/styles'
 import FilterItem from './FilterItem'
 import FilterLi from './FilterLi'
 import styles from './filter.module.scss'
 import { Button } from '@/src/components/Button/Button'
 import { IGenre } from '@/src/types/types'
+import { yearArray } from '@/src/globalData/globalData'
+import SearchItem from '@/src/components/Filter/SearchItem'
 
 
 const Filter = () => {
@@ -32,44 +33,15 @@ const Filter = () => {
   const countries = useSelector(selectCountries)
   const [pickedReviewAmount, setSickedReviewAmount] = useState<number>(0)
   const [rateAmount, setRateAmount] = useState<number>(7.3)
-  const [value, setValue] = useState<string>('')
   const genresList = useSelector(selectGenresList)
   const countryList = useSelector(selectCountryList)
   const { t } = useTranslation()
-  const yearArray = [
-    'Все годы',
-    '2023 год',
-    '2022 год',
-    '2021 год',
-    '2020 год',
-    '2019 год',
-    '2018 год',
-    '2017 год',
-    '2016 год',
-    '2022-2023',
-    '2021-2022',
-    '2020-2022',
-    '2019-2020',
-    '2010-2020',
-    '2010-2015',
-    '2000-2010',
-    '1990-2000',
-    '1980-1990'
-  ]
   const [genresArray, setGenresArray] = useState<IGenre[]>([])
   const [countryArray, setCountryArray] = useState<IGenre[]>([])
+  const router = useRouter()
   const handleReviewChange = (event: Event, newValue: number | number[]) => {
     setSickedReviewAmount(newValue as number)
   }
-
-
-  const theme = createTheme({
-    palette: {
-      secondary: {
-        main: 'rgba(255, 255, 255, 0.56);'
-      }
-    }
-  })
 
   const handleRateChange = (event: Event, newValue: number | number[]) => {
     setRateAmount(newValue as number)
@@ -129,30 +101,16 @@ const Filter = () => {
       dispatch(setCountriesList(arr))
     }
   }
-  const [urlGenre, setUrlGenre] = useState<string[]>([])
-  const router = useRouter()
 
   function ucFirst(arr: string[]) {
     return arr.map(str => capitalize(str))
   }
 
   useEffect(() => {
-    router.push({ pathname: '/movies' }, `/movies/${ucFirst(urlGenre).join('+')}`, { shallow: true })
-  }, [urlGenre])
-  // console.log(router);
-  
+    genresList.length ? router.push({ pathname: '/movies' }, `/movies/genres=${ucFirst(genresList).join('+')}`, { shallow: true }) : ''
+  }, [genresList])
 
-  const urlGenres = (el: IGenre) => {
-    const name = el.nameRu
-    addGenre(el.id, name)
-    if (urlGenre.includes(name)) {
-      setUrlGenre(urlGenre => urlGenre.filter(index => index !== name))
-      dispatch(setGenresList([...genresList, capitalize(name)]))
-    } else {
-      setUrlGenre(urlGenre => [...urlGenre, name])
-      dispatch(setGenresList([...genresList, capitalize(name)]))
-    }
-  }
+
   return (
     <div className={styles.filtersContainer} data-testid='filter'>
       <div className={styles.filtersContainer__item}>
@@ -163,7 +121,9 @@ const Filter = () => {
             <div className={styles.filterDropdown__content}>
               <ul className={styles.filterDropdown__list}>
                 {genresArray.map((el, idx) => (
-                  <div key={idx} onClick={() => urlGenres(el)}>
+                  <div key={idx} onClick={() => {
+                    addGenre(el.id, capitalize(el.nameRu))
+                  }}>
                     <FilterLi id={el.id} content={capitalize(el.nameRu)}
                               className={styles.filterDropdown__item} />
                   </div>
@@ -251,14 +211,8 @@ const Filter = () => {
         />
       </div>
       <div className={styles.crewSearch}>
-        <ThemeProvider theme={theme}>
-          <TextField color='secondary' id='standard-basic'
-                     label='Поиск по актёру' variant='standard' value={value}
-                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)} />
-        </ThemeProvider>
-        <ThemeProvider theme={theme}>
-          <TextField color='secondary' id='standard-basic' label='Поиск по Режиссёру' variant='standard' />
-        </ThemeProvider>
+        <SearchItem type='actors' />
+        <SearchItem type='directors' />
       </div>
       <div
         onClick={() => {
@@ -267,7 +221,6 @@ const Filter = () => {
           dispatch(setCountries([]))
           dispatch(setGenres([]))
           dispatch(setPickedYear('Все годы'))
-          setUrlGenre([])
           dispatch(setCountriesList([]))
           dispatch(setGenresList([]))
         }}

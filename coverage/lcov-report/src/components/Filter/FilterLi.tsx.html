@@ -15,12 +15,17 @@
         }
     </style>
 </head>
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> main
 <body>
 <div class='wrapper'>
     <div class='pad1'>
         <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/components/Filter</a> FilterLi.tsx</h1>
         <div class='clearfix'>
+<<<<<<< HEAD
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">41.66% </span>
@@ -36,11 +41,29 @@
             </div>
         
             
+=======
+
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>0/36</span>
+            </div>
+
+
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>0/1</span>
+            </div>
+
+
+>>>>>>> main
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
                 <span class='fraction'>0/1</span>
             </div>
+<<<<<<< HEAD
         
             
             <div class='fl pad1y space-right2'>
@@ -50,6 +73,17 @@
             </div>
         
             
+=======
+
+
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>0/36</span>
+            </div>
+
+
+>>>>>>> main
         </div>
         <p class="quiet">
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
@@ -99,6 +133,7 @@
 <a name='L34'></a><a href='#L34'>34</a>
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
+<<<<<<< HEAD
 <a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -112,6 +147,9 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+=======
+<a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+>>>>>>> main
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -133,6 +171,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<<<<<<< HEAD
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState } from 'react'
@@ -148,6 +187,35 @@ interface ILi {
   id?: number
 }
 const FilterLi = (<span class="fstat-no" title="function not covered" >props: ILi) =&gt; {</span>
+=======
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import React, { useState } from 'react'</span></span></span>
+<span class="cstat-no" title="statement not covered" >import { AiOutlineCheck } from 'react-icons/ai'</span>
+<span class="cstat-no" title="statement not covered" >import { useSelector } from 'react-redux'</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >import styles from './filter.module.scss'</span>
+<span class="cstat-no" title="statement not covered" >import { selectCountries, selectCountryList, selectGenres, selectGenresList, selectPickedYear } from '@/src/store/reducers/filterReducer'</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >interface ILi {</span>
+<span class="cstat-no" title="statement not covered" >  content: string</span>
+<span class="cstat-no" title="statement not covered" >  className: string</span>
+<span class="cstat-no" title="statement not covered" >  id?: number</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cstat-no" title="statement not covered" >const FilterLi = (props: ILi) =&gt; {</span>
+>>>>>>> main
 <span class="cstat-no" title="statement not covered" >  const { content, className, id } = props</span>
 <span class="cstat-no" title="statement not covered" >  const [active, setActive] = useState&lt;boolean&gt;(false)</span>
 <span class="cstat-no" title="statement not covered" >  const currentYear = useSelector(selectPickedYear)</span>
@@ -158,7 +226,11 @@ const FilterLi = (<span class="fstat-no" title="function not covered" >props: IL
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  return (</span>
 <span class="cstat-no" title="statement not covered" >    &lt;div onClick={() =&gt; setActive(!active)} className={active &amp;&amp; content !== 'Все годы' ? `${styles.filterDropdown__itemContainer} ${styles.active}` : styles.filterDropdown__itemContainer}&gt;</span>
+<<<<<<< HEAD
 <span class="cstat-no" title="statement not covered" >      &lt;li className={className}&gt;</span>
+=======
+<span class="cstat-no" title="statement not covered" >      &lt;li className={`${className} ${styles.listItem}`}&gt;</span>
+>>>>>>> main
 <span class="cstat-no" title="statement not covered" >        {content}</span>
 <span class="cstat-no" title="statement not covered" >      &lt;/li&gt;</span>
 <span class="cstat-no" title="statement not covered" >      &lt;AiOutlineCheck className={content.split(' ')[0] === currentYear</span>
@@ -169,8 +241,13 @@ const FilterLi = (<span class="fstat-no" title="function not covered" >props: IL
 <span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >  )</span>
 <span class="cstat-no" title="statement not covered" >}</span>
+<<<<<<< HEAD
 &nbsp;
 export default FilterLi
+=======
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >export default FilterLi</span>
+>>>>>>> main
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -178,7 +255,11 @@ export default FilterLi
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+<<<<<<< HEAD
                 at 2023-05-12T07:57:53.273Z
+=======
+                at 2023-05-04T06:24:53.745Z
+>>>>>>> main
             </div>
         <script src="../../../prettify.js"></script>
         <script>
@@ -190,4 +271,7 @@ export default FilterLi
         <script src="../../../block-navigation.js"></script>
     </body>
 </html>
+<<<<<<< HEAD
     
+=======
+>>>>>>> main

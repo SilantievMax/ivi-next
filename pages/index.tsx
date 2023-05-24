@@ -1,13 +1,12 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC } from 'react'
 import HomePage from '@/src/components/screens/HomePage/HomePage'
 
 const Home: FC = () => {
   return (
     <>
-      <HomePage />
+       <HomePage />
     </>
   )
-
 }
 
 export default Home

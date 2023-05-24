@@ -15,7 +15,7 @@ export const Button = ({
   ...props
 }: ButtonProps): JSX.Element => {
   return (
-    <button 
+    <button
       className={`${cn(styles.button, className, {
         [styles.red]: color === 'red',
         [styles.gray]: color === 'gray',
@@ -23,6 +23,8 @@ export const Button = ({
         [styles.gradient]: color === 'gradient',
         [styles.lightGray]: color === 'lightGray',
         [styles.redOpacity]: color === 'redOpacity',
+        [styles.mainGray]: color === 'mainGray',
+        [styles.mainBlueGradient]: color === 'mainBlueGradient',
         [styles.img]: size === "img",
         [styles.icon]: size === 'icon',
         [styles.smart]: size === 'smart',
@@ -30,6 +32,7 @@ export const Button = ({
         [styles.border]: size === 'border',
         [styles.reviews]: size === 'reviews',
         [styles.comment]: size === 'comment',
+        [styles.moviesBtn]: size === 'moviesBtn',
         [styles.iconGoBack]: size === 'iconGoBack',
       })} ${disables && styles.disable}` }
       {...props}

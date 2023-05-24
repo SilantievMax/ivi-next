@@ -6,7 +6,6 @@
   align-items: center;
   border: none;
   height: 32px;
-  border-width: 1px;
   border-radius: 8px;
   color: white;
   background-color: transparent;
@@ -14,40 +13,49 @@
   white-space: nowrap;
   // width: 100%;
 }
+
 .button:active {
   opacity: 1;
   background-color: #00000070;
 }
+
 .gradient {
   padding: 9px 15px;
   background-image: linear-gradient(270deg, #ea003d 0, #c447ff 100%);
 }
+
 .red {
   background-color: #ea006d;
   border-color: #ea003d;
   padding: 9px 15px;
 }
+
 .red:hover {
   background-color: #f3285e;
   border-color: #ea003d;
 }
+
 .red:active {
   background-color: #c71645;
   border-color: #ea003d;
 }
+
 .redOpacity {
   background-color: #ea003e81;
   border-color: #ea003e71;
   padding: 0 50px;
 }
+
 .redOpacity:hover {
   background-color: #f3285e;
   border-color: #ea003d;
 }
+
 .redOpacity:active {
   background-color: #c71645;
   border-color: #ea003d;
 }
+
 .gray {
   background-color: #1f1b2e;
   border-color: #1f1b2e;
@@ -58,20 +66,47 @@
   background-color: #312b45;
   border-color: #312b45;
   padding: 0 30px;
+
   &:hover {
     background-color: #352f4b;
   }
+
   &:active {
     background-color: #352f4b;
   }
 }
+
 .gray:hover {
   background-color: #352e4e;
   border-color: #1f1b2e;
 }
+
 .gray:active {
   background-color: #0c0a11;
   border-color: #1f1b2e;
+}
+
+.mainGray {
+  background-color: #1f1b2e;
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+
+  &:hover {
+    background-color: #231f34;
+  }
+}
+
+.mainBlueGradient {
+  background-color: #1f1b2e;
+  background-image: url("https://solea-parent.dfs.ivi.ru/picture/bypass/teaserTilePattern_a.svg");
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+
+  &:hover {
+    background-color: #231f34;
+  }
 }
 
 .darkRed {
@@ -83,20 +118,23 @@
     border-color: #ff0f4d;
   }
 }
+
 .icon {
   padding: 0 10px;
-  background-color: rgb(63, 62, 62);
   border-color: rgb(51, 50, 50);
 }
+
 .circle {
   border-radius: 100px;
   padding: 0 10px;
 }
+
 .smart {
   background-color: rgb(63, 62, 62);
   border-color: rgb(51, 50, 50);
   gap: 5px;
   padding: 18px 10px;
+
   p {
     font-size: 10px;
     font-weight: 500;
@@ -104,12 +142,14 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
   h3 {
     font-size: 15px;
     line-height: 20px;
     height: 20px;
   }
 }
+
 .img {
   background-color: rgb(71, 71, 71);
   width: 56px;
@@ -119,12 +159,14 @@
   align-self: center;
   justify-content: center;
   overflow: hidden;
-  div:last-child{
-    background-color:#73a32f;
+
+  div:last-child {
+    background-color: #73a32f;
     font-size: 16px;
     padding: 13px;
     font-weight: 600;
   }
+
   div:first-child {
     position: absolute;
     overflow: hidden;
@@ -132,6 +174,7 @@
     width: 44px;
     height: 44px;
   }
+
   img {
     width: 100%;
     position: absolute;
@@ -145,9 +188,11 @@
     height: 44px;
   }
 }
+
 .img:hover {
   background-color: rgb(99, 99, 99);
 }
+
 .button__text {
   color: white;
   text-align: center;
@@ -156,6 +201,7 @@
   font-weight: 500;
   font-style: normal;
 }
+
 .border {
   height: 32px;
   text-align: center;
@@ -166,12 +212,15 @@
   cursor: pointer;
   background-color: transparent;
 }
+
 .border:hover {
   background-color: transparent;
   border-color: rgba(255, 255, 255, 0.952);
 }
+
 .reviews {
   display: flex;
+
   .children {
     font-size: 20px;
     line-height: 24px;
@@ -184,12 +233,14 @@
     transition-property: color, box-shadow, opacity;
     text-decoration: none;
   }
+
   .children:hover {
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.356), inset 0 0 0 rgb(255 255 255 / 16%);
     color: #fff;
     transition-duration: 0.4s;
   }
 }
+
 .quantity {
   margin-left: 4px;
   list-style: none;
@@ -202,9 +253,11 @@
   height: 16px;
   font-weight: 400;
 }
+
 .disable {
   opacity: 0.5;
 }
+
 .comment {
   color: #a5a1b2;
   font-size: 15px;
@@ -212,21 +265,34 @@
   font-weight: 400;
   font-style: normal;
 }
+
 .comment:hover {
   color: white;
 }
+
+.moviesBtn {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #a5a1b2;
+  padding: 20px 0;
+  font-size: 17px;
+}
+
 .iconGoBack {
   gap: 10px;
   font-size: 15px;
   line-height: 20px;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.836);
+
   svg {
     transition-duration: 0.3s;
   }
 }
+
 .iconGoBack:hover {
   color: white;
+
   svg {
     transition-duration: 0.3s;
     margin-right: -5px;

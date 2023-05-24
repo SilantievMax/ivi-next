@@ -12,6 +12,10 @@
   }
 }
 
+.textWrapper {
+  max-width: 300px;
+}
+
 .text {
   font-weight: 600;
   font-size: 15px;
@@ -20,6 +24,7 @@
 .item {
   display: flex;
   flex-direction: column;
+
   span {
     margin-top: 8px;
     display: inline-block;
@@ -86,4 +91,26 @@
   flex-direction: column;
   margin-top: 40px;
   color: #ffffff7a;
+}
+
+@media (max-width: 1050px) {
+  .megaphone_wrapper {
+    display: none;
+  }
+  .btn_wrapper__item:not(:first-child) {
+    margin: 0;
+  }
+  .btn_wrapper {
+    flex-wrap: wrap;
+    align-items: center;
+    row-gap: 10px;
+    column-gap: 10px;
+  }
+  .footerNavSection {
+    display: none;
+  }
+  .list {
+    flex-wrap: wrap;
+    row-gap: 50px;
+  }
 }
