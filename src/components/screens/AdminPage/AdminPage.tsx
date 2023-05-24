@@ -1,28 +1,18 @@
-import React, { FC, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { FC, useState } from 'react'
 
+import { Button } from '../../Button/Button'
 
-
-import { Button } from '../../Button/Button';
-
-
-
-import styles from './AdminPage.module.scss';
-import ModalGanre from './ModalGanre/ModalGanre';
-import ModalMuvie from './ModalMuvie/ModalMuvie';
-import { usersInfo } from '@/src/services/user.service';
-import { user } from '@/src/store/reducers/userReducers';
-
+import styles from './AdminPage.module.scss'
+import ModalGanre from './ModalGanre/ModalGanre'
+import ModalMuvie from './ModalMuvie/ModalMuvie'
+import { usersInfo } from '@/src/services/user.service'
 
 const AdminPage: FC = () => {
   const [showModalMuvie, setShowModalMuvie] = useState(false)
   const [showModalGange, setShowModalGange] = useState(false)
-  const [users, setUsers] = useState()
-const getUser = async () => {
-  
-  console.log(await usersInfo())
-   
-}
+  const getUser = async () => {
+    console.log(await usersInfo())
+  }
   return (
     <div className={styles.adminPage}>
       <div className={styles.menu}>
@@ -38,8 +28,7 @@ const getUser = async () => {
             <Button size='border' children={'Добавть фильм'} onClick={() => setShowModalMuvie(!showModalMuvie)} />
             <Button size='border' children={'Добавть жанр'} onClick={() => setShowModalGange(!showModalGange)} />
           </div>
-          <Button size='border' children={'USER'} onClick={() => getUser() } />
-          {users}
+          <Button size='border' children={'USER'} onClick={() => getUser()} />
         </div>
         <div className={styles.adminPanel__list}>
           {showModalMuvie && <ModalMuvie />}

@@ -1,30 +1,22 @@
-import { useContext, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import { Oval } from 'react-loader-spinner'
+import { useSelector } from 'react-redux'
 
+import AdminPage from '../screens/AdminPage/AdminPage'
 
-
-import AdminPage from '../screens/AdminPage/AdminPage';
-import HomePage from '../screens/HomePage/HomePage';
-
-
-
-import { usersInfo } from '@/src/services/user.service';
-import { setAuth, user } from '@/src/store/reducers/userReducers';
-import { AppDispatch } from '@/src/store/store';
-import { valueRoles } from '@/src/types/Auth';
-
+import styles from './withAuth.module.scss'
+import Error from '@/pages/404'
+import { isAdmin, isLoading } from '@/src/store/reducers/userReducers'
 
 /** Обертка для зарегестрированных пользователей */
 const withAuth = (Component: React.FC) => {
   const Auth = () => {
-    const use = useSelector(user)
-    const isAdmin = use ? !use.roles.some(e => e.value === valueRoles.ADMIN) : true    
-    console.log(use)
-    console.log(isAdmin)
-    
-    if (isAdmin) {
-      return <HomePage />
+    const loading = useSelector(isLoading)
+    const admin = useSelector(isAdmin)
+    if (loading) {
+      return <Oval wrapperClass={styles.loader} color='rgba(255, 255, 255, .72)' secondaryColor='red' />
+    }
+    if (!admin) {
+      return <Error />
     }
     return <AdminPage />
   }

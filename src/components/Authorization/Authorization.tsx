@@ -87,7 +87,7 @@ const Authorization: FC = () => {
       text = errors.password.message
     }
     setMessages([...messages, { messages: 'Ошибка:', description: text, position: 'left' }])
-    console.log(errors)
+    // console.log(errors)
   }
 
   const scrollToBottom = () => {

@@ -3,6 +3,7 @@ export enum valueRoles {
   ADMIN= 'ADMIN'
 }
 export enum LOCAL {
+  ADMIN= 'admin',
   TOKEN= 'token',
   USER= 'user',
   ACCSESS= 'accessToken',
