@@ -8,22 +8,27 @@ import ReviewInput from '../ElementsForm/ReviewInput'
 
 import styles from './FormReview.module.scss'
 import { usePersistForm } from './usePersistForm'
-import { IInputs } from '@/src/types/CommentsType'
+import { IAxiosRequestConfigComent, addedComent } from '@/src/services/comments-service/comments.service'
+import { IInputs, IReviews } from '@/src/types/CommentsType'
 
 export interface FormReviewProps {
   setShow: React.Dispatch<React.SetStateAction<boolean>>
   formName: 'Review' | 'Comment'
   idReview: number | null
   movieId: string | number | string[] | undefined
+  comment?: IReviews
+  changing?: boolean
   setSent: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const FormReview = ({ setShow, formName, idReview, setSent, movieId }: FormReviewProps) => {
+const FormReview = ({ changing, comment, setShow, formName, idReview, setSent, movieId }: FormReviewProps) => {
   const [nameInput, setNameInput] = useState(false)
   const [nameReview, setReviewInput] = useState(false)
   const [placeholder, setPlaceholder] = useState('')
   const FORM_DATA_KEY = `FORM_DATA_KEY_${idReview}`
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
+  const COMMENT_URL = process.env.COMMENT_URL
+
   const getSavedData = (): IInputs => {
     let data = localStorage.getItem(FORM_DATA_KEY)
     if (data) {
@@ -33,6 +38,10 @@ const FormReview = ({ setShow, formName, idReview, setSent, movieId }: FormRevie
         console.log(err)
       }
       return data as IInputs
+    }
+
+    if (changing) {
+      return { title: '', description: `${comment?.description}` }
     }
     return { title: '', description: '' }
   }
@@ -45,17 +54,27 @@ const FormReview = ({ setShow, formName, idReview, setSent, movieId }: FormRevie
     watch
   } = useForm<IInputs>({ defaultValues: getSavedData() })
 
-  const onSubmit = (data: IInputs) => {
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ type: 'POSITIVE', title: `${data.title ? data.title : ''}`, description: `${data.description}`, repliedOnComment: Number(`${idReview}`) })
+  const onSubmit = async (data: IInputs) => {
+    let requestOptions = {} as IAxiosRequestConfigComent
+    switch (changing) {
+      case true:
+        requestOptions = {
+          method: 'PUT',
+          url: `${COMMENT_URL}/comments/comment/${idReview}`,
+          headers: { 'Content-Type': 'application/json' },
+          data: JSON.stringify({ type: 'POSITIVE', title: `${data.title ? data.title : ''}`, description: `${data.description}` })
+        }
+        break
+      case false:
+        requestOptions = {
+          method: 'POST',
+          url: `${COMMENT_URL}/comments/${movieId}`,
+          headers: { 'Content-Type': 'application/json' },
+          data: JSON.stringify({ type: 'POSITIVE', title: `${data.title ? data.title : ''}`, description: `${data.description}`, repliedOnComment: Number(`${idReview}`) })
+        }
+        break
     }
-    // console.log(requestOptions)
-    fetch(`http://localhost:3004/comments/${movieId}`, requestOptions)
-      .then(res => res.json())
-      .then(json => console.log(json))
-      .catch(err => console.log(err))
+    await addedComent(requestOptions)
     setShow(false)
     resetField('description')
     resetField('title')

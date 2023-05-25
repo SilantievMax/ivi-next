@@ -1,14 +1,11 @@
-import $api from '.';
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import $api from '.'
+import { createAsyncThunk } from '@reduxjs/toolkit'
+import axios from 'axios'
 
+import { IAuthResponse, IUser, LOCAL } from '../types/Auth'
+import { getLocalStorage } from '../utils/local-storage'
 
-
-import { IAuthResponse, IUser, LOCAL } from '../types/Auth';
-import { getLocalStorage } from '../utils/local-storage';
-
-
-axios.defaults.baseURL = process.env.AUTH_URL
+export const AUTH_URL = process.env.AUTH_URL
 const configRefersh = {
   headers: { Authorization: `Bearer ${getLocalStorage(LOCAL.TOKEN)?.refreshToken}` }
 }
@@ -16,7 +13,7 @@ const configRefersh = {
 /* Login */
 export const signIn = createAsyncThunk<IAuthResponse, IUser>('auth/signIn', async (user, thunkApi) => {
   try {
-    const { data } = await $api.post(`/auth/signin`, user)
+    const { data } = await $api.post(`${AUTH_URL}/auth/signin`, user)
     return data
   } catch (error) {
     return thunkApi.rejectWithValue(error)
@@ -26,7 +23,7 @@ export const signIn = createAsyncThunk<IAuthResponse, IUser>('auth/signIn', asyn
 /* Registration */
 export const signUp = createAsyncThunk<IAuthResponse, IUser>('auth/signUp', async (user, thunkApi) => {
   try {
-    const { data } = await $api.post(`/auth/signup`, user)
+    const { data } = await $api.post(`${AUTH_URL}/auth/signup`, user)
     return data
   } catch (error) {
     return thunkApi.rejectWithValue(error)
@@ -36,7 +33,7 @@ export const signUp = createAsyncThunk<IAuthResponse, IUser>('auth/signUp', asyn
 /* Logout */
 export const logout = createAsyncThunk('auth/logout', async () => {
   try {
-    await $api.get(`/auth/logout`)
+    await $api.get(`${AUTH_URL}/auth/logout`)
   } catch (error) {}
 })
 
@@ -46,7 +43,7 @@ export const checkAuth = createAsyncThunk<IAuthResponse>('auth/checkAuth', async
 
   try {
     console.log('checkAuth', configRefersh)
-    const { data } = await axios.get(`/auth/refresh`, configRefersh)
+    const { data } = await axios.get(`${AUTH_URL}/auth/refresh`, configRefersh)
     return data
   } catch (error) {
     console.log('checkAuth=error')
@@ -57,7 +54,7 @@ export const checkAuth = createAsyncThunk<IAuthResponse>('auth/checkAuth', async
 export const vkAuth = createAsyncThunk<IAuthResponse>('auth/vkAuth', async (user, thunkApi) => {
   try {
     console.log('checkAuth', configRefersh)
-    const { data } = await $api.get(`/auth/vk`)
+    const { data } = await $api.get(`${AUTH_URL}/auth/vk`)
     return data
   } catch (error) {
     console.log('checkAuth=error')
@@ -68,7 +65,7 @@ export const vkAuth = createAsyncThunk<IAuthResponse>('auth/vkAuth', async (user
 export const googleAuth = createAsyncThunk<IAuthResponse>('auth/googleAuth', async (user, thunkApi) => {
   try {
     console.log('checkAuth', configRefersh)
-    const { data } = await $api.get(`/auth/google`)
+    const { data } = await $api.get(`${AUTH_URL}/auth/google`)
     return data
   } catch (error) {
     console.log('checkAuth=error')

@@ -2,15 +2,12 @@ import Link from 'next/link'
 import React, { FC, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import LanguageBtn from '../LanguageBtn/LanguageBtn'
-
 import styles from './Header.module.scss'
 import ListCategories from './ListСategories/ListСategories'
 import { Button } from '@/src/components/Button/Button'
 import ModalWindow from '@/src/components/ModalWindow/ModalWindow'
 import Profile from '@/src/components/Profile/Profile'
 import { bell, logo, magnifyingGlass, paple } from '@/src/img/imges'
-import FilterItem from '@/src/components/Filter/FilterItem'
 import HeaderCategory from '@/src/components/HeaderCategory/HeaderCategory'
 import { RxCross1, RxHamburgerMenu } from 'react-icons/rx'
 const Header: FC = () => {

@@ -6,7 +6,9 @@ const nextConfig = {
     PARSER_URL: 'http://localhost:3002',
     INFO_URL: 'http://localhost:3003',
     COMMENT_URL: 'http://localhost:3004',
-    AUTH_URL: 'http://localhost:3006'
+    AUTH_URL: 'http://localhost:3006',
+    LOCAL_HOST: 'http://localhost:',
+    AUTH_PORT: 3006
   },
   i18n: {
     locales: ['ru', 'en'],
@@ -23,6 +25,5 @@ const nextConfig = {
     ]
   }
 }
-
 
 module.exports = nextConfig

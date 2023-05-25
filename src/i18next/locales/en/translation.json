@@ -2,6 +2,12 @@
   "translation": {
     "Welcome to React": "Welcome to React and react-i18next",
     "Back": "Back",
+    "exit": "Exit",
+    "log in or register": "Log in or register",
+    "admin panel": "Admin panel",
+    "settings": "Settings",
+    "helpHeader": "Help",
+
     "Full filmography": "Full filmography",
     "8 movies": "8 movies",
     "Rating": "Rating:",
@@ -131,6 +137,7 @@
     "allDev": "All devices",
     "showMoreBtn": "Show more",
     "actorSearch": "Search by actor",
-    "directorSearch": "Search by director"
+    "directorSearch": "Search by director",
+    "home": "Movies, TV series and cartoons watch online for free and in high quality"
   }
 }

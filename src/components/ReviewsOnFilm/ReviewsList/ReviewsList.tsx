@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
-import { MemoComment } from './ReviewsItem'
-import { IReviews } from '@/src/types/CommentsType'
+
+
+import { MemoComment } from './ReviewsItem';
+import { IReviews } from '@/src/types/CommentsType';
+
 
 interface CommentListProps {
   comment: IReviews
@@ -9,6 +12,7 @@ interface CommentListProps {
 }
 const ReviewsList = ({ comment, setSent }: CommentListProps) => {
   const [replies, setReplies] = useState(false)
+  
   useEffect(() => {
     if (comment.replies && comment.replies.length > 0) {
       setReplies(true)
@@ -16,6 +20,7 @@ const ReviewsList = ({ comment, setSent }: CommentListProps) => {
       setReplies(false)
     }
   }, [comment])
+  
   return (
     <>
       <MemoComment comment={comment} setSent={setSent} />
