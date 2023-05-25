@@ -69,7 +69,7 @@ describe('ReviewsOnFilm', () => {
       <I18nextProvider i18n={i18n}>
         <FormReview {...baseProps} />
       </I18nextProvider>
-    )
+    )    
     const input = screen.getByTestId('textarea-comment')
     await waitFor(() => expect(input).toBeInTheDocument())
   })

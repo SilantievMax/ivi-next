@@ -10,7 +10,7 @@
     "pret": "npx prettier --write .",
     "sb": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test": "jest --watch"
+    "test": "jest --watch --detectOpenHandles"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
@@ -20,6 +20,7 @@
     "@types/node": "18.15.11",
     "@types/react": "18.0.34",
     "@types/react-dom": "18.0.11",
+    "@types/react-redux": "^7.1.25",
     "@types/react-slick": "^0.23.10",
     "axios": "^1.3.6",
     "i18next": "^22.4.14",

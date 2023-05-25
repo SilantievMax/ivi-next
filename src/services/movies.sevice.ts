@@ -1,8 +1,6 @@
-import axios from 'axios';
+import axios from 'axios'
 
-
-
-import { IFilm, ITrailer } from '../types/types';
+import { IFilm, ITrailer } from '../types/types'
 
 axios.defaults.baseURL = process.env.MOVIES_URL
 
@@ -10,7 +8,7 @@ export const MoviesService = {
   async getAll() {
     const { data } = await axios.get<IFilm[]>(`/movies/`, {
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       }
     })
     return data

@@ -1,7 +1,12 @@
 import React, { FC } from 'react'
 import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
 
 import styles from './RegisterForm.module.scss'
+import { signUp } from '@/src/services/auth.service'
+import { setOpenAuth } from '@/src/store/reducers/authReducer'
+import { AppDispatch } from '@/src/store/store'
+import { IUser } from '@/src/types/Auth'
 
 interface RegisterFormProps {
   onCliclForm?: any
@@ -16,9 +21,11 @@ const RegisterForm: FC<RegisterFormProps> = ({ onCliclForm }) => {
   } = useForm({
     mode: 'onBlur'
   })
-
-  const onSubmit = (data: any) => {
-    alert(JSON.stringify(data))
+  const dispatch = useDispatch<AppDispatch>()
+  const onSubmit = (data: IUser) => {
+    console.log(data)
+    dispatch(signUp(data))
+    dispatch(setOpenAuth(false))
     reset()
   }
 
@@ -27,9 +34,9 @@ const RegisterForm: FC<RegisterFormProps> = ({ onCliclForm }) => {
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <label className={styles.inputs}>
           <input
-            required='required'
+            required
             type='text'
-            {...register('login', {
+            {...register('email', {
               required: 'введите свою почту',
               pattern: {
                 value: /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
@@ -37,17 +44,31 @@ const RegisterForm: FC<RegisterFormProps> = ({ onCliclForm }) => {
               }
             })}
           />
+          <span>Email:</span>
+        </label>
+        <label className={styles.inputs}>
+          <input
+            required
+            type='text'
+            {...register('login', {
+              required: 'введите свой логин',
+              minLength: {
+                value: 3,
+                message: 'логин должен быть больше 3 символов'
+              }
+            })}
+          />
           <span>Login:</span>
         </label>
         <label className={styles.inputs}>
           <input
-            required='required'
+            required
             type='password'
             {...register('password', {
               required: 'введите свой пароль',
               minLength: {
-                value: 5,
-                message: 'пароль должен быть больше 5 символов'
+                value: 4,
+                message: 'пароль должен быть больше 4 символов'
               }
             })}
           />

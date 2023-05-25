@@ -15,12 +15,47 @@
         }
     </style>
 </head>
+<<<<<<< HEAD
+    
+=======
 
+>>>>>>> main
 <body>
 <div class='wrapper'>
     <div class='pad1'>
         <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/store/reducers</a> sortReducer.ts</h1>
         <div class='clearfix'>
+<<<<<<< HEAD
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">80.55% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>29/36</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>1/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">33.33% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>1/3</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">80.55% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>29/36</span>
+            </div>
+        
+            
+=======
 
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
@@ -50,6 +85,7 @@
             </div>
 
 
+>>>>>>> main
         </div>
         <p class="quiet">
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
@@ -61,7 +97,11 @@
             </div>
         </template>
     </div>
+<<<<<<< HEAD
+    <div class='status-line high'></div>
+=======
     <div class='status-line low'></div>
+>>>>>>> main
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -100,6 +140,33 @@
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
 <a name='L37'></a><a href='#L37'>37</a>
+<<<<<<< HEAD
+<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+=======
 <a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -131,11 +198,46 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+>>>>>>> main
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<<<<<<< HEAD
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { createSlice } from '@reduxjs/toolkit'
+import { AppState } from '../store'
+import { HYDRATE } from 'next-redux-wrapper'
+&nbsp;
+&nbsp;
+export interface sortItem {
+  sort: { type: string, query: string }
+}
+&nbsp;
+const initialState: sortItem = {
+  sort: { type: 'sortByAmount', query: 'ratingKinopoiskVoteCount-ASC' }
+}
+&nbsp;
+export const itemSlice = createSlice({
+  name: 'sort',
+  initialState,
+  reducers: {
+<span class="fstat-no" title="function not covered" >    setSort(state, action) {</span>
+<span class="cstat-no" title="statement not covered" >      state.sort = action.payload</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+  },
+&nbsp;
+&nbsp;
+  extraReducers: {
+    [HYDRATE]: <span class="fstat-no" title="function not covered" >(state, action) =&gt; {</span>
+=======
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { createSlice } from '@reduxjs/toolkit'</span></span></span>
 <span class="cstat-no" title="statement not covered" >import { AppState } from '../store'</span>
@@ -162,17 +264,27 @@
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  extraReducers: {</span>
 <span class="cstat-no" title="statement not covered" >    [HYDRATE]: (state, action) =&gt; {</span>
+>>>>>>> main
 <span class="cstat-no" title="statement not covered" >      return {</span>
 <span class="cstat-no" title="statement not covered" >        ...state,</span>
 <span class="cstat-no" title="statement not covered" >        ...action.payload.item</span>
 <span class="cstat-no" title="statement not covered" >      }</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
+<<<<<<< HEAD
+  }
+})
+&nbsp;
+&nbsp;
+export const { setSort } = itemSlice.actions
+export const selectSort = (state: AppState) =&gt; state.sort.sort
+=======
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" >})</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >export const { setSort } = itemSlice.actions</span>
 <span class="cstat-no" title="statement not covered" >export const selectSort = (state: AppState) =&gt; state.sort.sort</span>
+>>>>>>> main
 &nbsp;
 &nbsp;</pre></td></tr></table></pre>
 
@@ -181,7 +293,11 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+<<<<<<< HEAD
+                at 2023-05-12T07:57:53.273Z
+=======
                 at 2023-05-04T06:24:53.745Z
+>>>>>>> main
             </div>
         <script src="../../../prettify.js"></script>
         <script>
@@ -193,3 +309,7 @@
         <script src="../../../block-navigation.js"></script>
     </body>
 </html>
+<<<<<<< HEAD
+    
+=======
+>>>>>>> main

@@ -1,6 +1,9 @@
 .cards {
   display: flex;
   justify-content: space-between;
+  @media (max-width: 1050px) {
+    justify-content: center;
+  }
 }
 
 .list {
@@ -30,6 +33,9 @@
 .card_l {
   border-right: 1px solid #333;
   padding-right: 15px;
+  @media (max-width: 1050px) {
+    display: none;
+  }
 }
 
 .card_r {
@@ -39,6 +45,9 @@
   flex-direction: column;
   justify-content: space-between;
   padding-left: 15px;
+  @media (max-width: 1050px) {
+    gap: 10px;
+  }
 }
 
 .settings_wrapper {
@@ -56,4 +65,9 @@
     }
   }
 }
-
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}

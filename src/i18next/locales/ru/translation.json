@@ -2,6 +2,12 @@
   "translation": {
     "Welcome to React": "Добро пожаловать в React и react-i18next",
     "Back": "Назад",
+    "exit": "Выйти",
+    "log in or register": "Войти или зарегистрироваться",
+    "admin panel": "Админ панель",
+    "settings": "Настройки",
+    "helpHeader": "Помощь",
+
     "Full filmography": "Полная фильмография",
     "8 movies": "8 фильмов",
     "Rating": "Рейтинг:",
@@ -131,6 +137,7 @@
     "allDev": "Все устройства",
     "showMoreBtn": "Показать ещё",
     "actorSearch": "Поиск по актёру",
-    "directorSearch": "Поиск по режиссёру"
+    "directorSearch": "Поиск по режиссёру",
+    "home": "Фильмы, сериалы и мультфильмы смотреть онлайн бесплатно и в хорошем качестве"
   }
 }

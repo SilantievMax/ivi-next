@@ -1,14 +1,23 @@
-import React, { FC, ReactNode } from 'react'
-import { useSelector } from 'react-redux'
+import React, { FC, PropsWithChildren, ReactNode, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import Authorization from '../Authorization/Authorization'
-import Wrapper from '../Wrapper/Wrapper'
-import Meta from '../seo/Meta'
-import { IMeta } from '../seo/meta.interface'
 
-import Footer from '@/src/components/Footer/Footer'
-import Header from '@/src/components/Header/Header'
-import { selectIpOpenAuth } from '@/src/store/reducers/authReducer'
+
+import Authorization from '../Authorization/Authorization';
+import Wrapper from '../Wrapper/Wrapper';
+import Meta from '../seo/Meta';
+import { IMeta } from '../seo/meta.interface';
+
+
+
+import Footer from '@/src/components/Footer/Footer';
+import Header from '@/src/components/Header/Header';
+import { checkAuth } from '@/src/services/auth.service';
+import { selectIpOpenAuth } from '@/src/store/reducers/authReducer';
+import { AppDispatch } from '@/src/store/store';
+import { getLocalStorage } from '@/src/utils/local-storage';
+import { LOCAL } from '@/src/types/Auth';
+
 
 interface LayoutProps extends IMeta {
   children: ReactNode
@@ -16,6 +25,13 @@ interface LayoutProps extends IMeta {
 
 const Layout: FC<PropsWithChildren<LayoutProps>> = ({ title, description, children }) => {
   const IpOpenFormAuth = useSelector(selectIpOpenAuth)
+  const dispatch = useDispatch<AppDispatch>()
+  useEffect(() => {
+    if (getLocalStorage(LOCAL.TOKEN)) {
+      dispatch(checkAuth())
+    }
+    return
+  }, [])
   return (
     <>
       <Wrapper>

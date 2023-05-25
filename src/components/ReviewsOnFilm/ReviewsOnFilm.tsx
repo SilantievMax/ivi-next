@@ -1,25 +1,22 @@
-import Link from 'next/link';
-import { useRouter, withRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { MdArrowBackIosNew } from 'react-icons/md';
-import { RiBarChartHorizontalFill } from 'react-icons/ri';
-import { Oval } from 'react-loader-spinner';
+import Link from 'next/link'
+import { useRouter, withRouter } from 'next/router'
+import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { MdArrowBackIosNew } from 'react-icons/md'
+import { RiBarChartHorizontalFill } from 'react-icons/ri'
+import { Oval } from 'react-loader-spinner'
+import { useSelector } from 'react-redux'
 
+import { Button } from '../Button/Button'
+import Meta from '../seo/Meta'
 
-
-import { Button } from '../Button/Button';
-import Meta from '../seo/Meta';
-
-
-
-import FormReview from './FormReview/FormReview';
-import ReviewsList from './ReviewsList/ReviewsList';
-import styles from './ReviewsOnFilm.module.scss';
-import { useOuside } from '@/src/hooks/useOutside';
-import { IReviews } from '@/src/types/CommentsType';
-import { IFilm } from '@/src/types/types';
-
+import FormReview from './FormReview/FormReview'
+import ReviewsList from './ReviewsList/ReviewsList'
+import styles from './ReviewsOnFilm.module.scss'
+import { useOuside } from '@/src/hooks/useOutside'
+import { setAuth } from '@/src/store/reducers/userReducers'
+import { IReviews } from '@/src/types/CommentsType'
+import { IFilm } from '@/src/types/types'
 
 const ReviewsOnFilm = () => {
   const { ref, isShow, setIsShow } = useOuside(false)
@@ -28,12 +25,20 @@ const ReviewsOnFilm = () => {
   const [sent, setSent] = useState(false)
   const { nameEn, genres, nameRu, posterUrlPreview, countries, year, ratingKinopoisk } = data
   const { t, i18n } = useTranslation()
+  const auth = useSelector(setAuth)
+
+  const newReview = () => {
+    if (!auth) {
+      alert('Авторизуйтесь пожалуйста')
+      return
+    }
+    setIsShow(true)
+  }
   const {
     back,
     query: { id }
   } = useRouter()
-  
-  // console.log(comment)
+
   useEffect(() => {
     setSent(false)
     fetch(`http://localhost:3004/comments/${id}/tree`, {
@@ -57,10 +62,12 @@ const ReviewsOnFilm = () => {
       .then(json => setData(json))
       .catch(err => console.log(err))
   }, [id])
-  if (!data) return <Oval wrapperClass={styles.loader} color='rgba(255, 255, 255, .72)' secondaryColor='red' />
 
+  if (!data.id) {
+    return <Oval wrapperClass={styles.loader} color='rgba(255, 255, 255, .72)' secondaryColor='red' />
+  }
   return (
-    <Meta title={`${t('reviews')} | ${i18n.language === 'en' ? nameEn : nameRu}`}>
+    <Meta title={nameEn ? `${t('reviews')} | ${i18n.language === 'en' ? nameEn : nameRu}` : `${t('reviews')}`}>
       <div className={styles.conteiner}>
         <div className={styles.conteiner__wrapper}>
           <div className={styles.btnGoBack}>
@@ -75,7 +82,7 @@ const ReviewsOnFilm = () => {
               {isShow ? (
                 <FormReview setSent={setSent} idReview={null} setShow={setIsShow} formName='Review' movieId={id} />
               ) : (
-                <Button data-testid="btn-review" size='border' children={t('write a review')} onClick={() => setIsShow(true)} />
+                <Button data-testid='btn-review' size='border' children={t('write a review')} onClick={() => newReview()} />
               )}
               <ul className={styles.commentList}>{comment?.length && comment.map(comment => <ReviewsList key={comment.id} comment={comment} setSent={setSent} />)}</ul>
             </div>

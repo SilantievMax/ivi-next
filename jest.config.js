@@ -10,7 +10,7 @@ module.exports = {
     '!<rootDir>/out/**',
     '!<rootDir>/.next/**',
     '!<rootDir>/*.config.js',
-    '!<rootDir>/coverage/**',
+    '!<rootDir>/coverage/**'
   ],
   moduleNameMapper: {
     // Handle CSS imports (with CSS modules)

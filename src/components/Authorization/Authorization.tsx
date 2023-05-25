@@ -8,17 +8,23 @@ import LoginForm from './LoginForm/LoginForm'
 import Message from './Message/Message'
 import RegisterForm from './RegisterForm/RegisterForm'
 import { setOpenAuth } from '@/src/store/reducers/authReducer'
+import { getLocalStorage } from '@/src/utils/local-storage'
 
-const messagesDisctop: { messages?: string; description?: string; position: string; children?: ReactNode }[] = [
-  { messages: 'Войдите или зарегистрируйтесь', description: 'чтобы пользоваться сервисом на любом устройстве', position: 'left' }
-]
+interface IMessagesDisctop {
+  messages?: string
+  description?: string
+  position: 'left' | 'right'
+  children?: ReactNode
+}
+
+const messagesDisctop: IMessagesDisctop[] = [{ messages: 'Войдите или зарегистрируйтесь', description: 'чтобы пользоваться сервисом на любом устройстве', position: 'left' }]
 
 const Authorization: FC = () => {
   const dispatch = useDispatch()
-  const [messages, setMessages] = useState(messagesDisctop)
+  const [messages, setMessages] = useState<IMessagesDisctop[]>(messagesDisctop)
   const [isForm, setisForm] = useState('')
   const [status, seStatus] = useState('Вход или регистрация')
-  const messagesEndRef = useRef(null)
+  const messagesEndRef = useRef<null | HTMLDivElement>(null)
 
   useEffect(() => {
     scrollToBottom()
@@ -71,8 +77,7 @@ const Authorization: FC = () => {
       }
     ])
   }
-
-  const onCliclForm = errors => {
+  const onCliclForm = (errors: { login: { message: string }; password: { message: string } }) => {
     let text
     if (errors.login && errors.password) {
       text = `${errors.login.message} и ${errors.password.message}`
@@ -82,7 +87,7 @@ const Authorization: FC = () => {
       text = errors.password.message
     }
     setMessages([...messages, { messages: 'Ошибка:', description: text, position: 'left' }])
-    console.log(errors)
+    // console.log(errors)
   }
 
   const scrollToBottom = () => {
@@ -100,7 +105,7 @@ const Authorization: FC = () => {
           <Message children={item.children} position={item.position} messages={item.messages} description={item.description} />
         ))}
 
-        {isForm === 'auth' && <LoginForm />}
+        {isForm === 'auth' && <LoginForm onCliclForm={onCliclForm} />}
         {isForm === 'login' && <RegisterForm onCliclForm={onCliclForm} />}
 
         {isForm === '' ? (

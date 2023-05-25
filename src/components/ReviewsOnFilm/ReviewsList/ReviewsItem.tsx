@@ -1,18 +1,15 @@
-import React, { memo, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import React, { memo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 
+import FormReview from '../FormReview/FormReview'
 
-
-import FormReview from '../FormReview/FormReview';
-
-
-
-import styles from './ReviewsItem.module.scss';
-import { Button } from '@/src/components/Button/Button';
-import VoteBtns from '@/src/components/VoteBtns/VoteBtns';
-import { useOuside } from '@/src/hooks/useOutside';
-import { IReviews } from '@/src/types/CommentsType';
-
+import styles from './ReviewsItem.module.scss'
+import { Button } from '@/src/components/Button/Button'
+import VoteBtns from '@/src/components/VoteBtns/VoteBtns'
+import { useOuside } from '@/src/hooks/useOutside'
+import { setAuth, user } from '@/src/store/reducers/userReducers'
+import { IReviews } from '@/src/types/CommentsType'
 
 interface CommentProps {
   comment: IReviews
@@ -20,11 +17,26 @@ interface CommentProps {
 }
 
 const Comment = ({ comment, setSent }: CommentProps) => {
-  
   const [showReview, setShowReview] = useState(false)
+  const [changing, setChanging] = useState(false)
   const { author, date, description, id, title, movieId } = comment || {}
   const { ref, isShow, setIsShow } = useOuside(false)
   const { t } = useTranslation()
+  const auth = useSelector(setAuth)
+  const us = useSelector(user)
+
+  const changingComment = () => {
+    setIsShow(true)
+    setChanging(true)
+  }
+  const newComment = () => {
+    if (!auth) {
+      alert('Авторизуйтесь пожалуйста')
+      return
+    }
+    setIsShow(true)
+    setChanging(false)
+  }
   return (
     <li className={styles.container}>
       <header className={styles.header}>
@@ -60,8 +72,22 @@ const Comment = ({ comment, setSent }: CommentProps) => {
           <p> {description}</p>
         )}
       </div>
-      <div className={styles.button}>{!isShow && <Button size='border' children={t('answer')} onClick={() => setIsShow(true)} />}</div>
-      <div ref={ref}>{isShow && <FormReview setSent={setSent} movieId={movieId} setShow={setIsShow} formName={'Comment'} idReview={id} />}</div>
+      <div className={styles.button}>
+        {!isShow && (
+          <>
+            {us ? (
+              (us.login == author && <Button size='border' children={'Изменить'} onClick={() => changingComment()} />) || (
+                <Button size='border' children={t('answer')} onClick={() => newComment()} />
+              )
+            ) : (
+              <Button size='border' children={t('answer')} onClick={() => newComment()} />
+            )}
+          </>
+        )}
+      </div>
+      <div ref={ref}>
+        {isShow && <FormReview changing={changing} comment={comment} setSent={setSent} movieId={movieId} setShow={setIsShow} formName={'Comment'} idReview={id} />}
+      </div>
     </li>
   )
 }
