@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { BsApple, BsTelephone, FaTelegramPlane } from 'react-icons/all';
 
+
+
 import { Button } from './Button';
 
 
@@ -19,16 +21,16 @@ export const Red: Story = {
     color: 'red'
   }
 }
-export const RedOpacity: Story = {
-  args: {
-    children: 'Click my',
-    color: 'redOpacity'
-  }
-}
 export const Gray: Story = {
   args: {
     children: 'Write in the chat',
     color: 'gray'
+  }
+}
+export const DarkRed: Story = {
+  args: {
+    children: 'Pay for a subscription',
+    color: 'darkRed'
   }
 }
 export const Gradient: Story = {
@@ -37,10 +39,22 @@ export const Gradient: Story = {
     color: 'gradient'
   }
 }
-export const Border: Story = {
+export const MainGray: Story = {
   args: {
-    children: 'Leave feedback',
-    size: 'border'
+    children: 'Write in the chat',
+    color: 'mainGray'
+  }
+}
+export const lightGray: Story = {
+  args: {
+    children: 'Pay for a subscription',
+    color: 'lightGray'
+  }
+}
+export const RedOpacity: Story = {
+  args: {
+    children: 'Click my',
+    color: 'redOpacity'
   }
 }
 export const Image: Story = {
@@ -55,12 +69,6 @@ export const Icon: Story = {
     size: 'icon'
   }
 }
-export const IconMessenger: Story = {
-  args: {
-    icon: <FaTelegramPlane fill='white' />,
-    size: 'circle'
-  }
-}
 export const IconSmart: Story = {
   args: {
     icon: <BsApple fill='white' />,
@@ -73,6 +81,18 @@ export const IconSmart: Story = {
     )
   }
 }
+export const IconMessenger: Story = {
+  args: {
+    icon: <FaTelegramPlane fill='white' />,
+    size: 'circle'
+  }
+}
+export const Border: Story = {
+  args: {
+    children: 'Leave feedback',
+    size: 'border'
+  }
+}
 export const ReviewBtn: Story = {
   args: {
     children: 'Отзывы',
@@ -80,9 +100,21 @@ export const ReviewBtn: Story = {
     size: 'reviews'
   }
 }
-export const Disable: Story = {
+export const Comment: Story = {
   args: {
-    children: 'Отправить',
-    color: 'red',
+    children: 'Комментарии',
+    size: 'comment'
+  }
+}
+export const MoviesBtn: Story = {
+  args: {
+    children: 'Click my',
+    size: 'moviesBtn'
+  }
+}
+export const IconGoBack: Story = {
+  args: {
+    children: 'Go Back',
+    size: 'iconGoBack'
   }
 }

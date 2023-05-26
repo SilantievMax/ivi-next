@@ -76,7 +76,7 @@ const Comment = ({ comment, setSent }: CommentProps) => {
         {!isShow && (
           <>
             {us ? (
-              (us.login == author && <Button size='border' children={'Изменить'} onClick={() => changingComment()} />) || (
+              (us.login == author && <Button size='border' children={t('toChange')} onClick={() => changingComment()} />) || (
                 <Button size='border' children={t('answer')} onClick={() => newComment()} />
               )
             ) : (
