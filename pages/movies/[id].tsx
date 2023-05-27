@@ -6,7 +6,7 @@ import React from 'react';
 
 import FilmPage from '@/src/components/screens/FilmPage/FilmPage';
 import { IFilm } from '@/src/types/types';
-import { MoviesService } from '@/src/services/movies.sevice';
+import { MoviesService } from '@/src/services/movies.service';
 
 
 interface Params extends NextParsedUrlQuery{

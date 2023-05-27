@@ -105,7 +105,7 @@ const Authorization: FC = () => {
           <Message children={item.children} position={item.position} messages={item.messages} description={item.description} />
         ))}
 
-        {isForm === 'auth' && <LoginForm onCliclForm={onCliclForm} />}
+        {isForm === 'auth' && <LoginForm onClickForm={onCliclForm} />}
         {isForm === 'login' && <RegisterForm onCliclForm={onCliclForm} />}
 
         {isForm === '' ? (

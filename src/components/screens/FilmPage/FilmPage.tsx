@@ -14,16 +14,16 @@ import ReactPlayer from 'react-player'
 import { useSelector } from 'react-redux'
 import { Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-
 import { MemoBreadcrumbs } from '../../BreadCrumbNavigation/BreadCrumbNavigation'
 import Meta from '../../seo/Meta'
-
 import styles from './filmpage.module.scss'
 import { Button } from '@/src/components/Button/Button'
 import Film from '@/src/components/Film/Film'
 import { selectPickedMovie } from '@/src/store/reducers/dataBaseReducer'
 import { IReviews } from '@/src/types/CommentsType'
 import { ICrew, IFilm, ITrailer } from '@/src/types/types'
+import { MoviesService } from '@/src/services/movies.service'
+import { CommentsService } from '@/src/services/comments-service/comments.service'
 
 const LazyReviews = lazy(() => import('@/src/components/Reviews/Reviews'))
 
@@ -35,83 +35,95 @@ const FilmPage = () => {
   const pickedFilm = useSelector(selectPickedMovie)
   const [pickedTrailer, setPickedTrailer] = useState<ITrailer[]>([] as ITrailer[])
   const [crewList, setCrewList] = useState<ICrew[]>([])
-  const [similars, setSimilars] = useState<IFilm[]>([] as IFilm[])
+  const [similar, setSimilar] = useState<IFilm[]>([] as IFilm[])
   const [data, setData] = useState<IFilm>({} as IFilm)
   const [reviews, setReviews] = useState<IReviews[]>([] as IReviews[])
-  const defaultTrailer = [{ id: 1, name: 'sad', site: 'ds', url: 'https://www.youtube.com/watch?v=YihPA42fdQ8' }]
+  const defaultTrailer = [{ id: 1, name: 'name', site: 'site', url: 'https://www.youtube.com/watch?v=YihPA42fdQ8' }]
   const {
     query: { id }
   } = useRouter()
   const { t } = useTranslation()
 
-  //Запрос на рецензии к фильму по id
-  useEffect(() => {
-    fetch(`http://localhost:3004/comments/${id}/tree`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(res => res.json())
-      .then(json => setReviews(json))
-      .catch(err => console.log(err))
-  }, [id])
+  // Запрос на рецензии к фильму по id
+  // useEffect(() => {
+  //   fetch(`http://localhost:3004/comments/${id}/tree`, {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     }
+  //   })
+  //     .then(res => res.json())
+  //     .then(json => setReviews(json))
+  //     .catch(err => console.log(err))
+  // }, [id])
+
+
+  // useEffect(() => {
+  //   fetch(`http://localhost:3001/movies/${id}/videos`, {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     }
+  //   })
+  //     .then(res => res.json())
+  //     .then(json => (json.length !== 0 ? setPickedTrailer(json) : setPickedTrailer(defaultTrailer)))
+  //     .catch(err => console.log(err))
+  // }, [id])
 
   useEffect(() => {
-    fetch(`http://localhost:3001/movies/${id}/videos`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(res => res.json())
-      .then(json => (json.length !== 0 ? setPickedTrailer(json) : setPickedTrailer(defaultTrailer)))
-      .catch(err => console.log(err))
+    // fetch(`http://localhost:3005/persons/${id}`, {
+    //   method: 'GET',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   }
+    // })
+    //   .then(res => res.json())
+    //   .then(json => setCrewList(json))
+    //   .catch(err => console.log(err))
+    MoviesService.getMovieById(id).then(data => setData(data)).catch(err => console.log(err))
+    MoviesService.getVideoById(id).then(data => data.length !== 0 ? setPickedTrailer(data) : setPickedTrailer(defaultTrailer)).catch(err => console.log(err))
+    MoviesService.getAllActors(id).then(data => setCrewList(data)).catch(err => console.log(err))
+    MoviesService.getSimilarById(id).then(data => setSimilar(data)).catch(err => console.log(err))
+    CommentsService.loadFilmComments(id).then(data => setReviews(data)).catch(err => console.log(err))
   }, [id])
 
-  useEffect(() => {
-    fetch(`http://localhost:3005/persons/${id}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(res => res.json())
-      .then(json => setCrewList(json))
-      .catch(err => console.log(err))
-  }, [id])
 
-  useEffect(() => {
-    fetch(`http://localhost:3001/movies/${id}/similar`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(res => res.json())
-      .then(json => setSimilars(json))
-      .catch(err => console.log(err))
-  }, [id])
+  // useEffect(() => {
+  //   fetch(`http://localhost:3001/movies/${id}/similar`, {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     }
+  //   })
+  //     .then(res => res.json())
+  //     .then(json => setSimilar(json))
+  //     .catch(err => console.log(err))
+  // }, [id])
 
-  useEffect(() => {
-    fetch(`http://localhost:3001/movies/${id}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(res => res.json())
-      .then(json => setData(json))
-      .catch(err => console.log(err))
-      .finally(() => setIsLoading(false))
-  }, [id])
+
+  // useEffect(() => {
+  //   fetch(`http://localhost:3001/movies/${id}`, {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     }
+  //   })
+  //     .then(res => res.json())
+  //     .then(json => setData(json))
+  //     .catch(err => console.log(err))
+  //     .finally(() => setIsLoading(false))
+  // }, [id])
   const calcTime = (num: number) => {
     return `${Math.floor(num / 60)}${t('hour')} ${num % 60}${t('min')}`
   }
-  if (!data.genres || !pickedTrailer.length || !similars.length || !crewList.length) return <Oval wrapperClass={styles.loader} color='rgba(255, 255, 255, .72)' secondaryColor='red' />
+  if (!data.genres || !pickedTrailer.length || !similar.length || !crewList.length) return <Oval
+    wrapperClass={styles.loader} color='rgba(255, 255, 255, .72)' secondaryColor='red' />
+
+
 
   return (
-    <Meta title={`${i18n.language === 'en' ? data.nameEn : data.nameRu} (${t('film')}${data.year})`} description={data.description}>
+    <Meta title={`${i18n.language === 'en' ? data.nameEn : data.nameRu} (${t('film')}${data.year})`}
+          description={data.description}>
       <div className={styles.filmPageWrapper}>
         <div>
           {showActorsWindow ? (
@@ -131,24 +143,23 @@ const FilmPage = () => {
                   </div>
 
                   <div className={styles.popup__crewWrapper}>
-                    <span className={styles.popupFilmTitle}>{`${i18n.language === 'en' ? data.nameEn : data.nameRu} (${t('film')}${data.year})`}</span>
+                    <span
+                      className={styles.popupFilmTitle}>{`${i18n.language === 'en' ? data.nameEn : data.nameRu} (${t('film')}${data.year})`}</span>
                     <div className={styles.popup__items}>
                       <span className={styles.popup__header}>Режиссёры</span>
                       <div className={styles.popup__crewContainer}>
                         {crewList.map((elem, idx) =>
                           elem.roles.map(el =>
                             el.nameRu === 'Режиссеры' ? (
-                              <Link key={idx} onClick={() => document.body.classList.remove('popupActive')} href={`/person/${elem.id}`}>
+                              <Link key={idx} onClick={() => document.body.classList.remove('popupActive')}
+                                    href={`/person/${elem.id}`}>
                                 <div className={styles.popup__card}>
-                                  <img className={styles.crewImage__wrapper} src={elem.posterUrl} width={60} alt='actorImg' />
+                                  <img className={styles.crewImage__wrapper} src={elem.posterUrl} width={60}
+                                       alt='actorImg' />
                                   <span>{elem.nameRu}</span>
                                 </div>
                               </Link>
-                            ) : (
-                              ''
-                            )
-                          )
-                        )}
+                            ) : ('')))}
                       </div>
                     </div>
                     <div className={styles.popup__crewContainer}>
@@ -156,27 +167,29 @@ const FilmPage = () => {
                       <div className={styles.popup__crewContainer}>
                         {crewList.map((el, idx) =>
                           el.roles[0].nameRu === 'Актеры' ? (
-                            idx < 21 ? (
-                              <Link key={idx} onClick={() => document.body.classList.remove('popupActive')} href={`/person/${el.id}`}>
-                                <div className={styles.popup__card}>
-                                  <img className={styles.crewImage__wrapper} src={el.posterUrl} width={60} alt='actorImg' />
-                                  <span>{el.nameRu}</span>
-                                </div>
-                              </Link>
-                            ) : (
-                              <Link key={idx} onClick={() => document.body.classList.remove('popupActive')} href={`/person/${el.id}`}>
-                                <div className={showFullList ? `${styles.popup__card}` : `${styles.popup__card} ${styles.hidden}`}>
-                                  <img className={styles.crewImage__wrapper} src={el.posterUrl} width={60} alt='actorImg' />
-                                  <span>{el.nameRu}</span>
-                                </div>
-                              </Link>
-                            )
-                          ) : (
-                            ''
-                          )
-                        )}
+                              idx < 21 ? (
+                                <Link key={idx} onClick={() => document.body.classList.remove('popupActive')}
+                                      href={`/person/${el.id}`}>
+                                  <div className={styles.popup__card}>
+                                    <img className={styles.crewImage__wrapper} src={el.posterUrl} width={60}
+                                         alt='actorImg' />
+                                    <span>{el.nameRu}</span>
+                                  </div>
+                                </Link>
+                              ) : (
+                                <Link key={idx} onClick={() => document.body.classList.remove('popupActive')}
+                                      href={`/person/${el.id}`}>
+                                  <div
+                                    className={showFullList ? `${styles.popup__card}` : `${styles.popup__card} ${styles.hidden}`}>
+                                    <img className={styles.crewImage__wrapper} src={el.posterUrl} width={60}
+                                         alt='actorImg' />
+                                    <span>{el.nameRu}</span>
+                                  </div>
+                                </Link>))
+                            : (''))}
                       </div>
-                      <Button style={{ display: showFullList ? 'none' : 'flex' }} className={styles.popup__button} color='gray' type='submit' onClick={() => setShowFullList(true)}>
+                      <Button style={{ display: showFullList ? 'none' : 'flex' }} className={styles.popup__button}
+                              color='gray' type='submit' onClick={() => setShowFullList(true)}>
                         Показать ещё
                       </Button>
                     </div>
@@ -186,17 +199,15 @@ const FilmPage = () => {
                         {crewList.map((elem, idx) =>
                           elem.roles.map(el =>
                             el.nameRu === 'Продюсеры' ? (
-                              <Link key={idx} onClick={() => document.body.classList.remove('popupActive')} href={`/person/${elem.id}`}>
-                                <div className={styles.popup__card}>
-                                  <img className={styles.crewImage__wrapper} src={elem.posterUrl} width={60} alt='actorImg' />
-                                  <span>{elem.nameRu}</span>
-                                </div>
-                              </Link>
-                            ) : (
-                              ''
-                            )
-                          )
-                        )}
+                                <Link key={idx} onClick={() => document.body.classList.remove('popupActive')}
+                                      href={`/person/${elem.id}`}>
+                                  <div className={styles.popup__card}>
+                                    <img className={styles.crewImage__wrapper} src={elem.posterUrl} width={60}
+                                         alt='actorImg' />
+                                    <span>{elem.nameRu}</span>
+                                  </div>
+                                </Link>)
+                              : ('')))}
                       </div>
                     </div>
                     <div className={styles.popup__items}>
@@ -205,9 +216,11 @@ const FilmPage = () => {
                         {crewList.map((elem, idx) =>
                           elem.roles.map(el =>
                             el.nameRu === 'Сценаристы' ? (
-                              <Link key={idx} onClick={() => document.body.classList.remove('popupActive')} href={`/person/${elem.id}`}>
+                              <Link key={idx} onClick={() => document.body.classList.remove('popupActive')}
+                                    href={`/person/${elem.id}`}>
                                 <div className={styles.popup__card}>
-                                  <img className={styles.crewImage__wrapper} src={elem.posterUrl} width={60} alt='actorImg' />
+                                  <img className={styles.crewImage__wrapper} src={elem.posterUrl} width={60}
+                                       alt='actorImg' />
                                   <span>{elem.nameRu}</span>
                                 </div>
                               </Link>
@@ -229,7 +242,8 @@ const FilmPage = () => {
                       className={styles.filmCard}
                     ></div>
                     <span className={styles.popup__boldText}>{data.ratingKinopoisk}</span>
-                    <span className={styles.popup__smallText}>{`${data.year}, ${data.countries[0].nameRu}, ${capitalize(data.genres[0].nameRu)}`}</span>
+                    <span
+                      className={styles.popup__smallText}>{`${data.year}, ${data.countries[0].nameRu}, ${capitalize(data.genres[0].nameRu)}`}</span>
                     <div className={styles.popup__filmLengthContainer}>
                       <TfiTimer color='red' />
                       <span className={styles.popup__smallText}>{`${data.filmLength} ${t('min')}.`}</span>
@@ -262,21 +276,26 @@ const FilmPage = () => {
             </div>
             <div className={styles.filmSection__content}>
               <div className={styles.filmTitle}>
-                <h1 className={styles.filmTitle__content}>{`${i18n.language === 'en' ? data.nameEn : data.nameRu} (${t('film')}${data.year})`}</h1>
+                <h1
+                  className={styles.filmTitle__content}>{`${i18n.language === 'en' ? data.nameEn : data.nameRu} (${t('film')}${data.year})`}</h1>
               </div>
               <div className={styles.filmDescriptionWrapper}>
                 <div className={styles.filmDescription}>
-                  <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{data.year}</span>
-                  <span className={styles.filmDescription__font}>{`${calcTime(data.filmLength)} ${data.ratingAgeLimits.slice(3)}+`}</span>
+                  <span
+                    className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{data.year}</span>
+                  <span
+                    className={styles.filmDescription__font}>{`${calcTime(data.filmLength)} ${data.ratingAgeLimits.slice(3)}+`}</span>
                 </div>
                 <div className={styles.genreParams}>
-                  <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{data.countries[0].nameRu}</span>
+                  <span
+                    className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{data.countries[0].nameRu}</span>
                   {data &&
                     data.genres.map((el, idx) =>
                       idx < 4 ? (
                         <div className={styles.genreParams} key={idx}>
                           <span className={styles.dot}>.</span>
-                          <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{el.nameRu}</span>
+                          <span
+                            className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{el.nameRu}</span>
                         </div>
                       ) : (
                         ''
@@ -287,13 +306,17 @@ const FilmPage = () => {
                   <div className={`${styles.filmQuality} ${styles.filmQuality__text}`}>FullHD</div>
                   <div className={styles.genreParams}>
                     <BiVolumeLow className={styles.filmDescription__icon} />
-                    <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Рус</span>
+                    <span
+                      className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Рус</span>
                     <span className={styles.dot}>.</span>
-                    <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>En</span>
+                    <span
+                      className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>En</span>
                     <BiFilm className={styles.filmDescription__icon} />
-                    <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Рус</span>
+                    <span
+                      className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>Рус</span>
                     <span className={styles.dot}>.</span>
-                    <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>En</span>
+                    <span
+                      className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>En</span>
                   </div>
                 </div>
               </div>
@@ -310,7 +333,8 @@ const FilmPage = () => {
                     idx < 4 ? (
                       <Link key={idx} href={`/person/${el.id}`} className={styles.filmActorCard__wrapper}>
                         <Button size='img' img={`${el.posterUrl}`} />
-                        <span className={`${styles.filmDescription__font} ${styles.actorTitle}`}>{i18n.language === 'en' ? el.nameEn : el.nameRu}</span>
+                        <span
+                          className={`${styles.filmDescription__font} ${styles.actorTitle}`}>{i18n.language === 'en' ? el.nameEn : el.nameRu}</span>
                       </Link>
                     ) : (
                       ''
@@ -358,7 +382,8 @@ const FilmPage = () => {
                   <div className={styles.summaryReviews__wrapper}>
                     <span>{t('iviRating')}</span>
                     <span className={styles.filmDescription__font}>{t('plotDetails')}</span>
-                    <span className={styles.ratingFont}>{`${data.ratingKinopoiskVoteCount} ${t('reviewsAmount')}`}</span>
+                    <span
+                      className={styles.ratingFont}>{`${data.ratingKinopoiskVoteCount} ${t('reviewsAmount')}`}</span>
                   </div>
                 </div>
 
@@ -367,9 +392,11 @@ const FilmPage = () => {
             </div>
           </div>
           <div className={styles.galleryWrapper}>
-            <span className={styles.filmPage__titleText}>{`${t('watchWithFilm')} «${i18n.language === 'en' ? data.nameEn : data.nameRu}» ${t('watches')}`}</span>
-            <Swiper className={styles.sliderWrapper} navigation modules={[Navigation]} slidesPerView={'auto'} spaceBetween={20}>
-              {similars.map((el, idx) => (
+            <span
+              className={styles.filmPage__titleText}>{`${t('watchWithFilm')} «${i18n.language === 'en' ? data.nameEn : data.nameRu}» ${t('watches')}`}</span>
+            <Swiper className={styles.sliderWrapper} navigation modules={[Navigation]} slidesPerView={'auto'}
+                    spaceBetween={20}>
+              {similar.map((el, idx) => (
                 <SwiperSlide key={idx} className={styles.swiper_slide}>
                   <Film type='slider' key={idx} film={el} />
                 </SwiperSlide>
@@ -424,8 +451,10 @@ const FilmPage = () => {
           )}
           <div className={styles.watchAllDevicesSection}>
             <div className={styles.watchAllDevices__content}>
-              <span className={styles.filmPage__titleText}>{`${t('watch')} «${i18n.language === 'en' ? data.nameEn : data.nameRu}» ${t('allDevices')}`}</span>
-              <span className={`${styles.filmDescription__font} ${styles.mainContent}`}>{t('connectDeviceDescription')}</span>
+              <span
+                className={styles.filmPage__titleText}>{`${t('watch')} «${i18n.language === 'en' ? data.nameEn : data.nameRu}» ${t('allDevices')}`}</span>
+              <span
+                className={`${styles.filmDescription__font} ${styles.mainContent}`}>{t('connectDeviceDescription')}</span>
               <Link href='https://www.ivi.ru/devices'>
                 <Button className={styles.watchAllDevicesSection__btn} color='darkRed'>
                   {t('connectDevice')}
@@ -433,24 +462,30 @@ const FilmPage = () => {
               </Link>
             </div>
             <div className={styles.watchAllDevicesImageWrapper}>
-              <img src='https://www.ivi.ru/images/_ds/watchAllDevices/tv-without-poster.png' height={272} width={536} className={styles.devicePic} alt='devisePic' />
-              <img src='https://www.ivi.ru/images/_ds/watchAllDevices/ipad-without-poster.png' className={styles.ipadPic} alt='devisePic' />
-              <img src={data.posterUrl} className={styles.posterPic} alt='devisePic' />
-              <img src={data.posterUrl} className={styles.posterMobilePic} alt='devisePic' />
+              <img src='https://www.ivi.ru/images/_ds/watchAllDevices/tv-without-poster.png' height={272} width={536}
+                   className={styles.devicePic} alt='devisePic' />
+              <img src='https://www.ivi.ru/images/_ds/watchAllDevices/ipad-without-poster.png'
+                   className={styles.ipadPic} alt='devisePic' />
+              <img src={data.coverUrl} className={styles.posterPic} alt='devisePic' />
+              <img src={data.coverUrl} className={styles.posterMobilePic} alt='devisePic' />
             </div>
           </div>
           <div className={styles.breadCrumbs}>
             <Link href='/'>
-              <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{t('ivi')}</span>
+              <span
+                className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{t('ivi')}</span>
             </Link>
             <span className={styles.dot}>.</span>
             <Link href='/movies'>
-              <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{t('movies')}</span>
+              <span
+                className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{t('movies')}</span>
             </Link>
             <span className={styles.dot}>.</span>
-            <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{capitalize(data.genres[0].nameRu)}</span>
+            <span
+              className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{capitalize(data.genres[0].nameRu)}</span>
             <span className={styles.dot}>.</span>
-            <span className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{i18n.language === 'en' ? data.nameEn : data.nameRu}</span>
+            <span
+              className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{i18n.language === 'en' ? data.nameEn : data.nameRu}</span>
           </div>
         </div>
       </div>

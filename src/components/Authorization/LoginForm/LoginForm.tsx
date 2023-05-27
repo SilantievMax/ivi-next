@@ -15,10 +15,10 @@ import { IUser } from '@/src/types/Auth';
 
 
 interface LoginFormFormProps {
-  onCliclForm?: any
+  onClickForm?: any
 }
 
-const LoginForm: FC<LoginFormFormProps> = ({ onCliclForm }) => {
+const LoginForm: FC<LoginFormFormProps> = ({ onClickForm }) => {
   const {
     register,
     formState: { errors },
@@ -81,7 +81,7 @@ const LoginForm: FC<LoginFormFormProps> = ({ onCliclForm }) => {
         <input
           className={styles.btn}
           onClick={() => {
-            onCliclForm(errors)
+            onClickForm(errors)
           }}
           type='submit'
           value='Войти'

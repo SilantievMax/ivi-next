@@ -1,10 +1,19 @@
 import axios from 'axios'
 
-import { IFilm, ITrailer } from '../types/types'
+import { ICrew, IFilm, ITrailer } from '../types/types'
 
 axios.defaults.baseURL = process.env.MOVIES_URL
 
 export const MoviesService = {
+  async getAllActors(id: any) {
+    const { data } = await axios.get<ICrew[]>(`${process.env.PERSON_URL}/persons/${id}`, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    return data
+  },
+
   async getAll() {
     const { data } = await axios.get<IFilm[]>(`/movies/`, {
       headers: {
@@ -13,7 +22,7 @@ export const MoviesService = {
     })
     return data
   },
-  async getById(id: number) {
+  async getMovieById(id: any) {
     const { data } = await axios.get<IFilm>(`/movies/${id}`, {
       headers: {
         'Content-Type': 'application/json'
@@ -21,16 +30,16 @@ export const MoviesService = {
     })
     return data
   },
-  async getSimilarById(id: number) {
-    const { data } = await axios.get<IFilm[]>(`/movies/${id}/similar`, {
+  async getSimilarById(id: any) {
+    const { data } = await axios.get<IFilm[]>(`${process.env.MOVIES_URL}/movies/${id}/similar`, {
       headers: {
         'Content-Type': 'application/json'
       }
     })
     return data
   },
-  async getVideoById(id: number) {
-    const { data } = await axios.get<ITrailer[]>(`/movies/${id}/videos`, {
+  async getVideoById(id: any) {
+    const { data } = await axios.get<ITrailer[]>(`${process.env.MOVIES_URL}/movies/${id}/videos`, {
       headers: {
         'Content-Type': 'application/json'
       }

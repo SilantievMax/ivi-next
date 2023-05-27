@@ -107,7 +107,7 @@ const Filter = () => {
   }
 
   useEffect(() => {
-    genresList.length ? router.push({ pathname: '/movies' }, `/movies/genres=${ucFirst(genresList).join('+')}`, { shallow: true }) : ''
+    genresList.length ? router.push({ pathname: '/movies' }, `/movies/genres=${ucFirst(genresList).join('+')}`, { shallow: true }) : router.push({ pathname: '/movies' })
   }, [genresList])
 
 

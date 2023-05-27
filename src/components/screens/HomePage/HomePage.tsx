@@ -7,9 +7,7 @@ import { useDispatch } from 'react-redux'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick-theme.css'
 import 'slick-carousel/slick/slick.css'
-
 import filmsStyles from '../Movies/movies.module.scss'
-
 import styles from './homePage.module.scss'
 import LeftArrow from '@/src/components/Arrows/LeftArrow'
 import RightArrow from '@/src/components/Arrows/RightArrow'
@@ -23,6 +21,7 @@ import { IFilm } from '@/src/types/types'
 
 const HomePage: FC = () => {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
   const [showDescription, setShowDescription] = useState<boolean>(false)
   let settings = {
     prevArrow: <LeftArrow />,
@@ -156,7 +155,6 @@ const HomePage: FC = () => {
       .then(json => setMainSecondSection(json.rows))
       .catch(err => console.log(err))
   }, [])
-  const dispatch = useDispatch()
   return (
     <Meta title={t('home')} description=''>
       <div>

@@ -26,6 +26,7 @@ import { genreList, headersArray } from '@/src/globalData/globalData'
 import LeftArrow from '@/src/components/Arrows/LeftArrow'
 import RightArrow from '@/src/components/Arrows/RightArrow'
 import Link from 'next/link'
+import { InfoService } from '@/src/services/info.service'
 
 const MoviesPage: FC = () => {
   const rate = useSelector(selectRate)
@@ -40,17 +41,18 @@ const MoviesPage: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   useEffect(() => {
-    fetch(
-      `http://localhost:3003/info?limit=${limit}&order=${sort.query}&minRating=${rate}&numRatings=${reviewAmount}&genres=${genres.toString()}&countries=${countries.toString()}&years=${
-        year.split(' ')[0]
-      }`,
-      {
-        method: 'GET'
-      }
-    )
-      .then(res => res.json())
-      .then(json => dispatch(setMoviesList(json.rows)))
-      .catch(err => console.log(err))
+    // fetch(
+    //   `http://localhost:3003/info?limit=${limit}&order=${sort.query}&minRating=${rate}&numRatings=${reviewAmount}&genres=${genres.toString()}&countries=${countries.toString()}&years=${
+    //     year.split(' ')[0]
+    //   }`,
+    //   {
+    //     method: 'GET'
+    //   }
+    // )
+    //   .then(res => res.json())
+    //   .then(json => dispatch(setMoviesList(json.rows)))
+    //   .catch(err => console.log(err))
+    InfoService.getAll(limit, sort, rate, reviewAmount, genres, countries, year).then(data => dispatch(setMoviesList(data)))
   }, [sort, rate, reviewAmount, genres, countries, year, limit])
   let settings = {
     prevArrow: <LeftArrow />,
