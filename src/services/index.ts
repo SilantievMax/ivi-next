@@ -1,36 +1,29 @@
-import axios from 'axios';
-import { useRouter } from 'next/router';
-import { useDispatch } from 'react-redux';
+import axios from 'axios'
+import { useRouter } from 'next/router'
+import { useDispatch } from 'react-redux'
 
+import { AppDispatch } from '../store/store'
+import { LOCAL } from '../types/Auth'
+import { getLocalStorage } from '../utils/local-storage'
 
-
-import { AppDispatch } from '../store/store';
-import { LOCAL } from '../types/Auth';
-import { getLocalStorage } from '../utils/local-storage';
-
-
-
-import { logout } from './auth.service';
-
-
-// const router = useRouter()
+import { logout } from './auth.service'
 
 export const API_URL = process.env.LOCAL_HOST
 const $api = axios.create({
   // baseURL: API_URL
 })
 
-$api.interceptors.request.use(config => {  
+$api.interceptors.request.use(config => {
   if (getLocalStorage(LOCAL.TOKEN)) {
     config.headers.Authorization = `Bearer ${getLocalStorage(LOCAL.TOKEN)?.accessToken}`
-    console.log('1$api',config)
+    console.log('1$api', config)
     return config
   }
   return config
 })
 $api.interceptors.response.use(
   config => {
-    console.log('2$api',config)
+    console.log('2$api', config)
     return config
   },
   async error => {

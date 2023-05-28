@@ -1,18 +1,13 @@
-import React, { FC } from 'react';
-import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import React, { FC } from 'react'
+import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
 
+import styles from '../RegisterForm/RegisterForm.module.scss'
 
-
-import styles from '../RegisterForm/RegisterForm.module.scss';
-
-
-
-import { signIn } from '@/src/services/auth.service';
-import { setOpenAuth } from '@/src/store/reducers/authReducer';
-import { AppDispatch } from '@/src/store/store';
-import { IUser } from '@/src/types/Auth';
-
+import { signIn } from '@/src/services/auth.service'
+import { setOpenAuth } from '@/src/store/reducers/authReducer'
+import { AppDispatch } from '@/src/store/store'
+import { IUser } from '@/src/types/Auth'
 
 interface LoginFormFormProps {
   onClickForm?: any
