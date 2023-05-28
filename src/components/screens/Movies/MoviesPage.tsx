@@ -52,7 +52,7 @@ const MoviesPage: FC = () => {
     //   .then(res => res.json())
     //   .then(json => dispatch(setMoviesList(json.rows)))
     //   .catch(err => console.log(err))
-    InfoService.getAll(limit, sort, rate, reviewAmount, genres, countries, year).then(data => dispatch(setMoviesList(data)))
+    InfoService.getAll(limit, sort, rate, reviewAmount, genres, countries, year).then(data => dispatch(setMoviesList(data))).catch(err => console.log(err))
   }, [sort, rate, reviewAmount, genres, countries, year, limit])
   let settings = {
     prevArrow: <LeftArrow />,

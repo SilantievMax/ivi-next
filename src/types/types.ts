@@ -1,15 +1,5 @@
 import { type } from "os";
 
-export interface IDataFilter {
-  limit: number,
-  sort: { type: string, query: string },
-  rate: number,
-  reviewAmount: number,
-  genres: string[],
-  countries: string[],
-  year: string,
-}
-
 export interface ILinks {
   title: string
   link: string

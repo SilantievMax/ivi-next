@@ -11,7 +11,6 @@ import { MdArrowBackIosNew } from 'react-icons/md'
 import { TfiTimer } from 'react-icons/tfi'
 import { Oval } from 'react-loader-spinner'
 import ReactPlayer from 'react-player'
-import { useSelector } from 'react-redux'
 import { Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { MemoBreadcrumbs } from '../../BreadCrumbNavigation/BreadCrumbNavigation'
@@ -19,11 +18,15 @@ import Meta from '../../seo/Meta'
 import styles from './filmpage.module.scss'
 import { Button } from '@/src/components/Button/Button'
 import Film from '@/src/components/Film/Film'
-import { selectPickedMovie } from '@/src/store/reducers/dataBaseReducer'
 import { IReviews } from '@/src/types/CommentsType'
 import { ICrew, IFilm, ITrailer } from '@/src/types/types'
 import { MoviesService } from '@/src/services/movies.service'
 import { CommentsService } from '@/src/services/comments-service/comments.service'
+import Slider from 'react-slick'
+import LeftArrow from '@/src/components/Arrows/LeftArrow'
+import RightArrow from '@/src/components/Arrows/RightArrow'
+import 'slick-carousel/slick/slick-theme.css'
+import 'slick-carousel/slick/slick.css'
 
 const LazyReviews = lazy(() => import('@/src/components/Reviews/Reviews'))
 
@@ -31,95 +34,75 @@ const FilmPage = () => {
   const [showActorsWindow, setShowActorsWindow] = useState<boolean>(false)
   const [showFullDescription, setShowFullDescription] = useState<boolean>(false)
   const [showFullList, setShowFullList] = useState<boolean>(false)
-  const [isLoading, setIsLoading] = useState<boolean>(true)
-  const pickedFilm = useSelector(selectPickedMovie)
   const [pickedTrailer, setPickedTrailer] = useState<ITrailer[]>([] as ITrailer[])
   const [crewList, setCrewList] = useState<ICrew[]>([])
   const [similar, setSimilar] = useState<IFilm[]>([] as IFilm[])
   const [data, setData] = useState<IFilm>({} as IFilm)
   const [reviews, setReviews] = useState<IReviews[]>([] as IReviews[])
-  const defaultTrailer = [{ id: 1, name: 'name', site: 'site', url: 'https://www.youtube.com/watch?v=YihPA42fdQ8' }]
+  const defaultTrailer = [{ id: 1, name: 'name', site: 'site', url: 'url' }]
   const {
     query: { id }
   } = useRouter()
   const { t } = useTranslation()
-
-  // Запрос на рецензии к фильму по id
-  // useEffect(() => {
-  //   fetch(`http://localhost:3004/comments/${id}/tree`, {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     }
-  //   })
-  //     .then(res => res.json())
-  //     .then(json => setReviews(json))
-  //     .catch(err => console.log(err))
-  // }, [id])
-
-
-  // useEffect(() => {
-  //   fetch(`http://localhost:3001/movies/${id}/videos`, {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     }
-  //   })
-  //     .then(res => res.json())
-  //     .then(json => (json.length !== 0 ? setPickedTrailer(json) : setPickedTrailer(defaultTrailer)))
-  //     .catch(err => console.log(err))
-  // }, [id])
-
   useEffect(() => {
-    // fetch(`http://localhost:3005/persons/${id}`, {
-    //   method: 'GET',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   }
-    // })
-    //   .then(res => res.json())
-    //   .then(json => setCrewList(json))
-    //   .catch(err => console.log(err))
     MoviesService.getMovieById(id).then(data => setData(data)).catch(err => console.log(err))
     MoviesService.getVideoById(id).then(data => data.length !== 0 ? setPickedTrailer(data) : setPickedTrailer(defaultTrailer)).catch(err => console.log(err))
     MoviesService.getAllActors(id).then(data => setCrewList(data)).catch(err => console.log(err))
     MoviesService.getSimilarById(id).then(data => setSimilar(data)).catch(err => console.log(err))
     CommentsService.loadFilmComments(id).then(data => setReviews(data)).catch(err => console.log(err))
   }, [id])
-
-
-  // useEffect(() => {
-  //   fetch(`http://localhost:3001/movies/${id}/similar`, {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     }
-  //   })
-  //     .then(res => res.json())
-  //     .then(json => setSimilar(json))
-  //     .catch(err => console.log(err))
-  // }, [id])
-
-
-  // useEffect(() => {
-  //   fetch(`http://localhost:3001/movies/${id}`, {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     }
-  //   })
-  //     .then(res => res.json())
-  //     .then(json => setData(json))
-  //     .catch(err => console.log(err))
-  //     .finally(() => setIsLoading(false))
-  // }, [id])
   const calcTime = (num: number) => {
     return `${Math.floor(num / 60)}${t('hour')} ${num % 60}${t('min')}`
   }
   if (!data.genres || !pickedTrailer.length || !similar.length || !crewList.length) return <Oval
     wrapperClass={styles.loader} color='rgba(255, 255, 255, .72)' secondaryColor='red' />
 
-
+  let settings = {
+    prevArrow: <LeftArrow />,
+    nextArrow: <RightArrow />,
+    adaptiveHeight: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 7,
+    slidesToScroll: 2,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1300,
+        settings: {
+          slidesToShow: 6,
+          slidesToScroll: 4,
+          initialSlide: 1
+        }
+      },
+      {
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 3,
+          initialSlide: 1
+        }
+      },
+      {
+        breakpoint: 750,
+        settings: {
+          centerMode: true,
+          infinite: true,
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          initialSlide: 1
+        }
+      },
+      {
+        breakpoint: 550,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 1
+        }
+      }
+    ]
+  }
 
   return (
     <Meta title={`${i18n.language === 'en' ? data.nameEn : data.nameRu} (${t('film')}${data.year})`}
@@ -259,7 +242,8 @@ const FilmPage = () => {
           <div className={styles.filmSectionContainer}>
             <div className={styles.playerWindow}>
               <div className={styles.player}>
-                <ReactPlayer width='100%' className={styles.playerWrapper} url={pickedTrailer[0].url} />
+                {pickedTrailer.filter(el => el.url.includes('youtube')).length !== 0 ? <ReactPlayer width='100%' className={styles.playerWrapper} url={pickedTrailer.filter(el => el.url.includes('youtube'))[0].url} />
+                : <img style={{width: '100%'}} className={styles.playerWrapper} src='https://preview.redd.it/9au44hkcmdr61.png?width=640&crop=smart&auto=webp&s=b5acf512bc657edd0cb2107866af0573d1ee3ab0' alt='no-video-img'/>}
                 <div className={styles.playerOptions}>
                   <div className={styles.option}>
                     <BsPlay className={styles.playImg} />
@@ -284,7 +268,7 @@ const FilmPage = () => {
                   <span
                     className={`${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}>{data.year}</span>
                   <span
-                    className={styles.filmDescription__font}>{`${calcTime(data.filmLength)} ${data.ratingAgeLimits.slice(3)}+`}</span>
+                    className={styles.filmDescription__font}>{`${calcTime(data.filmLength)} ${!data.ratingAgeLimits ? 0 : data.ratingAgeLimits.slice(3)}+`}</span>
                 </div>
                 <div className={styles.genreParams}>
                   <span
@@ -394,14 +378,21 @@ const FilmPage = () => {
           <div className={styles.galleryWrapper}>
             <span
               className={styles.filmPage__titleText}>{`${t('watchWithFilm')} «${i18n.language === 'en' ? data.nameEn : data.nameRu}» ${t('watches')}`}</span>
-            <Swiper className={styles.sliderWrapper} navigation modules={[Navigation]} slidesPerView={'auto'}
-                    spaceBetween={20}>
+            {/*<Swiper className={styles.sliderWrapper} navigation modules={[Navigation]} slidesPerView={'auto'}*/}
+            {/*        spaceBetween={20}>*/}
+            {/*  {similar.map((el, idx) => (*/}
+            {/*    <SwiperSlide key={idx} className={styles.swiper_slide}>*/}
+            {/*      <Film type='slider' key={idx} film={el} />*/}
+            {/*    </SwiperSlide>*/}
+            {/*  ))}*/}
+            {/*</Swiper>*/}
+            <Slider className={styles.sliderPadding} {...settings}>
               {similar.map((el, idx) => (
-                <SwiperSlide key={idx} className={styles.swiper_slide}>
-                  <Film type='slider' key={idx} film={el} />
-                </SwiperSlide>
-              ))}
-            </Swiper>
+                  <SwiperSlide key={idx} className={styles.swiper_slide}>
+                    <Film type='slider' key={idx} film={el} />
+                  </SwiperSlide>
+                ))}
+            </Slider>
           </div>
           <div className={styles.galleryWrapper}>
             <span className={`${styles.filmPage__titleText} ${styles.underline}`}>{t('actorsSecTitle')}</span>

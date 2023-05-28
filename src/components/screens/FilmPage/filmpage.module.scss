@@ -402,10 +402,13 @@
   }
 }
 
+.sliderPadding {
+  padding-top: 20px;
+}
+
 .player {
   width: 100%;
   row-gap: 20px;
-  position: -webkit-sticky;
   position: sticky;
   top: 32px;
   display: flex;

@@ -23,7 +23,7 @@ export const MoviesService = {
     return data
   },
   async getMovieById(id: any) {
-    const { data } = await axios.get<IFilm>(`/movies/${id}`, {
+    const { data } = await axios.get<IFilm>(`${process.env.MOVIES_URL}/movies/${id}`, {
       headers: {
         'Content-Type': 'application/json'
       }

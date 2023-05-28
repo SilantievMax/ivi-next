@@ -82,7 +82,6 @@ const Breadcrumbs = ({
   if (!breadcrumbs) {
     return null
   }
-   console.log('genres=dasdas'.split('=')[1])
   return (
     <nav
       className={`${cn(styles.breadcrumb, { [styles.pointBreadcrumb]: inactiveItemClassName === 'point', [styles.slashBreadcrumb]: activeItemClassName === 'slash' })}`}

@@ -63,15 +63,17 @@ const HeaderCategory = () => {
       <div className={`${styles.list} ${styles.border}`}>
         <span className={styles.listHeader}>Жанры</span>
         {allGenres.map((el, idx) =>
+          idx < 18 ?
           <Link className={styles.listFont} onClick={() => {
             addGenre(el.id, capitalize(el.nameRu))
           }} key={idx} href='/movies'><span>
               {capitalize(el.nameRu)}
-            </span></Link>)}
+            </span></Link> : '')}
         <span className={styles.listHeader}>Страны </span>
         {countryArray.map((el, idx) =>
+          idx < 16 ?
           <Link key={idx} className={styles.listFont} onClick={() => addCountry(el.id, el.nameRu)}
-                     href='/movies'><span>{el.nameRu}</span></Link>
+                     href='/movies'><span>{el.nameRu}</span></Link> : ''
         )}
         <span className={styles.listHeader}>Годы</span>
         {headerYearArray.map((el, idx) =>
