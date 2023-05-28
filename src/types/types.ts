@@ -1,6 +1,5 @@
 import { type } from "os";
 
-
 export interface ILinks {
   title: string
   link: string

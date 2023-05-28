@@ -83,7 +83,7 @@ const Header: FC = () => {
         {isAuth ? <Button img={bell.src} onMouseOver={() => handleMouseOver('bell')} /> : <Button img={bell.src} onMouseOver={() => handleMouseOver('')} />}
         <Button className={styles.custom_btn} img={paple.src} onMouseOver={() => handleMouseOver('profile')} />
       </div>
-      {isHovering && <ModalWindow onMouseLeave={handleMouseOut} children={renderComponentListCategory()} />}
+      {isHovering && window.innerWidth > 1050 && <ModalWindow onMouseLeave={handleMouseOut} children={renderComponentListCategory()} />}
     </header>
   )
 }
