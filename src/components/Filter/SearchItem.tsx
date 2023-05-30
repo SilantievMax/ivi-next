@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './filter.module.scss'
 import { TextField, ThemeProvider } from '@mui/material'
 import Link from 'next/link'
@@ -6,8 +6,6 @@ import { createTheme } from '@mui/material/styles'
 import { useOuside } from '@/src/hooks/useOutside'
 import { useTranslation } from 'react-i18next'
 import i18n from 'i18next'
-
-
 
 interface IFilter {
 

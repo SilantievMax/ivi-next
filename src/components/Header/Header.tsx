@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React, { FC, useEffect, useRef, useState } from 'react'
+import React, { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import styles from './Header.module.scss'

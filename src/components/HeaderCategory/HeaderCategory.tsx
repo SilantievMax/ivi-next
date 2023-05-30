@@ -1,44 +1,33 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  selectCountries, selectCountryList,
+  selectCountries,
   selectGenres,
-  selectGenresList, setCountries, setCountriesList,
+  setCountries, setCountriesList,
   setGenres,
   setGenresList, setPickedYear
 } from '@/src/store/reducers/filterReducer'
-import { headerDataArray, headerYearArray } from '@/src/globalData/globalData'
+import { headerDataArray, headerYearArray, sortData } from '@/src/globalData/globalData'
 import { IGenre } from '@/src/types/types'
 import styles from './HeaderCategory.module.scss'
 import Link from 'next/link'
 import { capitalize } from '@mui/material'
+import { useTranslation } from 'react-i18next'
+import { MoviesService } from '@/src/services/movies.service'
 
 const HeaderCategory = () => {
   const [allGenres, setAllGenres] = useState<IGenre[]>([])
   const [countryArray, setCountry] = useState<IGenre[]>([])
-  useEffect(() => {
-    fetch('http://localhost:3001/movies/filters/genres', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(res => res.json())
-      .then(json => setAllGenres(json))
-      .catch(err => console.log(err))
-    fetch('http://localhost:3001/movies/filters/countries', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(res => res.json())
-      .then(json => setCountry(json))
-      .catch(err => console.log(err))
-  }, [])
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const genresStore = useSelector(selectGenres)
   const countriesStore = useSelector(selectCountries)
+
+  useEffect(() => {
+    MoviesService.getGenres().then(json => setAllGenres(json.sort(sortData('id')))).catch(err => console.log(err))
+    MoviesService.getCountries().then(json => setCountry(json.sort(sortData('id')))).catch(err => console.log(err))
+  }, [])
+
   const addGenre = (id: number, genre: string) => {
     if (genresStore.indexOf(id) === -1) {
       dispatch(setGenres([id]))
@@ -61,33 +50,33 @@ const HeaderCategory = () => {
   return (
     <div className={styles.headerContent}>
       <div className={`${styles.list} ${styles.border}`}>
-        <span className={styles.listHeader}>Жанры</span>
+        <span className={styles.listHeader}>{t('genres')}</span>
         {allGenres.map((el, idx) =>
           idx < 18 ?
-          <Link className={styles.listFont} onClick={() => {
-            addGenre(el.id, capitalize(el.nameRu))
-          }} key={idx} href='/movies'><span>
+            <Link className={styles.listFont} onClick={() => {
+              addGenre(el.id, capitalize(el.nameRu))
+            }} key={idx} href='/movies'><span>
               {capitalize(el.nameRu)}
             </span></Link> : '')}
-        <span className={styles.listHeader}>Страны </span>
+        <span className={styles.listHeader}>{t('countries')}</span>
         {countryArray.map((el, idx) =>
           idx < 16 ?
-          <Link key={idx} className={styles.listFont} onClick={() => addCountry(el.id, el.nameRu)}
-                     href='/movies'><span>{el.nameRu}</span></Link> : ''
+            <Link key={idx} className={styles.listFont} onClick={() => addCountry(el.id, el.nameRu)}
+                  href='/movies'><span>{el.nameRu}</span></Link> : ''
         )}
-        <span className={styles.listHeader}>Годы</span>
+        <span className={styles.listHeader}>{t('years')}</span>
         {headerYearArray.map((el, idx) =>
           <Link key={idx}
                 className={styles.listFont}
                 href='/movies'
                 onClick={() => {
                   dispatch(setPickedYear(el.split(' ')[0]))
-                }}><span>{el}</span></Link>)}
+                }}><span>{t(el)}</span></Link>)}
       </div>
       <div className={`${styles.list} ${styles.list__secondBlock}`}>
         {headerDataArray.map((el, idx) => <Link key={idx}
                                                 href={el.link}
-                                                className={styles.listFont}><span>{el.content}</span></Link>)}
+                                                className={styles.listFont}><span>{t(el.content)}</span></Link>)}
       </div>
     </div>
   )

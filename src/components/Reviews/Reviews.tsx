@@ -1,16 +1,15 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { FC } from 'react'
-import { Navigation } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/navigation'
-import { Swiper, SwiperSlide } from 'swiper/react'
-
 import styles from './Reviews.module.scss'
 import Review from './Rewiew/Review'
-import useWindowSize from './widthWindow'
 import { Button } from '@/src/components/Button/Button'
 import { IReviews } from '@/src/types/CommentsType'
+import Slider from 'react-slick'
+import LeftArrow from '@/src/components/Arrows/LeftArrow'
+import RightArrow from '@/src/components/Arrows/RightArrow'
 
 interface ReviewsProps {
   reviews: IReviews[]
@@ -24,6 +23,25 @@ const Reviews: FC<ReviewsProps> = ({ titleBtn, reviews, btn, aboutTheFilm, numbe
   const {
     query: { id }
   } = useRouter()
+
+  let settings = {
+    prevArrow: <LeftArrow />,
+    nextArrow: <RightArrow />,
+    speed: 500,
+    infinite: true,
+    variableWidth: false,
+    slidesToShow: 2,
+    slidesToScroll: 2,
+    responsive: [
+      {
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        }
+      }
+    ]
+  }
 
   return (
     <section className={styles.reviews}>
@@ -39,17 +57,17 @@ const Reviews: FC<ReviewsProps> = ({ titleBtn, reviews, btn, aboutTheFilm, numbe
         </Link>
       </header>
       <div className={styles.gallery}>
-        <Swiper navigation modules={[Navigation]} freeMode={true} spaceBetween={20} slidesPerView={useWindowSize('reviews')}>
+        <Slider {...settings}>
           {reviews ? (
-            reviews.map((feedback: any, i: number) => (
-              <SwiperSlide key={feedback.id}>
+            reviews.map((feedback: any) => (
+              <div key={feedback.id}>
                 <Review rewiew={feedback} />
-              </SwiperSlide>
+              </div>
             ))
           ) : (
             <Review />
           )}
-        </Swiper>
+        </Slider>
       </div>
       <Link href='#*' className={styles.comments_btn_mobile}>
         <Button size='border' children='Оставить отзывы' />

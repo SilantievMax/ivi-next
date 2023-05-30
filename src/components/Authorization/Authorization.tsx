@@ -8,7 +8,6 @@ import LoginForm from './LoginForm/LoginForm'
 import Message from './Message/Message'
 import RegisterForm from './RegisterForm/RegisterForm'
 import { setOpenAuth } from '@/src/store/reducers/authReducer'
-import { getLocalStorage } from '@/src/utils/local-storage'
 
 interface IMessagesDisctop {
   messages?: string

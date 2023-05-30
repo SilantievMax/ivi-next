@@ -1,41 +1,90 @@
-.adminPage{
-    display: flex;
+.adminPage {
+  display: flex;
+  min-height: 100vh;
+}
 
+.menu {
+  border-right: solid;
+  border-radius: 10px;
+  width: 100px;
+  height: 100px;
+
+  li {
+    cursor: pointer;
+    margin: 10px 0;
+  }
+
+  li:hover {
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.651);
+  }
 }
-.menu{
-    border-right: solid;
-    border-radius: 10px;
-    width: 100px;
-    height: 100px;
-    li{
-        cursor: pointer;
-        margin: 10px 0;
+
+.adminPanel {
+  padding: 0 30px;
+  // border: solid;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      margin-bottom: 10px;
     }
-    li:hover{
-        cursor: pointer;
-        color: rgba(255, 255, 255, 0.651);
-    }
-}
-.adminPanel{
-    padding: 0 30px;
-    // border: solid;
+  }
+
+  &__list {
+    padding-top: 30px;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    &__header{
-        display: flex;
-        justify-content: space-between;
-        button{
-            margin-bottom: 10px;
-        }
-    }
-    &__list{
-        padding-top: 30px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
+    gap: 10px;
+  }
 }
-.loader{
-    justify-content: center;
+
+.modalMovieContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  max-width: 300px;
+  padding-right: 20px;
+}
+
+.genresBox {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  padding-bottom: 10px;
+  padding-right: 20px;
+}
+
+.inputText {
+  background-color: white;
+  border-radius: 5px;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  padding-bottom: 15px;
+}
+
+.loader {
+  justify-content: center;
+}
+
+.modalGenreContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.genresContainer {
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 10px;
+  display: flex;
+  flex-direction: row;
 }

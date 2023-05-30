@@ -25,6 +25,7 @@ import { Button } from '@/src/components/Button/Button'
 import { IGenre } from '@/src/types/types'
 import { yearArray } from '@/src/globalData/globalData'
 import SearchItem from '@/src/components/Filter/SearchItem'
+import i18n from 'i18next'
 
 
 const Filter = () => {
@@ -124,7 +125,7 @@ const Filter = () => {
                   <div key={idx} onClick={() => {
                     addGenre(el.id, capitalize(el.nameRu))
                   }}>
-                    <FilterLi id={el.id} content={capitalize(el.nameRu)}
+                    <FilterLi id={el.id} content={i18n.language === 'en' && el.nameEn ? capitalize(el.nameEn) : capitalize(el.nameRu)}
                               className={styles.filterDropdown__item} />
                   </div>
                 ))}

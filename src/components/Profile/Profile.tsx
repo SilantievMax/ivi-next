@@ -1,21 +1,14 @@
-import axios from 'axios';
 import Link from 'next/link';
 import React, { FC } from 'react';
 import { Oval } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
-
-
-
 import LanguageBtn from '../LanguageBtn/LanguageBtn';
-
-
-
 import styles from './Profile.module.scss';
 import { Button } from '@/src/components/Button/Button';
 import { bookmark, card, clipboard, rectangleStack, share, trophy, tvCategory, union } from '@/src/img/imges';
 import { googleAuth, logout, vkAuth } from '@/src/services/auth.service';
 import { setOpenAuth } from '@/src/store/reducers/authReducer';
-import { isAdmin, isLoading, setAuth, user } from '@/src/store/reducers/userReducers';
+import { isAdmin, isLoading, setAuth } from '@/src/store/reducers/userReducers';
 import { AppDispatch } from '@/src/store/store';
 import { useTranslation } from 'react-i18next';
 
@@ -36,15 +29,7 @@ const Profile: FC = () => {
   const dispatch = useDispatch<AppDispatch>()
   const admin = useSelector(isAdmin)
   const { t } = useTranslation()
-  // const google = async () => {
-  //   try {
-  //     const { data } = await axios.get('http://localhost:3006/auth/vk')
-  //     console.log('11')
-  //     console.log(data)
-  //   } catch (e) {
-  //     console.log(e)
-  //   }
-  // }
+
   return (
     <div className={styles.cards}>
       <div className={styles.card_l}>

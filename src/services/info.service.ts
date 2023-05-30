@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IFilm, ITrailer } from '../types/types';
+import { IFilm } from '../types/types';
 
 axios.defaults.baseURL = process.env.INFO_URL
 
@@ -9,5 +9,5 @@ export const InfoService = {
       year.split(' ')[0]
     }`)
     return data.rows as IFilm
-  }
+  },
 }
