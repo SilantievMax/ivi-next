@@ -24,15 +24,15 @@ const Film = (props: { film: IFilm , type?: string} ) => {
           <div className={styles.filmCard__inside}>
             <div className={styles.filmCard__inside__content}>
               <span className={styles.rateFont}>{props.film.ratingKinopoisk}</span>
-              <span className={`${styles.filmCard__text} ${styles.gray}`}>сюжет</span>
+              <span className={`${styles.filmCard__text} ${styles.gray}`}>{t('plot')}</span>
               <div className={styles.progress}></div>
-              <span className={styles.filmCard__text}>{`${props.film.year}, ${props.film.countries[0].nameRu}, ${props.film.genres[0].nameRu}`}</span>
-              <span className={styles.filmCard__text}>{`${props.film.filmLength} мин.`}</span>
+              <span className={styles.filmCard__text}>{`${props.film.year}, ${i18n.language === 'en' && props.film.countries[0].nameEn ? props.film.countries[0].nameEn : props.film.countries[0].nameRu}, ${i18n.language === 'en' && props.film.genres[0].nameEn ? props.film.genres[0].nameEn : props.film.genres[0].nameRu}`}</span>
+              <span className={styles.filmCard__text}>{`${props.film.filmLength} ${t('min')}.`}</span>
             </div>
           </div>
         </div>
         <div className={styles.filmCard__description}>
-          <span className={styles.filmTitle}>{i18n.language === 'en' ? props.film.nameEn : props.film.nameRu}</span>
+          <span className={styles.filmTitle}>{i18n.language === 'en' && props.film.nameEn ? props.film.nameEn : props.film.nameRu}</span>
           <span className={styles.subscribeText}>{t('subscribe')}</span>
         </div>
       </div>

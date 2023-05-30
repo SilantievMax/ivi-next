@@ -11,8 +11,6 @@ import { MdArrowBackIosNew } from 'react-icons/md'
 import { TfiTimer } from 'react-icons/tfi'
 import { Oval } from 'react-loader-spinner'
 import ReactPlayer from 'react-player'
-import { Navigation } from 'swiper'
-import { Swiper, SwiperSlide } from 'swiper/react'
 import { MemoBreadcrumbs } from '../../BreadCrumbNavigation/BreadCrumbNavigation'
 import Meta from '../../seo/Meta'
 import styles from './filmpage.module.scss'
@@ -122,7 +120,7 @@ const FilmPage = () => {
                     className={`${styles.popupBtn} ${styles.filmDescription__font} ${styles.filmDescription__font__interact}`}
                   >
                     <MdArrowBackIosNew size={25} />
-                    <span> К фильму</span>
+                    <span>{t('backToFilm')}</span>
                   </div>
 
                   <div className={styles.popup__crewWrapper}>
@@ -378,19 +376,11 @@ const FilmPage = () => {
           <div className={styles.galleryWrapper}>
             <span
               className={styles.filmPage__titleText}>{`${t('watchWithFilm')} «${i18n.language === 'en' ? data.nameEn : data.nameRu}» ${t('watches')}`}</span>
-            {/*<Swiper className={styles.sliderWrapper} navigation modules={[Navigation]} slidesPerView={'auto'}*/}
-            {/*        spaceBetween={20}>*/}
-            {/*  {similar.map((el, idx) => (*/}
-            {/*    <SwiperSlide key={idx} className={styles.swiper_slide}>*/}
-            {/*      <Film type='slider' key={idx} film={el} />*/}
-            {/*    </SwiperSlide>*/}
-            {/*  ))}*/}
-            {/*</Swiper>*/}
             <Slider className={styles.sliderPadding} {...settings}>
               {similar.map((el, idx) => (
-                  <SwiperSlide key={idx} className={styles.swiper_slide}>
+                  <div key={idx} className={styles.swiper_slide}>
                     <Film type='slider' key={idx} film={el} />
-                  </SwiperSlide>
+                  </div>
                 ))}
             </Slider>
           </div>

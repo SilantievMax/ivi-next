@@ -1,16 +1,7 @@
 import React, {
-  AllHTMLAttributes,
-  ButtonHTMLAttributes,
-  DetailedHTMLProps,
-  HTMLAttributes,
   ReactNode,
-  useEffect,
-  useState
 } from 'react'
 import { AiOutlineDown, AiOutlineUp } from 'react-icons/ai';
-
-
-
 import styles from './filter.module.scss';
 import { useOuside } from '@/src/hooks/useOutside';
 import { useSelector } from 'react-redux'
@@ -19,8 +10,6 @@ import {
   selectGenresList,
   selectPickedYear, selectRate, selectReviewAmount
 } from '@/src/store/reducers/filterReducer'
-import { IGenre } from '@/src/types/types'
-
 
 interface IFilter {
   title: string

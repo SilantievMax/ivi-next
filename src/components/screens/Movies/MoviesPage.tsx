@@ -41,17 +41,6 @@ const MoviesPage: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   useEffect(() => {
-    // fetch(
-    //   `http://localhost:3003/info?limit=${limit}&order=${sort.query}&minRating=${rate}&numRatings=${reviewAmount}&genres=${genres.toString()}&countries=${countries.toString()}&years=${
-    //     year.split(' ')[0]
-    //   }`,
-    //   {
-    //     method: 'GET'
-    //   }
-    // )
-    //   .then(res => res.json())
-    //   .then(json => dispatch(setMoviesList(json.rows)))
-    //   .catch(err => console.log(err))
     InfoService.getAll(limit, sort, rate, reviewAmount, genres, countries, year).then(data => dispatch(setMoviesList(data))).catch(err => console.log(err))
   }, [sort, rate, reviewAmount, genres, countries, year, limit])
   let settings = {
@@ -143,16 +132,10 @@ const MoviesPage: FC = () => {
             {showDescription ? `${t('collapseBtn')}` : `${t('expandBtn')}`}
           </span>
         </div>
-
-        {/* <div className={styles.filmCardsWrapper}>
-        {data.map((el, idx) =>
-          <Film key={idx} src={el.posterUrl} rate={el.ratingKinopoisk}/>
-        )}
-      </div> */}
         <Slider {...settings}>
           {headersArray.map((el, idx) => (
             <Button color='lightGray' size='circle' key={idx} className={styles.filterBtn}>
-              <span className={`${styles.filterBtn__font} ${styles.greyText}`}>{el}</span>
+              <span className={`${styles.filterBtn__font} ${styles.greyText}`}>{t(`${el}`)}</span>
             </Button>
           ))}
         </Slider>

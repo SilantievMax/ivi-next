@@ -59,44 +59,43 @@ export const genreList = [
 ]
 
 export const headersArray = [
-  '2022 год',
-  '2021 год',
-  '2020 год',
-  '2019 год',
-  '2018 год',
-  'Бесплатные',
-  'Русские фильмы',
-  'Советские фильмы',
-  'Американские фильмы',
-  'Индийские фильмы',
-  'Комедии',
-  'Ужасы',
-  'Фантастические',
-  'Мелодрамы',
-  'Триллеры',
-  'Драмы'
+  '2022',
+  '2021',
+  '2020',
+  '2019',
+  '2018',
+  'freeFilms',
+  'rusFilms',
+  'suMovies',
+  'usaMovies',
+  'indiaMovies',
+  'comedy',
+  'horrors',
+  'fantastic',
+  'drama',
+  'thriller',
 ]
 
 export const headerYearArray = [
-  '2020 год',
-  '2021 год',
-  '2022 год',
-  '2023 год',
+  '2023',
+  '2022',
+  '2021',
+  '2020',
 ]
 
 export const headerDataArray = [
-  {content: 'Новинки', link: 'https://www.ivi.ru/new/movie-new'},
-  {content: 'Подборки', link: 'https://www.ivi.ru/collections'},
-  {content: 'Иви.Рейтинг', link: 'https://www.ivi.ru/movies/all?ivi_rating_10_gte=7&sort=ivi&rating_part=main&rating_model=ready'},
-  {content: 'Скоро на Иви', link: 'https://www.ivi.ru/new/soon-ivi'},
-  {content: 'Трейлеры', link: 'https://www.ivi.ru/trailers'},
-  {content: 'Что посмотреть', link: 'https://www.ivi.ru/goodmovies'},
-  {content: 'Фильмы в HD', link: 'https://www.ivi.ru/collections/movies-hd'},
-  {content: 'Выбор Иви', link: 'https://www.ivi.ru/collections/vyibor-ivi'},
-  {content: 'Новинки подписки', link: 'https://www.ivi.ru/collections/very-new-svod?sort=priority_in_collection'},
-  {content: 'Фильмы Amediateka', link: 'https://www.ivi.ru/collections/filmyi-amediateka'},
-  {content: 'Популярные фильмы', link: 'https://www.ivi.ru/collections/best-movies'},
-  {content: 'Фильмы Иви', link: 'https://www.ivi.ru/collections/ivi-originals'},
+  {content: 'New', link: 'https://www.ivi.ru/new/movie-new'},
+  {content: 'Collections', link: 'https://www.ivi.ru/collections'},
+  {content: 'EvieRating', link: 'https://www.ivi.ru/movies/all?ivi_rating_10_gte=7&sort=ivi&rating_part=main&rating_model=ready'},
+  {content: 'ComingSoon', link: 'https://www.ivi.ru/new/soon-ivi'},
+  {content: 'Trailers', link: 'https://www.ivi.ru/trailers'},
+  {content: 'WhatToSee', link: 'https://www.ivi.ru/goodmovies'},
+  {content: 'MoviesInHD', link: 'https://www.ivi.ru/collections/movies-hd'},
+  {content: 'EvieChoice', link: 'https://www.ivi.ru/collections/vyibor-ivi'},
+  {content: 'SubscriptionNews', link: 'https://www.ivi.ru/collections/very-new-svod?sort=priority_in_collection'},
+  {content: 'Films', link: 'https://www.ivi.ru/collections/filmyi-amediateka'},
+  {content: 'PopularFilms', link: 'https://www.ivi.ru/collections/best-movies'},
+  {content: 'EvieFilms', link: 'https://www.ivi.ru/collections/ivi-originals'},
 ]
 
 export const mainPageSliderData = [
@@ -118,3 +117,7 @@ export const contentList = [
   'list7',
   'list8',
 ]
+
+export function sortData(data: string) {
+  return (a: any, b: any) => a[data] < b[data] ? -1 : 1
+}

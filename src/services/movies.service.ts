@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-import { ICrew, IFilm, ITrailer } from '../types/types'
+import { ICrew, IFilm, IGenre, ITrailer } from '../types/types'
+import $api from '@/src/services/index'
 
 axios.defaults.baseURL = process.env.MOVIES_URL
 
@@ -45,5 +46,45 @@ export const MoviesService = {
       }
     })
     return data
-  }
+  },
+  async getGenres() {
+    const {data} = await axios.get<IGenre[]>(`${process.env.MOVIES_URL}/movies/filters/genres`, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    return data
+  },
+  async putGenres(genreObject: IGenre) {
+    return await $api.put<IGenre>(`${process.env.MOVIES_URL}/movies/update/genre`, {
+      id: genreObject.id,
+      nameRu: genreObject.nameRu,
+      nameEn: genreObject.nameEn
+    })
+  },
+
+  async getCountries() {
+    const {data} = await axios.get<IGenre[]>(`${process.env.MOVIES_URL}/movies/filters/countries`, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    return data
+  },
+
+  async putCountries(countryObject: IGenre) {
+    return await $api.put<IGenre>(`${process.env.MOVIES_URL}/movies/update/country`, {
+      id: countryObject.id,
+      nameRu: countryObject.nameRu,
+      nameEn: countryObject.nameEn
+    })
+  },
+
+  async putFilm(film: IGenre) {
+    return await $api.put<IFilm>(`${process.env.MOVIES_URL}/movies/update/movie`, {
+      id: film.id,
+      nameRu: film.nameRu,
+      nameEn: film.nameEn
+    })
+  },
 }

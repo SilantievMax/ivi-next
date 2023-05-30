@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { AiOutlineCheck } from 'react-icons/ai'
 import { useSelector } from 'react-redux'
 
@@ -13,7 +13,6 @@ interface ILi {
 }
 const FilterLi = (props: ILi) => {
   const { content, className, id } = props
-  const [active, setActive] = useState<boolean>(false)
   const currentYear = useSelector(selectPickedYear)
   const pickedGenres = useSelector(selectGenres)
   const pickedCountries = useSelector(selectCountries)
