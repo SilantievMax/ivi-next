@@ -1,12 +1,9 @@
-import $api from '.';
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import $api from '.'
+import { createAsyncThunk } from '@reduxjs/toolkit'
+import axios from 'axios'
 
-
-
-import { IAuthResponse, IUser, LOCAL } from '../types/Auth';
-import { getLocalStorage } from '../utils/local-storage';
-
+import { IAuthResponse, IUser, LOCAL } from '../types/Auth'
+import { getLocalStorage } from '../utils/local-storage'
 
 export const AUTH_URL = process.env.AUTH_URL
 const configRefersh = {
@@ -42,8 +39,7 @@ export const logout = createAsyncThunk('auth/logout', async () => {
 
 /* checkAuth */
 export const checkAuth = createAsyncThunk<IAuthResponse>('auth/checkAuth', async (user, thunkApi) => {
-   try {
-    // console.log('checkAuth', configRefersh)
+  try {
     const { data } = await axios.get(`${AUTH_URL}/auth/refresh`, configRefersh)
     return data
   } catch (error) {
@@ -54,7 +50,6 @@ export const checkAuth = createAsyncThunk<IAuthResponse>('auth/checkAuth', async
 /* vk */
 export const vkAuth = createAsyncThunk<IAuthResponse>('auth/vkAuth', async (user, thunkApi) => {
   try {
-    // console.log('vkAuth')
     const { data } = await $api.get(`${AUTH_URL}/auth/vk`)
     return data
   } catch (error) {
@@ -65,7 +60,6 @@ export const vkAuth = createAsyncThunk<IAuthResponse>('auth/vkAuth', async (user
 /* google */
 export const googleAuth = createAsyncThunk<IAuthResponse>('auth/googleAuth', async (user, thunkApi) => {
   try {
-    // console.log('googleAuth')
     const { data } = await $api.get(`${AUTH_URL}/auth/google`)
     return data
   } catch (error) {

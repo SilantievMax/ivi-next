@@ -1,19 +1,21 @@
-import '@testing-library/jest-dom'
-import { render, screen } from '@testing-library/react'
-import { useRouter } from 'next/router'
-import { I18nextProvider } from 'react-i18next'
-import { Provider } from 'react-redux'
+import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
+import { useRouter } from 'next/router';
+import { I18nextProvider } from 'react-i18next';
+import { Provider } from 'react-redux';
 
-import MoviesPage from '@/src/components/screens/Movies/MoviesPage'
-import i18n from '@/src/i18next/i18n'
-import { store } from '@/src/store/store'
+
+
+import MoviesPage from '@/src/components/screens/Movies/MoviesPage';
+import i18n from '@/src/i18next/i18n';
+import { store } from '@/src/store/store';
+
 
 global.fetch = require('node-fetch')
 jest.mock('next/router', () => ({
   useRouter: jest.fn()
 }))
-jest.mock('swiper/css', () => '')
-jest.mock('swiper/css/navigation', () => '')
+jest.mock('react-slick', () => '')
 
 describe('MoviesPage', () => {
   it('Renders MoviesPage', () => {

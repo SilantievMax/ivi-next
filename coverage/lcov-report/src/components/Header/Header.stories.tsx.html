@@ -15,69 +15,41 @@
         }
     </style>
 </head>
-<<<<<<< HEAD
     
-=======
-
->>>>>>> main
 <body>
 <div class='wrapper'>
     <div class='pad1'>
         <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/components/Header</a> Header.stories.tsx</h1>
         <div class='clearfix'>
-<<<<<<< HEAD
             
-=======
-
->>>>>>> main
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>0/21</span>
             </div>
-<<<<<<< HEAD
         
             
-=======
-
-
->>>>>>> main
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
                 <span class='fraction'>0/1</span>
             </div>
-<<<<<<< HEAD
         
             
-=======
-
-
->>>>>>> main
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
                 <span class='fraction'>0/1</span>
             </div>
-<<<<<<< HEAD
         
             
-=======
-
-
->>>>>>> main
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>0/21</span>
             </div>
-<<<<<<< HEAD
         
             
-=======
-
-
->>>>>>> main
         </div>
         <p class="quiet">
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
@@ -101,7 +73,18 @@
 <a name='L8'></a><a href='#L8'>8</a>
 <a name='L9'></a><a href='#L9'>9</a>
 <a name='L10'></a><a href='#L10'>10</a>
-<a name='L11'></a><a href='#L11'>11</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -111,16 +94,38 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import '../../styles/globals.scss'</span></span></span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { I18nextProvider } from 'react-i18next'</span></span></span>
+<span class="cstat-no" title="statement not covered" >import { Provider } from 'react-redux'</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >import '../../../styles/globals.scss'</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >import Header from './Header'</span>
+<span class="cstat-no" title="statement not covered" >import i18n from '@/src/i18next/i18n'</span>
+<span class="cstat-no" title="statement not covered" >import { store } from '@/src/store/store'</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >export default {</span>
 <span class="cstat-no" title="statement not covered" >  title: 'Header',</span>
 <span class="cstat-no" title="statement not covered" >  component: Header</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export const Default = () =&gt; &lt;Header /&gt;</span>
+<span class="cstat-no" title="statement not covered" >export const Default = () =&gt; (</span>
+<span class="cstat-no" title="statement not covered" >  &lt;Provider store={store}&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;I18nextProvider i18n={i18n}&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;Header /&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/I18nextProvider&gt;</span>
+<span class="cstat-no" title="statement not covered" >  &lt;/Provider&gt;</span>
+<span class="cstat-no" title="statement not covered" >)</span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -128,11 +133,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-<<<<<<< HEAD
-                at 2023-05-12T07:57:53.273Z
-=======
-                at 2023-05-04T06:24:53.745Z
->>>>>>> main
+                at 2023-06-02T08:33:25.916Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
@@ -144,7 +145,4 @@
         <script src="../../../block-navigation.js"></script>
     </body>
 </html>
-<<<<<<< HEAD
     
-=======
->>>>>>> main

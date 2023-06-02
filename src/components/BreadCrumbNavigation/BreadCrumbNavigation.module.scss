@@ -20,7 +20,6 @@
 }
 
 .breadcrumb li:first-child {
-  // pointer-events: visible !important;
   cursor: pointer !important;
   transition-duration: 80ms;
 }
@@ -120,8 +119,3 @@
 .pointBreadcrumb {
   color: rgba(255, 255, 255, 0.562);
 }
-
-// .breadcrumb li a:hover {
-//   color: #fefdff;
-//   transition-duration: 80ms;
-// }

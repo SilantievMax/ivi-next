@@ -15,77 +15,41 @@
         }
     </style>
 </head>
-<<<<<<< HEAD
     
-=======
-
->>>>>>> main
 <body>
 <div class='wrapper'>
     <div class='pad1'>
         <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/components/Reviews</a> widthWindow.ts</h1>
         <div class='clearfix'>
-<<<<<<< HEAD
             
-            <div class='fl pad1y space-right2'>
-                <span class="strong">81.25% </span>
-                <span class="quiet">Statements</span>
-                <span class='fraction'>26/32</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">44.44% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>4/9</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
-                <span class="quiet">Functions</span>
-                <span class='fraction'>2/2</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">81.25% </span>
-                <span class="quiet">Lines</span>
-                <span class='fraction'>26/32</span>
-            </div>
-        
-            
-=======
-
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
                 <span class='fraction'>0/32</span>
             </div>
-
-
+        
+            
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
                 <span class='fraction'>0/1</span>
             </div>
-
-
+        
+            
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
                 <span class='fraction'>0/1</span>
             </div>
-
-
+        
+            
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
                 <span class='fraction'>0/32</span>
             </div>
-
-
->>>>>>> main
+        
+            
         </div>
         <p class="quiet">
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
@@ -97,11 +61,7 @@
             </div>
         </template>
     </div>
-<<<<<<< HEAD
-    <div class='status-line high'></div>
-=======
     <div class='status-line low'></div>
->>>>>>> main
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -135,72 +95,6 @@
 <a name='L30'></a><a href='#L30'>30</a>
 <a name='L31'></a><a href='#L31'>31</a>
 <a name='L32'></a><a href='#L32'>32</a>
-<<<<<<< HEAD
-<a name='L33'></a><a href='#L33'>33</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useEffect, useState } from 'react'
-&nbsp;
-import { useThrottle } from '@/src/hooks/useThrottle'
-&nbsp;
-export default function useWindowSize(item: 'reviews' | 'movie' | 'stringLength') {
-  const [windowSize, setWindowSize] = useState(0)
-&nbsp;
-  function handleResize() {
-    switch (item) {
-<span class="branch-0 cbranch-no" title="branch not covered" >      case 'reviews':</span>
-<span class="cstat-no" title="statement not covered" >        setWindowSize(window.innerWidth &gt; 600 &amp;&amp; window.innerWidth &lt;= 900 ? 2 : window.innerWidth &gt; 900 &amp;&amp; window.innerWidth &lt;= 1500 ? 2 : window.innerWidth &gt;= 1500 ? 2 : 1)</span>
-<span class="cstat-no" title="statement not covered" >        break</span>
-      case 'movie':
-        setWindowSize(window.innerWidth &gt; 600 &amp;&amp; window.innerWidth &lt;= 900<span class="branch-0 cbranch-no" title="branch not covered" > ? 3 </span>: window.innerWidth &gt; 900 &amp;&amp; window.innerWidth &lt;= 1500 ? 4<span class="branch-0 cbranch-no" title="branch not covered" > : window.innerWidth &gt;= 1500 ? 6 : 2)</span>
-        break
-<span class="branch-0 cbranch-no" title="branch not covered" >      case 'stringLength':</span>
-<span class="cstat-no" title="statement not covered" >        setWindowSize(window.innerWidth &gt; 600 &amp;&amp; window.innerWidth &lt;= 900 ? 70 : window.innerWidth &gt; 900 &amp;&amp; window.innerWidth &lt;= 1500 ? 150 : window.innerWidth &gt;= 1500 ? 200 : 100)</span>
-<span class="cstat-no" title="statement not covered" >        break</span>
-<span class="branch-0 cbranch-no" title="branch not covered" >      default:</span>
-<span class="cstat-no" title="statement not covered" >        setWindowSize(window.innerWidth &gt; 600 &amp;&amp; window.innerWidth &lt;= 900 ? 2 : window.innerWidth &gt; 900 &amp;&amp; window.innerWidth &lt;= 1500 ? 30 : window.innerWidth &gt;= 1500 ? 4 : 10)</span>
-<span class="cstat-no" title="statement not covered" >        break</span>
-    }
-  }
-  const thottleHandleResize = useThrottle(handleResize, 500)
-  useEffect(() =&gt; {
-    window.addEventListener('resize', thottleHandleResize)
-    thottleHandleResize()
-&nbsp;
-    return () =&gt; window.removeEventListener('resize', thottleHandleResize)
-  }, [])
-  return windowSize
-}
-=======
 <a name='L33'></a><a href='#L33'>33</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -265,7 +159,6 @@ export default function useWindowSize(item: 'reviews' | 'movie' | 'stringLength'
 <span class="cstat-no" title="statement not covered" >  }, [])</span>
 <span class="cstat-no" title="statement not covered" >  return windowSize</span>
 <span class="cstat-no" title="statement not covered" >}</span>
->>>>>>> main
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -273,11 +166,7 @@ export default function useWindowSize(item: 'reviews' | 'movie' | 'stringLength'
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-<<<<<<< HEAD
-                at 2023-05-12T07:57:53.273Z
-=======
-                at 2023-05-04T06:24:53.745Z
->>>>>>> main
+                at 2023-06-02T08:33:25.916Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
@@ -289,7 +178,4 @@ export default function useWindowSize(item: 'reviews' | 'movie' | 'stringLength'
         <script src="../../../block-navigation.js"></script>
     </body>
 </html>
-<<<<<<< HEAD
     
-=======
->>>>>>> main

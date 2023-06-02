@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { useRouter, withRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { MdArrowBackIosNew } from 'react-icons/md'
@@ -14,6 +14,8 @@ import FormReview from './FormReview/FormReview'
 import ReviewsList from './ReviewsList/ReviewsList'
 import styles from './ReviewsOnFilm.module.scss'
 import { useOuside } from '@/src/hooks/useOutside'
+import { CommentsService } from '@/src/services/comments-service/comments.service'
+import { MoviesService } from '@/src/services/movies.service'
 import { setAuth } from '@/src/store/reducers/userReducers'
 import { IReviews } from '@/src/types/CommentsType'
 import { IFilm } from '@/src/types/types'
@@ -40,32 +42,21 @@ const ReviewsOnFilm = () => {
   } = useRouter()
 
   useEffect(() => {
-    setSent(false)
-    fetch(`http://localhost:3004/comments/${id}/tree`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(res => res.json())
-      .then(json => setComment(json))
+    CommentsService.loadFilmComments(id)
+      .then(data => setComment(data))
       .catch(err => console.log(err))
-  }, [id, sent])
-  useEffect(() => {
-    fetch(`http://localhost:3001/movies/${id}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(res => res.json())
-      .then(json => setData(json))
+    MoviesService.getMovieById(id)
+      .then(data => setData(data))
       .catch(err => console.log(err))
   }, [id])
+  useEffect(() => {
+    setSent(false)
+  }, [sent])
 
   if (!data.id) {
     return <Oval wrapperClass={styles.loader} color='rgba(255, 255, 255, .72)' secondaryColor='red' />
   }
+
   return (
     <Meta title={nameEn ? `${t('reviews')} | ${i18n.language === 'en' ? nameEn : nameRu}` : `${t('reviews')}`}>
       <div className={styles.conteiner}>

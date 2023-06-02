@@ -1,8 +1,6 @@
 import React, { FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import 'swiper/css'
-import 'swiper/css/navigation'
 import Meta from '../../seo/Meta'
 import styles from './movies.module.scss'
 import { MemoBreadcrumbs } from '@/src/components/BreadCrumbNavigation/BreadCrumbNavigation'

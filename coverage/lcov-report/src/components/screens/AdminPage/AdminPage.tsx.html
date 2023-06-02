@@ -15,69 +15,41 @@
         }
     </style>
 </head>
-<<<<<<< HEAD
     
-=======
-
->>>>>>> main
 <body>
 <div class='wrapper'>
     <div class='pad1'>
         <h1><a href="../../../../index.html">All files</a> / <a href="index.html">src/components/screens/AdminPage</a> AdminPage.tsx</h1>
         <div class='clearfix'>
-<<<<<<< HEAD
             
-=======
-
->>>>>>> main
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
                 <span class='fraction'>0/39</span>
             </div>
-<<<<<<< HEAD
         
             
-=======
-
-
->>>>>>> main
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
                 <span class='fraction'>0/1</span>
             </div>
-<<<<<<< HEAD
         
             
-=======
-
-
->>>>>>> main
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
                 <span class='fraction'>0/1</span>
             </div>
-<<<<<<< HEAD
         
             
-=======
-
-
->>>>>>> main
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
                 <span class='fraction'>0/39</span>
             </div>
-<<<<<<< HEAD
         
             
-=======
-
-
->>>>>>> main
         </div>
         <p class="quiet">
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
@@ -170,37 +142,37 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import React, { FC, useState } from 'react'</span></span></span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >import { Button } from '../../Button/Button'</span>
-<span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >import styles from './AdminPage.module.scss'</span>
-<span class="cstat-no" title="statement not covered" >import ModalGanre from './ModalGanre/ModalGanre'</span>
-<span class="cstat-no" title="statement not covered" >import ModalMuvie from './ModalMuvie/ModalMuvie'</span>
+<span class="cstat-no" title="statement not covered" >import ModalGenre from '@/src/components/screens/AdminPage/ModalGenre/ModalGenre'</span>
+<span class="cstat-no" title="statement not covered" >import ModalMovie from '@/src/components/screens/AdminPage/ModalMovie/ModalMovie'</span>
+<span class="cstat-no" title="statement not covered" >import ModalCountry from '@/src/components/screens/AdminPage/ModalCountry/ModalCountry'</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >const AdminPage: FC = () =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  const [showModalMuvie, setShowModalMuvie] = useState(false)</span>
-<span class="cstat-no" title="statement not covered" >  const [showModalGange, setShowModalGange] = useState(false)</span>
+<span class="cstat-no" title="statement not covered" >  const [showModal, setShowModal] = useState&lt;number&gt;(0)</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  return (</span>
 <span class="cstat-no" title="statement not covered" >    &lt;div className={styles.adminPage}&gt;</span>
 <span class="cstat-no" title="statement not covered" >      &lt;div className={styles.menu}&gt;</span>
 <span class="cstat-no" title="statement not covered" >        &lt;ul&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;li&gt;Фильмы&lt;/li&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;li&gt;Жанры&lt;/li&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;li onClick={() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            setShowModal(1)</span>
+<span class="cstat-no" title="statement not covered" >          }}&gt;Фильмы&lt;/li&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;li onClick={() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            setShowModal(2)</span>
+<span class="cstat-no" title="statement not covered" >          }}&gt;Жанры&lt;/li&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;li onClick={() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            setShowModal(3)</span>
+<span class="cstat-no" title="statement not covered" >          }}&gt;Страны&lt;/li&gt;</span>
 <span class="cstat-no" title="statement not covered" >        &lt;/ul&gt;</span>
 <span class="cstat-no" title="statement not covered" >      &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >      &lt;div className={styles.adminPanel}&gt;</span>
 <span class="cstat-no" title="statement not covered" >        &lt;div className={styles.adminPanel__header}&gt;</span>
 <span class="cstat-no" title="statement not covered" >          &lt;h3&gt;Панель администратора&lt;/h3&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;div&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;Button size='border' children={'Добавть фильм'} onClick={() =&gt; setShowModalMuvie(!showModalMuvie)} /&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;Button size='border' children={'Добавть жанр'} onClick={() =&gt; setShowModalGange(!showModalGange)} /&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >        &lt;div className={styles.adminPanel__list}&gt;</span>
-<span class="cstat-no" title="statement not covered" >          {showModalMuvie &amp;&amp; &lt;ModalMuvie /&gt;}</span>
-<span class="cstat-no" title="statement not covered" >          {showModalGange &amp;&amp; &lt;ModalGanre /&gt;}</span>
-<span class="cstat-no" title="statement not covered" >          {!showModalMuvie &amp;&amp; !showModalGange &amp;&amp; &lt;div&gt;Список фильмов, жанров&lt;/div&gt;}</span>
+<span class="cstat-no" title="statement not covered" >          {showModal === 1 &amp;&amp; &lt;ModalMovie /&gt;}</span>
+<span class="cstat-no" title="statement not covered" >          {showModal === 2 &amp;&amp; &lt;ModalGenre /&gt;}</span>
+<span class="cstat-no" title="statement not covered" >          {showModal === 3 &amp;&amp; &lt;ModalCountry /&gt;}</span>
 <span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >      &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
@@ -215,11 +187,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-<<<<<<< HEAD
-                at 2023-05-12T07:57:53.273Z
-=======
-                at 2023-05-04T06:24:53.745Z
->>>>>>> main
+                at 2023-06-02T08:33:25.916Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>
@@ -231,7 +199,4 @@
         <script src="../../../../block-navigation.js"></script>
     </body>
 </html>
-<<<<<<< HEAD
     
-=======
->>>>>>> main

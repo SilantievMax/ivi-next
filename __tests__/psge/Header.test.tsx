@@ -12,8 +12,7 @@ global.fetch = require('node-fetch')
 jest.mock('next/router', () => ({
   useRouter: jest.fn()
 }))
-jest.mock('swiper/css', () => '')
-jest.mock('swiper/css/navigation', () => '')
+jest.mock('react-slick', () => '')
 
 describe('Header', () => {
   beforeEach(() => {
