@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { AppState } from '../store'
 import { HYDRATE } from 'next-redux-wrapper'
-import { IFilm, ITrailer } from '@/src/types/types'
 
+import { AppState } from '../store'
+
+import { IFilm, ITrailer } from '@/src/types/types'
 
 export interface filterItem {
   moviesList: IFilm[]
@@ -41,7 +42,6 @@ export const dataBaseSlice = createSlice({
     }
   },
 
-
   extraReducers: {
     [HYDRATE]: (state, action) => {
       return {
@@ -52,14 +52,7 @@ export const dataBaseSlice = createSlice({
   }
 })
 
-
-export const {
-  setMoviesList,
-  setPickedMovie,
-  setPickedMovieSimilars,
-  setPickedMovieTrailers,
-  setIsLoading
-} = dataBaseSlice.actions
+export const { setMoviesList, setPickedMovie, setPickedMovieSimilars, setPickedMovieTrailers, setIsLoading } = dataBaseSlice.actions
 export const selectMoviesList = (state: AppState) => state.db.moviesList
 export const selectPickedMovie = (state: AppState) => state.db.pickedMovie
 export const selectPickedMovieSimilars = (state: AppState) => state.db.pickedMovieSimilars

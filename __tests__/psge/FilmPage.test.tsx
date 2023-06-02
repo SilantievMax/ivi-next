@@ -25,8 +25,7 @@ jest.mock('next/router', () => ({
     }
   }
 }))
-jest.mock('swiper/css', () => '')
-jest.mock('swiper/css/navigation', () => '')
+jest.mock('react-slick', () => '')
 describe('FilmPage', () => {
   it('Renders FilmPage', () => {
     render(
@@ -36,6 +35,7 @@ describe('FilmPage', () => {
         </I18nextProvider>
       </Provider>
     )
-     expect(screen.getByRole('status')).toBeInTheDocument
+    expect(screen.getByRole('status')).toBeInTheDocument
   })
 })
+

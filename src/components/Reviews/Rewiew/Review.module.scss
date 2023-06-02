@@ -16,7 +16,7 @@
   transition: background-color 400ms;
 }
 
-.notReview{
+.notReview {
   background-color: #1a1627;
   overflow: hidden;
   transition: background-color 400ms;
@@ -29,7 +29,7 @@
   background-color: #1f1b2e;
   transition: background-color 400ms;
 }
-.notText{
+.notText {
   text-align: center;
   padding: 50px 0;
 }
@@ -50,8 +50,7 @@
   font-size: 20px;
   line-height: 24px;
   font-weight: 700;
-  margin-top: 12px;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
   -webkit-line-clamp: 2;
 }
 .description {
@@ -71,10 +70,11 @@
   font-weight: 400;
   font-style: normal;
 }
-
+.body {
+  flex: 1 0 auto;
+}
 .footer {
-  margin-top: 25px;
   display: flex;
   justify-content: space-between;
+  flex: 0 0 auto;
 }
-

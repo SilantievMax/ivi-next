@@ -1,8 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { AppState } from '../store'
 import { HYDRATE } from 'next-redux-wrapper'
-import { IGenre } from '@/src/types/types'
 
+import { AppState } from '../store'
 
 export interface filterItem {
   reviews: number
@@ -10,11 +9,9 @@ export interface filterItem {
   genres: number[]
   countries: number[]
   pickedYear: string
-  countriesList: string[],
+  countriesList: string[]
   genresList: string[]
 }
-
-
 
 const initialState: filterItem = {
   reviews: 0,
@@ -53,7 +50,6 @@ export const filterSlice = createSlice({
     }
   },
 
-
   extraReducers: {
     [HYDRATE]: (state, action) => {
       return {
@@ -63,7 +59,6 @@ export const filterSlice = createSlice({
     }
   }
 })
-
 
 export const { setReviewAmount, setRate, setGenres, setCountries, setPickedYear, setGenresList, setCountriesList } = filterSlice.actions
 export const selectReviewAmount = (state: AppState) => state.filter.reviews

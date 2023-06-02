@@ -77,7 +77,6 @@ const Breadcrumbs = ({
       return
     }
   }, [router])
-  // console.log(breadcrumbs)
 
   if (!breadcrumbs) {
     return null
