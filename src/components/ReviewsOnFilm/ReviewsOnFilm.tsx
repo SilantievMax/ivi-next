@@ -1,24 +1,29 @@
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { MdArrowBackIosNew } from 'react-icons/md'
-import { RiBarChartHorizontalFill } from 'react-icons/ri'
-import { Oval } from 'react-loader-spinner'
-import { useSelector } from 'react-redux'
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { MdArrowBackIosNew } from 'react-icons/md';
+import { RiBarChartHorizontalFill } from 'react-icons/ri';
+import { Oval } from 'react-loader-spinner';
+import { useSelector } from 'react-redux';
 
-import { Button } from '../Button/Button'
-import Meta from '../seo/Meta'
 
-import FormReview from './FormReview/FormReview'
-import ReviewsList from './ReviewsList/ReviewsList'
-import styles from './ReviewsOnFilm.module.scss'
-import { useOuside } from '@/src/hooks/useOutside'
-import { CommentsService } from '@/src/services/comments-service/comments.service'
-import { MoviesService } from '@/src/services/movies.service'
-import { setAuth } from '@/src/store/reducers/userReducers'
-import { IReviews } from '@/src/types/CommentsType'
-import { IFilm } from '@/src/types/types'
+
+import { Button } from '../Button/Button';
+import Meta from '../seo/Meta';
+
+
+
+import FormReview from './FormReview/FormReview';
+import ReviewsList from './ReviewsList/ReviewsList';
+import styles from './ReviewsOnFilm.module.scss';
+import { useOuside } from '@/src/hooks/useOutside';
+import { CommentsService } from '@/src/services/comments-service/comments.service';
+import { MoviesService } from '@/src/services/movies.service';
+import { setAuth } from '@/src/store/reducers/userReducers';
+import { IReviews } from '@/src/types/CommentsType';
+import { IFilm } from '@/src/types/types';
+
 
 const ReviewsOnFilm = () => {
   const { ref, isShow, setIsShow } = useOuside(false)
@@ -48,7 +53,7 @@ const ReviewsOnFilm = () => {
     MoviesService.getMovieById(id)
       .then(data => setData(data))
       .catch(err => console.log(err))
-  }, [id])
+  }, [id, sent])
   useEffect(() => {
     setSent(false)
   }, [sent])
