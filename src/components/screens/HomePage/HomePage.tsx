@@ -138,17 +138,17 @@ const HomePage: FC = () => {
   const [mainSecondSection, setMainSecondSection] = useState<IFilm[]>([] as IFilm[])
 
   useEffect(() => {
-    console.log('==================>>> Info loading started')
+    // console.log('==================>>> Info loading started')
     fetch(`http://localhost:3003/info?limit=10`, {
       method: 'GET'
     })
       .then(res => res.json())
       .then(json => {
-        console.log('==================>>>  Info loaded')
+        // console.log('==================>>>  Info loaded')
         setData(json.rows)
       })
       .catch(err => {
-        console.log('==================>>>  Info loading error')
+        // console.log('==================>>>  Info loading error')
         console.log(err)
       })
 
@@ -170,12 +170,6 @@ const HomePage: FC = () => {
   if (!data[0] || !mainFirstSection[0] || !mainSecondSection[0]) {
     return <Oval wrapperClass={styles.loader} color='rgba(255, 255, 255, .72)' secondaryColor='red' />
   }
-
-  // return (
-  //   <div>
-  //     Hello {data[0].nameEn}
-  //   </div>
-  // )
 
   return (
     <Meta title={t('home')} description=''>
