@@ -1,8 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { FC } from 'react'
-import 'swiper/css'
-import 'swiper/css/navigation'
 import styles from './Reviews.module.scss'
 import Review from './Rewiew/Review'
 import { Button } from '@/src/components/Button/Button'

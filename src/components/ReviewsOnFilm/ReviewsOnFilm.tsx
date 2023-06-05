@@ -77,7 +77,7 @@ const ReviewsOnFilm = () => {
             </div>
             <div ref={ref} className={styles.coments_btn}>
               {isShow ? (
-                <FormReview setSent={setSent} idReview={null} setShow={setIsShow} formName='Review' movieId={id} />
+                <FormReview changing={false} setSent={setSent} idReview={null} setShow={setIsShow} formName='Review' movieId={id} />
               ) : (
                 <Button data-testid='btn-review' size='border' children={t('write a review')} onClick={() => newReview()} />
               )}
