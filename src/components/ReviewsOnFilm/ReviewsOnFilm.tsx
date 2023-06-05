@@ -34,6 +34,7 @@ const ReviewsOnFilm = () => {
   const { t, i18n } = useTranslation()
   const auth = useSelector(setAuth)
 
+
   const newReview = () => {
     if (!auth) {
       alert('Авторизуйтесь пожалуйста')
@@ -47,11 +48,11 @@ const ReviewsOnFilm = () => {
   } = useRouter()
 
   useEffect(() => {
-    CommentsService.loadFilmComments(id)
-      .then(data => setComment(data))
-      .catch(err => console.log(err))
     MoviesService.getMovieById(id)
       .then(data => setData(data))
+      .catch(err => console.log(err))
+    CommentsService.loadFilmComments(id)
+      .then(data => setComment(data))
       .catch(err => console.log(err))
   }, [id, sent])
   useEffect(() => {

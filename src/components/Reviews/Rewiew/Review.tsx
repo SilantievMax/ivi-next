@@ -12,7 +12,7 @@ interface ReviewsProps {
 }
 
 const Review: FC<ReviewsProps> = ({ rewiew }: ReviewsProps) => {
-  const { author, createdAt, date, description, id, movieId, title, type, updatedAt, userId } = rewiew || {}
+  const { author, date, description,  movieId, title } = rewiew || {}
 
   return (
     <>

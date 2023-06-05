@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">81.66% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>49/60</span>
+                <span class='fraction'>0/60</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/11</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">81.66% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>49/60</span>
+                <span class='fraction'>0/60</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -123,126 +123,126 @@
 <a name='L58'></a><a href='#L58'>58</a>
 <a name='L59'></a><a href='#L59'>59</a>
 <a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L61'></a><a href='#L61'>61</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { createSlice } from '@reduxjs/toolkit'
-import { HYDRATE } from 'next-redux-wrapper'
-&nbsp;
-import { AppState } from '../store'
-&nbsp;
-import { IFilm, ITrailer } from '@/src/types/types'
-&nbsp;
-export interface filterItem {
-  moviesList: IFilm[]
-  pickedMovie: number
-  pickedMovieTrailers: ITrailer[]
-  pickedMovieSimilars: IFilm[]
-  isLoading: boolean
-}
-&nbsp;
-const initialState: filterItem = {
-  moviesList: [],
-  pickedMovie: 8,
-  pickedMovieSimilars: [],
-  pickedMovieTrailers: [],
-  isLoading: false
-}
-&nbsp;
-export const dataBaseSlice = createSlice({
-  name: 'db',
-  initialState,
-  reducers: {
-<span class="fstat-no" title="function not covered" >    setMoviesList(state, action) {</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { createSlice } from '@reduxjs/toolkit'</span></span></span>
+<span class="cstat-no" title="statement not covered" >import { HYDRATE } from 'next-redux-wrapper'</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >import { AppState } from '../store'</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >import { IFilm, ITrailer } from '@/src/types/types'</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >export interface filterItem {</span>
+<span class="cstat-no" title="statement not covered" >  moviesList: IFilm[]</span>
+<span class="cstat-no" title="statement not covered" >  pickedMovie: number</span>
+<span class="cstat-no" title="statement not covered" >  pickedMovieTrailers: ITrailer[]</span>
+<span class="cstat-no" title="statement not covered" >  pickedMovieSimilars: IFilm[]</span>
+<span class="cstat-no" title="statement not covered" >  isLoading: boolean</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >const initialState: filterItem = {</span>
+<span class="cstat-no" title="statement not covered" >  moviesList: [],</span>
+<span class="cstat-no" title="statement not covered" >  pickedMovie: 8,</span>
+<span class="cstat-no" title="statement not covered" >  pickedMovieSimilars: [],</span>
+<span class="cstat-no" title="statement not covered" >  pickedMovieTrailers: [],</span>
+<span class="cstat-no" title="statement not covered" >  isLoading: false</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >export const dataBaseSlice = createSlice({</span>
+<span class="cstat-no" title="statement not covered" >  name: 'db',</span>
+<span class="cstat-no" title="statement not covered" >  initialState,</span>
+<span class="cstat-no" title="statement not covered" >  reducers: {</span>
+<span class="cstat-no" title="statement not covered" >    setMoviesList(state, action) {</span>
 <span class="cstat-no" title="statement not covered" >      state.moviesList = action.payload</span>
-    },
-<span class="fstat-no" title="function not covered" >    setPickedMovie(state, action) {</span>
+<span class="cstat-no" title="statement not covered" >    },</span>
+<span class="cstat-no" title="statement not covered" >    setPickedMovie(state, action) {</span>
 <span class="cstat-no" title="statement not covered" >      state.pickedMovie = action.payload</span>
-    },
-<span class="fstat-no" title="function not covered" >    setPickedMovieSimilars(state, action) {</span>
+<span class="cstat-no" title="statement not covered" >    },</span>
+<span class="cstat-no" title="statement not covered" >    setPickedMovieSimilars(state, action) {</span>
 <span class="cstat-no" title="statement not covered" >      state.moviesList = action.payload</span>
-    },
-<span class="fstat-no" title="function not covered" >    setPickedMovieTrailers(state, action) {</span>
+<span class="cstat-no" title="statement not covered" >    },</span>
+<span class="cstat-no" title="statement not covered" >    setPickedMovieTrailers(state, action) {</span>
 <span class="cstat-no" title="statement not covered" >      state.pickedMovie = action.payload</span>
-    },
-<span class="fstat-no" title="function not covered" >    setIsLoading(state, action) {</span>
+<span class="cstat-no" title="statement not covered" >    },</span>
+<span class="cstat-no" title="statement not covered" >    setIsLoading(state, action) {</span>
 <span class="cstat-no" title="statement not covered" >      state.pickedMovie = action.payload</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
-  },
-&nbsp;
-  extraReducers: {
-    [HYDRATE]: <span class="fstat-no" title="function not covered" >(state, action) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  },</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  extraReducers: {</span>
+<span class="cstat-no" title="statement not covered" >    [HYDRATE]: (state, action) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >      return {</span>
 <span class="cstat-no" title="statement not covered" >        ...state,</span>
 <span class="cstat-no" title="statement not covered" >        ...action.payload.item</span>
 <span class="cstat-no" title="statement not covered" >      }</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
-  }
-})
-&nbsp;
-export const { setMoviesList, setPickedMovie, setPickedMovieSimilars, setPickedMovieTrailers, setIsLoading } = dataBaseSlice.actions
-export const selectMoviesList = (<span class="fstat-no" title="function not covered" >state: AppState) =&gt; state.db.moviesList</span>
-export const selectPickedMovie = (<span class="fstat-no" title="function not covered" >state: AppState) =&gt; state.db.pickedMovie</span>
-export const selectPickedMovieSimilars = (<span class="fstat-no" title="function not covered" >state: AppState) =&gt; state.db.pickedMovieSimilars</span>
-export const selectPickedMovieTrailers = (<span class="fstat-no" title="function not covered" >state: AppState) =&gt; state.db.pickedMovieTrailers</span>
-export const selectIsLoading = (<span class="fstat-no" title="function not covered" >state: AppState) =&gt; state.db.isLoading</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" >})</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >export const { setMoviesList, setPickedMovie, setPickedMovieSimilars, setPickedMovieTrailers, setIsLoading } = dataBaseSlice.actions</span>
+<span class="cstat-no" title="statement not covered" >export const selectMoviesList = (state: AppState) =&gt; state.db.moviesList</span>
+<span class="cstat-no" title="statement not covered" >export const selectPickedMovie = (state: AppState) =&gt; state.db.pickedMovie</span>
+<span class="cstat-no" title="statement not covered" >export const selectPickedMovieSimilars = (state: AppState) =&gt; state.db.pickedMovieSimilars</span>
+<span class="cstat-no" title="statement not covered" >export const selectPickedMovieTrailers = (state: AppState) =&gt; state.db.pickedMovieTrailers</span>
+<span class="cstat-no" title="statement not covered" >export const selectIsLoading = (state: AppState) =&gt; state.db.isLoading</span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -250,7 +250,7 @@ export const selectIsLoading = (<span class="fstat-no" title="function not cover
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-06-02T08:33:25.916Z
+                at 2023-06-05T09:58:06.134Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

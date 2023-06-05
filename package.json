@@ -10,7 +10,7 @@
     "pret": "npx prettier --write .",
     "sb": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test": "jest --watch --detectOpenHandles __tests__/psge/HomePage.test.tsx"
+    "test": "jest --watch --detectOpenHandles"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
