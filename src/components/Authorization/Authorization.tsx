@@ -96,7 +96,7 @@ const Authorization: FC = () => {
   return (
     <div className={styles.continder}>
       <div className={styles.header}>
-        {status}
+        {status}       
         <span onClick={() => dispatch(setOpenAuth(false))}>&times;</span>
       </div>
       <div className={styles.chat}>
