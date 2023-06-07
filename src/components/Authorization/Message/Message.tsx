@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from 'react'
 
 import styles from './Message.module.scss'
 
-interface MessageProps {
+export interface MessageProps {
   messages?: string
   description?: string
   position: 'left' | 'right'

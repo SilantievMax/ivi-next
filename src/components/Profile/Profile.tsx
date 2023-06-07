@@ -1,17 +1,18 @@
-import Link from 'next/link';
-import React, { FC } from 'react';
-import { Oval } from 'react-loader-spinner';
-import { useDispatch, useSelector } from 'react-redux';
-import LanguageBtn from '../LanguageBtn/LanguageBtn';
-import styles from './Profile.module.scss';
-import { Button } from '@/src/components/Button/Button';
-import { bookmark, card, clipboard, rectangleStack, share, trophy, tvCategory, union } from '@/src/img/imges';
-import { googleAuth, logout, vkAuth } from '@/src/services/auth.service';
-import { setOpenAuth } from '@/src/store/reducers/authReducer';
-import { isAdmin, isLoading, setAuth } from '@/src/store/reducers/userReducers';
-import { AppDispatch } from '@/src/store/store';
-import { useTranslation } from 'react-i18next';
+import Link from 'next/link'
+import React, { FC } from 'react'
+import { useTranslation } from 'react-i18next'
+import { Oval } from 'react-loader-spinner'
+import { useDispatch, useSelector } from 'react-redux'
 
+import LanguageBtn from '../LanguageBtn/LanguageBtn'
+
+import styles from './Profile.module.scss'
+import { Button } from '@/src/components/Button/Button'
+import { bookmark, card, clipboard, rectangleStack, share, trophy, tvCategory, union } from '@/src/img/imges'
+import { googleAuth, logout, vkAuth } from '@/src/services/auth.service'
+import { setOpenAuth } from '@/src/store/reducers/authReducer'
+import { isAdmin, isLoading, setAuth, user } from '@/src/store/reducers/userReducers'
+import { AppDispatch } from '@/src/store/store'
 
 const profileCategory = [
   { img: rectangleStack.src, title: 'Покупки' },
@@ -26,6 +27,7 @@ const profileCategory = [
 const Profile: FC = () => {
   const auth = useSelector(setAuth)
   const loading = useSelector(isLoading)
+  const userName = useSelector(user)
   const dispatch = useDispatch<AppDispatch>()
   const admin = useSelector(isAdmin)
   const { t } = useTranslation()
@@ -49,7 +51,11 @@ const Profile: FC = () => {
       ) : (
         <div className={styles.card_r}>
           {auth ? (
-            <Button onClick={() => dispatch(logout())} size='border' children={t('exit')} color='redOpacity' />
+            <>
+              <div>{userName.login}</div>
+              <div>{userName.email}</div>
+              <Button onClick={() => dispatch(logout())} size='border' children={t('exit')} color='redOpacity' />
+            </>
           ) : (
             <>
               <Button onClick={() => dispatch(setOpenAuth(true))} size='border' children={t('log in or register')} color='redOpacity' />

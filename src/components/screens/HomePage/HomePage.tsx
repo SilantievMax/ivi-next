@@ -3,11 +3,14 @@ import React, { FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AiOutlineRight } from 'react-icons/ai'
 import { RxDotFilled } from 'react-icons/rx'
+import { Oval } from 'react-loader-spinner'
 import { useDispatch } from 'react-redux'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick-theme.css'
 import 'slick-carousel/slick/slick.css'
+
 import filmsStyles from '../Movies/movies.module.scss'
+
 import styles from './homePage.module.scss'
 import LeftArrow from '@/src/components/Arrows/LeftArrow'
 import RightArrow from '@/src/components/Arrows/RightArrow'
@@ -133,13 +136,21 @@ const HomePage: FC = () => {
   const [data, setData] = useState<IFilm[]>([] as IFilm[])
   const [mainFirstSection, setMainFirstSection] = useState<IFilm[]>([] as IFilm[])
   const [mainSecondSection, setMainSecondSection] = useState<IFilm[]>([] as IFilm[])
+
   useEffect(() => {
+    // console.log('==================>>> Info loading started')
     fetch(`http://localhost:3003/info?limit=10`, {
       method: 'GET'
     })
       .then(res => res.json())
-      .then(json => setData(json.rows))
-      .catch(err => console.log(err))
+      .then(json => {
+        // console.log('==================>>>  Info loaded')
+        setData(json.rows)
+      })
+      .catch(err => {
+        // console.log('==================>>>  Info loading error')
+        console.log(err)
+      })
 
     fetch(`http://localhost:3003/info?limit=20&genres=2`, {
       method: 'GET'
@@ -155,9 +166,14 @@ const HomePage: FC = () => {
       .then(json => setMainSecondSection(json.rows))
       .catch(err => console.log(err))
   }, [])
+
+  if (!data[0] || !mainFirstSection[0] || !mainSecondSection[0]) {
+    return <Oval wrapperClass={styles.loader} color='rgba(255, 255, 255, .72)' secondaryColor='red' />
+  }
+
   return (
     <Meta title={t('home')} description=''>
-      <div>
+      <div data-testid={'HomePage'}>        
         <Slider {...settings}>
           {mainPageSliderData.map((el, idx) => (
             <div key={idx} className={styles.sliderItemContainer}>
@@ -210,7 +226,6 @@ const HomePage: FC = () => {
           <img src='https://solea-parent.dfs.ivi.ru/picture/bypass/top10.svg' alt='top10' />
           <span className={styles.topSectionWrapper__title}>{t('forWeek')}</span>
         </div>
-
         <Slider {...top10settings}>
           {data.map((el, idx) => (
             <MainPageFilm key={idx} id={idx} film={el} />
@@ -252,7 +267,7 @@ const HomePage: FC = () => {
             <Film type='slider' key={idx} film={el} />
           ))}
         </Slider>
-      </div>{' '}
+      </div>
     </Meta>
   )
 }

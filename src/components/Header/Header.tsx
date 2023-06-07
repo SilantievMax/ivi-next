@@ -1,15 +1,19 @@
-import Link from 'next/link'
-import React, { FC, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import Link from 'next/link';
+import React, { FC, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { RxCross1, RxHamburgerMenu } from 'react-icons/rx';
 
-import styles from './Header.module.scss'
-import ListCategories from './ListСategories/ListСategories'
-import { Button } from '@/src/components/Button/Button'
-import ModalWindow from '@/src/components/ModalWindow/ModalWindow'
-import Profile from '@/src/components/Profile/Profile'
-import { bell, logo, magnifyingGlass, paple } from '@/src/img/imges'
-import HeaderCategory from '@/src/components/HeaderCategory/HeaderCategory'
-import { RxCross1, RxHamburgerMenu } from 'react-icons/rx'
+
+
+import styles from './Header.module.scss';
+import ListCategories from './ListСategories/ListСategories';
+import { Button } from '@/src/components/Button/Button';
+import HeaderCategory from '@/src/components/HeaderCategory/HeaderCategory';
+import ModalWindow from '@/src/components/ModalWindow/ModalWindow';
+import Profile from '@/src/components/Profile/Profile';
+import { bell, logo, magnifyingGlass, paple } from '@/src/img/imges';
+
+
 const Header: FC = () => {
   const isAuth = false
   const [isHovering, setIsHovering] = useState(false)
@@ -25,8 +29,11 @@ const Header: FC = () => {
   const handleMouseOut = () => {
     setIsHovering(false)
   }
-
-  const renderComponentListCategory = () => {
+  const handleMouseClick = (value: string) => {
+    setIsHovering(true)
+    setVariant(value)
+  }
+  const renderComponentListCategory = () => {    
     switch (isVariant) {
       case 'movies':
         return <ListCategories children={<HeaderCategory/>} variant={isVariant} />
@@ -48,7 +55,6 @@ const Header: FC = () => {
     <header className={styles.header}>
       <div className={styles.header__t}>
         {active ? <RxCross1 onClick={() => setActive(false)} className={styles.burgerIcon}/> : <RxHamburgerMenu onClick={() => setActive(true)} className={styles.burgerIcon} />}
-        {/*<LanguageBtn />*/}
         <Link className={styles.headerLogo} href='/' onMouseOver={handleMouseOut}>
           <img src={logo.src} alt='logo' />
         </Link>
@@ -61,10 +67,10 @@ const Header: FC = () => {
             <Link onClick={() => setActive(false)} href='https://www.ivi.ru/new' onMouseOver={handleMouseOut}>
               {t('whatNew')}
             </Link>
-            <Link onClick={() => setActive(false)} href='/movies' onMouseOver={() => handleMouseOver('movies')}>
+            <Link onClick={() => setActive(false)} href='/movies' onMouseOver={() =>window.innerWidth > 1050 && handleMouseOver('movies')}>
               {t('movies')}
             </Link>
-            <Link onClick={() => setActive(false)} href='/movies' onMouseOver={() => handleMouseOver('series')}>
+            <Link onClick={() => setActive(false)} href='/movies' onMouseOver={() =>window.innerWidth > 1050 && handleMouseOver('series')}>
               {t('serials')}
             </Link>
             <Link onClick={() => setActive(false)} href='https://www.ivi.ru/animation' onMouseOver={handleMouseOut}>
@@ -81,9 +87,9 @@ const Header: FC = () => {
         <Button color='gradient' children={t('buySubscribe')} onMouseOver={handleMouseOut} />
         <Button img={magnifyingGlass.src} children={<h3 className={styles.color}>{t('search')}</h3>} onMouseOver={handleMouseOut} />
         {isAuth ? <Button img={bell.src} onMouseOver={() => handleMouseOver('bell')} /> : <Button img={bell.src} onMouseOver={() => handleMouseOver('')} />}
-        <Button className={styles.custom_btn} img={paple.src} onMouseOver={() => handleMouseOver('profile')} />
+        <Button className={styles.custom_btn} img={paple.src} onMouseOver={() =>handleMouseOver('profile')} onClick={() =>handleMouseOver('profile')} />
       </div>
-      {isHovering && window.innerWidth > 1050 && <ModalWindow onMouseLeave={handleMouseOut} children={renderComponentListCategory()} />}
+      {isHovering &&  <ModalWindow onMouseLeave={handleMouseOut} children={renderComponentListCategory()} />}
     </header>
   )
 }

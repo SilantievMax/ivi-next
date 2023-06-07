@@ -15,69 +15,41 @@
         }
     </style>
 </head>
-<<<<<<< HEAD
     
-=======
-
->>>>>>> main
 <body>
 <div class='wrapper'>
     <div class='pad1'>
         <h1><a href="../../../../index.html">All files</a> / <a href="index.html">src/components/Reviews/Rewiew</a> Review.tsx</h1>
         <div class='clearfix'>
-<<<<<<< HEAD
             
-=======
-
->>>>>>> main
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/45</span>
+                <span class='fraction'>0/42</span>
             </div>
-<<<<<<< HEAD
         
             
-=======
-
-
->>>>>>> main
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
                 <span class='fraction'>0/1</span>
             </div>
-<<<<<<< HEAD
         
             
-=======
-
-
->>>>>>> main
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
                 <span class='fraction'>0/1</span>
             </div>
-<<<<<<< HEAD
         
             
-=======
-
-
->>>>>>> main
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/45</span>
+                <span class='fraction'>0/42</span>
             </div>
-<<<<<<< HEAD
         
             
-=======
-
-
->>>>>>> main
         </div>
         <p class="quiet">
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
@@ -133,9 +105,7 @@
 <a name='L40'></a><a href='#L40'>40</a>
 <a name='L41'></a><a href='#L41'>41</a>
 <a name='L42'></a><a href='#L42'>42</a>
-<a name='L43'></a><a href='#L43'>43</a>
-<a name='L44'></a><a href='#L44'>44</a>
-<a name='L45'></a><a href='#L45'>45</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L43'></a><a href='#L43'>43</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -177,35 +147,31 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import Link from 'next/link';</span></span></span>
-<span class="cstat-no" title="statement not covered" >import React, { FC } from 'react';</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import Link from 'next/link'</span></span></span>
+<span class="cstat-no" title="statement not covered" >import React, { FC } from 'react'</span>
 <span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >import useWindowSize from '../widthWindow'</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >import styles from './Review.module.scss';</span>
-<span class="cstat-no" title="statement not covered" >import VoteBtns from '@/src/components/VoteBtns/VoteBtns';</span>
-<span class="cstat-no" title="statement not covered" >import { IReviews } from '@/src/types/CommentsType';</span>
-<span class="cstat-no" title="statement not covered" >import useWindowSize from '../widthWindow';</span>
-<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >import styles from './Review.module.scss'</span>
+<span class="cstat-no" title="statement not covered" >import VoteBtns from '@/src/components/VoteBtns/VoteBtns'</span>
+<span class="cstat-no" title="statement not covered" >import { IReviews } from '@/src/types/CommentsType'</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >interface ReviewsProps {</span>
 <span class="cstat-no" title="statement not covered" >  rewiew?: IReviews</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >const Review: FC&lt;ReviewsProps&gt; = ({ rewiew }: ReviewsProps) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  const { author, createdAt, date, description, id, movieId, title, type, updatedAt, userId } = rewiew || {}</span>
-<span class="cstat-no" title="statement not covered" >// console.log(stringLength)useWindowSize</span>
+<span class="cstat-no" title="statement not covered" >  const { author, date, description,  movieId, title } = rewiew || {}</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  return (</span>
 <span class="cstat-no" title="statement not covered" >    &lt;&gt;</span>
 <span class="cstat-no" title="statement not covered" >      {rewiew ? (</span>
-<span class="cstat-no" title="statement not covered" >        // &lt;div className={styles.review}&gt;</span>
 <span class="cstat-no" title="statement not covered" >        &lt;Link href={{ pathname: `./comment/${movieId}` }} className={styles.review}&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;div className={styles.name}&gt;{author}&lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >          {title ? &lt;h3 className={styles.title}&gt;{title.length &gt;= 50 ? title.slice(0, 50) + ' ...' : title}&lt;/h3&gt; : ''}</span>
-<span class="cstat-no" title="statement not covered" >          &lt;p className={styles.description}&gt;{description!.length &gt;= 70 ? description!.slice(0, useWindowSize("stringLength")) + ' ...' : description}&lt;/p&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;div className={styles.body}&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;div className={styles.name}&gt;{author}&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >            {title ? &lt;h3 className={styles.title}&gt;{title.length &gt;= 50 ? title.slice(0, 50) + ' ...' : title}&lt;/h3&gt; : ''}</span>
+<span class="cstat-no" title="statement not covered" >            &lt;p className={styles.description}&gt;{description!.length &gt;= 70 ? description!.slice(0, useWindowSize('stringLength')) + ' ...' : description}&lt;/p&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >          &lt;div className={styles.footer}&gt;</span>
 <span class="cstat-no" title="statement not covered" >            &lt;div className={styles.date}&gt;</span>
 <span class="cstat-no" title="statement not covered" >              &lt;p&gt;{date!.slice(0, 10)}&lt;/p&gt;</span>
@@ -214,7 +180,6 @@
 <span class="cstat-no" title="statement not covered" >          &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >        &lt;/Link&gt;</span>
 <span class="cstat-no" title="statement not covered" >      ) : (</span>
-<span class="cstat-no" title="statement not covered" >        // &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >        &lt;div className={styles.notReview}&gt;</span>
 <span class="cstat-no" title="statement not covered" >          &lt;p className={styles.notText}&gt;Нет рецензий&lt;/p&gt;</span>
 <span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
@@ -223,18 +188,15 @@
 <span class="cstat-no" title="statement not covered" >  )</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export default Review</span></pre></td></tr></table></pre>
+<span class="cstat-no" title="statement not covered" >export default Review</span>
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-<<<<<<< HEAD
-                at 2023-05-12T07:57:53.273Z
-=======
-                at 2023-05-04T06:24:53.745Z
->>>>>>> main
+                at 2023-06-07T05:15:25.338Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>
@@ -246,7 +208,4 @@
         <script src="../../../../block-navigation.js"></script>
     </body>
 </html>
-<<<<<<< HEAD
     
-=======
->>>>>>> main

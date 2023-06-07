@@ -61,10 +61,10 @@ const Breadcrumbs = ({
             href: '/' + linkPath.slice(0, i + 1).join('/')
           }
         })
+
         setBreadcrumbs(pathArray as Breadcrumb[])
         return
       }
-
       const linkPath = router.asPath.split('/')
       linkPath.shift()
       const pathArray = linkPath.map((path, i) => {
@@ -77,7 +77,6 @@ const Breadcrumbs = ({
       return
     }
   }, [router])
-  // console.log(breadcrumbs)
 
   if (!breadcrumbs) {
     return null

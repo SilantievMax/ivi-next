@@ -1,4 +1,4 @@
-import { createSlice, current } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 import { AppState } from '../store'
 
@@ -22,6 +22,5 @@ export const authSlice = createSlice({
   }
 })
 
-// export const authReducer = authSlice.actions
 export const { setOpenAuth } = authSlice.actions
 export const selectIpOpenAuth = (state: AppState) => state.auth.ipOpenAuth

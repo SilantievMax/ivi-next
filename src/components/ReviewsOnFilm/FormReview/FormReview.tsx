@@ -1,15 +1,20 @@
-import React, { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
-import { Button } from '../../Button/Button'
-import NameInput from '../ElementsForm/NameInput'
-import ReviewInput from '../ElementsForm/ReviewInput'
 
-import styles from './FormReview.module.scss'
-import { usePersistForm } from './usePersistForm'
-import { IAxiosRequestConfigComent, addedComent } from '@/src/services/comments-service/comments.service'
-import { IInputs, IReviews } from '@/src/types/CommentsType'
+
+import { Button } from '../../Button/Button';
+import NameInput from '../ElementsForm/NameInput';
+import ReviewInput from '../ElementsForm/ReviewInput';
+
+
+
+import styles from './FormReview.module.scss';
+import { usePersistForm } from './usePersistForm';
+import { IAxiosRequestConfigComent, addedComent } from '@/src/services/comments-service/comments.service';
+import { IInputs, IReviews } from '@/src/types/CommentsType';
+
 
 export interface FormReviewProps {
   setShow: React.Dispatch<React.SetStateAction<boolean>>
@@ -17,7 +22,7 @@ export interface FormReviewProps {
   idReview: number | null
   movieId: string | number | string[] | undefined
   comment?: IReviews
-  changing?: boolean
+  changing: boolean
   setSent: React.Dispatch<React.SetStateAction<boolean>>
 }
 
@@ -55,6 +60,7 @@ const FormReview = ({ changing, comment, setShow, formName, idReview, setSent, m
   } = useForm<IInputs>({ defaultValues: getSavedData() })
 
   const onSubmit = async (data: IInputs) => {
+    
     let requestOptions = {} as IAxiosRequestConfigComent
     switch (changing) {
       case true:
@@ -65,17 +71,23 @@ const FormReview = ({ changing, comment, setShow, formName, idReview, setSent, m
           data: JSON.stringify({ type: 'POSITIVE', title: `${data.title ? data.title : ''}`, description: `${data.description}` })
         }
         break
-      case false:
+        case false:
         requestOptions = {
           method: 'POST',
           url: `${COMMENT_URL}/comments/${movieId}`,
           headers: { 'Content-Type': 'application/json' },
-          data: JSON.stringify({ type: 'POSITIVE', title: `${data.title ? data.title : ''}`, description: `${data.description}`, repliedOnComment: Number(`${idReview}`) })
+          data: JSON.stringify({
+            type: 'POSITIVE',
+            title: `${data.title === '' ? '' : data.title}`,
+            description: `${data.description}`,
+            repliedOnComment: Number(`${data.title === '' ? idReview : null}`)
+          })
         }
         break
-    }
-    await addedComent(requestOptions)
-    setShow(false)
+      }
+      console.log(changing, data, requestOptions)
+      await addedComent(requestOptions)
+      setShow(false)
     resetField('description')
     resetField('title')
     setSent(true)

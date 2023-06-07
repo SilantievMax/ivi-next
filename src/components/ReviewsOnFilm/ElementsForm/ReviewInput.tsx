@@ -1,18 +1,19 @@
-import React, { FC } from 'react';
-import { useTranslation } from 'react-i18next';
+import React, { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 
-
-
-import styles from './Input.module.scss';
-import { IReviewsInput } from '@/src/types/CommentsType';
-
+import styles from './Input.module.scss'
+import { IReviewsInput } from '@/src/types/CommentsType'
 
 const ReviewInput = ({ register, errors, watch, placeholder }: IReviewsInput) => {
   const { t } = useTranslation()
 
   return (
     <div className={styles.form__textarea}>
-      <textarea data-testid="textarea-comment" {...register('description', { required: `${t('write a review')}`, minLength: 20, maxLength: 1000 })} className={styles.form__textarea} />
+      <textarea
+        data-testid='textarea-comment'
+        {...register('description', { required: `${t('write a review')}`, minLength: 20, maxLength: 1000 })}
+        className={styles.form__textarea}
+      />
       {watch().description ? (
         <label className={`${styles.form__input_lable} ${styles.focus}`}>{placeholder || t('your review')}</label>
       ) : (

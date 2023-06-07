@@ -1,30 +1,28 @@
-import Link from 'next/link';
-import React, { FC } from 'react';
+import Link from 'next/link'
+import React, { FC } from 'react'
 
+import useWindowSize from '../widthWindow'
 
-
-import styles from './Review.module.scss';
-import VoteBtns from '@/src/components/VoteBtns/VoteBtns';
-import { IReviews } from '@/src/types/CommentsType';
-import useWindowSize from '../widthWindow';
-
+import styles from './Review.module.scss'
+import VoteBtns from '@/src/components/VoteBtns/VoteBtns'
+import { IReviews } from '@/src/types/CommentsType'
 
 interface ReviewsProps {
   rewiew?: IReviews
 }
 
 const Review: FC<ReviewsProps> = ({ rewiew }: ReviewsProps) => {
-  const { author, createdAt, date, description, id, movieId, title, type, updatedAt, userId } = rewiew || {}
-// console.log(stringLength)useWindowSize
+  const { author, date, description,  movieId, title } = rewiew || {}
 
   return (
     <>
       {rewiew ? (
-        // <div className={styles.review}>
         <Link href={{ pathname: `./comment/${movieId}` }} className={styles.review}>
-          <div className={styles.name}>{author}</div>
-          {title ? <h3 className={styles.title}>{title.length >= 50 ? title.slice(0, 50) + ' ...' : title}</h3> : ''}
-          <p className={styles.description}>{description!.length >= 70 ? description!.slice(0, useWindowSize("stringLength")) + ' ...' : description}</p>
+          <div className={styles.body}>
+            <div className={styles.name}>{author}</div>
+            {title ? <h3 className={styles.title}>{title.length >= 50 ? title.slice(0, 50) + ' ...' : title}</h3> : ''}
+            <p className={styles.description}>{description!.length >= 70 ? description!.slice(0, useWindowSize('stringLength')) + ' ...' : description}</p>
+          </div>
           <div className={styles.footer}>
             <div className={styles.date}>
               <p>{date!.slice(0, 10)}</p>
@@ -33,7 +31,6 @@ const Review: FC<ReviewsProps> = ({ rewiew }: ReviewsProps) => {
           </div>
         </Link>
       ) : (
-        // </div>
         <div className={styles.notReview}>
           <p className={styles.notText}>Нет рецензий</p>
         </div>

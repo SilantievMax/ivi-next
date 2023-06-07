@@ -1,30 +1,3 @@
-// @font-face {
-//   font-family: 'Finlandica-Bold';
-//   font-style: normal;
-//   font-weight: 800;
-//   src: local('Finlandica-Bold'), url('../../public/fonts/Finlandica-Bold.woff2') format('woff2'), url('../public/fonts/Finlandica-Bold.woff') format('woff');
-// }
-
-// @font-face {
-//   font-family: 'Finlandica-Medium';
-//   font-style: normal;
-//   font-weight: 500;
-//   src: local('Finlandica-Medium'), url('../../public/fonts/Finlandica-Medium.woff2') format('woff2'), url('../public/fonts/Finlandica-Medium.woff') format('woff');
-// }
-
-// @font-face {
-//   font-family: 'Finlandica-Regular';
-//   font-style: normal;
-//   font-weight: 400;
-//   src: local('Finlandica-Regular'), url('../public/fonts/Finlandica-Regular.woff2') format('woff2'), url('../public/fonts/Finlandica-Regular.woff') format('woff');
-// }
-
-// @font-face {
-//   font-family: 'Finlandica-SemiBold';
-//   font-style: normal;
-//   font-weight: 600;
-//   src: local('Finlandica-SemiBold'), url('../public/fonts/Finlandica-SemiBold.woff2') format('woff2'), url('../public/fonts/Finlandica-SemiBold.woff') format('woff');
-// }
 @import url(//db.onlinewebfonts.com/c/29e676384bcea6f376417bcfee5c8595?family=ivi+Sans);
 
 html {
@@ -40,7 +13,6 @@ html {
 
 body {
   font-family: 'ivi Sans', sans-serif;
-  // font-family: 'Finlandica-Regular', sans-serif;
   margin: 0;
   background: #100e19;
   color: #fff;
@@ -103,10 +75,7 @@ ol {
   color: rgba(255, 255, 255, 0.56);
 }
 
-
-//.slick-list {margin: 0 -5px;}
 .slick-slide>div {padding: 0 5px;}
-//.slick-slide>img {padding: 0 5px;}
 
 @media (max-width: 900px) {
   .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
@@ -114,5 +83,3 @@ ol {
   }
 }
 
-
-@import "./swiper";

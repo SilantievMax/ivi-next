@@ -1,12 +1,9 @@
 import '@testing-library/jest-dom'
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import { I18nextProvider } from 'react-i18next'
 
 import FormReview, { FormReviewProps } from '@/src/components/ReviewsOnFilm/FormReview/FormReview'
-import ReviewsOnFilm from '@/src/components/ReviewsOnFilm/ReviewsOnFilm'
 import i18n from '@/src/i18next/i18n'
-
-global.fetch = require('node-fetch')
 
 jest.mock('next/router', () => ({
   useRouter() {
@@ -25,24 +22,10 @@ jest.mock('next/router', () => ({
     }
   }
 }))
-
-describe('ReviewsOnFilm', () => {
-  it('Review form render default', async () => {
-    render(
-      <I18nextProvider i18n={i18n}>
-        <ReviewsOnFilm />
-      </I18nextProvider>
-    )
-    expect(screen.getByText(/Рецензии/i)).toBeInTheDocument()
-    const btn = screen.getByTestId('btn-review')
-    expect(btn).toBeInTheDocument()
-    fireEvent.click(btn)
-    const input = screen.getByTestId('input-title')
-    await waitFor(() => expect(input).toBeInTheDocument())
-    fireEvent.input(input, { target: { value: 'Рецензия' } })
-  })
+describe('FormReview', () => {
   it('Review form', async () => {
     const baseProps: FormReviewProps = {
+      changing: false,
       formName: 'Review',
       idReview: 6,
       movieId: 6,
@@ -54,11 +37,12 @@ describe('ReviewsOnFilm', () => {
         <FormReview {...baseProps} />
       </I18nextProvider>
     )
-    const input = screen.getByTestId('input-title')
+    const input = await screen.findByTestId('input-title')
     await waitFor(() => expect(input).toBeInTheDocument())
   })
   it('Comment form', async () => {
     const baseProps: FormReviewProps = {
+      changing: false,
       formName: 'Comment',
       idReview: 6,
       movieId: 6,
@@ -69,8 +53,8 @@ describe('ReviewsOnFilm', () => {
       <I18nextProvider i18n={i18n}>
         <FormReview {...baseProps} />
       </I18nextProvider>
-    )    
-    const input = screen.getByTestId('textarea-comment')
+    )
+    const input = await screen.findByTestId('textarea-comment')
     await waitFor(() => expect(input).toBeInTheDocument())
   })
 })

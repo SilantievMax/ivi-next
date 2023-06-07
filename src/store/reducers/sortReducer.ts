@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { AppState } from '../store'
 import { HYDRATE } from 'next-redux-wrapper'
 
+import { AppState } from '../store'
 
 export interface sortItem {
-  sort: { type: string, query: string }
+  sort: { type: string; query: string }
 }
 
 const initialState: sortItem = {
@@ -20,7 +20,6 @@ export const itemSlice = createSlice({
     }
   },
 
-
   extraReducers: {
     [HYDRATE]: (state, action) => {
       return {
@@ -31,7 +30,5 @@ export const itemSlice = createSlice({
   }
 })
 
-
 export const { setSort } = itemSlice.actions
 export const selectSort = (state: AppState) => state.sort.sort
-

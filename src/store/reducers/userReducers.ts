@@ -1,15 +1,10 @@
-import { createSlice, current } from '@reduxjs/toolkit';
-import { useRouter } from 'next/router';
+import { createSlice, current } from '@reduxjs/toolkit'
 
+import { AppState } from '../store'
 
-
-import { AppState } from '../store';
-
-
-
-import { checkAuth, logout, signIn, signUp } from '@/src/services/auth.service';
-import { IUser, LOCAL, valueRoles } from '@/src/types/Auth';
-import { getLocalStorage } from '@/src/utils/local-storage';
+import { checkAuth, logout, signIn, signUp } from '@/src/services/auth.service'
+import { IUser, LOCAL, valueRoles } from '@/src/types/Auth'
+import { getLocalStorage } from '@/src/utils/local-storage'
 
 export const selectIsAuth = () => false
 
@@ -89,12 +84,9 @@ export const userSlice = createSlice({
       .addCase(checkAuth.fulfilled, (state, { payload }) => {
         localStorage.setItem(LOCAL.TOKEN, JSON.stringify({ accessToken: payload.accessToken, refreshToken: payload.refreshToken }))
         if (getLocalStorage(LOCAL.ADMIN)) {
-          console.log('1');
-          
           state.isAdmin = true
         }
         state.setAuth = true
-        console.log('2');
         state.isLoading = false
       })
       .addCase(checkAuth.rejected, state => {
@@ -104,29 +96,9 @@ export const userSlice = createSlice({
         state.user = {} as IUser
         state.isLoading = false
       })
-    /*users info*/
-    // builder
-    //   .addCase(usersInfo.fulfilled, (state, { payload }) => {
-    //     // console.log('.addCase(checkAuth)', payload)
-    //     // localStorage.removeItem('user')
-    //     console.log(payload);
-
-    //     state.user = payload
-    //     state.isLoading = false
-    //     state.setAuth = true
-    //     // localStorage.setItem('user', JSON.stringify(payload))
-    //     // console.log('.addCase(checkAuth)localStorage', localStorage.getItem('user'))
-    //   })
-    //   .addCase(usersInfo.rejected, state => {
-    //     // console.log('.addCase(checkAuth)', '112')
-    //     // state.isLoading = false
-    //     // localStorage.removeItem('user')
-    //   })
   }
 })
 
-// export const authReducer = authSlice.actions
-// export const {} = authSlice.actions
 export const setAuth = (state: AppState) => state.user.setAuth
 export const user = (state: AppState) => state.user.user
 export const isLoading = (state: AppState) => state.user.isLoading
