@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96.42% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>27/28</span>
+                <span class='fraction'>0/28</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">14.28% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/7</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96.42% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>27/28</span>
+                <span class='fraction'>0/28</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -91,62 +91,62 @@
 <a name='L26'></a><a href='#L26'>26</a>
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
-<a name='L29'></a><a href='#L29'>29</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<a name='L29'></a><a href='#L29'>29</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { FC } from 'react'
-import { useTranslation } from 'react-i18next'
-&nbsp;
-import styles from './Input.module.scss'
-import { IReviewsInput } from '@/src/types/CommentsType'
-&nbsp;
-const NameInput = ({ register, errors, watch }: IReviewsInput) =&gt; {
-  const { t } = useTranslation()
-  return (
-    &lt;div className={styles.form__input}&gt;
-      &lt;input data-testid="input-title"
-        {...register('title', { required: `${t('enter a name')}`, minLength: 3, maxLength: 50, pattern: { value: /^[а-яА-ЯёЁa-zA-Z0-9 !?:;"']+$/, message: `${t('invalid characters')}` } })}
-        className={`${styles.form__input} ${styles.test}`}
-        type='text'
-      /&gt;
-      {watch().title<span class="branch-0 cbranch-no" title="branch not covered" > ? (</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import React, { FC } from 'react'</span></span></span>
+<span class="cstat-no" title="statement not covered" >import { useTranslation } from 'react-i18next'</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >import styles from './Input.module.scss'</span>
+<span class="cstat-no" title="statement not covered" >import { IReviewsInput } from '@/src/types/CommentsType'</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >const NameInput = ({ register, errors, watch }: IReviewsInput) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  const { t } = useTranslation()</span>
+<span class="cstat-no" title="statement not covered" >  return (</span>
+<span class="cstat-no" title="statement not covered" >    &lt;div className={styles.form__input}&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;input data-testid="input-title"</span>
+<span class="cstat-no" title="statement not covered" >        {...register('title', { required: `${t('enter a name')}`, minLength: 3, maxLength: 50, pattern: { value: /^[а-яА-ЯёЁa-zA-Z0-9 !?:;"']+$/, message: `${t('invalid characters')}` } })}</span>
+<span class="cstat-no" title="statement not covered" >        className={`${styles.form__input} ${styles.test}`}</span>
+<span class="cstat-no" title="statement not covered" >        type='text'</span>
+<span class="cstat-no" title="statement not covered" >      /&gt;</span>
+<span class="cstat-no" title="statement not covered" >      {watch().title ? (</span>
 <span class="cstat-no" title="statement not covered" >        &lt;label className={`${styles.form__input_lable} ${styles.focus}`}&gt;{t('title of the review')}&lt;/label&gt;</span>
-      ) : (
-        &lt;label className={`${styles.form__input_lable}`}&gt;{t('title of the review')}&lt;/label&gt;
-      )}
-      {errors.title<span class="branch-0 cbranch-no" title="branch not covered" > &amp;&amp; &lt;span className={styles.errorAlert}&gt;{errors.title.message}&lt;/span&gt;}</span>
-      {errors.title<span class="branch-0 cbranch-no" title="branch not covered" > &amp;&amp; errors.title.type === 'minLength'<span class="branch-0 cbranch-no" title="branch not covered" > </span>&amp;&amp; &lt;span className={styles.errorAlert}&gt;{t('minimum of 2 characters')}&lt;/span&gt;}</span>
-      {errors.title<span class="branch-0 cbranch-no" title="branch not covered" > &amp;&amp; errors.title.type === 'maxLength'<span class="branch-0 cbranch-no" title="branch not covered" > </span>&amp;&amp; &lt;span className={styles.errorAlert}&gt;{t('maximum of 50 characters')}&lt;/span&gt;}</span>
-    &lt;/div&gt;
-  )
-}
-&nbsp;
-export default NameInput
+<span class="cstat-no" title="statement not covered" >      ) : (</span>
+<span class="cstat-no" title="statement not covered" >        &lt;label className={`${styles.form__input_lable}`}&gt;{t('title of the review')}&lt;/label&gt;</span>
+<span class="cstat-no" title="statement not covered" >      )}</span>
+<span class="cstat-no" title="statement not covered" >      {errors.title &amp;&amp; &lt;span className={styles.errorAlert}&gt;{errors.title.message}&lt;/span&gt;}</span>
+<span class="cstat-no" title="statement not covered" >      {errors.title &amp;&amp; errors.title.type === 'minLength' &amp;&amp; &lt;span className={styles.errorAlert}&gt;{t('minimum of 2 characters')}&lt;/span&gt;}</span>
+<span class="cstat-no" title="statement not covered" >      {errors.title &amp;&amp; errors.title.type === 'maxLength' &amp;&amp; &lt;span className={styles.errorAlert}&gt;{t('maximum of 50 characters')}&lt;/span&gt;}</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >  )</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >export default NameInput</span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -154,7 +154,7 @@ export default NameInput
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-06-05T09:58:06.134Z
+                at 2023-06-07T05:15:25.338Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

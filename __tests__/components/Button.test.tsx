@@ -9,7 +9,7 @@ describe('Button', () => {
     expect(container.firstChild).toHaveClass('img')
   })
   it('Button size: icon ', () => {
-    const { container } = render(<Button size='icon' />)
+    const { container  } = render(<Button size='icon' />)
     expect(container.firstChild).toHaveClass('icon')
   })
   it('Button size: smart ', () => {

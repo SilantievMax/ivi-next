@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96.55% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>28/29</span>
+                <span class='fraction'>0/29</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">12.5% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/8</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96.55% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>28/29</span>
+                <span class='fraction'>0/29</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -92,64 +92,64 @@
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { FC } from 'react'
-import { useTranslation } from 'react-i18next'
-&nbsp;
-import styles from './Input.module.scss'
-import { IReviewsInput } from '@/src/types/CommentsType'
-&nbsp;
-const ReviewInput = ({ register, errors, watch, placeholder }: IReviewsInput) =&gt; {
-  const { t } = useTranslation()
-&nbsp;
-  return (
-    &lt;div className={styles.form__textarea}&gt;
-      &lt;textarea
-        data-testid='textarea-comment'
-        {...register('description', { required: `${t('write a review')}`, minLength: 20, maxLength: 1000 })}
-        className={styles.form__textarea}
-      /&gt;
-      {watch().description<span class="branch-0 cbranch-no" title="branch not covered" > ? (</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import React, { FC } from 'react'</span></span></span>
+<span class="cstat-no" title="statement not covered" >import { useTranslation } from 'react-i18next'</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >import styles from './Input.module.scss'</span>
+<span class="cstat-no" title="statement not covered" >import { IReviewsInput } from '@/src/types/CommentsType'</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >const ReviewInput = ({ register, errors, watch, placeholder }: IReviewsInput) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  const { t } = useTranslation()</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  return (</span>
+<span class="cstat-no" title="statement not covered" >    &lt;div className={styles.form__textarea}&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;textarea</span>
+<span class="cstat-no" title="statement not covered" >        data-testid='textarea-comment'</span>
+<span class="cstat-no" title="statement not covered" >        {...register('description', { required: `${t('write a review')}`, minLength: 20, maxLength: 1000 })}</span>
+<span class="cstat-no" title="statement not covered" >        className={styles.form__textarea}</span>
+<span class="cstat-no" title="statement not covered" >      /&gt;</span>
+<span class="cstat-no" title="statement not covered" >      {watch().description ? (</span>
 <span class="cstat-no" title="statement not covered" >        &lt;label className={`${styles.form__input_lable} ${styles.focus}`}&gt;{placeholder || t('your review')}&lt;/label&gt;</span>
-      ) : (
-        &lt;label className={`${styles.form__input_lable} `}&gt;{placeholder<span class="branch-0 cbranch-no" title="branch not covered" > || t('your review')}</span>&lt;/label&gt;
-      )}
-      {errors.description<span class="branch-0 cbranch-no" title="branch not covered" > &amp;&amp; &lt;span className={styles.errorAlertText}&gt;{errors.description.message}&lt;/span&gt;}</span>
-      {errors.description<span class="branch-0 cbranch-no" title="branch not covered" > &amp;&amp; errors.description.type === 'minLength'<span class="branch-0 cbranch-no" title="branch not covered" > </span>&amp;&amp; &lt;span className={styles.errorAlertText}&gt;{t('minimum of 20 characters')}&lt;/span&gt;}</span>
-      {errors.description<span class="branch-0 cbranch-no" title="branch not covered" > &amp;&amp; errors.description.type === 'maxLength'<span class="branch-0 cbranch-no" title="branch not covered" > </span>&amp;&amp; &lt;span className={styles.errorAlertText}&gt;{t('maximum of 1000 characters')}&lt;/span&gt;}</span>
-    &lt;/div&gt;
-  )
-}
-&nbsp;
-export default ReviewInput
+<span class="cstat-no" title="statement not covered" >      ) : (</span>
+<span class="cstat-no" title="statement not covered" >        &lt;label className={`${styles.form__input_lable} `}&gt;{placeholder || t('your review')}&lt;/label&gt;</span>
+<span class="cstat-no" title="statement not covered" >      )}</span>
+<span class="cstat-no" title="statement not covered" >      {errors.description &amp;&amp; &lt;span className={styles.errorAlertText}&gt;{errors.description.message}&lt;/span&gt;}</span>
+<span class="cstat-no" title="statement not covered" >      {errors.description &amp;&amp; errors.description.type === 'minLength' &amp;&amp; &lt;span className={styles.errorAlertText}&gt;{t('minimum of 20 characters')}&lt;/span&gt;}</span>
+<span class="cstat-no" title="statement not covered" >      {errors.description &amp;&amp; errors.description.type === 'maxLength' &amp;&amp; &lt;span className={styles.errorAlertText}&gt;{t('maximum of 1000 characters')}&lt;/span&gt;}</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >  )</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >export default ReviewInput</span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -157,7 +157,7 @@ export default ReviewInput
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-06-05T09:58:06.134Z
+                at 2023-06-07T05:15:25.338Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

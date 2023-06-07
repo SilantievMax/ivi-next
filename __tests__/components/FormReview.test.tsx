@@ -25,6 +25,7 @@ jest.mock('next/router', () => ({
 describe('FormReview', () => {
   it('Review form', async () => {
     const baseProps: FormReviewProps = {
+      changing: false,
       formName: 'Review',
       idReview: 6,
       movieId: 6,
@@ -41,6 +42,7 @@ describe('FormReview', () => {
   })
   it('Comment form', async () => {
     const baseProps: FormReviewProps = {
+      changing: false,
       formName: 'Comment',
       idReview: 6,
       movieId: 6,
