@@ -145,7 +145,7 @@ const MoviesPage: FC = () => {
           {movies.map((el, idx) => (
             <Film key={idx} film={el} />
           ))}
-          <Button size='moviesBtn' onClick={() => setLimit(limit + 35)}>{t('showMoreBtn')}</Button>
+          {movies.length >= limit ? <Button size='moviesBtn' onClick={() => setLimit(limit + 35)}>{t('showMoreBtn')}</Button> : ''}
         </div>
         <h2 className={styles.sectionHeader}>{t('newFilmsSection')}</h2>
         <div className={styles.carouselWrapper}>
