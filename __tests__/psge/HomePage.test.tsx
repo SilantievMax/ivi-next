@@ -1,19 +1,8 @@
 import '@testing-library/jest-dom';
-import { render, screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
-import { debug } from 'console';
+import { render, screen, waitFor } from '@testing-library/react';
 import fetchMock from 'jest-fetch-mock';
-import nodeFetch from 'node-fetch';
-// import { rest } from 'msw'
-// import { setupServer } from 'msw/node'
 import { I18nextProvider } from 'react-i18next';
 import { Provider } from 'react-redux';
-
-
-
-import Home from '../../pages/index';
-import Movies from '../../pages/movies';
-
-
 
 import HomePage from '@/src/components/screens/HomePage/HomePage';
 import i18n from '@/src/i18next/i18n';
@@ -21,8 +10,6 @@ import { store } from '@/src/store/store';
 
 
 fetchMock.enableMocks()
-// global.fetch = nodeFetch;
-// jest.mock('axios', () => '')
 jest.mock('react-slick', () => () => <div>SLider</div>)
 jest.mock('next/router', () => ({
   useRouter: jest.fn()

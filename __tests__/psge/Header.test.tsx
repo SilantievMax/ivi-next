@@ -1,12 +1,9 @@
-import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
-import { I18nextProvider } from 'react-i18next';
+import '@testing-library/jest-dom'
+import { render, screen } from '@testing-library/react'
+import { I18nextProvider } from 'react-i18next'
 
-
-
-import Header from '@/src/components/Header/Header';
-import i18n from '@/src/i18next/i18n';
-
+import Header from '@/src/components/Header/Header'
+import i18n from '@/src/i18next/i18n'
 
 global.fetch = require('node-fetch')
 jest.mock('next/router', () => ({
@@ -17,9 +14,9 @@ jest.mock('react-slick', () => '')
 describe('Header', () => {
   beforeEach(() => {
     render(
-        <I18nextProvider i18n={i18n}>
-          <Header />
-        </I18nextProvider>
+      <I18nextProvider i18n={i18n}>
+        <Header />
+      </I18nextProvider>
     )
   })
   it('Renders subscription buttons', () => {

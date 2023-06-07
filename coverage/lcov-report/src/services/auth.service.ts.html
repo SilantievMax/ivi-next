@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">39.13% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>27/69</span>
+                <span class='fraction'>0/69</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">39.13% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>27/69</span>
+                <span class='fraction'>0/69</span>
             </div>
         
             
@@ -132,47 +132,7 @@
 <a name='L67'></a><a href='#L67'>67</a>
 <a name='L68'></a><a href='#L68'>68</a>
 <a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L70'></a><a href='#L70'>70</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -181,8 +141,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -191,8 +149,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -201,20 +157,64 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import $api from '.'
-import { createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
-&nbsp;
-import { IAuthResponse, IUser, LOCAL } from '../types/Auth'
-import { getLocalStorage } from '../utils/local-storage'
-&nbsp;
-export const AUTH_URL = process.env.AUTH_URL
-const configRefersh = {
-  headers: { Authorization: `Bearer ${getLocalStorage(LOCAL.TOKEN)<span class="branch-0 cbranch-no" title="branch not covered" >?.refreshToken}`</span> }
-}
-&nbsp;
-/* Login */
-export const signIn = createAsyncThunk&lt;IAuthResponse, IUser&gt;('auth/signIn', async (user, thunkApi) =&gt; {
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import $api from '.'</span></span></span>
+<span class="cstat-no" title="statement not covered" >import { createAsyncThunk } from '@reduxjs/toolkit'</span>
+<span class="cstat-no" title="statement not covered" >import axios from 'axios'</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >import { IAuthResponse, IUser, LOCAL } from '../types/Auth'</span>
+<span class="cstat-no" title="statement not covered" >import { getLocalStorage } from '../utils/local-storage'</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >export const AUTH_URL = process.env.AUTH_URL</span>
+<span class="cstat-no" title="statement not covered" >const configRefersh = {</span>
+<span class="cstat-no" title="statement not covered" >  headers: { Authorization: `Bearer ${getLocalStorage(LOCAL.TOKEN)?.refreshToken}` }</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >/* Login */</span>
+<span class="cstat-no" title="statement not covered" >export const signIn = createAsyncThunk&lt;IAuthResponse, IUser&gt;('auth/signIn', async (user, thunkApi) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >  try {</span>
 <span class="cstat-no" title="statement not covered" >    const { data } = await $api.post(`${AUTH_URL}/auth/signin`, user)</span>
 <span class="cstat-no" title="statement not covered" >    return data</span>
@@ -222,9 +222,9 @@ export const signIn = createAsyncThunk&lt;IAuthResponse, IUser&gt;('auth/signIn'
 <span class="cstat-no" title="statement not covered" >    return thunkApi.rejectWithValue(error)</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" >})</span>
-&nbsp;
-/* Registration */
-export const signUp = createAsyncThunk&lt;IAuthResponse, IUser&gt;('auth/signUp', async (user, thunkApi) =&gt; {
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >/* Registration */</span>
+<span class="cstat-no" title="statement not covered" >export const signUp = createAsyncThunk&lt;IAuthResponse, IUser&gt;('auth/signUp', async (user, thunkApi) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >  try {</span>
 <span class="cstat-no" title="statement not covered" >    const { data } = await $api.post(`${AUTH_URL}/auth/signup`, user)</span>
 <span class="cstat-no" title="statement not covered" >    return data</span>
@@ -232,16 +232,16 @@ export const signUp = createAsyncThunk&lt;IAuthResponse, IUser&gt;('auth/signUp'
 <span class="cstat-no" title="statement not covered" >    return thunkApi.rejectWithValue(error)</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" >})</span>
-&nbsp;
-/* Logout */
-export const logout = createAsyncThunk('auth/logout', async () =&gt; {
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >/* Logout */</span>
+<span class="cstat-no" title="statement not covered" >export const logout = createAsyncThunk('auth/logout', async () =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >  try {</span>
 <span class="cstat-no" title="statement not covered" >    await $api.get(`${AUTH_URL}/auth/logout`)</span>
 <span class="cstat-no" title="statement not covered" >  } catch (error) {}</span>
 <span class="cstat-no" title="statement not covered" >})</span>
-&nbsp;
-/* checkAuth */
-export const checkAuth = createAsyncThunk&lt;IAuthResponse&gt;('auth/checkAuth', async (user, thunkApi) =&gt; {
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >/* checkAuth */</span>
+<span class="cstat-no" title="statement not covered" >export const checkAuth = createAsyncThunk&lt;IAuthResponse&gt;('auth/checkAuth', async (user, thunkApi) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >  try {</span>
 <span class="cstat-no" title="statement not covered" >    const { data } = await axios.get(`${AUTH_URL}/auth/refresh`, configRefersh)</span>
 <span class="cstat-no" title="statement not covered" >    return data</span>
@@ -250,8 +250,8 @@ export const checkAuth = createAsyncThunk&lt;IAuthResponse&gt;('auth/checkAuth',
 <span class="cstat-no" title="statement not covered" >    return thunkApi.rejectWithValue(error)</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" >})</span>
-/* vk */
-export const vkAuth = createAsyncThunk&lt;IAuthResponse&gt;('auth/vkAuth', async (user, thunkApi) =&gt; {
+<span class="cstat-no" title="statement not covered" >/* vk */</span>
+<span class="cstat-no" title="statement not covered" >export const vkAuth = createAsyncThunk&lt;IAuthResponse&gt;('auth/vkAuth', async (user, thunkApi) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >  try {</span>
 <span class="cstat-no" title="statement not covered" >    const { data } = await $api.get(`${AUTH_URL}/auth/vk`)</span>
 <span class="cstat-no" title="statement not covered" >    return data</span>
@@ -260,8 +260,8 @@ export const vkAuth = createAsyncThunk&lt;IAuthResponse&gt;('auth/vkAuth', async
 <span class="cstat-no" title="statement not covered" >    return thunkApi.rejectWithValue(error)</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" >})</span>
-/* google */
-export const googleAuth = createAsyncThunk&lt;IAuthResponse&gt;('auth/googleAuth', async (user, thunkApi) =&gt; {
+<span class="cstat-no" title="statement not covered" >/* google */</span>
+<span class="cstat-no" title="statement not covered" >export const googleAuth = createAsyncThunk&lt;IAuthResponse&gt;('auth/googleAuth', async (user, thunkApi) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >  try {</span>
 <span class="cstat-no" title="statement not covered" >    const { data } = await $api.get(`${AUTH_URL}/auth/google`)</span>
 <span class="cstat-no" title="statement not covered" >    return data</span>
@@ -277,7 +277,7 @@ export const googleAuth = createAsyncThunk&lt;IAuthResponse&gt;('auth/googleAuth
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-06-05T09:58:06.134Z
+                at 2023-06-07T05:15:25.338Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/84</span>
+                <span class='fraction'>0/90</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/84</span>
+                <span class='fraction'>0/90</span>
             </div>
         
             
@@ -146,7 +146,14 @@
 <a name='L81'></a><a href='#L81'>81</a>
 <a name='L82'></a><a href='#L82'>82</a>
 <a name='L83'></a><a href='#L83'>83</a>
-<a name='L84'></a><a href='#L84'>84</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -229,20 +236,28 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import Link from 'next/link';</span></span></span>
-<span class="cstat-no" title="statement not covered" >import React, { FC } from 'react';</span>
-<span class="cstat-no" title="statement not covered" >import { Oval } from 'react-loader-spinner';</span>
-<span class="cstat-no" title="statement not covered" >import { useDispatch, useSelector } from 'react-redux';</span>
-<span class="cstat-no" title="statement not covered" >import LanguageBtn from '../LanguageBtn/LanguageBtn';</span>
-<span class="cstat-no" title="statement not covered" >import styles from './Profile.module.scss';</span>
-<span class="cstat-no" title="statement not covered" >import { Button } from '@/src/components/Button/Button';</span>
-<span class="cstat-no" title="statement not covered" >import { bookmark, card, clipboard, rectangleStack, share, trophy, tvCategory, union } from '@/src/img/imges';</span>
-<span class="cstat-no" title="statement not covered" >import { googleAuth, logout, vkAuth } from '@/src/services/auth.service';</span>
-<span class="cstat-no" title="statement not covered" >import { setOpenAuth } from '@/src/store/reducers/authReducer';</span>
-<span class="cstat-no" title="statement not covered" >import { isAdmin, isLoading, setAuth } from '@/src/store/reducers/userReducers';</span>
-<span class="cstat-no" title="statement not covered" >import { AppDispatch } from '@/src/store/store';</span>
-<span class="cstat-no" title="statement not covered" >import { useTranslation } from 'react-i18next';</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import Link from 'next/link'</span></span></span>
+<span class="cstat-no" title="statement not covered" >import React, { FC } from 'react'</span>
+<span class="cstat-no" title="statement not covered" >import { useTranslation } from 'react-i18next'</span>
+<span class="cstat-no" title="statement not covered" >import { Oval } from 'react-loader-spinner'</span>
+<span class="cstat-no" title="statement not covered" >import { useDispatch, useSelector } from 'react-redux'</span>
 <span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >import LanguageBtn from '../LanguageBtn/LanguageBtn'</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >import styles from './Profile.module.scss'</span>
+<span class="cstat-no" title="statement not covered" >import { Button } from '@/src/components/Button/Button'</span>
+<span class="cstat-no" title="statement not covered" >import { bookmark, card, clipboard, rectangleStack, share, trophy, tvCategory, union } from '@/src/img/imges'</span>
+<span class="cstat-no" title="statement not covered" >import { googleAuth, logout, vkAuth } from '@/src/services/auth.service'</span>
+<span class="cstat-no" title="statement not covered" >import { setOpenAuth } from '@/src/store/reducers/authReducer'</span>
+<span class="cstat-no" title="statement not covered" >import { isAdmin, isLoading, setAuth, user } from '@/src/store/reducers/userReducers'</span>
+<span class="cstat-no" title="statement not covered" >import { AppDispatch } from '@/src/store/store'</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >const profileCategory = [</span>
 <span class="cstat-no" title="statement not covered" >  { img: rectangleStack.src, title: 'Покупки' },</span>
@@ -257,6 +272,7 @@
 <span class="cstat-no" title="statement not covered" >const Profile: FC = () =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >  const auth = useSelector(setAuth)</span>
 <span class="cstat-no" title="statement not covered" >  const loading = useSelector(isLoading)</span>
+<span class="cstat-no" title="statement not covered" >  const userName = useSelector(user)</span>
 <span class="cstat-no" title="statement not covered" >  const dispatch = useDispatch&lt;AppDispatch&gt;()</span>
 <span class="cstat-no" title="statement not covered" >  const admin = useSelector(isAdmin)</span>
 <span class="cstat-no" title="statement not covered" >  const { t } = useTranslation()</span>
@@ -280,7 +296,11 @@
 <span class="cstat-no" title="statement not covered" >      ) : (</span>
 <span class="cstat-no" title="statement not covered" >        &lt;div className={styles.card_r}&gt;</span>
 <span class="cstat-no" title="statement not covered" >          {auth ? (</span>
-<span class="cstat-no" title="statement not covered" >            &lt;Button onClick={() =&gt; dispatch(logout())} size='border' children={t('exit')} color='redOpacity' /&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;&gt;</span>
+<span class="cstat-no" title="statement not covered" >              &lt;div&gt;{userName.login}&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >              &lt;div&gt;{userName.email}&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >              &lt;Button onClick={() =&gt; dispatch(logout())} size='border' children={t('exit')} color='redOpacity' /&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;/&gt;</span>
 <span class="cstat-no" title="statement not covered" >          ) : (</span>
 <span class="cstat-no" title="statement not covered" >            &lt;&gt;</span>
 <span class="cstat-no" title="statement not covered" >              &lt;Button onClick={() =&gt; dispatch(setOpenAuth(true))} size='border' children={t('log in or register')} color='redOpacity' /&gt;</span>
@@ -312,14 +332,15 @@
 <span class="cstat-no" title="statement not covered" >  )</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export default Profile</span></pre></td></tr></table></pre>
+<span class="cstat-no" title="statement not covered" >export default Profile</span>
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-06-05T09:58:06.134Z
+                at 2023-06-07T05:15:25.338Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
