@@ -17,7 +17,7 @@ jest.mock('swiper/css/navigation', () => '')
 
 describe('MoviesPage', () => {
   it('Renders MoviesPage', () => {
-    useRouter.mockReturnValue({
+    useRouter.mockReturnValue({query:{
       route: '/movies',
       basePath: '',
       isLocaleDomain: false,
@@ -26,7 +26,7 @@ describe('MoviesPage', () => {
       query: {},
       asPath: '/movies',
       push: jest.fn()
-    })
+    }})
     render(
       <Provider store={store}>
         <I18nextProvider i18n={i18n}>
